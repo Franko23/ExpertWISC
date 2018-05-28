@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="?attr/listPreferredItemHeight"
+    android:orientation="horizontal"
+    android:paddingBottom="8dp"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="8dp">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:id="@+id/img">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgListaPaciente"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:src="@drawable/person"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:weightSum="2"
+        android:orientation="vertical"
+        android:layout_marginLeft="30dp">
+        <TextView
+            android:id="@+id/txtListaPacienteNombres"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textStyle="bold"
+            android:textSize="30dp"
+            android:text="Nombre"
+            android:textColor="#292727"
+            android:textAppearance="?attr/textAppearanceListItem"
+            tools:text="Alexander Pierrot" />
+
+        <TextView
+            android:id="@+id/txtListaPacienteEdad"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Cargo"
+            android:textSize="20dp"
+            tools:text="CEO" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="1"
+        android:gravity="right">
+        <ImageView
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"
+            android:src="@drawable/chevron_right"/>
+    </LinearLayout>
+
+</LinearLayout>

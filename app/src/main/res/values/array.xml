@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <array name="uploadImages">
+        <item>Seleccionar desde Galería</item>
+        <item>Tomar una foto</item>
+        <item>Eliminar imagen</item>
+    </array>
+
+
+    <string-array name="itemIds">
+        <item>gallery_image</item>
+        <item>camera_image</item>
+        <item>remove_image</item>
+    </string-array>
+
+</resources>
