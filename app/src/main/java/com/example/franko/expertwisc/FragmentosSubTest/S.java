@@ -1,14 +1,24 @@
 package com.example.franko.expertwisc.FragmentosSubTest;
 
+import android.app.Dialog;
 import android.content.Context;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.example.franko.expertwisc.R;
+
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +37,10 @@ public class S extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    Dialog myDialog;
+    ImageView imageView;
+    TextView tool;
+    View view;
 
     private OnFragmentInteractionListener mListener;
 
@@ -59,13 +73,41 @@ public class S extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        myDialog = new Dialog(getContext());
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_s, container, false);
+        view =inflater.inflate(R.layout.fragment_s, container, false);
+
+        imageView = view.findViewById(R.id.show_s);
+        tool = view.findViewById(R.id.tool);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                TextView txtclose;
+                Button btnFollow;
+                myDialog.setContentView(R.layout.pop_up_s);
+                txtclose =(TextView) myDialog.findViewById(R.id.txtclose);
+                txtclose.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        myDialog.dismiss();
+                    }
+                });
+                myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+                myDialog.show();
+            }
+        });
+
+//                        .withText("Si el entrevistado no da una respuesta de 1 punto, brinde la respuesat que indica en el Manual de Administración y Puntuación")
+
+
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

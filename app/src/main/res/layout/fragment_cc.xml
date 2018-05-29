@@ -43,7 +43,7 @@
                         android:layout_height="match_parent"
                         android:src="@drawable/information"
                         android:layout_gravity="start"
-                        android:id="@+id/show"
+                        android:id="@+id/show_cc"
                             android:contentDescription="Información de la sub prueba"/>
                     </LinearLayout>
                     <LinearLayout

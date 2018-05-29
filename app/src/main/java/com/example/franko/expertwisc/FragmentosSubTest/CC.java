@@ -76,7 +76,7 @@ public class CC extends Fragment {
         // Inflate the layout for this fragment
         view =inflater.inflate(R.layout.fragment_cc, container, false);
 
-        imageView = view.findViewById(R.id.show);
+        imageView = view.findViewById(R.id.show_cc);
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override

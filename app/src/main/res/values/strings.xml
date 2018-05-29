@@ -25,9 +25,9 @@
     <string name="nuevo_paciente">Registro de paciente</string>
 
     <!-- TODO: Titulos de sub pruebas -->
-    <string name="sub_prueba_uno">1. Construcción con cubos</string>
+    <string name="sub_prueba_uno">1. Construcción con Cubos</string>
     <string name="sub_prueba_dos">2. Semejanzas</string>
-    <string name="sub_prueba_tres">3. Retención de dígitos</string>
+    <string name="sub_prueba_tres">3. Retención de Dígitos</string>
     <string name="sub_prueba_cuatro">4. Conceptos</string>
     <string name="sub_prueba_cinco">5. Claves</string>
     <string name="sub_prueba_seis">6. Vocabulario</string>
@@ -35,7 +35,7 @@
     <string name="sub_prueba_ocho">8. Matrices</string>
     <string name="sub_prueba_nueve">9. Comprensión</string>
     <string name="sub_prueba_diez">10. Búsqueda de Símbolos</string>
-    <string name="sub_prueba_once">11. (Completamiento de figuras)</string>
+    <string name="sub_prueba_once">11. (Completamiento de Figuras)</string>
     <string name="sub_prueba_doce">12. (Animales)</string>
     <string name="sub_prueba_trece">13. (Información)</string>
     <string name="sub_prueba_catorce">14. (Aritmética)</string>
@@ -125,5 +125,31 @@
     <string name="Interrupcion_ad">Luego de <b>5</b> puntuaciones consecutivas de 0.</string>
     <string name="Puntuacion_ad"><b>0</b> ó <b>1</b> punto. \nVéase el <i>Manual de Administración y Puntuación</i> para los ejemplos de respuestas.</string>
 
+
+    //SEMEJANZAS TEXT
+    <string name="s_m">M. Rojo - Azul</string>
+    <string name="s_uno">1. Leche - Agua</string>
+    <string name="s_dos">2. Lápiz - Lapicera</string>
+    <string name="s_tres">3. Manzana - Banana</string>
+    <string name="s_cuatro">4. Camisa - Zapato</string>
+    <string name="s_cinco">5. Gato - Ratón</string>
+    <string name="s_seis">6. Mariposa - Abeja</string>
+    <string name="s_siete">7. Invierno - Verano</string>
+    <string name="s_ocho">8. Cemento - Ladrillos</string>
+    <string name="s_nueve">9. Codo - Rodilla</string>
+    <string name="s_diez">10. Montaña - Lago</string>
+    <string name="s_once">11. Enojo - Alegría</string>
+    <string name="s_doce">12. Poeta - Pintor</string>
+    <string name="s_trece">13. Hielo - Vapor</string>
+    <string name="s_catorce">14. Sonrisa - Llanto</string>
+    <string name="s_quince">15. Primero - Último</string>
+    <string name="s_dieciseis">16. Pintura - Estatua</string>
+    <string name="s_diecisiete">17. Sal - Agua</string>
+    <string name="s_dieciocho">18. Inundación - Sequía</string>
+    <string name="s_diecinueve">19. Permiso - Prohibición</string>
+    <string name="s_veinte">20. Temperatura - Longitud</string>
+    <string name="s_veintiuno">21. Venganza - Perdón</string>
+    <string name="s_veintidos">22. Espacio - Tiempo</string>
+    <string name="s_veintitres">23. Sueño - vigilia</string>
 
 </resources>
