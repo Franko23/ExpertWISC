@@ -62,7 +62,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/Comienzo_cc"/>
+                        android:text="@string/Comienzo_co"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -109,7 +109,7 @@
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/Retrogresion_cc"/>
+                        android:text="@string/Retrogresion_co"/>
 
                 </LinearLayout>
             </LinearLayout>
@@ -156,7 +156,7 @@
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/Interrupcion_cc"/>
+                        android:text="@string/Interrupcion_co"/>
                 </LinearLayout>
             </LinearLayout>
 
@@ -199,10 +199,10 @@
                     android:orientation="vertical"
                     android:layout_weight="1">
 
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="@string/Puntuacion_cc"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="@string/Puntuacion_co"/>
 
                 </LinearLayout>
             </LinearLayout>

@@ -85,8 +85,6 @@ public class CC extends Fragment {
                 Button btnFollow;
                 myDialog.setContentView(R.layout.pop_up_cc);
                 txtclose =(TextView) myDialog.findViewById(R.id.txtclose);
-                txtclose.setText("M");
-                btnFollow = (Button) myDialog.findViewById(R.id.btnfollow);
                 txtclose.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
