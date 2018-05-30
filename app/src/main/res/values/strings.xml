@@ -66,8 +66,8 @@
     <string name="Puntuacion_s"><b>Ítems 1 - 2:</b> 0 ó 1 punto. \n<b>Ítems 3 - 23:</b> 0, 1 ó 2 puntos \n<i>Véase Manual de Administración y Puntuación para ejemplos de respuestas.</i></string>
     //RD
     <string name="Comienzo_rd"><b>6 a 16 años: \nOrden directo (DD):</b> \Ítem 1 \n<b>Orden Inverso (DI):</b> \n Ítem de Muestra, luego Ítem 1.</string>
-    <string name="Interrupcion_rd"><b>DD:</b> Luego de obtener 0 punto en <i>ambos intentos</i> de un ítem. \n<b>DI:</b> Luego de obtener 0 punto en <i>ambos intententos</i> de un ítem.</string>
-    <string name="Puntuacion_rd">En cada intento: <b>0</b> ó <b>1</b> punto en cda respuesta. \nPuntuación del Ítem: Intento 1 + Intento 2\n \n<b>DD + DI:</b> Serie de números más larga recordada en el último intento que haya obtenido punto en <b>DD</b>(DD+) o <b>DI</b>(DI+)</string>
+    <string name="Interrupcion_rd"><b>DD:</b> Luego de obtener 0 punto en <i>ambos intentos</i> de un ítem. \n<b>DI:</b> Luego de obtener 0 punto en <i>ambos intentos</i> de un ítem.</string>
+    <string name="Puntuacion_rd">En cada intento: <b>0</b> ó <b>1</b> punto en cada respuesta. \nPuntuación del Ítem: Intento 1 + Intento 2\n \n<b>DD + DI:</b> Serie de números más larga recordada en el último intento que haya obtenido punto en <b>DD</b>(DD+) o <b>DI</b>(DI+)</string>
     //CO
     <string name="Comienzo_co"><b>6 a 8 años:</b> Ítems de Muestra A y B, luego Ítem 1. \n<b>9 a 11 años:</b> Ítems de Muestra A y B, luego Ítem 5. \n<b>12 a 16 años:</b> Ítems de Muestra A y B, luego Ítem 7.</string>
     <string name="Retrogresion_co"><b>9 a 16 años:</b> Con 0 ó 1 punto en alguno de los dos primeros ítems, administrar los ítems anteriores en secuencia inversa hasta obtener dos puntuaciones perfectas consecutivas.</string>
