@@ -188,13 +188,13 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
-                                    android:text="2 - 9" />
+                                    android:text="3 - 4 - 1 - 7" />
 
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
-                                    android:text="4 - 6" />
+                                    android:text="6 - 1 - 5 - 8" />
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
@@ -227,13 +227,13 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
-                                    android:text="2 - 9" />
+                                    android:text="8 - 4 - 2 - 3 - 9" />
 
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
-                                    android:text="4 - 6" />
+                                    android:text="5 - 2 - 1 - 8 - 6" />
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
@@ -266,13 +266,13 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
-                                    android:text="2 - 9" />
+                                    android:text="3 - 8 - 9 - 1 - 7 - 4" />
 
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
-                                    android:text="4 - 6" />
+                                    android:text="7 - 9 - 6 - 4 - 8 - 3" />
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
@@ -305,13 +305,13 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
-                                    android:text="2 - 9" />
+                                    android:text="5 - 1 - 7 - 4 - 2 - 3 - 8" />
 
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
-                                    android:text="4 - 6" />
+                                    android:text="9 - 8 - 5 - 2 - 1 - 6 - 3" />
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
@@ -344,13 +344,13 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
-                                    android:text="2 - 9" />
+                                    android:text="1 - 8 - 4 - 5 - 9 - 7 - 6 - 3" />
 
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
-                                    android:text="4 - 6" />
+                                    android:text="2 - 9 - 7 - 6 - 3 - 1 - 5 - 4" />
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
@@ -383,13 +383,13 @@
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
-                                    android:text="2 - 9" />
+                                    android:text="5 - 3 - 8 - 7 - 1 - 2 - 4 - 6 - 9" />
 
                                 <TextView
                                     android:layout_width="match_parent"
                                     android:layout_height="wrap_content"
                                     android:gravity="start"
-                                    android:text="4 - 6" />
+                                    android:text="4 - 2 - 6 - 9 - 1 - 7 -8 - 3 - 5" />
                             </LinearLayout>
                         </LinearLayout>
                     </LinearLayout>
