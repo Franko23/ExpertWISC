@@ -11,7 +11,7 @@
         <!--android:layout_width="match_parent"-->
         <!--android:layout_height="match_parent"-->
         <!--android:orientation="vertical">-->
-        <LinearLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -43,7 +43,7 @@
                     android:contentDescription="Información de la sub prueba"/>
             </LinearLayout>
         </LinearLayout>
-        <ScrollView
+    <ScrollView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="20">
@@ -453,7 +453,7 @@
 
             </LinearLayout>
         </ScrollView>
-        <LinearLayout
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -473,16 +473,34 @@
                     android:textStyle="bold"
                     android:gravity="end"
                     android:text="Puntuación Directa Total \n(Máximo = 44)"/>
-                <TextView
+                <EditText
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:textStyle="bold"
                     android:gravity="center"
-                    android:text="#"
+                    android:hint="#"
+                    android:id="@+id/res_s"
                     android:background="#fcf0f0"/>
             </LinearLayout>
         </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <Button
+            android:id="@+id/guardar_s"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:enabled="false"
+            android:background="@color/cardview_shadow_start_color"
+            android:textColor="#ffffff"
+            android:text="Guardar valor S"/>
     </LinearLayout>
+
+</LinearLayout>
 
 <!--</FrameLayout>-->

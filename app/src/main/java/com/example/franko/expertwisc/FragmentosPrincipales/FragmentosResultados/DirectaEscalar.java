@@ -1,35 +1,24 @@
-package com.example.franko.expertwisc.FragmentosSubTest;
+package com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados;
 
-import android.app.Dialog;
 import android.content.Context;
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.text.Editable;
-import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.franko.expertwisc.Entidades.SubTest;
 import com.example.franko.expertwisc.R;
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link I.OnFragmentInteractionListener} interface
+ * {@link DirectaEscalar.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link I#newInstance} factory method to
+ * Use the {@link DirectaEscalar#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class I extends Fragment {
+public class DirectaEscalar extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -38,14 +27,10 @@ public class I extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-    Dialog myDialog;
-    ImageView imageView;
-    View view;
-    Button guardar;
-    EditText res_i;
+
     private OnFragmentInteractionListener mListener;
 
-    public I() {
+    public DirectaEscalar() {
         // Required empty public constructor
     }
 
@@ -55,11 +40,11 @@ public class I extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment I.
+     * @return A new instance of fragment DirectaEscalar.
      */
     // TODO: Rename and change types and number of parameters
-    public static I newInstance(String param1, String param2) {
-        I fragment = new I();
+    public static DirectaEscalar newInstance(String param1, String param2) {
+        DirectaEscalar fragment = new DirectaEscalar();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -74,74 +59,13 @@ public class I extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-        myDialog = new Dialog(getContext());
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view =inflater.inflate(R.layout.fragment_i, container, false);
-        res_i = view.findViewById(R.id.res_i);
-        guardar = view.findViewById(R.id.guardar_i);
-        imageView = view.findViewById(R.id.show_i);
-
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                TextView txtclose;
-                Button btnFollow;
-                myDialog.setContentView(R.layout.pop_up_i);
-                txtclose =(TextView) myDialog.findViewById(R.id.txtclose);
-                txtclose.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        myDialog.dismiss();
-                    }
-                });
-                myDialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-                myDialog.show();
-            }
-        });
-
-        res_i.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
-
-            }
-
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-                enableSubmitIfReady();
-            }
-        });
-
-        guardar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SubTest subTest = new SubTest();
-                subTest.setRes_i(res_i.getText().toString());
-                guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                Toast.makeText(getContext(),subTest.getRes_i()+" GUARDADO",Toast.LENGTH_SHORT).show();
-            }
-        });
-
-        return view;
-    }
-
-    private void enableSubmitIfReady() {
-        boolean isReady = res_i.getText().toString().length() > 1;
-        guardar.setEnabled(isReady);
-        if (isReady){
-            guardar.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
-        }else{
-            guardar.setBackgroundColor(getResources().getColor(R.color.cardview_shadow_start_color));
-        }
+        return inflater.inflate(R.layout.fragment_directa_escalar, container, false);
     }
 
     // TODO: Rename method, update argument and hook method into UI event

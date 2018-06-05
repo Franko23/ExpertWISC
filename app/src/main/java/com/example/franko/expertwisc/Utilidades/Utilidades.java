@@ -7,6 +7,16 @@ package com.example.franko.expertwisc.Utilidades;
 public class Utilidades {
     //Variable de PageViewer
     public static int rotacion = 0;
+    public static String R_cc;
+    public static String R_s;
+    public static String R_rd;
+    public static String R_co;
+    public static String R_cl;
+    public static String R_v;
+    public static String R_ln;
+    public static String R_m;
+    public static String R_c;
+    public static String R_bs;
     public static Boolean pantalla = true;
 
     //Constantes Campo Usuario
@@ -46,9 +56,48 @@ public class Utilidades {
             CAMPO_APELLIDOS_PACIENTE + " TEXT, "+
             CAMPO_MOTIVO_CONSULTA_PACIENTE + " TEXT, "+
             CAMPO_ANTECEDENTES_PACIENTE+ " TEXT, "+
-            CAMPO_EDAD_PACIENTE +" TEXT,"+
+            CAMPO_EDAD_PACIENTE +" TEXT, "+
             CAMPO_IMAGEN_PACIENTE+" BLOB"+
             ")";
+
+    //Constantes Tabla Test
+    public static final String TABLA_TEST = "test";
+    public static final String CAMPO_ID_TEST = "id_test";
+    public static final String CAMPO_RES_CC= "res_cc";
+    public static final String CAMPO_RES_S= "res_s";
+    public static final String CAMPO_RES_RD= "res_rd";
+    public static final String CAMPO_RES_CO= "res_co";
+    public static final String CAMPO_RES_CL= "res_cl";
+    public static final String CAMPO_RES_V= "res_v";
+    public static final String CAMPO_RES_LN= "res_ln";
+    public static final String CAMPO_RES_M= "res_m";
+    public static final String CAMPO_RES_C= "res_c";
+    public static final String CAMPO_RES_BS= "res_bs";
+    public static final String CAMPO_RES_CF= "res_cf";
+    public static final String CAMPO_RES_A= "res_a";
+    public static final String CAMPO_RES_I= "res_i";
+    public static final String CAMPO_RES_AR= "res_ar";
+    public static final String CAMPO_RES_AD= "res_ad";
+
+    public static final String CREAR_TABLA_TEST = "CREATE TABLE" +TABLA_TEST+
+            " ("+
+            CAMPO_ID_TEST + "INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "+
+            CAMPO_ID_PACIENTE + " INTEGER, "+
+            CAMPO_RES_CC + " TEXT, "+
+            CAMPO_RES_S + " TEXT, "+
+            CAMPO_RES_RD + " TEXT, "+
+            CAMPO_RES_CO + " TEXT, "+
+            CAMPO_RES_CL + " TEXT, "+
+            CAMPO_RES_V + " TEXT, "+
+            CAMPO_RES_LN+ " TEXT, "+
+            CAMPO_RES_M + " TEXT, "+
+            CAMPO_RES_C + " TEXT, "+
+            CAMPO_RES_BS+ " TEXT, "+
+            CAMPO_RES_CF + " TEXT, "+
+            CAMPO_RES_A + " TEXT, "+
+            CAMPO_RES_I + " TEXT, "+
+            CAMPO_RES_AR + " TEXT, "+
+            CAMPO_RES_AD + " TEXT )";
 
 
     //Constantes Campo Puntuaciones

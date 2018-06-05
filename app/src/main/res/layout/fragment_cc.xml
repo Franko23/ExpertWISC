@@ -4,6 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".FragmentosSubTest.CC"
+    android:id="@+id/layout_CC"
     android:orientation="vertical">
 
     <!-- TODO: Update blank fragment layout -->
@@ -949,14 +950,16 @@
                             android:textStyle="bold"
                             android:gravity="end"
                             android:text="Puntuación Directa Total CC\n(Máximo = 68)"/>
-                        <TextView
+                        <EditText
                             android:layout_width="wrap_content"
                             android:layout_height="match_parent"
                             android:layout_weight="1"
                             android:textStyle="bold"
                             android:gravity="center"
-                            android:text="#"
-                            android:background="#fcf0f0"/>
+                            android:hint="#"
+                            android:inputType="number"
+                            android:background="#fcf0f0"
+                            android:id="@+id/res_cc"/>
                     </LinearLayout>
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -982,6 +985,23 @@
                             android:background="#fcf0f0"/>
                     </LinearLayout>
                 </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1">
+                    <Button
+                        android:id="@+id/guardar_cc"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_margin="15dp"
+                        android:textAlignment="center"
+                        android:textStyle="bold"
+                        android:background="@color/cardview_shadow_start_color"
+                        android:textColor="#ffffff"
+                        android:enabled="false"
+                        android:text="Guardar valor cc"/>
+                </LinearLayout>
+
 
         <!--</LinearLayout>-->
 

@@ -68,5 +68,51 @@
         android:layout_weight="20">
 
     </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:layout_gravity="end"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="#f2f2f2">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="4"
+                android:textStyle="bold"
+                android:gravity="end"
+                android:text="Puntuación Directa Total \n(Máximo = 38)"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:textStyle="bold"
+                android:gravity="center"
+                android:text="#"
+                android:id="@+id/res_cf"
+                android:background="#fcf0f0"/>
+        </LinearLayout>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1">
+        <Button
+            android:id="@+id/guardar_cf"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="15dp"
+            android:textAlignment="center"
+            android:textStyle="bold"
+            android:background="@color/cardview_shadow_start_color"
+            android:textColor="#ffffff"
+            android:enabled="false"
+            android:text="Guardar valor CF"/>
+    </LinearLayout>
 
 </LinearLayout>

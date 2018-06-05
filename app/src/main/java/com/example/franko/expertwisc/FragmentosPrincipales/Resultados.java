@@ -6,21 +6,17 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.TabLayout;
-import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
-import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.franko.expertwisc.Adapters.SeccionesAdapter;
-import com.example.franko.expertwisc.ConexionHelper;
-import com.example.franko.expertwisc.Entidades.Paciente;
+import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.DirectaEscalar;
+import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.IndicesCI;
+import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.PerfilCompuestas;
+import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.PerfilEscalar;
 import com.example.franko.expertwisc.FragmentosSubTest.A;
 import com.example.franko.expertwisc.FragmentosSubTest.Ad;
 import com.example.franko.expertwisc.FragmentosSubTest.Ar;
@@ -37,21 +33,17 @@ import com.example.franko.expertwisc.FragmentosSubTest.RD;
 import com.example.franko.expertwisc.FragmentosSubTest.S;
 import com.example.franko.expertwisc.FragmentosSubTest.V;
 import com.example.franko.expertwisc.R;
-
 import com.example.franko.expertwisc.Utilidades.Utilidades;
-
-import java.util.ArrayList;
-
 
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
- * {@link GeneralSubPruebas.OnFragmentInteractionListener} interface
+ * {@link Resultados.OnFragmentInteractionListener} interface
  * to handle interaction events.
- * Use the {@link GeneralSubPruebas#newInstance} factory method to
+ * Use the {@link Resultados#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteractionListener{
+public class Resultados extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -60,25 +52,13 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
-    View view, view_cc, view_s, view_rd, view_co, view_cl, view_v, view_ln, view_m, view_c, view_bs, view_cf, view_a, view_i, view_ar, view_ad;
-
+    View view;
     private AppBarLayout appBarLayout;
     private TabLayout tabLayout;
     private ViewPager viewPager;
-    Button finalizar;
-
-    Bundle bundle;
-    TextView datoPaciente, valores, siguiente;
-    int id_paciente;
-
-    String EdadPaciente, Titulo, res_cl, AñoTotal;
-    private EditText res_cc, res_s, res_rd, res_co, res_cl_a, res_v, res_ln, res_m, res_c, res_bs, res_cf, res_a, res_i, res_ar, res_ad;
-    TextInputEditText res_cl_b;
-
     private OnFragmentInteractionListener mListener;
 
-    public GeneralSubPruebas() {
+    public Resultados() {
         // Required empty public constructor
     }
 
@@ -88,17 +68,15 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment GeneralSubPruebas.
+     * @return A new instance of fragment Resultados.
      */
     // TODO: Rename and change types and number of parameters
-    public static GeneralSubPruebas newInstance(String param1, String param2) {
-        GeneralSubPruebas fragment = new GeneralSubPruebas();
+    public static Resultados newInstance(String param1, String param2) {
+        Resultados fragment = new Resultados();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
-
-
         return fragment;
     }
 
@@ -115,15 +93,8 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_general_sub_pruebas, container, false);
-        viewPager = view.findViewById(R.id.sub_content);
+        view = inflater.inflate(R.layout.fragment_resultados, container, false);
 
-
-
-//        res_cl_a = view.findViewById(R.id.res_cl_a);
-//        res_cl_b = view.findViewById(R.id.res_cl_b);
-
-//        finalizar = view.findViewById(R.id.finalizar);
 
         if (Utilidades.rotacion == 0){
             View parent = (View) container.getParent();
@@ -132,6 +103,7 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
                 tabLayout = new TabLayout(getActivity());
                 appBarLayout.addView(tabLayout);
 
+                viewPager = view.findViewById(R.id.res_content);
 
                 llenarViewPager(viewPager);
 
@@ -142,11 +114,6 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
                     }
                 });
 
-//                res_cl_a = viewPager.findViewById(R.id.res_cl_a);
-//                res_cl_b = viewPager.findViewById(R.id.res_cl_b);
-//
-//                res_cl_a.setText("66777");
-
                 tabLayout.setupWithViewPager(viewPager);
                 tabLayout.setTabTextColors(Color.parseColor("#ffffff"),Color.parseColor("#ffffff"));
             }
@@ -156,85 +123,15 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
         }else{
             Utilidades.rotacion =1;
         }
-
-//        View v = inflater.inflate(R.layout.fragment_cc, null, true);
-//        res_cl_a = viewPager.
-////        int as = container.getChildCount();
-////        Toast.makeText(getContext(),"Childs "+as, Toast.LENGTH_SHORT).show();
-//        res_cl_a.setText("8888");
-
-
-
-
-//        valores = view.findViewById(R.id.valores);
-//        datoPaciente = view.findViewById(R.id.DatoPaciente);
-
-        bundle = getArguments();
-
-        Paciente paciente = null;
-
-        if (bundle != null) {
-//            paciente = (Paciente) bundle.getSerializable("paciente");
-            paciente = (Paciente) bundle.getBundle("Paciente").getSerializable("paciente");
-            id_paciente = paciente.getId();
-            EdadPaciente = bundle.getBundle("Edad").getString("edad");
-            AñoTotal = bundle.getBundle("Edad2").getString("edad2");
-            Titulo = "Nombre: " + paciente.getNombres().toString() + " " + paciente.getApellidos()+"\n"+EdadPaciente;
-        }
-
-//        int edad= Integer.getInteger(AñoTotal);
-
-
-//        if (6<=7){
-//            res_cl_a.setEnabled(true);
-//            res_cl_b.setEnabled(false);
-//
-//            res_cl = res_cl_a.getText().toString();
-//            Toast.makeText(getContext(),"A HABILITADO", Toast.LENGTH_SHORT).show();
-//        }else {
-//            res_cl_b.setEnabled(true);
-//            res_cl_a.setEnabled(false);
-//
-//            res_cl = res_cl_b.getText().toString();
-//            Toast.makeText(getContext(),"B HABILITADO "+res_cl, Toast.LENGTH_SHORT).show();
-//        }
-
-
-//        finalizar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ConexionHelper con = null;
-//
-//                String cc, cf="0", a="0", i="0", ar="0", ad="0";
-//
-//                Toast.makeText(getContext(),"VALOR CC actual "+cc, Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
-
-
-        getActivity().setTitle(Titulo);
-
         return view;
     }
 
     private void llenarViewPager(ViewPager viewPager) {
         SeccionesAdapter seccionesAdapter = new SeccionesAdapter(getFragmentManager());
-        seccionesAdapter.addFragment(new CC(),"CC");
-        seccionesAdapter.addFragment(new S(),"S");
-        seccionesAdapter.addFragment(new RD(),"RD");
-        seccionesAdapter.addFragment(new Co(),"Co");
-        seccionesAdapter.addFragment(new Cl(),"Cl");
-        seccionesAdapter.addFragment(new V(),"V");
-        seccionesAdapter.addFragment(new LN(),"LN");
-        seccionesAdapter.addFragment(new M(),"M");
-        seccionesAdapter.addFragment(new C(),"C");
-        seccionesAdapter.addFragment(new BS(),"BS");
-//        seccionesAdapter.addFragment(new CF(),"CF");
-//        seccionesAdapter.addFragment(new A(),"A");
-//        seccionesAdapter.addFragment(new I(),"I");
-//        seccionesAdapter.addFragment(new Ar(),"Ar");
-//        seccionesAdapter.addFragment(new Ad(),"Ad");
+        seccionesAdapter.addFragment(new DirectaEscalar(),"Conversión Directa Escalar");
+        seccionesAdapter.addFragment(new IndicesCI(),"Índices y CI");
+        seccionesAdapter.addFragment(new PerfilEscalar(),"Perfil Escalar");
+        seccionesAdapter.addFragment(new PerfilCompuestas(),"Perfil Compuesta");
 
         viewPager.setAdapter(seccionesAdapter);
     }
@@ -261,19 +158,6 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
     public void onDetach() {
         super.onDetach();
         mListener = null;
-    }
-
-    @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        if (Utilidades.rotacion == 0){
-            appBarLayout.removeView(tabLayout);
-        }
-    }
-
-    @Override
-    public void onFragmentInteraction(Uri uri) {
-
     }
 
     /**

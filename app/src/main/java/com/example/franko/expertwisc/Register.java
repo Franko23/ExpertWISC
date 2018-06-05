@@ -245,6 +245,7 @@ public class Register extends AppCompatActivity {
         }
     }
 
+
     private void onCaptureImageResult(Intent data) {
         thumbnail = (Bitmap) data.getExtras().get("data");
 

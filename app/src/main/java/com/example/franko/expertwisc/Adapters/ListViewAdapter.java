@@ -13,7 +13,7 @@ import com.example.franko.expertwisc.R;
 
 import java.util.ArrayList;
 
-public class ListViewAdapter extends ArrayAdapter {
+public class ListViewAdapter extends ArrayAdapter<String> {
 
     int groupid;
     String[] item_list;

@@ -7,17 +7,23 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.franko.expertwisc.Entidades.SubTest;
 import com.example.franko.expertwisc.R;
+import com.example.franko.expertwisc.Utilidades.Utilidades;
 
 
 /**
@@ -41,6 +47,9 @@ public class S extends Fragment {
     ImageView imageView;
     TextView tool;
     View view;
+
+    Button guardar;
+    EditText res_s;
 
     private OnFragmentInteractionListener mListener;
 
@@ -82,14 +91,15 @@ public class S extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view =inflater.inflate(R.layout.fragment_s, container, false);
-
+        res_s = view.findViewById(R.id.res_s);
+        guardar = view.findViewById(R.id.guardar_s);
         imageView = view.findViewById(R.id.show_s);
         tool = view.findViewById(R.id.tool);
+
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 TextView txtclose;
-                Button btnFollow;
                 myDialog.setContentView(R.layout.pop_up_s);
                 txtclose =(TextView) myDialog.findViewById(R.id.txtclose);
                 txtclose.setOnClickListener(new View.OnClickListener() {
@@ -105,9 +115,45 @@ public class S extends Fragment {
 
 //                        .withText("Si el entrevistado no da una respuesta de 1 punto, brinde la respuesat que indica en el Manual de Administración y Puntuación")
 
+        res_s.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                enableSubmitIfReady();
+            }
+        });
+
+
+        guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                SubTest subTest = new SubTest();
+                Utilidades.R_s = (res_s.getText().toString());
+                guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                Toast.makeText(getContext(),Utilidades.R_s +" GUARDADO",Toast.LENGTH_SHORT).show();
+            }
+        });
 
         return view;
+    }
+
+    private void enableSubmitIfReady() {
+        boolean isReady = res_s.getText().toString().length() > 1;
+        guardar.setEnabled(isReady);
+        if (isReady){
+            guardar.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
+        }else{
+            guardar.setBackgroundColor(getResources().getColor(R.color.cardview_shadow_start_color));
+        }
     }
 
     // TODO: Rename method, update argument and hook method into UI event

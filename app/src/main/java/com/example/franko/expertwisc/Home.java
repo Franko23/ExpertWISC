@@ -34,9 +34,14 @@ import android.widget.Toast;
 import com.example.franko.expertwisc.Entidades.Paciente;
 import com.example.franko.expertwisc.Entidades.Usuario;
 import com.example.franko.expertwisc.FragmentosPrincipales.DatosPaciente;
+import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.DirectaEscalar;
+import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.IndicesCI;
+import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.PerfilCompuestas;
+import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.PerfilEscalar;
 import com.example.franko.expertwisc.FragmentosPrincipales.GeneralSubPruebas;
 import com.example.franko.expertwisc.FragmentosPrincipales.ListaPacientes;
 import com.example.franko.expertwisc.FragmentosPrincipales.RegistroPaciente;
+import com.example.franko.expertwisc.FragmentosPrincipales.Resultados;
 import com.example.franko.expertwisc.FragmentosSubTest.A;
 import com.example.franko.expertwisc.FragmentosSubTest.Ad;
 import com.example.franko.expertwisc.FragmentosSubTest.Ar;
@@ -79,7 +84,12 @@ public class Home extends AppCompatActivity
         A.OnFragmentInteractionListener,
         I.OnFragmentInteractionListener,
         Ar.OnFragmentInteractionListener,
-        Ad.OnFragmentInteractionListener
+        Ad.OnFragmentInteractionListener,
+        Resultados.OnFragmentInteractionListener,
+        DirectaEscalar.OnFragmentInteractionListener,
+        IndicesCI.OnFragmentInteractionListener,
+        PerfilCompuestas.OnFragmentInteractionListener,
+        PerfilEscalar.OnFragmentInteractionListener
 {
     FloatingActionButton fab;
     ImageView imageViewProfile;
@@ -210,8 +220,10 @@ public class Home extends AppCompatActivity
             fab.hide();
             CambioTitulo("Sub Test");
         } else if (id == R.id.nav_manage) {
-
-            fab.show();
+            fragment = new Resultados();
+            aBoolean = true;
+            fab.hide();
+            CambioTitulo("Resultados");
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

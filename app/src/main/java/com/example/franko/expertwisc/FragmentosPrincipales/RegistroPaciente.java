@@ -386,8 +386,12 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                 bundleMaster.putBundle("Paciente",bundle);
 
                 Bundle bundle1 = new Bundle();
-                bundle1.putString("edad",Edad.getText().toString());
+                bundle1.putString("edad", Edad.getText().toString());
                 bundleMaster.putBundle("Edad",bundle1);
+
+                Bundle bundle2 = new Bundle();
+                bundle1.putString("edad2", ""+AñoTotal);
+                bundleMaster.putBundle("Edad2",bundle2);
 
                 fragment.setArguments(bundleMaster);
 

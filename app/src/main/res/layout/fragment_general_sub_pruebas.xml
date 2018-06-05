@@ -7,23 +7,6 @@
     tools:context=".FragmentosPrincipales.GeneralSubPruebas"
     android:orientation="vertical">
 
-    <!-- TODO: Update blank fragment layout -->
-    <!--<LinearLayout-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:padding="10dp"-->
-        <!--android:background="@color/colorPrimary"-->
-        <!--android:layout_weight="1">-->
-        <!--<TextView-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:text="Nombre del paciente:"-->
-            <!--android:id="@+id/DatoPaciente"-->
-            <!--android:textColor="#fff"-->
-            <!--android:textSize="20dp"-->
-            <!--android:textStyle="bold"/>-->
-    <!--</LinearLayout>-->
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -42,7 +25,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_weight="1">
+        android:layout_weight="1"
+        android:visibility="invisible">
         <Button
             android:id="@+id/siguiente"
             android:layout_width="match_parent"
@@ -52,7 +36,7 @@
             android:textStyle="bold"
             android:background="@color/colorPrimaryDark"
             android:textColor="#ffffff"
-            android:text="FINALIZAR"/>
+            android:text="SIGUIENTE"/>
     </LinearLayout>
 
 </LinearLayout>
