@@ -93,7 +93,7 @@
                 android:layout_weight="1"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:text="#"
+                android:hint="#"
                 android:id="@+id/res_ar"
                 android:background="#fcf0f0"/>
         </LinearLayout>

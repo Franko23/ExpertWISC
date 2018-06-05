@@ -2,6 +2,7 @@ package com.example.franko.expertwisc.FragmentosSubTest;
 
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -17,6 +19,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -47,6 +50,8 @@ public class A extends Fragment {
     View view;
     Button guardar;
     EditText res_a;
+    RadioButton radioButtonCl, radioButtonBs;
+    TextView txt_titulo;
     private OnFragmentInteractionListener mListener;
 
     public A() {
@@ -132,18 +137,60 @@ public class A extends Fragment {
                 guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                 Toast.makeText(getContext(),Utilidades.R_a+" GUARDADO",Toast.LENGTH_SHORT).show();
 
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                Fragment prev = getFragmentManager().findFragmentByTag("dialog");
-                if (prev != null) {
-                    ft.remove(prev);
-                }
-                ft.addToBackStack(null);
-                DialogFragment dialogFragment = new DialogPreResultados();
-                dialogFragment.show(ft, "dialog");
+                Dialogreemplazo();
             }
         });
 
         return view;
+    }
+
+    private void Dialogreemplazo() {
+        LayoutInflater inflater = getLayoutInflater();
+        View alertLayout = inflater.inflate(R.layout.dialog_vp, null);
+
+        radioButtonCl = alertLayout.findViewById(R.id.radioButtonCl);
+        radioButtonBs = alertLayout.findViewById(R.id.radioButtonBs);
+
+        radioButtonCl.setText("5. Claves - "+Utilidades.R_cl);
+        radioButtonBs.setText("10. Búsqueda de Simbolos - "+Utilidades.R_bs);
+
+        txt_titulo = alertLayout.findViewById(R.id.txt_titulo);
+
+        txt_titulo.setText("Selecciona la prueba a que será reemplazada por la nueva puntuacion de "+Utilidades.R_a);
+
+        AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
+        // this is set the view from XML inside AlertDialog
+        alert.setView(alertLayout);
+        // disallow cancel of AlertDialog on click of back button and outside touch
+        alert.setCancelable(false);
+
+        alert.setPositiveButton("GUARDAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                //Guardar en bd la inhabilitación de la selección
+                if (radioButtonCl.isChecked()){
+
+//                    Toast.makeText(getContext(),"Cc",Toast.LENGTH_SHORT).show();
+                }
+                if (radioButtonBs.isChecked()){
+//                    Toast.makeText(getContext(),"Co",Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });
+
+        alert.setNeutralButton("REGRESAR", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+//
+            }
+        });
+
+
+
+
+        AlertDialog dialog = alert.create();
+        dialog.show();
     }
 
     private void enableSubmitIfReady() {

@@ -80,41 +80,41 @@ public class DialogPreResultados extends DialogFragment{
         result_ar.setText(Utilidades.R_ar);
         result_ad.setText(Utilidades.R_ad);
 
-        String texto= "¿DESEA CONTINUAR CON LOS SUBTEST OPCIONALES?";
+//        String texto= "¿DESEA CONTINUAR CON LOS SUBTEST OPCIONALES?";
+//
+//        if (Utilidades.R_cf != "Sin valor"){
+//            sw_cc.setVisibility(View.VISIBLE);
+//            sw_co.setVisibility(View.VISIBLE);
+//            sw_m.setVisibility(View.VISIBLE);
+//            texto = "SELECCIONA LA PRUEBA QUE REEMPLAZARÁ CF";
+//        }
+//        if (Utilidades.R_a != "Sin valor"){
+//            sw_cl.setVisibility(View.VISIBLE);
+//            sw_bs.setVisibility(View.VISIBLE);
+//            texto = "SELECCIONA LA PRUEBA QUE REEMPLAZARÁ A";
+//        }
+//
+//        if (Utilidades.R_i != "Sin valor"){
+//            sw_s.setVisibility(View.VISIBLE);
+//            sw_v.setVisibility(View.VISIBLE);
+//            sw_c.setVisibility(View.VISIBLE);
+//            texto = "SELECCIONA LA PRUEBA QUE REEMPLAZARÁ I";
+//        }
+//
+//        if (Utilidades.R_ar != "Sin valor"){
+//            sw_rd.setVisibility(View.VISIBLE);
+//            sw_ln.setVisibility(View.VISIBLE);
+//            texto = "SELECCIONA LA PRUEBA QUE REEMPLAZARÁ AR";
+//        }
+//
+//        if (Utilidades.R_ad != "Sin valor"){
+//            sw_s.setVisibility(View.VISIBLE);
+//            sw_v.setVisibility(View.VISIBLE);
+//            sw_c.setVisibility(View.VISIBLE);
+//            texto = "SELECCIONA LA PRUEBA QUE REEMPLAZARÁ AD";
+//        }
 
-        if (Utilidades.R_cf != "Sin valor"){
-            sw_cc.setVisibility(View.VISIBLE);
-            sw_co.setVisibility(View.VISIBLE);
-            sw_m.setVisibility(View.VISIBLE);
-            texto = "SELECCIONA LA PRUEBA QUE REEMPLAZARÁ CF";
-        }
-        if (Utilidades.R_a != "Sin valor"){
-            sw_cl.setVisibility(View.VISIBLE);
-            sw_bs.setVisibility(View.VISIBLE);
-            texto = "SELECCIONA LA PRUEBA QUE REEMPLAZARÁ A";
-        }
-
-        if (Utilidades.R_i != "Sin valor"){
-            sw_s.setVisibility(View.VISIBLE);
-            sw_v.setVisibility(View.VISIBLE);
-            sw_c.setVisibility(View.VISIBLE);
-            texto = "SELECCIONA LA PRUEBA QUE REEMPLAZARÁ I";
-        }
-
-        if (Utilidades.R_ar != "Sin valor"){
-            sw_rd.setVisibility(View.VISIBLE);
-            sw_ln.setVisibility(View.VISIBLE);
-            texto = "SELECCIONA LA PRUEBA QUE REEMPLAZARÁ AR";
-        }
-
-        if (Utilidades.R_ad != "Sin valor"){
-            sw_s.setVisibility(View.VISIBLE);
-            sw_v.setVisibility(View.VISIBLE);
-            sw_c.setVisibility(View.VISIBLE);
-            texto = "SELECCIONA LA PRUEBA QUE REEMPLAZARÁ AD";
-        }
-
-        mensaje.setText(texto);
+        mensaje.setText("¿DESEA CONTINUAR CON LOS SUBTEST OPCIONALES?");
 
 
         no.setOnClickListener(new View.OnClickListener() {
@@ -129,6 +129,7 @@ public class DialogPreResultados extends DialogFragment{
             public void onClick(View v) {
                 dismiss();
                 Utilidades.pages=5;
+                Utilidades.disable=false;
                 android.support.v4.app.Fragment fragment = new GeneralSubPruebas();
                 getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
 

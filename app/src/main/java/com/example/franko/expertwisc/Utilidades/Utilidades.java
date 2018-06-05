@@ -27,6 +27,8 @@ public class Utilidades {
     public static Boolean pantalla = true;
 
     public static int pages = 10;
+    public static Boolean disable = false;
+
 
 
     //Constantes Campo Usuario
@@ -47,7 +49,7 @@ public class Utilidades {
             CAMPO_CONTRASENA_USUARIO+" TEXT," +
             CAMPO_IMAGEN_USUARIO+" BLOB"+
             ")";
-    public static final String INSERTAR_USUARIO_MASTER = "INSERT INTO "+TABLA_USUARIO+" VALUES ('admin','admin')";
+//    public static final String INSERTAR_USUARIO_MASTER = "INSERT INTO "+TABLA_USUARIO+" VALUES ('admin','admin')";
 
     //Constantes Campo Pacientes
     public static String TABLA_PACIENTE = "paciente";
@@ -174,9 +176,13 @@ public class Utilidades {
     public static String CAMPO_ID_PUNTUACION_Ad = "id_puntuacion_ad";
     public static String CAMPO_Ad = "campo_ad";
 
+    //Constantes campo intervalo
+
     public static String TABLA_INTERVALO = "intervalo";
     public static String CAMPO_ID_INTERVALO = "id_intervalo";
     public static String CAMPO_INTERVALO = "campo_intervalo";
+
+    //Constantes tabla 1
 
     public static String TABLA_ESCALAR= "escalar";
     public static String CAMPO_ID_ESCALAR= "id_escalar";
@@ -212,6 +218,7 @@ public class Utilidades {
     public static final String CREAR_TABLA_PUNTUACIONES_CC = "CREATE TABLE "+TABLA_PUNTUACIONES_CC+
             "("+
             CAMPO_ID_PUNTUACION_CC +" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            CAMPO_CC + " TEXT, "+
             CAMPO_CC + " TEXT, "+
             CAMPO_CCS + " TEXT ) ";
 
@@ -287,10 +294,14 @@ public class Utilidades {
             CAMPO_ID_PUNTUACION_Ad +" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
             CAMPO_Ad + " TEXT )";
 
+
+
     public static final String CREAR_TABLA_INTERVALO = "CREATE TABLE "+TABLA_INTERVALO+
             "("+
             CAMPO_ID_INTERVALO +" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
             CAMPO_INTERVALO + " INTEGER )";
+
+
 
     public static final String CREAR_TABLA_ESCALAR = "CREATE TABLE "+TABLA_ESCALAR+
             "("+
@@ -303,6 +314,7 @@ public class Utilidades {
 
     public static final String CREAR_TABLA_PUNTUACIONES = "CREATE TABLE "+TABLA_PUNTUACIONES+
             "("+
+            CAMPO_ID_PUNTUACIONES+" INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, "+
             CAMPO_PUNTUACION_CC+" TEXT, "+
             CAMPO_PUNTUACION_CCS+" TEXT, "+
             CAMPO_PUNTUACION_S+" TEXT, "+

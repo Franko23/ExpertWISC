@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -72,6 +73,8 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
     TextView datoPaciente, valores, siguiente;
     int id_paciente;
 
+    LinearLayout linearLayout;
+
     String EdadPaciente, Titulo, res_cl, AñoTotal;
     private EditText res_cc, res_s, res_rd, res_co, res_cl_a, res_v, res_ln, res_m, res_c, res_bs, res_cf, res_a, res_i, res_ar, res_ad;
     TextInputEditText res_cl_b;
@@ -117,13 +120,13 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_general_sub_pruebas, container, false);
         viewPager = view.findViewById(R.id.sub_content);
-
+        linearLayout = view.findViewById(R.id.l_finalizar);
 
 
 //        res_cl_a = view.findViewById(R.id.res_cl_a);
 //        res_cl_b = view.findViewById(R.id.res_cl_b);
 
-//        finalizar = view.findViewById(R.id.finalizar);
+        finalizar = view.findViewById(R.id.finalizar);
 
         if (Utilidades.rotacion == 0){
             View parent = (View) container.getParent();
@@ -200,17 +203,18 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
 //        }
 
 
-//        finalizar.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                ConexionHelper con = null;
+        finalizar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                android.support.v4.app.Fragment fragment = new Resultados();
+                getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
 //
 //                String cc, cf="0", a="0", i="0", ar="0", ad="0";
 //
 //                Toast.makeText(getContext(),"VALOR CC actual "+cc, Toast.LENGTH_SHORT).show();
-//
-//            }
-//        });
+
+            }
+        });
 
 
         getActivity().setTitle(Titulo);
@@ -240,6 +244,7 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
             seccionesAdapter.addFragment(new Ar(),"Ar");
             seccionesAdapter.addFragment(new Ad(),"Ad");
             Utilidades.pages=10;
+            linearLayout.setVisibility(View.VISIBLE);
         }
 
         viewPager.setAdapter(seccionesAdapter);
