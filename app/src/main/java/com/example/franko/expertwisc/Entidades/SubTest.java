@@ -1,21 +1,21 @@
 package com.example.franko.expertwisc.Entidades;
 
 public class SubTest {
-    private String Res_cc;
-    private String Res_s;
-    private String Res_rd;
-    private String Res_co;
-    private String Res_cl;
-    private String Res_v;
-    private String Res_ln;
-    private String Res_m;
-    private String Res_c;
-    private String Res_bs;
-    private String Res_cf;
-    private String Res_a;
-    private String Res_i;
-    private String Res_ar;
-    private String Res_ad;
+    private String Res_cc = "Sin valor";
+    private String Res_s = "Sin valor";
+    private String Res_rd = "Sin valor";
+    private String Res_co = "Sin valor";
+    private String Res_cl = "Sin valor";
+    private String Res_v = "Sin valor";
+    private String Res_ln = "Sin valor";
+    private String Res_m = "Sin valor";
+    private String Res_c = "Sin valor";
+    private String Res_bs = "Sin valor";
+    private String Res_cf = "Sin valor";
+    private String Res_a = "Sin valor";
+    private String Res_i = "Sin valor";
+    private String Res_ar = "Sin valor";
+    private String Res_ad = "Sin valor";
 
     public SubTest(String res_cc, String res_s, String res_rd, String res_co, String res_cl, String res_v, String res_ln, String res_m, String res_c, String res_bs, String res_cf, String res_a, String res_i, String res_ar, String res_ad) {
         Res_cc = res_cc;

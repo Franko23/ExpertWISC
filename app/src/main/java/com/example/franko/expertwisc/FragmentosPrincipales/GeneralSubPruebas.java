@@ -220,21 +220,27 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
 
     private void llenarViewPager(ViewPager viewPager) {
         SeccionesAdapter seccionesAdapter = new SeccionesAdapter(getFragmentManager());
-        seccionesAdapter.addFragment(new CC(),"CC");
-        seccionesAdapter.addFragment(new S(),"S");
-        seccionesAdapter.addFragment(new RD(),"RD");
-        seccionesAdapter.addFragment(new Co(),"Co");
-        seccionesAdapter.addFragment(new Cl(),"Cl");
-        seccionesAdapter.addFragment(new V(),"V");
-        seccionesAdapter.addFragment(new LN(),"LN");
-        seccionesAdapter.addFragment(new M(),"M");
-        seccionesAdapter.addFragment(new C(),"C");
-        seccionesAdapter.addFragment(new BS(),"BS");
-//        seccionesAdapter.addFragment(new CF(),"CF");
-//        seccionesAdapter.addFragment(new A(),"A");
-//        seccionesAdapter.addFragment(new I(),"I");
-//        seccionesAdapter.addFragment(new Ar(),"Ar");
-//        seccionesAdapter.addFragment(new Ad(),"Ad");
+
+        if (Utilidades.pages==10){
+            seccionesAdapter.addFragment(new CC(),"CC");
+            seccionesAdapter.addFragment(new S(),"S");
+            seccionesAdapter.addFragment(new RD(),"RD");
+            seccionesAdapter.addFragment(new Co(),"Co");
+            seccionesAdapter.addFragment(new Cl(),"Cl");
+            seccionesAdapter.addFragment(new V(),"V");
+            seccionesAdapter.addFragment(new LN(),"LN");
+            seccionesAdapter.addFragment(new M(),"M");
+            seccionesAdapter.addFragment(new C(),"C");
+            seccionesAdapter.addFragment(new BS(),"BS");
+        }
+        if (Utilidades.pages==5){
+            seccionesAdapter.addFragment(new CF(),"CF");
+            seccionesAdapter.addFragment(new A(),"A");
+            seccionesAdapter.addFragment(new I(),"I");
+            seccionesAdapter.addFragment(new Ar(),"Ar");
+            seccionesAdapter.addFragment(new Ad(),"Ad");
+            Utilidades.pages=10;
+        }
 
         viewPager.setAdapter(seccionesAdapter);
     }

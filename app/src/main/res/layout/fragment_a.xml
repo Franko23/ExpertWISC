@@ -87,13 +87,13 @@
                 android:textStyle="bold"
                 android:gravity="end"
                 android:text="Puntuación Directa Total \n(Máximo = 136)"/>
-            <TextView
+            <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:text="#"
+                android:hint="#"
                 android:id="@+id/res_a"
                 android:background="#fcf0f0"/>
         </LinearLayout>

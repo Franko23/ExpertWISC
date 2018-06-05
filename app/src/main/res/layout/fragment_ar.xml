@@ -87,7 +87,7 @@
                 android:textStyle="bold"
                 android:gravity="end"
                 android:text="Puntuación Directa Total \n(Máximo = 34)"/>
-            <TextView
+            <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_weight="1"

@@ -136,7 +136,7 @@ public class M extends Fragment {
     }
 
     private void enableSubmitIfReady() {
-        boolean isReady = res_m.getText().toString().length() > 1;
+        boolean isReady = res_m.getText().toString().length() >= 1;
         guardar.setEnabled(isReady);
         if (isReady){
             guardar.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));

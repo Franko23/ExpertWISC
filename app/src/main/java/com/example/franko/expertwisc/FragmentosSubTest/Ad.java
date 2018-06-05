@@ -6,7 +6,9 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -20,6 +22,8 @@ import android.widget.Toast;
 
 import com.example.franko.expertwisc.Entidades.SubTest;
 import com.example.franko.expertwisc.R;
+import com.example.franko.expertwisc.Tools.DialogPreResultados;
+import com.example.franko.expertwisc.Utilidades.Utilidades;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -124,10 +128,18 @@ public class Ad extends Fragment {
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SubTest subTest = new SubTest();
-                subTest.setRes_ad(res_ad.getText().toString());
+                Utilidades.R_ad = (res_ad.getText().toString());
                 guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                Toast.makeText(getContext(),subTest.getRes_ad()+" GUARDADO",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),Utilidades.R_ad+" GUARDADO",Toast.LENGTH_SHORT).show();
+
+                FragmentTransaction ft = getFragmentManager().beginTransaction();
+                Fragment prev = getFragmentManager().findFragmentByTag("dialog");
+                if (prev != null) {
+                    ft.remove(prev);
+                }
+                ft.addToBackStack(null);
+                DialogFragment dialogFragment = new DialogPreResultados();
+                dialogFragment.show(ft, "dialog");
             }
         });
 
@@ -135,7 +147,7 @@ public class Ad extends Fragment {
     }
 
     private void enableSubmitIfReady() {
-        boolean isReady = res_ad.getText().toString().length() > 1;
+        boolean isReady = res_ad.getText().toString().length() >= 1;
         guardar.setEnabled(isReady);
         if (isReady){
             guardar.setBackgroundColor(getResources().getColor(R.color.colorPrimaryDark));
