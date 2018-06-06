@@ -216,12 +216,15 @@ public class Utilidades {
     public static final String CAMPO_ID_TEST = "id_test";
     public static final String CAMPO_FECHA_TEST = "fecha_test";
     public static final String CAMPO_EVALUADOR_TEST = "evaluador_test";
+    public static final String CAMPO_ESTADO_TEST = "estado_test";
 
     public static final String CREAR_TABLA_TEST = "CREATE TABLE " + TABLA_TEST +
             " (" +
             CAMPO_ID_TEST + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
             CAMPO_FECHA_TEST + " TEXT, " +
             CAMPO_EVALUADOR_TEST + " TEXT, " +
+            CAMPO_ESTADO_TEST + " TEXT, " +
+            CAMPO_ID_PACIENTE + " INTEGER," +
             CAMPO_ID_PUNTUACION_CC + " INTEGER," +
             CAMPO_ID_PUNTUACION_S + " INTEGER," +
             CAMPO_ID_PUNTUACION_RD + " INTEGER," +

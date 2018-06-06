@@ -1,6 +1,7 @@
 package com.example.franko.expertwisc;
 
 import android.Manifest;
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -97,13 +98,14 @@ public class Home extends AppCompatActivity
     TextView textViewNameProfile;
     CircleImageView circleImageView;
 
+    ConexionHelper con;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
+        con = new ConexionHelper(this,"bd_wisc", null, 1);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -191,10 +193,29 @@ public class Home extends AppCompatActivity
             Utilidades.pantalla = true;
             this.finish();
             Intent intent = new Intent(getApplicationContext(),Login.class);
+            //Cambiamos el estado del usuario
+            cambioEstado();
             startActivity(intent);
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void cambioEstado() {
+        SQLiteDatabase db = con.getWritableDatabase();
+        Cursor usuario = db.rawQuery("SELECT * FROM usuario WHERE activo_usuario = 1",null);
+        int id = 0;
+        if (usuario.getCount()>0) {
+            while (usuario.moveToNext()) {
+                id = usuario.getInt(0);
+            }
+        }
+        ContentValues user = new ContentValues();
+        user.put(Utilidades.CAMPO_ACTIVO_USUARIO, 0);
+
+        int res = db.update(Utilidades.TABLA_USUARIO,user, Utilidades.CAMPO_ID_USUARIO+"="+id,null);
+        Toast.makeText(getApplicationContext(),"CAMBIO DE ESTADO: "+res, Toast.LENGTH_LONG).show();
+
     }
 
     @SuppressWarnings("StatementWithEmptyBody")

@@ -302,9 +302,13 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                         //Consultamos el usuario actual
                         int id = consultarUsuarioActivo();
                         Persona persona = null;
+
                         //Consultamos los datos de Persona del usuario actual
                         persona = consultarPersona(id);
+
                         test.put(Utilidades.CAMPO_EVALUADOR_TEST, persona.getNombre_persona()+" "+persona.getApellido_persona());
+                        test.put(Utilidades.CAMPO_ID_PACIENTE, id_paciente);
+                        test.put(Utilidades.CAMPO_ESTADO_TEST, "EN CURSO");
                         Long idTest = db.insert(Utilidades.TABLA_TEST,Utilidades.CAMPO_ID_TEST,test);
                         String a = Long.toString(idTest);
                         int idTestInt = Integer.parseInt(a);
@@ -315,7 +319,7 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                         int ResUpdatePaciente = db.update(Utilidades.TABLA_PACIENTE,paciente,Utilidades.CAMPO_ID_PACIENTE+"="+id_paciente ,null);
                         String res = Integer.toString(ResUpdatePaciente);
 
-                        Toast.makeText(getContext(),"Id_Test "+a + "Update "+res,  Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(),"Id_Test "+a + " Update "+res,  Toast.LENGTH_SHORT).show();
 
                         Fragment fragment = new GeneralSubPruebas();
                         FragmentTransaction transaction = getFragmentManager().beginTransaction();

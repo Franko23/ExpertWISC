@@ -8,7 +8,6 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.text.Editable;
-import android.text.Layout;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,8 +18,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.franko.expertwisc.Entidades.SubTest;
-import com.example.franko.expertwisc.Entidades.SubTestCC;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 

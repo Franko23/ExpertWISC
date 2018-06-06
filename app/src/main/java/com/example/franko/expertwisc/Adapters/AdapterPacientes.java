@@ -34,6 +34,18 @@ public class AdapterPacientes extends RecyclerView.Adapter<AdapterPacientes.View
         return new ViewHolderPacientes(view);
     }
 
+    public class ViewHolderPacientes extends RecyclerView.ViewHolder {
+
+        private TextView txtNombres, txtEdad;
+        private ImageView Imagen;
+
+        public ViewHolderPacientes(View itemView) {
+            super(itemView);
+            txtNombres = (TextView) itemView.findViewById(R.id.txtListaPacienteNombres);
+            txtEdad = (TextView) itemView.findViewById(R.id.txtListaPacienteEdad);
+            Imagen = (ImageView) itemView.findViewById(R.id.imgListaPaciente);
+        }
+    }
     @Override
     public void onBindViewHolder(@NonNull ViewHolderPacientes holder, int position) {
         holder.txtNombres.setText(listaPacientes.get(position).getNombre_persona()+ "  "+listaPacientes.get(position).getApellido_persona());
@@ -59,16 +71,5 @@ public class AdapterPacientes extends RecyclerView.Adapter<AdapterPacientes.View
         }
     }
 
-    public class ViewHolderPacientes extends RecyclerView.ViewHolder {
 
-        private TextView txtNombres, txtEdad;
-        private ImageView Imagen;
-
-        public ViewHolderPacientes(View itemView) {
-            super(itemView);
-            txtNombres = (TextView) itemView.findViewById(R.id.txtListaPacienteNombres);
-            txtEdad = (TextView) itemView.findViewById(R.id.txtListaPacienteEdad);
-            Imagen = (ImageView) itemView.findViewById(R.id.imgListaPaciente);
-        }
-    }
 }

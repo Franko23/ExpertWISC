@@ -1,30 +1,36 @@
 package com.example.franko.expertwisc.FragmentosPrincipales;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.ListAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
-import com.example.franko.expertwisc.Adapters.ListViewAdapter;
+import com.example.franko.expertwisc.Adapters.AdapterTest;
+import com.example.franko.expertwisc.Adapters.AdapterTests;
+import com.example.franko.expertwisc.ConexionHelper;
 import com.example.franko.expertwisc.Entidades.Paciente;
 import com.example.franko.expertwisc.Entidades.Persona;
+import com.example.franko.expertwisc.Entidades.Test;
 import com.example.franko.expertwisc.R;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -47,15 +53,18 @@ public class DatosPaciente extends Fragment {
     private String mParam2;
 
     Bundle bundle;
-    ArrayList<Paciente> listaPacientes;
+    ArrayList<Test> listaTest;
     SwitchCompat switchCompat = null;
     View view;
     CircleImageView imgDatospaciente;
-    EditText editText1, editText2, editText3, editText4, editText5, editText6, editText7, editText8;
-    TextView  nombrePrincipal;
+    EditText editNombres, editApellidos, editEdad, editMotivo, editAntecedentes;
+    TextView  nombrePrincipal, txt_mensaje_test;
     Button btn_guardar;
     ListView listView;
-    ListViewAdapter listViewAdapter;
+    AdapterTest adapterTest;
+    ConexionHelper con;
+
+    RecyclerView recyclerViewTest;
 
     private OnFragmentInteractionListener mListener;
 
@@ -88,6 +97,7 @@ public class DatosPaciente extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        con = new ConexionHelper(getContext(), "bd_wisc", null, 1);
 
     }
 
@@ -100,46 +110,35 @@ public class DatosPaciente extends Fragment {
         imgDatospaciente = view.findViewById(R.id.imgDatospaciente);
         switchCompat = view.findViewById(R.id.swicth_profile);
         nombrePrincipal = view.findViewById(R.id.nombrePrincipal);
-        editText1 = view.findViewById(R.id.EditUno);
-        editText2 = view.findViewById(R.id.EditDos);
-        editText3 = view.findViewById(R.id.EditTres);
-        editText4 = view.findViewById(R.id.EditCuatro);
-        editText5 = view.findViewById(R.id.EditCinco);
-        editText6 = view.findViewById(R.id.EditSeis);
-        editText7 = view.findViewById(R.id.EditSiete);
-        editText8 = view.findViewById(R.id.EditOcho);
+        editNombres = view.findViewById(R.id.EditNombres);
+        editApellidos= view.findViewById(R.id.EditApellido);
+        editEdad = view.findViewById(R.id.EditEdad);
+        editMotivo = view.findViewById(R.id.EditMotivo);
+        editAntecedentes = view.findViewById(R.id.EditAntecedentes);
+
         btn_guardar = view.findViewById(R.id.btn_guardar);
-        listView = view.findViewById(R.id.listv_pruebas);
-
-
-        String[] items={"1","2","3","4","5"};
-        listViewAdapter =new ListViewAdapter(getContext(),R.layout.list_item,R.id.fecha_prueba,items);
-        // Cargamos los datos al ListView
-        listView.setAdapter(listViewAdapter);
+//        listView = view.findViewById(R.id.listv_pruebas);
+        txt_mensaje_test = view.findViewById(R.id.txt_mensaje_test);
 
 
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (switchCompat.isChecked()){
-                    editText1.setEnabled(true);
-                    editText2.setEnabled(true);
-                    editText3.setEnabled(true);
-                    editText4.setEnabled(true);
-                    editText5.setEnabled(true);
-                    editText6.setEnabled(true);
-                    editText7.setEnabled(true);
-                    editText8.setEnabled(true);
+                    editNombres.setEnabled(true);
+                    editApellidos.setEnabled(true);
+                    editEdad.setEnabled(true);
+                    editMotivo.setEnabled(true);
+                    editAntecedentes.setEnabled(true);
+
                     btn_guardar.setVisibility(View.VISIBLE);
                 }else{
-                    editText1.setEnabled(false);
-                    editText2.setEnabled(false);
-                    editText3.setEnabled(false);
-                    editText4.setEnabled(false);
-                    editText5.setEnabled(false);
-                    editText6.setEnabled(false);
-                    editText7.setEnabled(false);
-                    editText8.setEnabled(false);
+                    editNombres.setEnabled(false);
+                    editApellidos.setEnabled(false);
+                    editEdad.setEnabled(false);
+                    editMotivo.setEnabled(false);
+                    editAntecedentes.setEnabled(false);
+
                     btn_guardar.setVisibility(View.GONE);
                 }
             }
@@ -157,14 +156,61 @@ public class DatosPaciente extends Fragment {
 
             nombrePrincipal.setText(persona.getNombre_persona() + " "+persona.getApellido_persona());
 
-            editText1.setText(persona.getNombre_persona());
-            editText2.setText(persona.getApellido_persona());
+            editNombres.setText(persona.getNombre_persona());
+            editApellidos.setText(persona.getApellido_persona());
+            editEdad.setText(persona.getEdad_persona());
             byte[] image = persona.getImagen_persona();
             Bitmap bitmap = BitmapFactory.decodeByteArray(image,0,image.length);
             imgDatospaciente.setImageBitmap(bitmap);
+            editMotivo.setText(paciente.getMotivoConsulta_paciente());
+            editAntecedentes.setText(paciente.getAntecedentes_paciente());
+        }
+
+        recyclerViewTest = view.findViewById(R.id.recv_pruebas);
+        recyclerViewTest.setLayoutManager(new LinearLayoutManager(getContext()));
+        //Enviamos fecha de prueba y el estado
+        //Consultamos desde la tabla test la fecha y el estado de acuerdo al id paciente
+        Test test = new Test();
+        listaTest = consultarTablaTest(paciente.getId_paciente());
+
+        if (listaTest.isEmpty()){
+            recyclerViewTest.setVisibility(View.INVISIBLE);
+        }else{
+            txt_mensaje_test.setVisibility(View.GONE);
+//            adapterTest =new AdapterTest(getContext(),R.layout.list_test,listaTest);
+
+            AdapterTests adapterTests = new AdapterTests(listaTest);
+            // Cargamos los datos al ListView
+
+            recyclerViewTest.setAdapter(adapterTests);
+//            listView.setAdapter(adapterTest);
         }
 
         return view;
+    }
+
+    private ArrayList<Test> consultarTablaTest(Integer id_paciente) {
+        SQLiteDatabase db = con.getReadableDatabase();
+        Test test = null;
+        listaTest = new ArrayList<>();
+
+
+        Cursor cursor = db.rawQuery("SELECT * FROM test WHERE id_paciente"+"="+id_paciente,null);
+
+        if (cursor.getCount()>0){
+            while (cursor.moveToNext()){
+                test = new Test();
+
+                test.setId_test(cursor.getInt(0));
+                test.setFecha_test(cursor.getString(1));
+                test.setEvaluador_test(cursor.getString(2));
+                test.setEstado_test(cursor.getString(3));
+
+                listaTest.add(test);
+            }
+        }
+
+        return listaTest;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

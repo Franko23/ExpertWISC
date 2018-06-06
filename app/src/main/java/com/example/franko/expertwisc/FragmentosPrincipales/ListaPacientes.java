@@ -5,6 +5,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.CoordinatorLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.LinearLayoutManager;
@@ -19,6 +21,7 @@ import com.example.franko.expertwisc.Adapters.AdapterPacientes;
 import com.example.franko.expertwisc.ConexionHelper;
 import com.example.franko.expertwisc.Entidades.Paciente;
 import com.example.franko.expertwisc.Entidades.Persona;
+import com.example.franko.expertwisc.Home;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
@@ -86,7 +89,6 @@ public class ListaPacientes extends Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_lista_pacientes, container, false);
-
         con = new ConexionHelper(getContext(), "bd_wisc", null, 1);
 
 //        lista = vista.findViewById(R.id.listaPacientes);
@@ -147,6 +149,10 @@ public class ListaPacientes extends Fragment{
                 transaction.addToBackStack(null);
                 transaction.commit();
 
+                View view = vista.getRootView();
+                FloatingActionButton floatingActionButton = view.findViewById(R.id.fab);
+                floatingActionButton.hide();
+
                 Toast.makeText(getContext(),"Id: "+listaPacientes.get(recyclerViewPacientes.getChildAdapterPosition(v)).getId_persona(),Toast.LENGTH_LONG).show();
             }
         });
@@ -165,6 +171,7 @@ public class ListaPacientes extends Fragment{
         while (cursor.moveToNext()){
 
             paciente = new Paciente();
+            paciente.setId_paciente(cursor.getInt(0));
             paciente.setMotivoConsulta_paciente(cursor.getString(1));
             paciente.setAntecedentes(cursor.getString(2));
             paciente.setId_persona(cursor.getInt(3));
