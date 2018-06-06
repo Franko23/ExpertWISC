@@ -7,83 +7,61 @@ import java.io.Serializable;
  */
 
 public class Paciente implements Serializable {
-    private Integer id;
-    private String Nombres;
-    private String Apellidos;
-    private String Edad;
-    private String MotivoConsulta;
-    private String Antecedentes;
-    private byte[] Imagen;
+    private Integer Id_paciente;
+    private String MotivoConsulta_paciente;
+    private String Antecedentes_paciente;
+    private Integer Id_persona;
+    private Integer Id_test;
 
-
-
-    public Paciente(Integer id, String nombres, String apellidos, String edad, String motivoConsulta, String antecedentes, byte[] imagen) {
-        this.id = id;
-        this.Nombres = nombres;
-        this.Apellidos = apellidos;
-        this.Edad = edad;
-        this.MotivoConsulta = motivoConsulta;
-        this.Antecedentes = antecedentes;
-        this.Imagen = imagen;
+    public Paciente(Integer id_paciente, String motivoConsulta_paciente, String antecedentes_paciente, String edad_paciente, Integer id_persona, Integer id_test) {
+        Id_paciente = id_paciente;
+        MotivoConsulta_paciente = motivoConsulta_paciente;
+        Antecedentes_paciente = antecedentes_paciente;
+        Id_persona = id_persona;
+        Id_test = id_test;
     }
 
-    public Paciente(){
-
+    public Paciente() {
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getId_paciente() {
+        return Id_paciente;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId_paciente(Integer id_paciente) {
+        Id_paciente = id_paciente;
     }
 
-    public String getNombres() {
-        return Nombres;
+    public String getMotivoConsulta_paciente() {
+        return MotivoConsulta_paciente;
     }
 
-    public void setNombres(String nombres) {
-        Nombres = nombres;
+    public void setMotivoConsulta_paciente(String motivoConsulta_paciente) {
+        MotivoConsulta_paciente = motivoConsulta_paciente;
     }
 
-    public String getApellidos() {
-        return Apellidos;
+    public String getAntecedentes_paciente() {
+        return Antecedentes_paciente;
     }
 
-    public void setApellidos(String apellidos) {
-        Apellidos = apellidos;
+    public void setAntecedentes(String antecedentes_paciente) {
+        Antecedentes_paciente = antecedentes_paciente;
     }
 
-    public String getEdad() {
-        return Edad;
+
+    public Integer getId_persona() {
+        return Id_persona;
     }
 
-    public void setEdad(String edad) {
-        Edad = edad;
+    public void setId_persona(Integer id_persona) {
+        Id_persona = id_persona;
     }
 
-    public String getMotivoConsulta() {
-        return MotivoConsulta;
+    public Integer getId_test() {
+        return Id_test;
     }
 
-    public void setMotivoConsulta(String motivoConsulta) {
-        MotivoConsulta = motivoConsulta;
-    }
-
-    public String getAntecedentes() {
-        return Antecedentes;
-    }
-
-    public void setAntecedentes(String antecedentes) {
-        Antecedentes = antecedentes;
-    }
-
-    public byte[] getImagen() {
-        return Imagen;
-    }
-
-    public void setImagen(byte[] imagen) {
-        Imagen = imagen;
+    public void setId_test(Integer id_test) {
+        Id_test = id_test;
     }
 }

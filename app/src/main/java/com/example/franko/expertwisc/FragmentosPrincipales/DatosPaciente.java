@@ -21,6 +21,7 @@ import android.widget.Toast;
 
 import com.example.franko.expertwisc.Adapters.ListViewAdapter;
 import com.example.franko.expertwisc.Entidades.Paciente;
+import com.example.franko.expertwisc.Entidades.Persona;
 import com.example.franko.expertwisc.R;
 
 import java.util.ArrayList;
@@ -147,13 +148,18 @@ public class DatosPaciente extends Fragment {
         bundle = getArguments();
 
         Paciente paciente = null;
+        Persona persona = null;
 
         if (bundle!= null){
-            paciente = (Paciente) bundle.getSerializable("paciente");
-            nombrePrincipal.setText(paciente.getNombres().toString()+" "+paciente.getApellidos().toString());
-            editText1.setText(paciente.getNombres().toString());
-            editText2.setText(paciente.getApellidos().toString());
-            byte[] image = paciente.getImagen();
+
+            paciente = (Paciente) bundle.getBundle("Paciente").getSerializable("paciente");
+            persona = (Persona) bundle.getBundle("Persona").getSerializable("persona");
+
+            nombrePrincipal.setText(persona.getNombre_persona() + " "+persona.getApellido_persona());
+
+            editText1.setText(persona.getNombre_persona());
+            editText2.setText(persona.getApellido_persona());
+            byte[] image = persona.getImagen_persona();
             Bitmap bitmap = BitmapFactory.decodeByteArray(image,0,image.length);
             imgDatospaciente.setImageBitmap(bitmap);
         }

@@ -39,6 +39,8 @@ import android.widget.Toast;
 
 import com.example.franko.expertwisc.ConexionHelper;
 import com.example.franko.expertwisc.Entidades.Paciente;
+import com.example.franko.expertwisc.Entidades.Persona;
+import com.example.franko.expertwisc.Entidades.Usuario;
 import com.example.franko.expertwisc.Home;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.FragmentosPrincipales.GeneralSubPruebas;
@@ -90,7 +92,7 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
     ConexionHelper con;
 
     TextView Edad;
-    int AñoNac, AñoEva, MesNac, MesEva, DiaNac, DiaEva, AñoTotal, MesTotal, DiaTotal;
+    int AñoNac, AñoEva, MesNac, MesEva, DiaNac, DiaEva, AñoTotal, MesTotal, DiaTotal, id_paciente;
     String EdadFinal;
 
     private OnFragmentInteractionListener mListener;
@@ -283,10 +285,105 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
         circularProgressButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                //Registramos al nuevo Paciente
                 registrarPaciente();
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setMessage("¿DESEA COMENZAR CON EL TEST?");
+                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        SQLiteDatabase db = con.getWritableDatabase();
+
+                        //Insertamos los datos del test en la tabla test
+                        ContentValues test = new ContentValues();
+                        test.put(Utilidades.CAMPO_FECHA_TEST,t2.getText().toString());
+                        //Consultamos el usuario actual
+                        int id = consultarUsuarioActivo();
+                        Persona persona = null;
+                        //Consultamos los datos de Persona del usuario actual
+                        persona = consultarPersona(id);
+                        test.put(Utilidades.CAMPO_EVALUADOR_TEST, persona.getNombre_persona()+" "+persona.getApellido_persona());
+                        Long idTest = db.insert(Utilidades.TABLA_TEST,Utilidades.CAMPO_ID_TEST,test);
+                        String a = Long.toString(idTest);
+                        int idTestInt = Integer.parseInt(a);
+
+                        //Actualizamos el CAMPO_ID_TEST de la tabla paciente
+                        ContentValues paciente = new ContentValues();
+                        paciente.put(Utilidades.CAMPO_ID_TEST,idTestInt);
+                        int ResUpdatePaciente = db.update(Utilidades.TABLA_PACIENTE,paciente,Utilidades.CAMPO_ID_PACIENTE+"="+id_paciente ,null);
+                        String res = Integer.toString(ResUpdatePaciente);
+
+                        Toast.makeText(getContext(),"Id_Test "+a + "Update "+res,  Toast.LENGTH_SHORT).show();
+
+                        Fragment fragment = new GeneralSubPruebas();
+                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+
+                        Bundle bundle = new Bundle();
+                        bundle.putString("Nombres", nombres.getText().toString() + " "+apellidos.getText().toString());
+                        bundle.putString("Edad", Edad.getText().toString());
+
+                        Bundle bundleMaster = new Bundle();
+                        bundleMaster.putBundle("datos",bundle);
+
+                        fragment.setArguments(bundleMaster);
+
+                        transaction.replace(R.id.content_main, fragment);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+
+                    }
+                }
+                );
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+
+                        Fragment fragment = new ListaPacientes();
+                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                        transaction.replace(R.id.content_main, fragment);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                    }
+                });
+
+                AlertDialog dialog = builder.create();
+                dialog.show();
+
             }
         });
         return view;
+    }
+
+    private Persona consultarPersona(int id) {
+        SQLiteDatabase db = con.getReadableDatabase();
+        Persona persona = null;
+
+        Cursor cursor = db.rawQuery("SELECT * FROM persona WHERE id_persona="+id,null);
+        while (cursor.moveToNext()){
+            persona = new Persona();
+
+            persona.setNombre_persona(cursor.getString(1));
+            persona.setApellido_persona(cursor.getString(2));
+        }
+
+        return persona;
+    }
+
+    private int consultarUsuarioActivo() {
+        SQLiteDatabase db = con.getReadableDatabase();
+        int id = 0;
+        Cursor cursor = db.rawQuery("SELECT id_usuario FROM usuario WHERE activo_usuario = 1",null );
+
+        if (cursor.getCount()>0) {
+
+            while (cursor.moveToNext()) {
+                id = cursor.getInt(0);
+            }
+        }
+
+        return id;
     }
 
 
@@ -351,55 +448,37 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
         }
         else {
 
-            Paciente paciente = null;
+
             SQLiteDatabase db = con.getWritableDatabase();
 
-            ContentValues contentValues = new ContentValues();
-            contentValues.put(Utilidades.CAMPO_NOMBRES_PACIENTE, nombres.getText().toString());
-            contentValues.put(Utilidades.CAMPO_APELLIDOS_PACIENTE, apellidos.getText().toString());
-            contentValues.put(Utilidades.CAMPO_MOTIVO_CONSULTA_PACIENTE, motivoConsulta.getText().toString());
-            contentValues.put(Utilidades.CAMPO_ANTECEDENTES_PACIENTE, antecedentes.getText().toString());
-            contentValues.put(Utilidades.CAMPO_EDAD_PACIENTE, EdadFinal);
-            contentValues.put(Utilidades.CAMPO_IMAGEN_PACIENTE, data);
+            ContentValues persona = new ContentValues();
+            persona.put(Utilidades.CAMPO_NOMBRE_PERSONA, nombres.getText().toString());
+            persona.put(Utilidades.CAMPO_APELLIDO_PERSONA, apellidos.getText().toString());
+            persona.put(Utilidades.CAMPO_EDAD_PERSONA, EdadFinal);
+            persona.put(Utilidades.CAMPO_IMAGEN_PERSONA, data);
+            persona.put(Utilidades.CAMPO_TIPO_PERSONA, "paciente");
 
             try {
                 PBDialog PBDialog = new PBDialog(getContext());
                 PBDialog.setProgressBar();
-                Long idResultante=db.insert(Utilidades.TABLA_PACIENTE, Utilidades.CAMPO_ID_PACIENTE, contentValues);
 
-                String d = Long.toString(idResultante);
-                int number = Integer.parseInt(d);
-                consultarListaPacientes();
-                paciente = listaPacientes.get(number-1);
+                //Insertamos en la tabla persona
+                Long idPersona=db.insert(Utilidades.TABLA_PERSONA, Utilidades.CAMPO_ID_PERSONA, persona);
+                //Obtenemos el id del Log y convertimos en String y luego en int
+                String a = Long.toString(idPersona);
+                int number = Integer.parseInt(a);
 
-                Toast.makeText(getContext(),"Id Registro: "+d, Toast.LENGTH_SHORT).show();
+                ContentValues paciente = new ContentValues();
+                paciente.put(Utilidades.CAMPO_MOTIVO_CONSULTA_PACIENTE, motivoConsulta.getText().toString());
+                paciente.put(Utilidades.CAMPO_ANTECEDENTES_PACIENTE, antecedentes.getText().toString());
+                paciente.put(Utilidades.CAMPO_ID_PERSONA, number);
 
-                //Recepción y envío de datos del paciente
-                Fragment fragment = new GeneralSubPruebas();
+                Long idPaciente=db.insert(Utilidades.TABLA_PACIENTE, Utilidades.CAMPO_ID_PACIENTE, paciente);
+                //Obtenemos el id del Log y convertimos en String y luego en int
+                String b = Long.toString(idPaciente);
+                id_paciente = Integer.parseInt(b);
+                Toast.makeText(getContext(),"Persona "+a + " Paciente "+b, Toast.LENGTH_SHORT).show();
 
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
-                Bundle bundleMaster = new Bundle();
-
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("paciente",paciente);
-                bundleMaster.putBundle("Paciente",bundle);
-
-                Bundle bundle1 = new Bundle();
-                bundle1.putString("edad", Edad.getText().toString());
-                bundleMaster.putBundle("Edad",bundle1);
-
-                Bundle bundle2 = new Bundle();
-                bundle1.putString("edad2", ""+AñoTotal);
-                bundleMaster.putBundle("Edad2",bundle2);
-
-                fragment.setArguments(bundleMaster);
-
-                transaction.replace(R.id.content_main, fragment);
-                transaction.addToBackStack(null);
-
-                // Commit the transaction
-                transaction.commit();
                 db.close();
 
             }catch (Exception e){
@@ -409,28 +488,6 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
         }
     }
 
-
-    private void consultarListaPacientes() {
-        SQLiteDatabase db = con.getReadableDatabase();
-        Paciente paciente = null;
-
-        listaPacientes = new ArrayList<>();
-
-        //SELECT * FROM PACIENTES
-        Cursor cursor = db.rawQuery("SELECT * FROM "+ Utilidades.TABLA_PACIENTE,null);
-
-        while (cursor.moveToNext()) {
-
-            paciente = new Paciente();
-
-//            paciente.setId(cursor.getInt(0));
-            paciente.setNombres(cursor.getString(1));
-            paciente.setApellidos(cursor.getString(2));
-            paciente.setEdad(cursor.getString(3));
-
-            listaPacientes.add(paciente);
-        }
-    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

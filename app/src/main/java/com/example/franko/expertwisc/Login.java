@@ -1,5 +1,6 @@
 package com.example.franko.expertwisc;
 
+import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -16,6 +17,7 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.example.franko.expertwisc.Entidades.Paciente;
+import com.example.franko.expertwisc.Entidades.Persona;
 import com.example.franko.expertwisc.Entidades.Usuario;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
@@ -100,23 +102,28 @@ public class Login extends AppCompatActivity {
             }
         }else{
 
-            Cursor us = db.rawQuery("SELECT usuario_usuario FROM usuario WHERE usuario_usuario = ?", new String[] {user});
+            Cursor us = db.rawQuery("SELECT nombre_usuario FROM usuario WHERE nombre_usuario = ?", new String[] {user});
             if(us != null && us.getCount()>0) {
 //                Toast toast = Toast.makeText(getApplicationContext(),"Existe: "+user, Toast.LENGTH_LONG);
 //                toast.show();
-                Cursor pw = db.rawQuery("SELECT id_usuario FROM usuario WHERE usuario_usuario = ? AND contrasena_usuario= ?", new String[] {user, password});
+                Cursor pw = db.rawQuery("SELECT id_usuario FROM usuario WHERE nombre_usuario = ? AND contrasena_usuario= ?", new String[] {user, password});
                 if (pw.getCount()>0) {
                     int id = 0;
                     while (pw.moveToNext()){
                         id = pw.getInt(0);
                     }
 
+                    ContentValues usuario = new ContentValues();
+                    usuario.put(Utilidades.CAMPO_ACTIVO_USUARIO,1);
+
+                    db.update(Utilidades.TABLA_USUARIO,usuario,Utilidades.CAMPO_ID_USUARIO+"="+id,null);
+
                     intent = new Intent(getApplicationContext(), Home.class);
 
-                    Usuario usuario = null;
-                    usuario = llenarUsuario(id);
+                    Persona persona = null;
+                    persona = llenarUsuario(id);
                     Bundle bundle = new Bundle();
-                    bundle.putSerializable("usuario",usuario);
+                    bundle.putSerializable("persona",persona);
 
                     intent.putExtras(bundle);
 
@@ -147,20 +154,20 @@ public class Login extends AppCompatActivity {
 //        }
     }
 
-    private Usuario llenarUsuario(int id) {
+    private Persona llenarUsuario(int id) {
         SQLiteDatabase db = con.getReadableDatabase();
 
-        Usuario usuario = null;
-        Cursor cursor = db.rawQuery("SELECT * FROM usuario WHERE id_usuario="+id,null);
+        Persona persona = null;
+        Cursor cursor = db.rawQuery("SELECT * FROM persona WHERE id_persona="+id,null);
 
         while (cursor.moveToNext()) {
 
-            usuario = new Usuario();
+            persona = new Persona();
 
-            usuario.setNombre(cursor.getString(1));
-            usuario.setApellido(cursor.getString(2));
-            usuario.setImagen(cursor.getBlob(5));
+            persona.setNombre_persona(cursor.getString(1));
+            persona.setApellido_persona(cursor.getString(2));
+            persona.setImagen_persona(cursor.getBlob(3));
         }
-        return usuario;
+        return persona;
     }
 }

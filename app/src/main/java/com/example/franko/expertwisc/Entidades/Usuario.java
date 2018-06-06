@@ -1,73 +1,61 @@
 package com.example.franko.expertwisc.Entidades;
 import java.io.Serializable;
-import java.sql.Blob;
 
 public class Usuario implements Serializable{
-    private Integer id;
-    private String Nombre;
-    private String Apellido;
-    private String Usuario;
-    private  String Contraseña;
-    private byte[] Imagen;
+    private Integer Id_usuario;
+    private String Nombre_usuario;
+    private String Contrasena_usuario;
+    private boolean Activo_usuario;
+    private Integer Id_persona;
 
-    public Usuario(Integer id, String nombre, String apellido, String usuario, String contraseña, byte[] imagen) {
-        this.id = id;
-        this.Nombre = nombre;
-        this.Apellido = apellido;
-        this.Usuario = usuario;
-        this.Contraseña = contraseña;
-        this.Imagen = imagen;
+    public Usuario(Integer id_usuario, String nombre_usuario, String contraseña_usuario, boolean activo_usuario, Integer id_persona) {
+        this.Id_usuario = id_usuario;
+        this.Nombre_usuario = nombre_usuario;
+        this.Contrasena_usuario = contraseña_usuario;
+        Activo_usuario = activo_usuario;
+        this.Id_persona = id_persona;
     }
 
     public Usuario(){
-
     }
 
-    public Integer getId() {
-        return id;
+    public Integer getId_usuario() {
+        return Id_usuario;
     }
 
-    public void setId(Integer id) {
-        this.id = id;
+    public void setId_usuario(Integer id_usuario) {
+        Id_usuario = id_usuario;
     }
 
-    public String getNombre() {
-        return Nombre;
+    public String getNombre_usuario() {
+        return Nombre_usuario;
     }
 
-    public void setNombre(String nombre) {
-        Nombre = nombre;
+    public void setNombre_usuario(String nombre_usuario) {
+        Nombre_usuario = nombre_usuario;
     }
 
-    public String getApellido() {
-        return Apellido;
+    public String getContrasena_usuario() {
+        return Contrasena_usuario;
     }
 
-    public void setApellido(String apellido) {
-        Apellido = apellido;
+    public void setContrasena_usuario(String contrasena_usuario) {
+        Contrasena_usuario = contrasena_usuario;
     }
 
-    public String getUsuario() {
-        return Usuario;
+    public boolean getActivo_usuario() {
+        return Activo_usuario;
     }
 
-    public void setUsuario(String usuario) {
-        Usuario = usuario;
+    public void setActivo_usuario(boolean activo_usuario) {
+        Activo_usuario = activo_usuario;
     }
 
-    public String getContraseña() {
-        return Contraseña;
+    public Integer getId_persona() {
+        return Id_persona;
     }
 
-    public void setContraseña(String contraseña) {
-        Contraseña = contraseña;
-    }
-
-    public byte[] getImagen() {
-        return Imagen;
-    }
-
-    public void setImagen(byte[] imagen) {
-        Imagen = imagen;
+    public void setId_persona(Integer id_Persona) {
+        Id_persona = id_Persona;
     }
 }

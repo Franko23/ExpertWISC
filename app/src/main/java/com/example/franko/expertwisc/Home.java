@@ -32,6 +32,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.franko.expertwisc.Entidades.Paciente;
+import com.example.franko.expertwisc.Entidades.Persona;
 import com.example.franko.expertwisc.Entidades.Usuario;
 import com.example.franko.expertwisc.FragmentosPrincipales.DatosPaciente;
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.DirectaEscalar;
@@ -132,20 +133,21 @@ public class Home extends AppCompatActivity
         }
 
         Bundle bundle = getIntent().getExtras();
-        Usuario usuario = null;
-        usuario = (Usuario) bundle.getSerializable("usuario");
+        Persona persona = null;
+        persona = (Persona) bundle.getSerializable("persona");
 
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View hView =  navigationView.getHeaderView(0);
+
         textViewNameProfile = (TextView)hView.findViewById(R.id.nameProfile);
         circleImageView = (CircleImageView) hView.findViewById(R.id.imageViewProfile);
 
-        if (usuario != null){
+        if (persona != null){
 
-            textViewNameProfile.setText(usuario.getNombre()+" "+usuario.getApellido());
-            byte[] image = usuario.getImagen();
+            textViewNameProfile.setText(persona.getNombre_persona()+" "+persona.getApellido_persona());
+            byte[] image = persona.getImagen_persona();
             Bitmap bitmap = BitmapFactory.decodeByteArray(image,0,image.length);
             circleImageView.setImageBitmap(bitmap);
 

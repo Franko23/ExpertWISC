@@ -174,15 +174,9 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
 
         bundle = getArguments();
 
-        Paciente paciente = null;
-
         if (bundle != null) {
-//            paciente = (Paciente) bundle.getSerializable("paciente");
-            paciente = (Paciente) bundle.getBundle("Paciente").getSerializable("paciente");
-            id_paciente = paciente.getId();
-            EdadPaciente = bundle.getBundle("Edad").getString("edad");
-            AñoTotal = bundle.getBundle("Edad2").getString("edad2");
-            Titulo = "Nombre: " + paciente.getNombres().toString() + " " + paciente.getApellidos()+"\n"+EdadPaciente;
+            EdadPaciente = bundle.getBundle("datos").getString("Edad");
+            Titulo = bundle.getBundle("datos").getString("Nombres");
         }
 
 //        int edad= Integer.getInteger(AñoTotal);

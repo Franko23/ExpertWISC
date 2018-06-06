@@ -11,16 +11,17 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.franko.expertwisc.Entidades.Paciente;
+import com.example.franko.expertwisc.Entidades.Persona;
 import com.example.franko.expertwisc.R;
 
 import java.util.ArrayList;
 
 public class AdapterPacientes extends RecyclerView.Adapter<AdapterPacientes.ViewHolderPacientes> implements View.OnClickListener{
 
-    ArrayList<Paciente> listaPacientes;
+    ArrayList<Persona> listaPacientes;
     private View.OnClickListener listener;
 
-    public AdapterPacientes(ArrayList<Paciente> listaPacientes) {
+    public AdapterPacientes(ArrayList<Persona> listaPacientes) {
         this.listaPacientes = listaPacientes;
     }
 
@@ -35,9 +36,9 @@ public class AdapterPacientes extends RecyclerView.Adapter<AdapterPacientes.View
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolderPacientes holder, int position) {
-        holder.txtNombres.setText(listaPacientes.get(position).getNombres()+ "  "+listaPacientes.get(position).getApellidos());
-        holder.txtEdad.setText(listaPacientes.get(position).getEdad());
-        byte[] image = listaPacientes.get(position).getImagen();
+        holder.txtNombres.setText(listaPacientes.get(position).getNombre_persona()+ "  "+listaPacientes.get(position).getApellido_persona());
+        holder.txtEdad.setText(listaPacientes.get(position).getEdad_persona());
+        byte[] image = listaPacientes.get(position).getImagen_persona();
         Bitmap bitmap = BitmapFactory.decodeByteArray(image,0,image.length);
         holder.Imagen.setImageBitmap(bitmap);
     }
