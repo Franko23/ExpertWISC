@@ -17,12 +17,10 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.example.franko.expertwisc.Adapters.AdapterTest;
-import com.example.franko.expertwisc.Adapters.AdapterTests;
 import com.example.franko.expertwisc.ConexionHelper;
 import com.example.franko.expertwisc.Entidades.Paciente;
 import com.example.franko.expertwisc.Entidades.Persona;
@@ -30,7 +28,6 @@ import com.example.franko.expertwisc.Entidades.Test;
 import com.example.franko.expertwisc.R;
 
 import java.util.ArrayList;
-import java.util.List;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -179,10 +176,10 @@ public class DatosPaciente extends Fragment {
             txt_mensaje_test.setVisibility(View.GONE);
 //            adapterTest =new AdapterTest(getContext(),R.layout.list_test,listaTest);
 
-            AdapterTests adapterTests = new AdapterTests(listaTest);
+            AdapterTest adapterTest = new AdapterTest(listaTest);
             // Cargamos los datos al ListView
 
-            recyclerViewTest.setAdapter(adapterTests);
+            recyclerViewTest.setAdapter(adapterTest);
 //            listView.setAdapter(adapterTest);
         }
 
