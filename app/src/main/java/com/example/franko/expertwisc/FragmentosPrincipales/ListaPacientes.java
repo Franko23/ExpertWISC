@@ -15,6 +15,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.franko.expertwisc.Adapters.AdapterPacientes;
@@ -50,6 +51,7 @@ public class ListaPacientes extends Fragment{
 
     ArrayList<Persona> listaPacientes;
     RecyclerView recyclerViewPacientes;
+    TextView txt_mensaje_lista_paciente;
 
     ConexionHelper con;
 
@@ -90,6 +92,8 @@ public class ListaPacientes extends Fragment{
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.fragment_lista_pacientes, container, false);
         con = new ConexionHelper(getContext(), "bd_wisc", null, 1);
+        txt_mensaje_lista_paciente = vista.findViewById(R.id.txt_mensaje_lista_paciente);
+
 
 //        lista = vista.findViewById(R.id.listaPacientes);
 
@@ -97,8 +101,11 @@ public class ListaPacientes extends Fragment{
 
         recyclerViewPacientes = vista.findViewById(R.id.listaPacientes);
         recyclerViewPacientes.setLayoutManager(new LinearLayoutManager(getContext()));
-
         AdapterPacientes adapterPacientes = new AdapterPacientes(listaPacientes);
+
+        if (listaPacientes.isEmpty()){
+            txt_mensaje_lista_paciente.setVisibility(View.VISIBLE);
+        }
 
         adapterPacientes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -175,7 +182,6 @@ public class ListaPacientes extends Fragment{
             paciente.setMotivoConsulta_paciente(cursor.getString(1));
             paciente.setAntecedentes(cursor.getString(2));
             paciente.setId_persona(cursor.getInt(3));
-            paciente.setId_test(cursor.getInt(4));
         }
 
         return paciente;
@@ -190,9 +196,10 @@ public class ListaPacientes extends Fragment{
         while (cursor.moveToNext()){
             persona = new Persona();
 
+            persona.setId_persona(cursor.getInt(0));
             persona.setNombre_persona(cursor.getString(1));
             persona.setApellido_persona(cursor.getString(2));
-            persona.setEdad_persona(cursor.getString(3));
+            persona.setFecha_nacimiento_persona(cursor.getString(3));
             persona.setImagen_persona(cursor.getBlob(4));
         }
         return persona;
@@ -222,7 +229,7 @@ public class ListaPacientes extends Fragment{
             persona.setId_persona(cursor.getInt(0));
             persona.setNombre_persona(cursor.getString(1));
             persona.setApellido_persona(cursor.getString(2));
-            persona.setEdad_persona(cursor.getString(3));
+            persona.setFecha_nacimiento_persona(cursor.getString(3));
             persona.setImagen_persona(cursor.getBlob(4));
 
             listaPacientes.add(persona);

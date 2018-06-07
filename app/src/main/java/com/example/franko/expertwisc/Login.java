@@ -106,7 +106,7 @@ public class Login extends AppCompatActivity {
             if(us != null && us.getCount()>0) {
 //                Toast toast = Toast.makeText(getApplicationContext(),"Existe: "+user, Toast.LENGTH_LONG);
 //                toast.show();
-                Cursor pw = db.rawQuery("SELECT id_usuario FROM usuario WHERE nombre_usuario = ? AND contrasena_usuario= ?", new String[] {user, password});
+                Cursor pw = db.rawQuery("SELECT id_persona FROM usuario WHERE nombre_usuario = ? AND contrasena_usuario= ?", new String[] {user, password});
                 if (pw.getCount()>0) {
                     int id = 0;
                     while (pw.moveToNext()){
@@ -140,18 +140,6 @@ public class Login extends AppCompatActivity {
             }
         }
 
-//
-//
-//        if (cancel) {
-//            // There was an error; don't attempt login and focus the first
-//            // form field with an error.
-//            focusView.requestFocus();
-//        } else {
-//            // Show a progress spinner, and kick off a background task to
-//            // perform the user login attempt.
-//            intent = new Intent(getApplicationContext(), Home.class);
-//            startActivity(intent);
-//        }
     }
 
     private Persona llenarUsuario(int id) {

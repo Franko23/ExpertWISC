@@ -185,7 +185,6 @@ public class Register extends AppCompatActivity {
             ContentValues persona = new ContentValues();
             persona.put(Utilidades.CAMPO_NOMBRE_PERSONA, nombre);
             persona.put(Utilidades.CAMPO_APELLIDO_PERSONA, apellido);
-            persona.put(Utilidades.CAMPO_EDAD_PERSONA, "");
             persona.put(Utilidades.CAMPO_IMAGEN_PERSONA, data);
             persona.put(Utilidades.CAMPO_TIPO_PERSONA, "user");
 

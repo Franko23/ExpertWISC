@@ -44,12 +44,14 @@ import com.example.franko.expertwisc.Entidades.Usuario;
 import com.example.franko.expertwisc.Home;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.FragmentosPrincipales.GeneralSubPruebas;
+import com.example.franko.expertwisc.Tools.CalcularEdad;
 import com.example.franko.expertwisc.Tools.PBDialog;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -77,8 +79,10 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
 
     private Context mContext;
 
+    String fecha;
+
     View view;
-    TextInputEditText nombres, apellidos, motivoConsulta, antecedentes ,t1, t2;
+    TextInputEditText nombres, apellidos, motivoConsulta, antecedentes , fecha_nacimiento;
 
     ImageView imageView;
     private static final int SELECT_PHOTO = 1;
@@ -92,7 +96,7 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
     ConexionHelper con;
 
     TextView Edad;
-    int AñoNac, AñoEva, MesNac, MesEva, DiaNac, DiaEva, AñoTotal, MesTotal, DiaTotal, id_paciente;
+    int AñoNac, AñoEva, MesNac, MesEva, DiaNac, DiaEva, AñoTotal, MesTotal, DiaTotal, id_paciente, id_persona;
     String EdadFinal;
 
     private OnFragmentInteractionListener mListener;
@@ -149,12 +153,11 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
         apellidos = view.findViewById(R.id.txtApellidos) ;
         motivoConsulta = view.findViewById(R.id.txtMotivoConsulta) ;
         antecedentes = view.findViewById(R.id.txtAntecedentes) ;
-        empezar = view.findViewById(R.id.empezartest);
-        circularProgressButton = view.findViewById(R.id.empezartest);
+        circularProgressButton = view.findViewById(R.id.guardar_nuevo_paciente);
         calcular = view.findViewById(R.id.calcular);
 
-        t1 = view.findViewById(R.id.txtFechaNacimiento);
-        t2 = view.findViewById(R.id.txtFechaEvaluacion);
+        fecha_nacimiento = view.findViewById(R.id.txtFechaNacimiento);
+//        t2 = view.findViewById(R.id.txtFechaEvaluacion);
         Edad = view.findViewById(R.id.edad);
 
         imageView = view.findViewById(R.id.imgPaciente);
@@ -163,6 +166,8 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
         final int yy = calendario.get(Calendar.YEAR);
         final int mm = calendario.get(Calendar.MONTH);
         final int dd = calendario.get(Calendar.DAY_OF_MONTH);
+
+        circularProgressButton.setVisibility(View.INVISIBLE);
 
 
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -203,7 +208,7 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
         });
 
 
-        t1.setOnClickListener(new View.OnClickListener() {
+        fecha_nacimiento.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -212,73 +217,33 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                     @Override
                     public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
 
-                        String fecha = String.valueOf(dayOfMonth)+"-"+String.valueOf(monthOfYear+1)
+                       fecha = String.valueOf(dayOfMonth)+"-"+String.valueOf(monthOfYear+1)
                                 +"-"+String.valueOf(year);
-                        t1.setText(fecha);
+                        fecha_nacimiento.setText(fecha);
                         AñoNac = year;
-                        MesNac =monthOfYear;
+                        MesNac =monthOfYear+1;
                         DiaNac = dayOfMonth;
 
                     }
                 }, yy, mm, dd);
 
                 datePicker.show();
-
-            }
-        });
-        t2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                int yy = calendario.get(Calendar.YEAR);
-//                int mm = calendario.get(Calendar.MONTH);
-//                int dd = calendario.get(Calendar.DAY_OF_MONTH);
-                DatePickerDialog datePicker = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
-
-                    @Override
-                    public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
-
-                        String fecha = String.valueOf(dayOfMonth)+"-"+String.valueOf(monthOfYear+1)
-                                +"-"+String.valueOf(year);
-                        t2.setText(fecha);
-                        AñoEva = year;
-                        MesEva = monthOfYear;
-                        DiaEva = dayOfMonth;
-                    }
-                }, yy, mm, dd);
-
-                datePicker.show();
-
                 calcular.setVisibility(View.VISIBLE);
+
             }
         });
 
         calcular.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AñoTotal = AñoEva - AñoNac;
-                if(MesEva>=MesNac){
-                    MesTotal = MesEva - MesNac;
-                    if (MesEva==MesNac){
-                        if (DiaEva<DiaNac){
-                            AñoTotal--;
-                            MesTotal = 12 - ((MesNac+1) - MesEva);
-                        }
-                    }
 
-                }else{
-                    AñoTotal--;
-                    MesTotal = 12 - (MesNac - MesEva);
-                }
+                CalcularEdad calcularEdad = new CalcularEdad(fecha);
+                String edad = calcularEdad.CalcularEdad();
 
-                EdadFinal = AñoTotal+"."+MesTotal; //Setteamos el formato de la edad
-                String mes = "meses";
-                if (MesTotal == 1){
-                    mes = "mes";
-                }
-                Edad.setText("Edad: "+ AñoTotal+" años y "+MesTotal+" "+mes);
+                Edad.setText(edad);
 
                 Edad.setVisibility(View.VISIBLE);
-                empezar.setVisibility(View.VISIBLE);
+                circularProgressButton.setVisibility(View.VISIBLE);
             }
         });
 
@@ -298,7 +263,10 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
 
                         //Insertamos los datos del test en la tabla test
                         ContentValues test = new ContentValues();
-                        test.put(Utilidades.CAMPO_FECHA_TEST,t2.getText().toString());
+                        Calendar calendar = Calendar.getInstance();
+                        SimpleDateFormat mdformat = new SimpleDateFormat("dd/MM/yyyy");
+                        String fechaActual = mdformat.format(calendar.getTime());
+                        test.put(Utilidades.CAMPO_FECHA_TEST,fechaActual);
                         //Consultamos el usuario actual
                         int id = consultarUsuarioActivo();
                         Persona persona = null;
@@ -307,31 +275,30 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                         persona = consultarPersona(id);
 
                         test.put(Utilidades.CAMPO_EVALUADOR_TEST, persona.getNombre_persona()+" "+persona.getApellido_persona());
-                        test.put(Utilidades.CAMPO_ID_PACIENTE, id_paciente);
                         test.put(Utilidades.CAMPO_ESTADO_TEST, "EN CURSO");
+                        test.put(Utilidades.CAMPO_ID_PACIENTE, id_paciente);
                         Long idTest = db.insert(Utilidades.TABLA_TEST,Utilidades.CAMPO_ID_TEST,test);
                         String a = Long.toString(idTest);
                         int idTestInt = Integer.parseInt(a);
 
                         //Actualizamos el CAMPO_ID_TEST de la tabla paciente
-                        ContentValues paciente = new ContentValues();
-                        paciente.put(Utilidades.CAMPO_ID_TEST,idTestInt);
-                        int ResUpdatePaciente = db.update(Utilidades.TABLA_PACIENTE,paciente,Utilidades.CAMPO_ID_PACIENTE+"="+id_paciente ,null);
-                        String res = Integer.toString(ResUpdatePaciente);
-
-                        Toast.makeText(getContext(),"Id_Test "+a + " Update "+res,  Toast.LENGTH_SHORT).show();
+//                        ContentValues paciente = new ContentValues();
+//                        paciente.put(Utilidades.CAMPO_ID_TEST,idTestInt);
+//                        int ResUpdatePaciente = db.update(Utilidades.TABLA_PACIENTE,paciente,Utilidades.CAMPO_ID_PACIENTE+"="+id_paciente ,null);
+//                        String res = Integer.toString(ResUpdatePaciente);
+//
+//                        Toast.makeText(getContext(),"Id_Test "+a + " Update "+res,  Toast.LENGTH_SHORT).show();
 
                         Fragment fragment = new GeneralSubPruebas();
                         FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
+                        //Obtenemos datos de la persona para enviar a GeneralSubPruebas
+                        persona = consultarPersona(id_persona);
+
                         Bundle bundle = new Bundle();
-                        bundle.putString("Nombres", nombres.getText().toString() + " "+apellidos.getText().toString());
-                        bundle.putString("Edad", Edad.getText().toString());
+                        bundle.putSerializable("Persona",persona);
 
-                        Bundle bundleMaster = new Bundle();
-                        bundleMaster.putBundle("datos",bundle);
-
-                        fragment.setArguments(bundleMaster);
+                        fragment.setArguments(bundle);
 
                         transaction.replace(R.id.content_main, fragment);
                         transaction.addToBackStack(null);
@@ -370,6 +337,7 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
 
             persona.setNombre_persona(cursor.getString(1));
             persona.setApellido_persona(cursor.getString(2));
+            persona.setFecha_nacimiento_persona(cursor.getString(3));
         }
 
         return persona;
@@ -452,13 +420,12 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
         }
         else {
 
-
             SQLiteDatabase db = con.getWritableDatabase();
 
             ContentValues persona = new ContentValues();
             persona.put(Utilidades.CAMPO_NOMBRE_PERSONA, nombres.getText().toString());
             persona.put(Utilidades.CAMPO_APELLIDO_PERSONA, apellidos.getText().toString());
-            persona.put(Utilidades.CAMPO_EDAD_PERSONA, EdadFinal);
+            persona.put(Utilidades.CAMPO_FECHA_NACIMIENTO_PERSONA, fecha_nacimiento.getText().toString());
             persona.put(Utilidades.CAMPO_IMAGEN_PERSONA, data);
             persona.put(Utilidades.CAMPO_TIPO_PERSONA, "paciente");
 
@@ -470,17 +437,18 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                 Long idPersona=db.insert(Utilidades.TABLA_PERSONA, Utilidades.CAMPO_ID_PERSONA, persona);
                 //Obtenemos el id del Log y convertimos en String y luego en int
                 String a = Long.toString(idPersona);
-                int number = Integer.parseInt(a);
+                id_persona = Integer.parseInt(a);
 
                 ContentValues paciente = new ContentValues();
                 paciente.put(Utilidades.CAMPO_MOTIVO_CONSULTA_PACIENTE, motivoConsulta.getText().toString());
                 paciente.put(Utilidades.CAMPO_ANTECEDENTES_PACIENTE, antecedentes.getText().toString());
-                paciente.put(Utilidades.CAMPO_ID_PERSONA, number);
+                paciente.put(Utilidades.CAMPO_ID_PERSONA, id_persona);
 
                 Long idPaciente=db.insert(Utilidades.TABLA_PACIENTE, Utilidades.CAMPO_ID_PACIENTE, paciente);
                 //Obtenemos el id del Log y convertimos en String y luego en int
                 String b = Long.toString(idPaciente);
                 id_paciente = Integer.parseInt(b);
+
                 Toast.makeText(getContext(),"Persona "+a + " Paciente "+b, Toast.LENGTH_SHORT).show();
 
                 db.close();

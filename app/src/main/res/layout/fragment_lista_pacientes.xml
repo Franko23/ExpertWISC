@@ -14,6 +14,14 @@
             <!--android:layout_height="match_parent"-->
             <!--android:id="@+id/listaPacientes"-->
             <!--android:padding="10dp"></ListView>-->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textStyle="italic"
+        android:gravity="center"
+        android:id="@+id/txt_mensaje_lista_paciente"
+        android:text="Aún no hay pacientes registrados"
+        android:visibility="invisible"/>
         <android.support.v7.widget.RecyclerView
             android:id="@+id/listaPacientes"
             android:layout_width="match_parent"

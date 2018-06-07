@@ -8,6 +8,8 @@ public class Utilidades {
     //Variable de PageViewer
     public static int rotacion = 0;
 
+    public static String edadFinal;
+
     public static String R_cc = "Sin valor";
     public static String R_s = "Sin valor";
     public static String R_rd = "Sin valor";
@@ -35,7 +37,7 @@ public class Utilidades {
     public static String CAMPO_ID_PERSONA = "id_persona";
     public static String CAMPO_NOMBRE_PERSONA = "nombre_persona";
     public static String CAMPO_APELLIDO_PERSONA = "apellido_persona";
-    public static String CAMPO_EDAD_PERSONA = "edad_persona";
+    public static String CAMPO_FECHA_NACIMIENTO_PERSONA = "edad_persona";
     public static String CAMPO_IMAGEN_PERSONA = "imagen_persona";
     public static String CAMPO_TIPO_PERSONA = "tipo_persona";
 
@@ -247,8 +249,7 @@ public class Utilidades {
             CAMPO_ID_PACIENTE + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
             CAMPO_MOTIVO_CONSULTA_PACIENTE + " TEXT, " +
             CAMPO_ANTECEDENTES_PACIENTE + " TEXT, " +
-            CAMPO_ID_PERSONA+" INTEGER,"+
-            CAMPO_ID_TEST+" INTEGER"+
+            CAMPO_ID_PERSONA+" INTEGER "+
             ")";
 
     public static final String CREAR_TABLA_PERSONA = "CREATE TABLE " + TABLA_PERSONA +
@@ -256,7 +257,7 @@ public class Utilidades {
             CAMPO_ID_PERSONA + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
             CAMPO_NOMBRE_PERSONA + " TEXT, " +
             CAMPO_APELLIDO_PERSONA + " TEXT, " +
-            CAMPO_EDAD_PERSONA + " TEXT, " +
+            CAMPO_FECHA_NACIMIENTO_PERSONA+ " TEXT, " +
             CAMPO_IMAGEN_PERSONA + " BLOB,"+
             CAMPO_TIPO_PERSONA + " TEXT )";
 

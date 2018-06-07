@@ -22,6 +22,7 @@ import android.widget.Toast;
 import com.example.franko.expertwisc.Adapters.SeccionesAdapter;
 import com.example.franko.expertwisc.ConexionHelper;
 import com.example.franko.expertwisc.Entidades.Paciente;
+import com.example.franko.expertwisc.Entidades.Persona;
 import com.example.franko.expertwisc.FragmentosSubTest.A;
 import com.example.franko.expertwisc.FragmentosSubTest.Ad;
 import com.example.franko.expertwisc.FragmentosSubTest.Ar;
@@ -39,6 +40,7 @@ import com.example.franko.expertwisc.FragmentosSubTest.S;
 import com.example.franko.expertwisc.FragmentosSubTest.V;
 import com.example.franko.expertwisc.R;
 
+import com.example.franko.expertwisc.Tools.CalcularEdad;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
 import java.util.ArrayList;
@@ -173,10 +175,13 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
 //        datoPaciente = view.findViewById(R.id.DatoPaciente);
 
         bundle = getArguments();
-
+        Persona persona = null;
         if (bundle != null) {
-            EdadPaciente = bundle.getBundle("datos").getString("Edad");
-            Titulo = bundle.getBundle("datos").getString("Nombres");
+            persona = (Persona) bundle.getSerializable("Persona") ;
+            //Calculamos la fecha de nacimiento de la persona
+            CalcularEdad calcularEdad = new CalcularEdad(persona.getFecha_nacimiento_persona());
+            String edadPersona = calcularEdad.CalcularEdad();
+            Titulo = persona.getNombre_persona() + " - " + edadPersona;
         }
 
 //        int edad= Integer.getInteger(AñoTotal);

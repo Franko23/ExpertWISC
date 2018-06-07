@@ -23,6 +23,7 @@
                     android:layout_width="180dp"
                     android:layout_height="180dp"
                     android:src="@drawable/person"
+                    android:saveEnabled="false"
                     app:civ_border_color="#FFFFFFFF"
                     app:civ_border_width="5dp"/>
                 <TextView
@@ -86,6 +87,8 @@
             android:layout_marginTop="5dp"
             android:layout_marginRight="50dp"
             android:layout_marginLeft="50dp"
+            android:layout_marginBottom="20dp"
+            android:visibility="gone"
             android:id="@+id/layout_datos_edit">
             <LinearLayout
                 android:layout_width="match_parent"
@@ -117,7 +120,6 @@
                             android:layout_height="wrap_content"
                             android:text="Nombres de paciente"
                             android:textColor="#767474"
-                            android:enabled="false"
                             android:id="@+id/EditNombres"/>
                     </LinearLayout>
                     <LinearLayout
@@ -137,8 +139,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Apellidos de paciente"
-                            android:id="@+id/EditApellido"
-                            android:enabled="false"/>
+                            android:id="@+id/EditApellido"/>
                     </LinearLayout>
                     <LinearLayout
                         android:orientation="horizontal"
@@ -148,7 +149,7 @@
                             android:layout_gravity="center_vertical"
                             android:layout_width="100dp"
                             android:layout_height="match_parent"
-                            android:text="Edad:"
+                            android:text="Fecha de Nacimiento:"
                             android:gravity="center_vertical"
                             android:textStyle="bold"/>
                         <EditText
@@ -157,8 +158,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Edad de paciente"
-                            android:id="@+id/EditEdad"
-                            android:enabled="false" />
+                            android:id="@+id/EditFechaNac" />
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
@@ -187,8 +187,7 @@
                             android:text="El motivo de consulta es pffffffffffffffffffffffforque tal, tal y tal, etc, etc, etc"
                             android:id="@+id/EditMotivo"
                             android:paddingLeft="15dp"
-                            android:singleLine="false"
-                            android:enabled="false"/>
+                            android:singleLine="false"/>
                     </LinearLayout>
                     <LinearLayout
                         android:orientation="vertical"
@@ -208,8 +207,7 @@
                             android:layout_height="wrap_content"
                             android:paddingLeft="15dp"
                             android:text="Apellidos de pacienteApellidos de pacienteApellidos de pacienteApellidos de pacienteApellidos de pacienteApellidos de pacienteApellidos de pacienteApellidos de paciente"
-                            android:id="@+id/EditAntecedentes"
-                            android:enabled="false"/>
+                            android:id="@+id/EditAntecedentes"/>
                     </LinearLayout>
                 </LinearLayout>
             </LinearLayout>
@@ -220,18 +218,19 @@
                 android:orientation="horizontal"
                 android:layout_gravity="center"
                 android:gravity="center_horizontal"
-                android:layout_marginRight="50dp"
-                android:layout_marginLeft="50dp">
+                android:background="#fff">
                 <Button
-                    android:id="@+id/btn_guardar"
+                    android:id="@+id/btn_actualizar_paciente"
                     android:textColor="#fff"
                     android:background="@drawable/gradientbackground"
-                    android:layout_margin="35dp"
+                    android:layout_marginRight="100dp"
+                    android:layout_marginLeft="100dp"
+                    android:layout_marginBottom="10dp"
                     android:gravity="center"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="GUARDAR"
-                    android:visibility="gone"/>
+                    />
 
             </LinearLayout>
 
@@ -240,7 +239,8 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="50dp"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
             android:padding="20dp"
             android:background="#fff"
             android:orientation="vertical">
@@ -252,12 +252,6 @@
                 android:textAlignment="center"
                 android:id="@+id/txt_mensaje_test"
                 android:textStyle="italic"/>
-            <!--<ListView-->
-                <!--android:id="@+id/listv_pruebas"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content">-->
-
-            <!--</ListView>-->
 
             <android.support.v7.widget.RecyclerView
                 android:id="@+id/recv_pruebas"
@@ -266,15 +260,24 @@
                 android:orientation="vertical">
 
             </android.support.v7.widget.RecyclerView>
-            <Button
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Nuevo Test"
+            <!--<Button-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:text="Nuevo Test"-->
+                <!--android:id="@+id/nuevo_test"-->
+                <!--android:padding="20dp"-->
+                <!--android:background="@color/colorPrimaryDark"-->
+                <!--android:textColor="#fff"-->
+                <!--android:layout_margin="20dp"/>-->
+            <android.support.design.widget.FloatingActionButton
                 android:id="@+id/nuevo_test"
-                android:padding="20dp"
-                android:background="@color/colorPrimaryDark"
-                android:textColor="#fff"
-                android:layout_margin="20dp"/>
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:layout_margin="@dimen/fab_margin"
+                app:srcCompat="@drawable/ic_file_plus_white_48dp" />
         </LinearLayout>
+
+
 
     </LinearLayout>

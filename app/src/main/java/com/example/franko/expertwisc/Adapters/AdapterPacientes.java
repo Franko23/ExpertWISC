@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.franko.expertwisc.Entidades.Paciente;
 import com.example.franko.expertwisc.Entidades.Persona;
 import com.example.franko.expertwisc.R;
+import com.example.franko.expertwisc.Tools.CalcularEdad;
 
 import java.util.ArrayList;
 
@@ -49,7 +50,9 @@ public class AdapterPacientes extends RecyclerView.Adapter<AdapterPacientes.View
     @Override
     public void onBindViewHolder(@NonNull ViewHolderPacientes holder, int position) {
         holder.txtNombres.setText(listaPacientes.get(position).getNombre_persona()+ "  "+listaPacientes.get(position).getApellido_persona());
-        holder.txtEdad.setText(listaPacientes.get(position).getEdad_persona());
+        CalcularEdad calcularEdad = new CalcularEdad(listaPacientes.get(position).getFecha_nacimiento_persona());
+        String edad = calcularEdad.CalcularEdad();
+        holder.txtEdad.setText(edad);
         byte[] image = listaPacientes.get(position).getImagen_persona();
         Bitmap bitmap = BitmapFactory.decodeByteArray(image,0,image.length);
         holder.Imagen.setImageBitmap(bitmap);
