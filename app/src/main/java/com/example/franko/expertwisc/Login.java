@@ -166,7 +166,7 @@ public class Login extends AppCompatActivity {
 
             persona.setNombre_persona(cursor.getString(1));
             persona.setApellido_persona(cursor.getString(2));
-            persona.setImagen_persona(cursor.getBlob(3));
+            persona.setImagen_persona(cursor.getBlob(4));
         }
         return persona;
     }
