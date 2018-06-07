@@ -7,9 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -23,9 +21,7 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.franko.expertwisc.Entidades.SubTest;
 import com.example.franko.expertwisc.R;
-import com.example.franko.expertwisc.Tools.DialogPreResultados;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
 /**

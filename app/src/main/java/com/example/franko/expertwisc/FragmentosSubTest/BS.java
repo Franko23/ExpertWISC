@@ -2,7 +2,6 @@ package com.example.franko.expertwisc.FragmentosSubTest;
 
 import android.app.Dialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
@@ -10,7 +9,6 @@ import android.os.Bundle;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -22,7 +20,6 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.franko.expertwisc.Entidades.SubTest;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Tools.DialogPreResultados;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
@@ -151,79 +148,6 @@ public class BS extends Fragment {
 
         return view;
     }
-
-//    private void DialogResultados(View view) {
-//        LayoutInflater inflater = getLayoutInflater();
-//        View alertLayout = inflater.inflate(R.layout.layout_pre_resultados, null);
-//
-//        final TextView result_cc = alertLayout.findViewById(R.id.result_cc);
-//        final TextView result_s = alertLayout.findViewById(R.id.result_s);
-//        final TextView result_rd = alertLayout.findViewById(R.id.result_rd);
-//        final TextView result_co = alertLayout.findViewById(R.id.result_co);
-//        final TextView result_cl = alertLayout.findViewById(R.id.result_cl);
-//        final TextView result_v= alertLayout.findViewById(R.id.result_v);
-//        final TextView result_ln = alertLayout.findViewById(R.id.result_ln);
-//        final TextView result_m = alertLayout.findViewById(R.id.result_m);
-//        final TextView result_c = alertLayout.findViewById(R.id.result_c);
-//        final TextView result_bs = alertLayout.findViewById(R.id.result_bs);
-//
-//        AlertDialog.Builder alert = new AlertDialog.Builder(getContext());
-//        alert.setTitle("PUNTUACIÓN TOTAL");
-//        // this is set the view from XML inside AlertDialog
-//        alert.setView(alertLayout);
-//        // disallow cancel of AlertDialog on click of back button and outside touch
-//        alert.setCancelable(false);
-//        alert.setNegativeButton("NO", new DialogInterface.OnClickListener() {
-//
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-////                DialogIntervalo();
-//
-//            }
-//        });
-//
-//        alert.setPositiveButton("SI", new DialogInterface.OnClickListener() {
-//
-//            @Override
-//            public void onClick(DialogInterface dialog, int which) {
-////                String user = etUsername.getText().toString();
-////                String pass = etEmail.getText().toString();
-////                Toast.makeText(getBaseContext(), "Username: " + user + " Email: " + pass, Toast.LENGTH_SHORT).show();
-////                CargarFragments(SubTest);
-////                Toast.makeText(getBaseContext(), "true", Toast.LENGTH_SHORT).show();
-//
-//
-//            }
-//        });
-//
-//        alert.setNeutralButton("CANCELAR", new DialogInterface.OnClickListener() {
-//            @Override
-//            public void onClick(DialogInterface dialogInterface, int i) {
-////                Toast.makeText(getBaseContext(), "Cancelado", Toast.LENGTH_SHORT).show();
-////                SubTest = 10;
-//            }
-//        });
-//
-//        result_cc.setText(Utilidades.R_cc);
-//        result_s.setText(Utilidades.R_s);
-//        result_rd.setText(Utilidades.R_rd);
-//        result_co.setText(Utilidades.R_co);
-//        result_cl.setText(Utilidades.R_cl);
-//        result_v.setText(Utilidades.R_v);
-//        result_ln.setText(Utilidades.R_ln);
-//        result_m.setText(Utilidades.R_m);
-//        result_c.setText(Utilidades.R_c);
-//        result_bs.setText(Utilidades.R_bs);
-//        result_cf.setText(Utilidades.R_cf);
-//        result_a.setText(Utilidades.R_a);
-//        result_i.setText(Utilidades.R_i);
-//        result_ar.setText(Utilidades.R_ar);
-//        result_ad.setText(Utilidades.R_ad);
-//
-//        AlertDialog dialog = alert.create();
-//        dialog.show();
-//
-//    }
 
     private void enableSubmitIfReady() {
         boolean isReady = res_bs.getText().toString().length() >= 1;

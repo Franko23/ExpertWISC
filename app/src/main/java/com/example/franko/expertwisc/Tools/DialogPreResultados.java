@@ -53,16 +53,6 @@ public class DialogPreResultados extends DialogFragment{
         final Button si = alertLayout.findViewById(R.id.btn_si);
         final Button no = alertLayout.findViewById(R.id.btn_no);
 
-        final SwitchCompat sw_cc = alertLayout.findViewById(R.id.sw_cc);
-        final SwitchCompat sw_s = alertLayout.findViewById(R.id.sw_s);
-        final SwitchCompat sw_rd = alertLayout.findViewById(R.id.sw_rd);
-        final SwitchCompat sw_co = alertLayout.findViewById(R.id.sw_co);
-        final SwitchCompat sw_cl = alertLayout.findViewById(R.id.sw_cl);
-        final SwitchCompat sw_v = alertLayout.findViewById(R.id.sw_v);
-        final SwitchCompat sw_ln = alertLayout.findViewById(R.id.sw_ln);
-        final SwitchCompat sw_m = alertLayout.findViewById(R.id.sw_m);
-        final SwitchCompat sw_c = alertLayout.findViewById(R.id.sw_c);
-        final SwitchCompat sw_bs = alertLayout.findViewById(R.id.sw_bs);
 
         result_cc.setText(Utilidades.R_cc);
         result_s.setText(Utilidades.R_s);

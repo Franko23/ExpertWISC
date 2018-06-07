@@ -21,7 +21,6 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.franko.expertwisc.Entidades.SubTest;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 

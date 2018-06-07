@@ -126,11 +126,6 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:id="@+id/result_cc"/>
-                <android.support.v7.widget.SwitchCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/sw_cc"
-                    android:visibility="invisible"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -145,11 +140,7 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:id="@+id/result_s"/>
-                <android.support.v7.widget.SwitchCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/sw_s"
-                    android:visibility="invisible"/>
+
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -164,11 +155,6 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:id="@+id/result_rd"/>
-                <android.support.v7.widget.SwitchCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/sw_rd"
-                    android:visibility="invisible"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -183,11 +169,6 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:id="@+id/result_co"/>
-                <android.support.v7.widget.SwitchCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/sw_co"
-                    android:visibility="invisible"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -202,11 +183,6 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:id="@+id/result_cl"/>
-                <android.support.v7.widget.SwitchCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/sw_cl"
-                    android:visibility="invisible"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -221,11 +197,6 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:id="@+id/result_v"/>
-                <android.support.v7.widget.SwitchCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/sw_v"
-                    android:visibility="invisible"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -240,11 +211,6 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:id="@+id/result_ln"/>
-                <android.support.v7.widget.SwitchCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/sw_ln"
-                    android:visibility="invisible"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -259,11 +225,6 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:id="@+id/result_m"/>
-                <android.support.v7.widget.SwitchCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/sw_m"
-                    android:visibility="invisible"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -278,11 +239,6 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:id="@+id/result_c"/>
-                <android.support.v7.widget.SwitchCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/sw_c"
-                    android:visibility="invisible"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -297,11 +253,6 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:id="@+id/result_bs"/>
-                <android.support.v7.widget.SwitchCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/sw_bs"
-                    android:visibility="invisible"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -316,11 +267,6 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:id="@+id/result_cf"/>
-                <android.support.v7.widget.SwitchCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/sw_cf"
-                    android:visibility="invisible"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -335,11 +281,6 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:id="@+id/result_a"/>
-                <android.support.v7.widget.SwitchCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/sw_a"
-                    android:visibility="invisible"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -354,11 +295,6 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:id="@+id/result_i"/>
-                <android.support.v7.widget.SwitchCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/sw_i"
-                    android:visibility="invisible"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -373,11 +309,6 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:id="@+id/result_ar"/>
-                <android.support.v7.widget.SwitchCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/sw_ar"
-                    android:visibility="invisible"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -392,11 +323,6 @@
                     android:gravity="center"
                     android:padding="10dp"
                     android:id="@+id/result_ad"/>
-                <android.support.v7.widget.SwitchCompat
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:id="@+id/sw_ad"
-                    android:visibility="invisible"/>
             </LinearLayout>
         </LinearLayout>
 
