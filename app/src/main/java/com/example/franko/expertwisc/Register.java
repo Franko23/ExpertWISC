@@ -94,15 +94,6 @@ public class Register extends AppCompatActivity {
             }
         });
 
-
-//        if (ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-////            appCompatImageView.setEnabled(false);
-//            ActivityCompat.requestPermissions(this, new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
-//        } else {
-//            appCompatImageView.setEnabled(true);
-//        }
-
-
         appCompatImageView.setOnClickListener(new View.OnClickListener() {
 
             @Override
@@ -277,16 +268,4 @@ public class Register extends AppCompatActivity {
 
     }
 
-//    public void addToDb(View view){
-//
-//        appCompatImageView.setDrawingCacheEnabled(true);
-//        appCompatImageView.buildDrawingCache();
-//        Bitmap bitmap = appCompatImageView.getDrawingCache();
-//        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-//        bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-//        byte[] data = baos.toByteArray();
-//        dbHelper.addToDb(data);
-//        Toast.makeText(this, "Image saved to DB successfully", Toast.LENGTH_SHORT).show();
-//
-//    }
 }

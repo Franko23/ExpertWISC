@@ -106,22 +106,26 @@ public class Login extends AppCompatActivity {
             if(us != null && us.getCount()>0) {
 //                Toast toast = Toast.makeText(getApplicationContext(),"Existe: "+user, Toast.LENGTH_LONG);
 //                toast.show();
-                Cursor pw = db.rawQuery("SELECT id_persona FROM usuario WHERE nombre_usuario = ? AND contrasena_usuario= ?", new String[] {user, password});
+                Cursor pw = db.rawQuery("SELECT id_persona, id_usuario FROM usuario WHERE nombre_usuario = ? AND contrasena_usuario= ?", new String[] {user, password});
                 if (pw.getCount()>0) {
-                    int id = 0;
+                    int id_persona = 0;
+                    int id_usuario = 0;
                     while (pw.moveToNext()){
-                        id = pw.getInt(0);
+                        id_persona = pw.getInt(0);
+                        id_usuario = pw.getInt(1);
                     }
 
-                    ContentValues usuario = new ContentValues();
-                    usuario.put(Utilidades.CAMPO_ACTIVO_USUARIO,1);
-
-                    db.update(Utilidades.TABLA_USUARIO,usuario,Utilidades.CAMPO_ID_USUARIO+"="+id,null);
+                    Utilidades.currentUserIdPersona = id_usuario;
+                    Utilidades.currentUserIdUsuario = id_usuario;
+//                    ContentValues usuario = new ContentValues();
+//                    usuario.put(Utilidades.CAMPO_ACTIVO_USUARIO,1);
+//
+//                    db.update(Utilidades.TABLA_USUARIO,usuario,Utilidades.CAMPO_ID_USUARIO+"="+id,null);
 
                     intent = new Intent(getApplicationContext(), Home.class);
 
                     Persona persona = null;
-                    persona = llenarUsuario(id);
+                    persona = llenarUsuario(id_persona);
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("persona",persona);
 

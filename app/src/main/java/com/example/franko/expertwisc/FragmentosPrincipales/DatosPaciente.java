@@ -359,12 +359,11 @@ public class DatosPaciente extends Fragment {
         String fechaActual = mdformat.format(calendar.getTime());
         test.put(Utilidades.CAMPO_FECHA_TEST,fechaActual);
 
-        int id = consultarUsuarioActivo();
 
         Persona persona = null;
 
         //Consultamos los datos de Persona del usuario actual
-        persona = consultarPersona(id);
+        persona = consultarPersona(Utilidades.currentUserIdPersona);
 
         test.put(Utilidades.CAMPO_EVALUADOR_TEST, persona.getNombre_persona()+" "+persona.getApellido_persona());
         test.put(Utilidades.CAMPO_ESTADO_TEST, "EN CURSO");
@@ -376,21 +375,6 @@ public class DatosPaciente extends Fragment {
 
         db.close();
 
-    }
-
-    private int consultarUsuarioActivo() {
-        SQLiteDatabase db = con.getReadableDatabase();
-        int id = 0;
-        Cursor cursor = db.rawQuery("SELECT id_usuario FROM usuario WHERE activo_usuario = 1",null );
-
-        if (cursor.getCount()>0) {
-
-            while (cursor.moveToNext()) {
-                id = cursor.getInt(0);
-            }
-        }
-        db.close();
-        return id;
     }
 
     private Persona consultarPersona(int id) {
@@ -405,7 +389,7 @@ public class DatosPaciente extends Fragment {
             persona.setApellido_persona(cursor.getString(2));
             persona.setFecha_nacimiento_persona(cursor.getString(3));
         }
-        db.close();
+
         return persona;
     }
 

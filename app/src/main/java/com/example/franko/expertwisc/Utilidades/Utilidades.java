@@ -8,7 +8,7 @@ public class Utilidades {
     //Variable de PageViewer
     public static int rotacion = 0;
 
-    public static String edadFinal;
+    public static String edadActual; //Edad del paciente actual
 
     public static String R_cc = "Sin valor";
     public static String R_s = "Sin valor";
@@ -29,6 +29,10 @@ public class Utilidades {
     public static Boolean pantalla = true;
 
     public static int pages = 10;
+
+    public static int currentUserIdPersona=0;//Id_persona del usuario actual
+    public static int currentUserIdUsuario=0;//Id_usuario del usuario actual
+
     public static Boolean disable = false;
 
 
@@ -249,7 +253,8 @@ public class Utilidades {
             CAMPO_ID_PACIENTE + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
             CAMPO_MOTIVO_CONSULTA_PACIENTE + " TEXT, " +
             CAMPO_ANTECEDENTES_PACIENTE + " TEXT, " +
-            CAMPO_ID_PERSONA+" INTEGER "+
+            CAMPO_ID_PERSONA+" INTEGER, "+
+            CAMPO_ID_USUARIO+" INTEGER "+
             ")";
 
     public static final String CREAR_TABLA_PERSONA = "CREATE TABLE " + TABLA_PERSONA +
@@ -266,7 +271,6 @@ public class Utilidades {
             CAMPO_ID_USUARIO + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
             CAMPO_NOMBRE_USUARIO + " TEXT, " +
             CAMPO_CONTRASENA_USUARIO + " TEXT," +
-            CAMPO_ACTIVO_USUARIO + " INTEGER DEFAULT 0," +
             CAMPO_ID_PERSONA+" INTEGER"+
             ")";
 

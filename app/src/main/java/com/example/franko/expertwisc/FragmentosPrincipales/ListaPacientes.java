@@ -49,7 +49,8 @@ public class ListaPacientes extends Fragment{
     private OnFragmentInteractionListener mListener;
     View vista;
 
-    ArrayList<Persona> listaPacientes;
+    ArrayList<Paciente> listaPacientes;
+    ArrayList<Persona> listaPersonas;
     RecyclerView recyclerViewPacientes;
     TextView txt_mensaje_lista_paciente;
 
@@ -101,9 +102,9 @@ public class ListaPacientes extends Fragment{
 
         recyclerViewPacientes = vista.findViewById(R.id.listaPacientes);
         recyclerViewPacientes.setLayoutManager(new LinearLayoutManager(getContext()));
-        AdapterPacientes adapterPacientes = new AdapterPacientes(listaPacientes);
+        AdapterPacientes adapterPacientes = new AdapterPacientes(listaPersonas);
 
-        if (listaPacientes.isEmpty()){
+        if (listaPersonas.isEmpty()){
             txt_mensaje_lista_paciente.setVisibility(View.VISIBLE);
         }
 
@@ -137,18 +138,6 @@ public class ListaPacientes extends Fragment{
 
                 bundleMaster.putBundle("Paciente",bundlePaciente);
                 bundleMaster.putBundle("Persona",bundlePersona);
-
-//                persona.setNombre_persona(listaPacientes.get(recyclerViewPacientes.getChildAdapterPosition(v)).getNombre_persona());
-//                persona.setApellido_persona(listaPacientes.get(recyclerViewPacientes.getChildAdapterPosition(v)).getApellido_persona());
-//                persona.setImagen_persona(listaPacientes.get(recyclerViewPacientes.getChildAdapterPosition(v)).getImagen_persona());
-//
-//                Paciente paciente = new Paciente();
-//                paciente.setMotivoConsulta_paciente(listaPacientes.get(recyclerViewPacientes.getChildAdapterPosition(v)).get());
-//                paciente.setApellidos(listaPacientes.get(recyclerViewPacientes.getChildAdapterPosition(v)).getApellidos());
-//                paciente.setImagen(listaPacientes.get(recyclerViewPacientes.getChildAdapterPosition(v)).getImagen());
-//
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable("paciente",paciente);
 //
                 fragment.setArguments(bundleMaster);
 //
@@ -215,26 +204,39 @@ public class ListaPacientes extends Fragment{
 
     private void consultarListaPacientes() {
         SQLiteDatabase db = con.getReadableDatabase();
-        Persona persona = null;
+
+        Paciente paciente;
+        Persona persona;
 
         listaPacientes = new ArrayList<>();
+        listaPersonas = new ArrayList<>();
 
         //SELECT * FROM PACIENTES
-        Cursor cursor = db.rawQuery("SELECT * FROM persona WHERE tipo_persona='paciente'" ,null);
+        Cursor pac = db.rawQuery("SELECT id_persona FROM paciente WHERE id_usuario"+"="+Utilidades.currentUserIdUsuario,null);
 
-        while (cursor.moveToNext()) {
-
-            persona = new Persona();
-
-            persona.setId_persona(cursor.getInt(0));
-            persona.setNombre_persona(cursor.getString(1));
-            persona.setApellido_persona(cursor.getString(2));
-            persona.setFecha_nacimiento_persona(cursor.getString(3));
-            persona.setImagen_persona(cursor.getBlob(4));
-
-            listaPacientes.add(persona);
+        while (pac.moveToNext()){
+            paciente = new Paciente();
+            paciente.setId_persona(pac.getInt(0));
+            listaPacientes.add(paciente);
         }
 
+        for (int i = 0; i < listaPacientes.size(); i++) {
+
+//            int id_persona = ;
+            Cursor cursor = db.rawQuery("SELECT * FROM persona WHERE id_persona"+"="+listaPacientes.get(i).getId_persona(),null);
+            while (cursor.moveToNext()) {
+
+                persona = new Persona();
+
+                persona.setId_persona(cursor.getInt(0));
+                persona.setNombre_persona(cursor.getString(1));
+                persona.setApellido_persona(cursor.getString(2));
+                persona.setFecha_nacimiento_persona(cursor.getString(3));
+                persona.setImagen_persona(cursor.getBlob(4));
+
+                listaPersonas.add(persona);
+            }
+        }
     }
 
 

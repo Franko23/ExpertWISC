@@ -131,13 +131,6 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
-//        if (ContextCompat.checkSelfPermission(mContext, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
-////            appCompatImageView.setEnabled(false);
-//            ActivityCompat.requestPermissions(getActivity(), new String[] { Manifest.permission.CAMERA, Manifest.permission.WRITE_EXTERNAL_STORAGE }, 0);
-//        }
-//        else {
-//            appCompatImageView.setEnabled(true);
-//        }
 
     }
 
@@ -194,7 +187,6 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                                 imageView.setImageResource(R.drawable.n_user);
                                 break;
                         }
-
                     }
                 });
                 builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
@@ -267,27 +259,21 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                         SimpleDateFormat mdformat = new SimpleDateFormat("dd/MM/yyyy");
                         String fechaActual = mdformat.format(calendar.getTime());
                         test.put(Utilidades.CAMPO_FECHA_TEST,fechaActual);
+
                         //Consultamos el usuario actual
-                        int id = consultarUsuarioActivo();
+//                        int id = consultarUsuarioActivo(Utilidades.currentUser);
                         Persona persona = null;
 
                         //Consultamos los datos de Persona del usuario actual
-                        persona = consultarPersona(id);
+                        persona = consultarPersona(Utilidades.currentUserIdPersona);
 
                         test.put(Utilidades.CAMPO_EVALUADOR_TEST, persona.getNombre_persona()+" "+persona.getApellido_persona());
                         test.put(Utilidades.CAMPO_ESTADO_TEST, "EN CURSO");
                         test.put(Utilidades.CAMPO_ID_PACIENTE, id_paciente);
                         Long idTest = db.insert(Utilidades.TABLA_TEST,Utilidades.CAMPO_ID_TEST,test);
                         String a = Long.toString(idTest);
-                        int idTestInt = Integer.parseInt(a);
-
-                        //Actualizamos el CAMPO_ID_TEST de la tabla paciente
-//                        ContentValues paciente = new ContentValues();
-//                        paciente.put(Utilidades.CAMPO_ID_TEST,idTestInt);
-//                        int ResUpdatePaciente = db.update(Utilidades.TABLA_PACIENTE,paciente,Utilidades.CAMPO_ID_PACIENTE+"="+id_paciente ,null);
-//                        String res = Integer.toString(ResUpdatePaciente);
 //
-//                        Toast.makeText(getContext(),"Id_Test "+a + " Update "+res,  Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(),"Id_Test: "+a ,  Toast.LENGTH_SHORT).show();
 
                         Fragment fragment = new GeneralSubPruebas();
                         FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -342,22 +328,6 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
 
         return persona;
     }
-
-    private int consultarUsuarioActivo() {
-        SQLiteDatabase db = con.getReadableDatabase();
-        int id = 0;
-        Cursor cursor = db.rawQuery("SELECT id_usuario FROM usuario WHERE activo_usuario = 1",null );
-
-        if (cursor.getCount()>0) {
-
-            while (cursor.moveToNext()) {
-                id = cursor.getInt(0);
-            }
-        }
-
-        return id;
-    }
-
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
@@ -443,6 +413,7 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                 paciente.put(Utilidades.CAMPO_MOTIVO_CONSULTA_PACIENTE, motivoConsulta.getText().toString());
                 paciente.put(Utilidades.CAMPO_ANTECEDENTES_PACIENTE, antecedentes.getText().toString());
                 paciente.put(Utilidades.CAMPO_ID_PERSONA, id_persona);
+                paciente.put(Utilidades.CAMPO_ID_USUARIO, Utilidades.currentUserIdUsuario);
 
                 Long idPaciente=db.insert(Utilidades.TABLA_PACIENTE, Utilidades.CAMPO_ID_PACIENTE, paciente);
                 //Obtenemos el id del Log y convertimos en String y luego en int
