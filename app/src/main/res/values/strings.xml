@@ -152,4 +152,8 @@
     <string name="s_veintidos">22. Espacio - Tiempo</string>
     <string name="s_veintitres">23. Sueño - vigilia</string>
 
+
+    <string name="mensajeContinuar">¿DESEA CONTINUAR CON LOS SUBTEST OPCIONALES?</string>
+    <string name="mensajeCompletar">Por favor, completa los resultados que faltan</string>
+
 </resources>

@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestLN;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestM;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
@@ -124,10 +126,16 @@ public class M extends Fragment {
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                SubTest subTest = new SubTest();
-                Utilidades.R_m = (res_m.getText().toString());
-                guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                Toast.makeText(getContext(),Utilidades.R_m +" GUARDADO",Toast.LENGTH_SHORT).show();
+                if (Integer.parseInt(res_m.getText().toString())<=35){
+                    SubTestM subTestM = new SubTestM();
+                    subTestM.setPuntuacionDirectaTotalM(res_m.getText().toString());
+                    subTestM.RegistrarM(getContext());
+                    Utilidades.R_m = (res_m.getText().toString());
+                    guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                    Toast.makeText(getContext(),Utilidades.R_m +" GUARDADO",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getContext(),"El valor no debe de ser mayor a 35",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

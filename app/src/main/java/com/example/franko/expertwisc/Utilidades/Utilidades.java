@@ -30,8 +30,10 @@ public class Utilidades {
 
     public static int pages = 10;
 
-    public static int currentUserIdPersona=0;//Id_persona del usuario actual
-    public static int currentUserIdUsuario=0;//Id_usuario del usuario actual
+    public static int currentUserIdPersona = 0;//Id_persona del usuario actual
+    public static int currentUserIdUsuario = 0;//Id_usuario del usuario actual
+
+    public static int currentTest = 0;
 
     public static Boolean disable = false;
 
@@ -139,84 +141,6 @@ public class Utilidades {
     public static String CAMPO_CIT = "campo_cit";
 
 
-    public static final String CREAR_TABLA_PUNTUACIONES_CC = "CREATE TABLE " + TABLA_PUNTUACIONES_CC +
-            "(" +
-            CAMPO_ID_PUNTUACION_CC + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-            CAMPO_CC + " TEXT, " +
-            CAMPO_CCS + " TEXT ) ";
-
-    public static final String CREAR_TABLA_PUNTUACIONES_S = "CREATE TABLE " + TABLA_PUNTUACIONES_S +
-            "(" +
-            CAMPO_ID_PUNTUACION_S + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-            CAMPO_S + " TEXT )";
-
-    public static final String CREAR_TABLA_PUNTUACIONES_RD = "CREATE TABLE " + TABLA_PUNTUACIONES_RD +
-            "(" +
-            CAMPO_ID_PUNTUACION_RD + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-            CAMPO_RDD + " TEXT, " +
-            CAMPO_RDI + " TEXT, " +
-            CAMPO_RDT + " TEXT ) ";
-
-    public static final String CREAR_TABLA_PUNTUACIONES_CO = "CREATE TABLE " + TABLA_PUNTUACIONES_CO +
-            "(" +
-            CAMPO_ID_PUNTUACION_CO + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-            CAMPO_CO + " TEXT )";
-
-    public static final String CREAR_TABLA_PUNTUACIONES_CL = "CREATE TABLE " + TABLA_PUNTUACIONES_CL +
-            "(" +
-            CAMPO_ID_PUNTUACION_CL + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-            CAMPO_CL + " TEXT )";
-
-    public static final String CREAR_TABLA_PUNTUACIONES_V = "CREATE TABLE " + TABLA_PUNTUACIONES_V +
-            "(" +
-            CAMPO_ID_PUNTUACION_V + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-            CAMPO_V + " TEXT )";
-
-    public static final String CREAR_TABLA_PUNTUACIONES_LN = "CREATE TABLE " + TABLA_PUNTUACIONES_LN +
-            "(" +
-            CAMPO_ID_PUNTUACION_LN + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-            CAMPO_LN + " TEXT )";
-
-    public static final String CREAR_TABLA_PUNTUACIONES_M = "CREATE TABLE " + TABLA_PUNTUACIONES_M +
-            "(" +
-            CAMPO_ID_PUNTUACION_M + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-            CAMPO_M + " TEXT )";
-
-    public static final String CREAR_TABLA_PUNTUACIONES_C = "CREATE TABLE " + TABLA_PUNTUACIONES_C +
-            "(" +
-            CAMPO_ID_PUNTUACION_C + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-            CAMPO_C + " TEXT )";
-
-    public static final String CREAR_TABLA_PUNTUACIONES_BS = "CREATE TABLE " + TABLA_PUNTUACIONES_BS +
-            "(" +
-            CAMPO_ID_PUNTUACION_BS + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-            CAMPO_BS + " TEXT )";
-
-    public static final String CREAR_TABLA_PUNTUACIONES_CF = "CREATE TABLE " + TABLA_PUNTUACIONES_CF +
-            "(" +
-            CAMPO_ID_PUNTUACION_CF + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-            CAMPO_CF + " TEXT )";
-
-    public static final String CREAR_TABLA_PUNTUACIONES_A = "CREATE TABLE " + TABLA_PUNTUACIONES_A +
-            "(" +
-            CAMPO_ID_PUNTUACION_A + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-            CAMPO_A + " TEXT )";
-
-    public static final String CREAR_TABLA_PUNTUACIONES_I = "CREATE TABLE " + TABLA_PUNTUACIONES_I +
-            "(" +
-            CAMPO_ID_PUNTUACION_I + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-            CAMPO_I + " TEXT )";
-
-    public static final String CREAR_TABLA_PUNTUACIONES_AR = "CREATE TABLE " + TABLA_PUNTUACIONES_AR +
-            "(" +
-            CAMPO_ID_PUNTUACION_AR + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-            CAMPO_AR + " TEXT )";
-
-    public static final String CREAR_TABLA_PUNTUACIONES_AD = "CREATE TABLE " + TABLA_PUNTUACIONES_AD +
-            "(" +
-            CAMPO_ID_PUNTUACION_AD + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-            CAMPO_AD + " TEXT )";
-
     //Constantes Tabla Test
     public static final String TABLA_TEST = "test";
     public static final String CAMPO_ID_TEST = "id_test";
@@ -224,28 +148,112 @@ public class Utilidades {
     public static final String CAMPO_EVALUADOR_TEST = "evaluador_test";
     public static final String CAMPO_ESTADO_TEST = "estado_test";
 
+
+    ///////////////////////////////////////////
+    //********CREACIÓN DE TABLAS***************
+    ///////////////////////////////////////////
+
+
+    public static final String CREAR_TABLA_PUNTUACIONES_CC = "CREATE TABLE " + TABLA_PUNTUACIONES_CC +
+            "(" +
+            CAMPO_ID_PUNTUACION_CC + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            CAMPO_CC + " TEXT, " +
+            CAMPO_CCS + " TEXT, " +
+            CAMPO_ID_TEST + " INTEGER ) ";
+
+    public static final String CREAR_TABLA_PUNTUACIONES_S = "CREATE TABLE " + TABLA_PUNTUACIONES_S +
+            "(" +
+            CAMPO_ID_PUNTUACION_S + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            CAMPO_S + " TEXT,"+
+            CAMPO_ID_TEST + " INTEGER ) ";
+
+    public static final String CREAR_TABLA_PUNTUACIONES_RD = "CREATE TABLE " + TABLA_PUNTUACIONES_RD +
+            "(" +
+            CAMPO_ID_PUNTUACION_RD + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            CAMPO_RDD + " TEXT, " +
+            CAMPO_RDI + " TEXT, " +
+            CAMPO_RDT + " TEXT , "+
+            CAMPO_ID_TEST + " INTEGER ) ";
+
+    public static final String CREAR_TABLA_PUNTUACIONES_CO = "CREATE TABLE " + TABLA_PUNTUACIONES_CO +
+            "(" +
+            CAMPO_ID_PUNTUACION_CO + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            CAMPO_CO + " TEXT, "+
+            CAMPO_ID_TEST + " INTEGER ) ";
+
+    public static final String CREAR_TABLA_PUNTUACIONES_CL = "CREATE TABLE " + TABLA_PUNTUACIONES_CL +
+            "(" +
+            CAMPO_ID_PUNTUACION_CL + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            CAMPO_CL + " TEXT,"+
+            CAMPO_ID_TEST + " INTEGER ) ";
+
+    public static final String CREAR_TABLA_PUNTUACIONES_V = "CREATE TABLE " + TABLA_PUNTUACIONES_V +
+            "(" +
+            CAMPO_ID_PUNTUACION_V + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            CAMPO_V + " TEXT,"+
+            CAMPO_ID_TEST + " INTEGER ) ";
+
+    public static final String CREAR_TABLA_PUNTUACIONES_LN = "CREATE TABLE " + TABLA_PUNTUACIONES_LN +
+            "(" +
+            CAMPO_ID_PUNTUACION_LN + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            CAMPO_LN + " TEXT,"+
+            CAMPO_ID_TEST + " INTEGER ) ";
+
+    public static final String CREAR_TABLA_PUNTUACIONES_M = "CREATE TABLE " + TABLA_PUNTUACIONES_M +
+            "(" +
+            CAMPO_ID_PUNTUACION_M + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            CAMPO_M + " TEXT,"+
+            CAMPO_ID_TEST + " INTEGER ) ";
+
+    public static final String CREAR_TABLA_PUNTUACIONES_C = "CREATE TABLE " + TABLA_PUNTUACIONES_C +
+            "(" +
+            CAMPO_ID_PUNTUACION_C + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            CAMPO_C + " TEXT,"+
+            CAMPO_ID_TEST + " INTEGER ) ";
+
+    public static final String CREAR_TABLA_PUNTUACIONES_BS = "CREATE TABLE " + TABLA_PUNTUACIONES_BS +
+            "(" +
+            CAMPO_ID_PUNTUACION_BS + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            CAMPO_BS + " TEXT,"+
+            CAMPO_ID_TEST + " INTEGER ) ";
+
+    public static final String CREAR_TABLA_PUNTUACIONES_CF = "CREATE TABLE " + TABLA_PUNTUACIONES_CF +
+            "(" +
+            CAMPO_ID_PUNTUACION_CF + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            CAMPO_CF + " TEXT,"+
+            CAMPO_ID_TEST + " INTEGER ) ";
+
+    public static final String CREAR_TABLA_PUNTUACIONES_A = "CREATE TABLE " + TABLA_PUNTUACIONES_A +
+            "(" +
+            CAMPO_ID_PUNTUACION_A + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            CAMPO_A + " TEXT,"+
+            CAMPO_ID_TEST + " INTEGER ) ";
+
+    public static final String CREAR_TABLA_PUNTUACIONES_I = "CREATE TABLE " + TABLA_PUNTUACIONES_I +
+            "(" +
+            CAMPO_ID_PUNTUACION_I + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            CAMPO_I + " TEXT,"+
+            CAMPO_ID_TEST + " INTEGER ) ";
+
+    public static final String CREAR_TABLA_PUNTUACIONES_AR = "CREATE TABLE " + TABLA_PUNTUACIONES_AR +
+            "(" +
+            CAMPO_ID_PUNTUACION_AR + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            CAMPO_AR + " TEXT,"+
+            CAMPO_ID_TEST + " INTEGER ) ";
+
+    public static final String CREAR_TABLA_PUNTUACIONES_AD = "CREATE TABLE " + TABLA_PUNTUACIONES_AD +
+            "(" +
+            CAMPO_ID_PUNTUACION_AD + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            CAMPO_AD + " TEXT,"+
+            CAMPO_ID_TEST + " INTEGER ) ";
+
     public static final String CREAR_TABLA_TEST = "CREATE TABLE " + TABLA_TEST +
             " (" +
             CAMPO_ID_TEST + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
             CAMPO_FECHA_TEST + " TEXT, " +
             CAMPO_EVALUADOR_TEST + " TEXT, " +
             CAMPO_ESTADO_TEST + " TEXT, " +
-            CAMPO_ID_PACIENTE + " INTEGER," +
-            CAMPO_ID_PUNTUACION_CC + " INTEGER," +
-            CAMPO_ID_PUNTUACION_S + " INTEGER," +
-            CAMPO_ID_PUNTUACION_RD + " INTEGER," +
-            CAMPO_ID_PUNTUACION_CO + " INTEGER," +
-            CAMPO_ID_PUNTUACION_CL + " INTEGER," +
-            CAMPO_ID_PUNTUACION_V + " INTEGER," +
-            CAMPO_ID_PUNTUACION_LN + " INTEGER," +
-            CAMPO_ID_PUNTUACION_M + " INTEGER," +
-            CAMPO_ID_PUNTUACION_C + " INTEGER," +
-            CAMPO_ID_PUNTUACION_BS + " INTEGER," +
-            CAMPO_ID_PUNTUACION_CF + " INTEGER," +
-            CAMPO_ID_PUNTUACION_A + " INTEGER," +
-            CAMPO_ID_PUNTUACION_I + " INTEGER," +
-            CAMPO_ID_PUNTUACION_AR + " INTEGER," +
-            CAMPO_ID_PUNTUACION_AD + " INTEGER )";
+            CAMPO_ID_PACIENTE + " INTEGER)";
 
 
     public static final String CREAR_TABLA_PACIENTE = "CREATE TABLE " + TABLA_PACIENTE +

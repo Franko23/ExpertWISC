@@ -18,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestCl;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestCo;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
@@ -43,6 +45,7 @@ public class Cl extends Fragment {
     View view;
     Button guardar;
     EditText res_cl, res_cl_a, res_cl_b;
+    int valorMax;
     private OnFragmentInteractionListener mListener;
 
     public Cl() {
@@ -82,11 +85,21 @@ public class Cl extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view =inflater.inflate(R.layout.fragment_cl, container, false);
-//        res_cl_a = view.findViewById(R.id.res_cl_a);
-//        res_cl_b = view.findViewById(R.id.res_cl_b);
-        res_cl = view.findViewById(R.id.res_cl);
+        res_cl_a = view.findViewById(R.id.res_cl_a);
+        res_cl_b = view.findViewById(R.id.res_cl_b);
+//        res_cl = view.findViewById(R.id.res_cl);
         guardar = view.findViewById(R.id.guardar_cl);
         imageView = view.findViewById(R.id.show_cl);
+
+        if (Double.parseDouble(Utilidades.edadActual)>7){
+            res_cl_a.setEnabled(false);
+            res_cl = res_cl_b;
+            valorMax = 119;
+        }else{
+            res_cl_b.setEnabled(false);
+            res_cl = res_cl_a;
+            valorMax = 65;
+        }
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,10 +140,17 @@ public class Cl extends Fragment {
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                SubTest subTest = new SubTest();
-                Utilidades.R_cl = (res_cl.getText().toString());
-                guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                Toast.makeText(getContext(),Utilidades.R_cl +" GUARDADO",Toast.LENGTH_SHORT).show();
+                if (Integer.parseInt(res_cl.getText().toString())<=valorMax){
+                    SubTestCl subTestCl = new SubTestCl();
+                    subTestCl.setPuntuacionDirectaTotalCl(res_cl.getText().toString());
+                    subTestCl.RegistrarCl(getContext());
+                    Utilidades.R_cl = (res_cl.getText().toString());
+                    guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+//                    Toast.makeText(getContext(),Utilidades.R_cl +" GUARDADO",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getContext(),"El valor no debe de ser mayor a "+valorMax,Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 

@@ -135,11 +135,15 @@ public class I extends Fragment {
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utilidades.R_i = (res_i.getText().toString());
-                guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                Toast.makeText(getContext(),Utilidades.R_i+" GUARDADO",Toast.LENGTH_SHORT).show();
+                if (Integer.parseInt(res_i.getText().toString())<=33){
+                    Utilidades.R_i = (res_i.getText().toString());
+                    guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                    Toast.makeText(getContext(),Utilidades.R_i+" GUARDADO",Toast.LENGTH_SHORT).show();
+                    Dialogreemplazo();
+                }else{
+                    Toast.makeText(getContext(),"El valor no debe de ser mayor a 33",Toast.LENGTH_SHORT).show();
+                }
 
-                Dialogreemplazo();
             }
         });
 

@@ -18,6 +18,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestLN;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
@@ -123,10 +124,17 @@ public class LN extends Fragment {
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                SubTest subTest = new SubTest();
-                Utilidades.R_ln = (res_ln.getText().toString());
-                guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                Toast.makeText(getContext(),Utilidades.R_ln+" GUARDADO",Toast.LENGTH_SHORT).show();
+                if (Integer.parseInt(res_ln.getText().toString())<=30){
+                    SubTestLN subTestLN = new SubTestLN();
+                    subTestLN.setPuntuacionDirectaTotalLN(res_ln.getText().toString());
+                    subTestLN.RegistrarLN(getContext());
+                    Utilidades.R_ln = (res_ln.getText().toString());
+                    guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                    Toast.makeText(getContext(),Utilidades.R_ln+" GUARDADO",Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getContext(),"El valor no debe de ser mayor a 30",Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 

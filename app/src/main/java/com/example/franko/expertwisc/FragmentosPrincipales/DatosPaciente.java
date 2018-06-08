@@ -6,10 +6,13 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
@@ -38,6 +41,7 @@ import com.example.franko.expertwisc.Entidades.Paciente;
 import com.example.franko.expertwisc.Entidades.Persona;
 import com.example.franko.expertwisc.Entidades.Test;
 import com.example.franko.expertwisc.R;
+import com.example.franko.expertwisc.Tools.BlurBuilder;
 import com.example.franko.expertwisc.Tools.PBDialog;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
@@ -85,7 +89,7 @@ public class DatosPaciente extends Fragment {
     AdapterTest adapterTest;
     ConexionHelper con;
     FloatingActionButton nuevo_test;
-    LinearLayout layout_datos_edit;
+    LinearLayout layout_datos_edit, linear_back;
     RecyclerView recyclerViewTest;
 
     Paciente paciente = null;
@@ -139,6 +143,7 @@ public class DatosPaciente extends Fragment {
         view = inflater.inflate(R.layout.fragment_datos_paciente, container, false);
 
         layout_datos_edit = view.findViewById(R.id.layout_datos_edit);
+        linear_back = view.findViewById(R.id.linear_back);
         imgDatospaciente = view.findViewById(R.id.imgDatospaciente);
         switchCompat = view.findViewById(R.id.swicth_profile);
         nombrePrincipal = view.findViewById(R.id.nombrePrincipal);
@@ -186,6 +191,14 @@ public class DatosPaciente extends Fragment {
             imgDatospaciente.setImageBitmap(bitmap);
             editMotivo.setText(paciente.getMotivoConsulta_paciente());
             editAntecedentes.setText(paciente.getAntecedentes_paciente());
+            //Enviamos el bitmap para recibir un BlurImage
+            Bitmap imageBlur = BlurBuilder.blur(getContext(), bitmap);
+            try{
+                Drawable newImage = ConvertBitmapToDrawable(imageBlur);
+                linear_back.setBackground(newImage);
+            }catch (Exception e){
+
+            }
         }
 
         recyclerViewTest = view.findViewById(R.id.recv_pruebas);
@@ -308,6 +321,11 @@ public class DatosPaciente extends Fragment {
         return view;
     }
 
+    private Drawable ConvertBitmapToDrawable(Bitmap bitmap) {
+        Drawable drawable = new BitmapDrawable(getResources(),bitmap);
+        return drawable;
+    }
+
     private void actualizarPaciente() {
 
         imgDatospaciente.setDrawingCacheEnabled(true);
@@ -370,7 +388,8 @@ public class DatosPaciente extends Fragment {
         test.put(Utilidades.CAMPO_ID_PACIENTE, paciente.getId_paciente());
         Long idTest = db.insert(Utilidades.TABLA_TEST,Utilidades.CAMPO_ID_TEST,test);
         String a = Long.toString(idTest);
-
+        int id_test = Integer.parseInt(a);
+        Utilidades.currentTest = id_test;
         Toast.makeText(getContext(),"Test nro "+a,Toast.LENGTH_SHORT).show();
 
         db.close();
@@ -433,6 +452,7 @@ public class DatosPaciente extends Fragment {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");
         }
+        mContext = context;
     }
 
     @Override

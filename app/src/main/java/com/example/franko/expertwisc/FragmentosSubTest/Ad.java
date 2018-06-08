@@ -135,11 +135,15 @@ public class Ad extends Fragment {
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Utilidades.R_ad = (res_ad.getText().toString());
-                guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                Toast.makeText(getContext(),Utilidades.R_ad+" GUARDADO",Toast.LENGTH_SHORT).show();
+                if (Integer.parseInt(res_ad.getText().toString())<=24){
+                    Utilidades.R_ad = (res_ad.getText().toString());
+                    guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                    Toast.makeText(getContext(),Utilidades.R_ad+" GUARDADO",Toast.LENGTH_SHORT).show();
 
-                Dialogreemplazo();
+                    Dialogreemplazo();
+                }else{
+                    Toast.makeText(getContext(),"El valor no debe de ser mayor a 24",Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

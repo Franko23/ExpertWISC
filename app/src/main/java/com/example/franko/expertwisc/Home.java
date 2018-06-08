@@ -9,6 +9,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
@@ -28,6 +30,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -59,6 +62,7 @@ import com.example.franko.expertwisc.FragmentosSubTest.M;
 import com.example.franko.expertwisc.FragmentosSubTest.RD;
 import com.example.franko.expertwisc.FragmentosSubTest.S;
 import com.example.franko.expertwisc.FragmentosSubTest.V;
+import com.example.franko.expertwisc.Tools.BlurBuilder;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
 import java.util.ArrayList;
@@ -97,6 +101,7 @@ public class Home extends AppCompatActivity
     ImageView imageViewProfile;
     TextView textViewNameProfile;
     CircleImageView circleImageView;
+    LinearLayout linear_back;
 
     ConexionHelper con;
     @Override
@@ -108,6 +113,7 @@ public class Home extends AppCompatActivity
         con = new ConexionHelper(this,"bd_wisc", null, 1);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -145,6 +151,7 @@ public class Home extends AppCompatActivity
 
         textViewNameProfile = (TextView)hView.findViewById(R.id.nameProfile);
         circleImageView = (CircleImageView) hView.findViewById(R.id.imageViewProfile);
+        linear_back = (LinearLayout) hView.findViewById(R.id.linear_back_header);
 
         if (persona != null){
 
@@ -152,11 +159,24 @@ public class Home extends AppCompatActivity
             byte[] image = persona.getImagen_persona();
             Bitmap bitmap = BitmapFactory.decodeByteArray(image,0,image.length);
             circleImageView.setImageBitmap(bitmap);
+            //Enviamos el bitmap para recibir un BlurImage
+            Bitmap imageBlur = BlurBuilder.blur(getApplicationContext(), bitmap);
+            try{
+                Drawable newImage = ConvertBitmapToDrawable(imageBlur);
+                linear_back.setBackground(newImage);
+            }catch (Exception e){
+
+            }
 
         }else{
             Toast.makeText(getApplicationContext(),"Null",Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    private Drawable ConvertBitmapToDrawable(Bitmap bitmap) {
+        Drawable drawable = new BitmapDrawable(getResources(),bitmap);
+        return drawable;
     }
 
 

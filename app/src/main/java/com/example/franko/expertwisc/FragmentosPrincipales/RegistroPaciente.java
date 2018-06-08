@@ -272,7 +272,8 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                         test.put(Utilidades.CAMPO_ID_PACIENTE, id_paciente);
                         Long idTest = db.insert(Utilidades.TABLA_TEST,Utilidades.CAMPO_ID_TEST,test);
                         String a = Long.toString(idTest);
-//
+                        int id_test = Integer.parseInt(a);
+                        Utilidades.currentTest = id_test;
                         Toast.makeText(getContext(),"Id_Test: "+a ,  Toast.LENGTH_SHORT).show();
 
                         Fragment fragment = new GeneralSubPruebas();

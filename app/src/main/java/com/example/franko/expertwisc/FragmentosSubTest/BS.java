@@ -20,6 +20,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestBS;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Tools.DialogPreResultados;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
@@ -47,6 +48,7 @@ public class BS extends Fragment {
     Button guardar;
     EditText res_bs;
     Context context = getContext();
+    int valorMax;
     private OnFragmentInteractionListener mListener;
 
     public BS() {
@@ -90,6 +92,12 @@ public class BS extends Fragment {
         guardar = view.findViewById(R.id.guardar_bs);
         imageView = view.findViewById(R.id.show_bs);
 
+        if (Double.parseDouble(Utilidades.edadActual)>7){
+            valorMax = 60;
+        }else{
+            valorMax = 45;
+        }
+
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -128,20 +136,29 @@ public class BS extends Fragment {
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                SubTest subTest = new SubTest();
-                Utilidades.R_bs = (res_bs.getText().toString());
-                guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                Toast.makeText(getContext(),Utilidades.R_bs+" GUARDADO",Toast.LENGTH_SHORT).show();
+                if (Integer.parseInt(res_bs.getText().toString())<=valorMax){
 
-                FragmentTransaction ft = getFragmentManager().beginTransaction();
-                Fragment prev = getFragmentManager().findFragmentByTag("dialog");
-                if (prev != null) {
-                    ft.remove(prev);
+                    SubTestBS subTestBS = new SubTestBS();
+                    subTestBS.setPuntuacionDirectaTotalBS(res_bs.getText().toString());
+                    subTestBS.RegistrarBS(getContext());
+
+                    Utilidades.R_bs = (res_bs.getText().toString());
+                    guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+                    Toast.makeText(getContext(),Utilidades.R_bs+" GUARDADO",Toast.LENGTH_SHORT).show();
+
+                    //Mostramos el dialogo de Presultados
+                    FragmentTransaction ft = getFragmentManager().beginTransaction();
+                    Fragment prev = getFragmentManager().findFragmentByTag("dialog");
+                    if (prev != null) {
+                        ft.remove(prev);
+                    }
+                    ft.addToBackStack(null);
+                    DialogFragment dialogFragment = new DialogPreResultados();
+                    dialogFragment.show(ft, "dialog");
+                }else{
+                    Toast.makeText(getContext(),"El valor no debe de ser mayor a "+valorMax,Toast.LENGTH_SHORT).show();
                 }
-                ft.addToBackStack(null);
-                DialogFragment dialogFragment = new DialogPreResultados();
-                dialogFragment.show(ft, "dialog");
-//                DialogResultados(view);
+
 
             }
         });
