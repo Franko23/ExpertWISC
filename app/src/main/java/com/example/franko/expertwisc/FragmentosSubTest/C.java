@@ -46,6 +46,7 @@ public class C extends Fragment {
     EditText res_c;
     private OnFragmentInteractionListener mListener;
 
+
     public C() {
         // Required empty public constructor
     }

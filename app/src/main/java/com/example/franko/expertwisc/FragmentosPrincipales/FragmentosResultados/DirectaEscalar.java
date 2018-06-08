@@ -7,8 +7,14 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.franko.expertwisc.R;
+import com.example.franko.expertwisc.Tools.PuntuacionEscalar;
+import com.example.franko.expertwisc.Utilidades.Utilidades;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +33,9 @@ public class DirectaEscalar extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    TextView puntos_cc, puntos_s, puntos_rd, puntos_co, puntos_cl, puntos_v, puntos_ln, puntos_m, puntos_c, puntos_bs, puntos_cf, puntos_a, puntos_i, puntos_ar, puntos_ad;
+    View view;
 
     private OnFragmentInteractionListener mListener;
 
@@ -65,7 +74,76 @@ public class DirectaEscalar extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_directa_escalar, container, false);
+        view = inflater.inflate(R.layout.fragment_directa_escalar, container, false);
+
+        puntos_cc = view.findViewById(R.id.puntos_cc);
+        puntos_s = view.findViewById(R.id.puntos_s);
+        puntos_rd = view.findViewById(R.id.puntos_rd);
+        puntos_co = view.findViewById(R.id.puntos_co);
+        puntos_cl = view.findViewById(R.id.puntos_cl);
+        puntos_v = view.findViewById(R.id.puntos_v);
+        puntos_ln = view.findViewById(R.id.puntos_ln);
+        puntos_m = view.findViewById(R.id.puntos_m);
+        puntos_c = view.findViewById(R.id.puntos_c);
+        puntos_bs = view.findViewById(R.id.puntos_bs);
+        puntos_cf = view.findViewById(R.id.puntos_cf);
+        puntos_a = view.findViewById(R.id.puntos_a);
+        puntos_i = view.findViewById(R.id.puntos_i);
+        puntos_ar = view.findViewById(R.id.puntos_ar);
+        puntos_ad = view.findViewById(R.id.puntos_ad);
+
+
+        puntos_cc.setText(Utilidades.R_cc);
+        puntos_s.setText(Utilidades.R_s);
+        puntos_rd.setText(Utilidades.R_rd);
+        puntos_co.setText(Utilidades.R_co);
+        puntos_cl.setText(Utilidades.R_cl);
+        puntos_v.setText(Utilidades.R_v);
+        puntos_ln.setText(Utilidades.R_ln);
+        puntos_m.setText(Utilidades.R_m);
+        puntos_c.setText(Utilidades.R_c);
+        puntos_bs.setText(Utilidades.R_bs);
+
+        if (!Utilidades.R_cf.equals("Sin valor")){
+            puntos_cf.setText(Utilidades.R_cf);
+        }
+        if (!Utilidades.R_a.equals("Sin valor")){
+            puntos_a.setText(Utilidades.R_a);
+        }
+        if (!Utilidades.R_i.equals("Sin valor")){
+            puntos_i.setText(Utilidades.R_i);
+        }
+        if (!Utilidades.R_ar.equals("Sin valor")){
+            puntos_ar.setText(Utilidades.R_ar);
+        }
+        if (!Utilidades.R_ad.equals("Sin valor")){
+            puntos_ad.setText(Utilidades.R_ad);
+        }
+
+        List<String> values = new ArrayList<>();
+        values.add(Utilidades.R_cc);
+        values.add(Utilidades.R_s);
+        values.add(Utilidades.R_rd);
+        values.add(Utilidades.R_co);
+        values.add(Utilidades.R_cl);
+        values.add(Utilidades.R_v);
+        values.add(Utilidades.R_ln);
+        values.add(Utilidades.R_m);
+        values.add(Utilidades.R_c);
+        values.add(Utilidades.R_bs);
+        values.add(Utilidades.R_cf);
+        values.add(Utilidades.R_a);
+        values.add(Utilidades.R_i);
+        values.add(Utilidades.R_ar);
+        values.add(Utilidades.R_ad);
+
+        PuntuacionEscalar puntuacionEscalar = new PuntuacionEscalar();
+        values = puntuacionEscalar.Punto(getContext(), values);
+
+        //Seteamos en los TextView de cada respuesta
+
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

@@ -21,6 +21,8 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestAd;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestAr;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
@@ -136,6 +138,9 @@ public class Ad extends Fragment {
             @Override
             public void onClick(View v) {
                 if (Integer.parseInt(res_ad.getText().toString())<=24){
+                    SubTestAd subTestAd = new SubTestAd();
+                    subTestAd.setPuntuacionDirectaTotalAd(res_ad.getText().toString());
+                    subTestAd.RegistrarAd(getContext());
                     Utilidades.R_ad = (res_ad.getText().toString());
                     guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
                     Toast.makeText(getContext(),Utilidades.R_ad+" GUARDADO",Toast.LENGTH_SHORT).show();

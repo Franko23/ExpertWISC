@@ -144,7 +144,7 @@ public class BS extends Fragment {
 
                     Utilidades.R_bs = (res_bs.getText().toString());
                     guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                    Toast.makeText(getContext(),Utilidades.R_bs+" GUARDADO",Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(),Utilidades.R_bs+" GUARDADO",Toast.LENGTH_SHORT).show();
 
                     //Mostramos el dialogo de Presultados
                     FragmentTransaction ft = getFragmentManager().beginTransaction();

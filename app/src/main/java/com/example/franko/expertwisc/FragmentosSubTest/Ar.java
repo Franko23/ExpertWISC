@@ -23,6 +23,8 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestAr;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestC;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Tools.DialogPreResultados;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
@@ -133,9 +135,12 @@ public class Ar extends Fragment {
             @Override
             public void onClick(View v) {
                 if (Integer.parseInt(res_ar.getText().toString())<=34){
+                    SubTestAr subTestAr = new SubTestAr();
+                    subTestAr.setPuntuacionDirectaTotalAr(res_ar.getText().toString());
+                    subTestAr.RegistrarAr(getContext());
                     Utilidades.R_ar = (res_ar.getText().toString());
                     guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                    Toast.makeText(getContext(),Utilidades.R_ar+" GUARDADO",Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(),Utilidades.R_ar+" GUARDADO",Toast.LENGTH_SHORT).show();
                     Dialogreemplazo();
                 }else{
                     Toast.makeText(getContext(),"El valor no debe de ser mayor a 34",Toast.LENGTH_SHORT).show();

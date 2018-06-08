@@ -23,6 +23,7 @@ import android.widget.Toast;
 import com.example.franko.expertwisc.ConexionHelper;
 import com.example.franko.expertwisc.FragmentosPrincipales.GeneralSubPruebas;
 import com.example.franko.expertwisc.FragmentosPrincipales.RegistroPaciente;
+import com.example.franko.expertwisc.FragmentosPrincipales.Resultados;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
@@ -152,7 +153,13 @@ public class DialogPreResultados extends DialogFragment{
             @Override
             public void onClick(View v) {
                 //Almacenamos en la base de datos los 10 primeros resultados
-                RegistrarPuntos();
+//                RegistrarPuntos();
+
+                getActivity().finish();
+
+                android.support.v4.app.Fragment fragment = new Resultados();
+                getFragmentManager().beginTransaction().replace(R.id.content_main, fragment).commit();
+
             }
         });
 

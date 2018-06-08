@@ -21,6 +21,8 @@ import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestC;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestCF;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
@@ -131,9 +133,12 @@ public class CF extends Fragment {
             @Override
             public void onClick(View v) {
                 if (Integer.parseInt(res_cf.getText().toString())<=38){
+                    SubTestCF subTestCF = new SubTestCF();
+                    subTestCF.setPuntuacionDirectaTotalCF(res_cf.getText().toString());
+                    subTestCF.RegistrarCF(getContext());
                     Utilidades.R_cf = (res_cf.getText().toString());
                     guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                    Toast.makeText(getContext(),Utilidades.R_cf+" GUARDADO",Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(),Utilidades.R_cf+" GUARDADO",Toast.LENGTH_SHORT).show();
                     Dialogreemplazo();
                 }else{
                     Toast.makeText(getContext(),"El valor no debe de ser mayor a 38",Toast.LENGTH_SHORT).show();
