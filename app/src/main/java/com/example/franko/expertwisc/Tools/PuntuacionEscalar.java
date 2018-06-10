@@ -35,6 +35,7 @@ public class PuntuacionEscalar {
         String res="";
         this.values = values;
         String [] sTest = {"CC","S","RD","Co","Cl","V","LN","M","C","BS","CF","A","I","Ar","Ad"};
+        List<String> newValues = new ArrayList<>();
 
         try {
             //Load File
@@ -56,23 +57,34 @@ public class PuntuacionEscalar {
                     String temp = jsonObject.getString(sTest[i]);
                     String[] datos;
 
-                    if (temp.contains("-")) {
-                        datos = temp.split("-");
-                        temp = datos[1];
-                    }
-                    if (values.get(i).equals("Sin valor")){
-                        res="";
-                    }else{
-                        if (Integer.parseInt(values.get(i))<=Integer.parseInt(temp)){
-                            res = ""+(index+1)  ;
-                            index=100;
-                        }else{
-                            res = "Fuera de rango";
-                        }
-                    }
+                    if (temp.equals("")){
 
+                    }else{
+                        if (temp.contains("-")) {
+                            datos = temp.split("-");
+                            temp = datos[1];
+                        }
+
+                        if (values.get(i).equals("Sin valor")){
+                            res="0";
+                            newValues.add(res);
+                        }else{
+                            if (values.get(i).contains("r")){
+                                res = values.get(i);
+                                newValues.add(res);
+                            }else{
+                                if (Integer.parseInt(values.get(i))<=Integer.parseInt(temp)){
+                                    res = ""+(index+1)  ;
+                                    newValues.add(res);
+                                    index=100;
+                                }else{
+                                    res = "Fuera de rango";
+                                }
+                            }
+                        }
+//                        values.add(res);
+                    }
                 }
-                values.add(res);
             }
 
         } catch (FileNotFoundException e) {
@@ -83,6 +95,6 @@ public class PuntuacionEscalar {
             Log.e("jsonFile", "error while parsing json");
         }
 
-        return values;
+        return newValues;
     }
 }

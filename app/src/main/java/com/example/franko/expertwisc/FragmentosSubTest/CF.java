@@ -178,14 +178,16 @@ public class CF extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
                 //Guardar en bd la inhabilitación de la selección
                 if (radioButtonCC.isChecked()){
-
+                    Utilidades.R_cc = Utilidades.R_cc+"r";
 //                    Toast.makeText(getContext(),"Cc",Toast.LENGTH_SHORT).show();
                 }
                 if (radioButtonCo.isChecked()){
-                    Toast.makeText(getContext(),"Co",Toast.LENGTH_SHORT).show();
+                    Utilidades.R_co = Utilidades.R_co+"r";
+//                    Toast.makeText(getContext(),"Co",Toast.LENGTH_SHORT).show();
                 }
                 if (radioButtonM.isChecked()){
-                    Toast.makeText(getContext(),"M",Toast.LENGTH_SHORT).show();
+                    Utilidades.R_m = Utilidades.R_m+"r";
+//                    Toast.makeText(getContext(),"M",Toast.LENGTH_SHORT).show();
                 }
             }
         });

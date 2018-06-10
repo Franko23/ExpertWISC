@@ -153,9 +153,7 @@ public class DialogPreResultados extends DialogFragment{
             @Override
             public void onClick(View v) {
                 //Almacenamos en la base de datos los 10 primeros resultados
-//                RegistrarPuntos();
-
-                getActivity().finish();
+                getDialog().dismiss();
 
                 android.support.v4.app.Fragment fragment = new Resultados();
                 getFragmentManager().beginTransaction().replace(R.id.content_main, fragment).commit();
@@ -176,98 +174,6 @@ public class DialogPreResultados extends DialogFragment{
         });
 
         return alertLayout;
-    }
-
-    private void RegistrarPuntos() {
-        SQLiteDatabase db = con.getWritableDatabase();
-
-        ContentValues cc = new ContentValues();
-        ContentValues s = new ContentValues();
-        ContentValues rd = new ContentValues();
-        ContentValues co = new ContentValues();
-        ContentValues cl = new ContentValues();
-        ContentValues v = new ContentValues();
-        ContentValues ln = new ContentValues();
-        ContentValues m = new ContentValues();
-        ContentValues c = new ContentValues();
-        ContentValues bs = new ContentValues();
-        ContentValues cf = new ContentValues();
-        ContentValues a = new ContentValues();
-        ContentValues i = new ContentValues();
-        ContentValues ar = new ContentValues();
-        ContentValues ad = new ContentValues();
-
-        cc.put(Utilidades.CAMPO_CC,Utilidades.R_cc);
-        cc.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
-
-        s.put(Utilidades.CAMPO_S,Utilidades.R_s);
-        s.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
-
-        rd.put(Utilidades.CAMPO_RDT,Utilidades.R_rd);
-        rd.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
-
-        co.put(Utilidades.CAMPO_CO,Utilidades.R_co);
-        co.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
-
-        cl.put(Utilidades.CAMPO_CL,Utilidades.R_cl);
-        cl.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
-
-        v.put(Utilidades.CAMPO_V,Utilidades.R_v);
-        v.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
-
-        ln.put(Utilidades.CAMPO_LN,Utilidades.R_ln);
-        ln.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
-
-        s.put(Utilidades.CAMPO_S,Utilidades.R_s);
-        s.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
-
-        m.put(Utilidades.CAMPO_M,Utilidades.R_m);
-        m.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
-
-        c.put(Utilidades.CAMPO_C,Utilidades.R_c);
-        c.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
-
-        bs.put(Utilidades.CAMPO_BS,Utilidades.R_bs);
-        bs.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
-
-        cf.put(Utilidades.CAMPO_CF,Utilidades.R_cf);
-        cf.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
-
-        a.put(Utilidades.CAMPO_A,Utilidades.R_a);
-        a.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
-
-        i.put(Utilidades.CAMPO_I,Utilidades.R_i);
-        i.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
-
-        ar.put(Utilidades.CAMPO_AR,Utilidades.R_ar);
-        ar.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
-
-        ad.put(Utilidades.CAMPO_AD,Utilidades.R_ad);
-        ad.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
-
-        try{
-            Long id_CC = db.insert(Utilidades.TABLA_PUNTUACIONES_CC, Utilidades.CAMPO_ID_PUNTUACION_CC, cc);
-            Long id_S = db.insert(Utilidades.TABLA_PUNTUACIONES_S, Utilidades.CAMPO_ID_PUNTUACION_S, s);
-            Long id_RD = db.insert(Utilidades.TABLA_PUNTUACIONES_RD, Utilidades.CAMPO_ID_PUNTUACION_RD, rd);
-            Long id_Co = db.insert(Utilidades.TABLA_PUNTUACIONES_CO, Utilidades.CAMPO_ID_PUNTUACION_CO, co);
-            Long id_Cl = db.insert(Utilidades.TABLA_PUNTUACIONES_CL, Utilidades.CAMPO_ID_PUNTUACION_CL, cl);
-            Long id_V = db.insert(Utilidades.TABLA_PUNTUACIONES_V, Utilidades.CAMPO_ID_PUNTUACION_V, v);
-            Long id_LN = db.insert(Utilidades.TABLA_PUNTUACIONES_LN, Utilidades.CAMPO_ID_PUNTUACION_LN, ln);
-            Long id_M = db.insert(Utilidades.TABLA_PUNTUACIONES_M, Utilidades.CAMPO_ID_PUNTUACION_M, m);
-            Long id_C = db.insert(Utilidades.TABLA_PUNTUACIONES_C, Utilidades.CAMPO_ID_PUNTUACION_C, c);
-            Long id_BS = db.insert(Utilidades.TABLA_PUNTUACIONES_BS, Utilidades.CAMPO_ID_PUNTUACION_BS, bs);
-            Long id_CF = db.insert(Utilidades.TABLA_PUNTUACIONES_CF, Utilidades.CAMPO_ID_PUNTUACION_CF, cf);
-            Long id_A = db.insert(Utilidades.TABLA_PUNTUACIONES_A, Utilidades.CAMPO_ID_PUNTUACION_A, a);
-            Long id_I = db.insert(Utilidades.TABLA_PUNTUACIONES_I, Utilidades.CAMPO_ID_PUNTUACION_I, i);
-            Long id_Ar = db.insert(Utilidades.TABLA_PUNTUACIONES_AR, Utilidades.CAMPO_ID_PUNTUACION_AR, ar);
-            Long id_Ad = db.insert(Utilidades.TABLA_PUNTUACIONES_AD, Utilidades.CAMPO_ID_PUNTUACION_AD, ad);
-
-            Toast.makeText(getContext(),"Inserción de puntuaciones correcta",Toast.LENGTH_SHORT).show();
-
-        }catch (Exception e){
-         Toast.makeText(getContext(),"Error al insertar puntuaciones",Toast.LENGTH_SHORT).show();
-        }
-
     }
 
     @Override

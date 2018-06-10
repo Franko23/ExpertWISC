@@ -177,10 +177,11 @@ public class Ar extends Fragment {
             public void onClick(DialogInterface dialog, int which) {
                 //Guardar en bd la inhabilitación de la selección
                 if (radioButtonRd.isChecked()){
-
+                    Utilidades.R_rd = Utilidades.R_rd+"r";
 //                    Toast.makeText(getContext(),"Cc",Toast.LENGTH_SHORT).show();
                 }
                 if (radioButtonLn.isChecked()){
+                    Utilidades.R_ln = Utilidades.R_ln+"r";
 //                    Toast.makeText(getContext(),"Co",Toast.LENGTH_SHORT).show();
                 }
 

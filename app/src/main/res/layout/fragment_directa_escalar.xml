@@ -425,6 +425,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="( )"
+                        android:id="@+id/puntos_i_e"
                         android:gravity="center"
                         android:textAlignment="center"
                         android:layout_weight="1"/>
@@ -440,6 +441,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="( )"
+                        android:id="@+id/puntos_ad_e"
                         android:gravity="center"
                         android:textAlignment="center"
                         android:layout_weight="1"/>
@@ -533,6 +535,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="( )"
+                        android:id="@+id/puntos_cf_e"
                         android:gravity="center"
                         android:textAlignment="center"
                         android:layout_weight="1"/>
@@ -682,6 +685,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="( )"
+                        android:id="@+id/puntos_ar_e"
                         android:gravity="center"
                         android:textAlignment="center"
                         android:layout_weight="1"/>
@@ -791,6 +795,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="( )"
+                        android:id="@+id/puntos_a_e"
                         android:gravity="center"
                         android:textAlignment="center"
                         android:layout_weight="1"/>
