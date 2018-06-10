@@ -189,6 +189,7 @@ public class DirectaEscalar extends Fragment {
 
         PuntuacionEscalar puntuacionEscalar = new PuntuacionEscalar();
         values = puntuacionEscalar.Punto(getContext(), values0);
+        Utilidades.listResultEscalar = values;
 
             icv = new ArrayList<>();
             irp = new ArrayList<>();
@@ -204,31 +205,37 @@ public class DirectaEscalar extends Fragment {
             ResICV = ResICV + icv.get(i);
         }
         result_icv.setText(""+ResICV);
+        Utilidades.icv = ""+ResICV;
 
         int ResIRP =0 ;
         for (int i=0; i<irp.size();i++){
             ResIRP = ResIRP + irp.get(i);
         }
         result_irp.setText(""+ResIRP);
+        Utilidades.irp = ""+ResIRP;
+
 
         int ResIMO =0 ;
         for (int i=0; i<imo.size();i++){
             ResIMO = ResIMO + imo.get(i);
         }
         result_imo.setText(""+ResIMO);
+        Utilidades.imo = ""+ResIMO;
+
 
         int ResIVP =0 ;
         for (int i=0; i<ivp.size();i++){
             ResIVP = ResIVP + ivp.get(i);
         }
         result_ivp.setText(""+ResIVP);
+        Utilidades.ivp = ""+ResIVP;
 
         int ResCIT =0 ;
         for (int i=0; i<cit.size();i++){
             ResCIT = ResCIT + cit.get(i);
         }
         result_cit.setText(""+ResCIT);
-
+        Utilidades.cit= ""+ResCIT;
 
 
         return view;

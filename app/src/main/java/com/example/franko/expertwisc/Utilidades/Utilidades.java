@@ -1,5 +1,9 @@
 package com.example.franko.expertwisc.Utilidades;
 
+import com.example.franko.expertwisc.FragmentosSubTest.S;
+
+import java.util.List;
+
 /**
  * Created by FRANKO on 14/11/2017.
  */
@@ -25,6 +29,16 @@ public class Utilidades {
     public static String R_i = "Sin valor";
     public static String R_ar = "Sin valor";
     public static String R_ad = "Sin valor";
+
+    public static List<String> listResultEscalar;
+
+    public static String icv;
+    public static String irp;
+    public static String imo;
+    public static String ivp;
+    public static String cit;
+
+    public static String intervalo_confianza;
 
     public static Boolean pantalla = true;
 

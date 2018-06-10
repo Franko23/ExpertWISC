@@ -17,6 +17,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -60,6 +62,12 @@ public class DialogPreResultados extends DialogFragment{
         final Button si = alertLayout.findViewById(R.id.btn_si);
         final Button no = alertLayout.findViewById(R.id.btn_no);
 
+        final RadioButton radio_90 = alertLayout.findViewById(R.id.radio_90);
+        final RadioButton radio_95 = alertLayout.findViewById(R.id.radio_95);
+
+        // This will get the radiogroup
+        RadioGroup rGroup = (RadioGroup)alertLayout.findViewById(R.id.radioGroup);
+
         result_cc.setText(Utilidades.R_cc);
         result_s.setText(Utilidades.R_s);
         result_rd.setText(Utilidades.R_rd);
@@ -75,6 +83,27 @@ public class DialogPreResultados extends DialogFragment{
 //        result_i.setText(Utilidades.R_i);
 //        result_ar.setText(Utilidades.R_ar);
 //        result_ad.setText(Utilidades.R_ad);
+
+        rGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+                mensaje.setText(getResources().getString(R.string.mensajeContinuar));
+                no.setVisibility(View.VISIBLE);
+                si.setVisibility(View.VISIBLE);
+
+                switch (checkedId) {
+                    case R.id.radio_90:
+                        Utilidades.intervalo_confianza = "90";
+                        Toast.makeText(getContext(), Utilidades.intervalo_confianza, Toast.LENGTH_SHORT).show();
+                        break;
+                    case R.id.radio_95:
+                        Utilidades.intervalo_confianza = "95";
+                        Toast.makeText(getContext(), Utilidades.intervalo_confianza, Toast.LENGTH_SHORT).show();
+                        break;
+                }
+            }
+        });
 
 
         if (Utilidades.R_cc.equals("Sin valor")){
@@ -142,17 +171,19 @@ public class DialogPreResultados extends DialogFragment{
                 ){
             mensaje.setText(getResources().getString(R.string.mensajeCompletar));
             mensaje.setTextColor(getResources().getColor(R.color.colorAccent));
-            no.setVisibility(View.GONE);
-            si.setVisibility(View.GONE);
-        }else{
-            mensaje.setText(getResources().getString(R.string.mensajeContinuar));
+        }else {
+            rGroup.setVisibility(View.VISIBLE);
+            mensaje.setText(R.string.mensajeIntervalo);
+            mensaje.setTextColor(getResources().getColor(R.color.colorAccent));
         }
 
 
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                //Almacenamos en la base de datos los 10 primeros resultados
+
+                //Verificamos si el intervalo de confianza está seleccionados
+
                 getDialog().dismiss();
 
                 android.support.v4.app.Fragment fragment = new Resultados();

@@ -26,7 +26,7 @@ public class CalcularEdad {
 
     public String CalcularEdad() {
 
-        //Dividimos la edad de la Persona
+        //Dividimos la Argentino de la Persona
         String [] fechaPersona;
         String [] fechaActual;
 
@@ -60,13 +60,13 @@ public class CalcularEdad {
             MesTotal = 12 - (MesNac - MesEva);
         }
 
-        Utilidades.edadActual = AñoTotal+"."+MesTotal; //Setteamos el formato de la edad en Integer
+        Utilidades.edadActual = AñoTotal+"."+MesTotal; //Setteamos el formato de la Argentino en Integer
 
         String mes = "meses";
         if (MesTotal == 1){
             mes = "mes";
         }
-        //Devolvemos la edad en Texto
+        //Devolvemos la Argentino en Texto
         EdadFinal = AñoTotal+" años y "+MesTotal+" "+mes;
 
 

@@ -2,7 +2,6 @@ package com.example.franko.expertwisc.Tools;
 
 import android.content.Context;
 import android.util.Log;
-import android.widget.ArrayAdapter;
 
 import com.example.franko.expertwisc.R;
 
@@ -39,7 +38,7 @@ public class PuntuacionEscalar {
 
         try {
             //Load File
-            BufferedReader jsonReader = new BufferedReader(new InputStreamReader(context.getResources().openRawResource(R.raw.edad)));
+            BufferedReader jsonReader = new BufferedReader(new InputStreamReader(context.getResources().openRawResource(R.raw.argentino)));
             StringBuilder jsonBuilder = new StringBuilder();
             for (String line = null; (line = jsonReader.readLine()) != null;) {
                 jsonBuilder.append(line).append("\n");
@@ -50,7 +49,7 @@ public class PuntuacionEscalar {
             JSONObject jsonObj = new JSONObject(tokener);
             JSONArray jsonArray = jsonObj.getJSONArray(edad);
 
-            for(int i = 0; i< values.size(); i++){
+            for(int i = 0; i < values.size(); i++){
                 for (int index = 0; index < jsonArray.length(); index++) {
                     JSONObject jsonObject = jsonArray.getJSONObject(index);
 
@@ -68,10 +67,12 @@ public class PuntuacionEscalar {
                         if (values.get(i).equals("Sin valor")){
                             res="0";
                             newValues.add(res);
+                            index=100;
                         }else{
                             if (values.get(i).contains("r")){
                                 res = values.get(i);
                                 newValues.add(res);
+                                index=100;
                             }else{
                                 if (Integer.parseInt(values.get(i))<=Integer.parseInt(temp)){
                                     res = ""+(index+1)  ;

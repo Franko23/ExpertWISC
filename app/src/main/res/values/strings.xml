@@ -153,7 +153,8 @@
     <string name="s_veintitres">23. Sueño - vigilia</string>
 
 
-    <string name="mensajeContinuar">¿DESEA CONTINUAR CON LOS SUBTEST OPCIONALES?</string>
+    <string name="mensajeContinuar">¿Desea continuar con los sub test opcionales?</string>
     <string name="mensajeCompletar">Por favor, completa los resultados que faltan</string>
+    <string name="mensajeIntervalo">Selecciona el intérvalo de confianza</string>
 
 </resources>

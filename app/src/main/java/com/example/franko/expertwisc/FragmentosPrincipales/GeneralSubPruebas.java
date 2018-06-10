@@ -184,7 +184,7 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
             Titulo = persona.getNombre_persona() + " - " + edadPersona;
         }
 
-//        int edad= Integer.getInteger(AñoTotal);
+//        int Argentino= Integer.getInteger(AñoTotal);
 
 
 //        if (6<=7){

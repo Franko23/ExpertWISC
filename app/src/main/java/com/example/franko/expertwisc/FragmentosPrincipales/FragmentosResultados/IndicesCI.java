@@ -7,8 +7,15 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
+import com.example.franko.expertwisc.FragmentosSubTest.S;
 import com.example.franko.expertwisc.R;
+import com.example.franko.expertwisc.Tools.PuntuacionCI;
+import com.example.franko.expertwisc.Utilidades.Utilidades;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +34,12 @@ public class IndicesCI extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    TextView result_icv, result_irp, result_imo, result_ivp, result_cit,
+            result_icv_compuesto, result_irp_compuesto, result_imo_compuesto, result_ivp_compuesto, result_cit_compuesto,
+            result_icv_percentil, result_irp_percentil, result_imo_percentil, result_ivp_percentil, result_cit_percentil,
+            result_icv_intervalo, result_irp_intervalo, result_imo_intervalo, result_ivp_intervalo, result_cit_intervalo;
+    View view;
 
     private OnFragmentInteractionListener mListener;
 
@@ -65,7 +78,66 @@ public class IndicesCI extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_indices_ci, container, false);
+        view = inflater.inflate(R.layout.fragment_indices_ci, container, false);
+
+        result_icv = view.findViewById(R.id.result_icv);
+        result_icv_compuesto = view.findViewById(R.id.result_icv_compuesto);
+        result_icv_percentil = view.findViewById(R.id.result_icv_percentil);
+        result_icv_intervalo = view.findViewById(R.id.result_icv_intervalo);
+        result_irp = view.findViewById(R.id.result_irp);
+        result_irp_compuesto = view.findViewById(R.id.result_irp_compuesto);
+        result_irp_percentil = view.findViewById(R.id.result_irp_percentil);
+        result_irp_intervalo = view.findViewById(R.id.result_irp_intervalo);
+        result_imo = view.findViewById(R.id.result_imo);
+        result_imo_compuesto = view.findViewById(R.id.result_imo_compuesto);
+        result_imo_percentil = view.findViewById(R.id.result_imo_percentil);
+        result_imo_intervalo = view.findViewById(R.id.result_imo_intervalo);
+        result_ivp = view.findViewById(R.id.result_ivp);
+        result_ivp_compuesto = view.findViewById(R.id.result_ivp_compuesto);
+        result_ivp_percentil = view.findViewById(R.id.result_ivp_percentil);
+        result_ivp_intervalo = view.findViewById(R.id.result_ivp_intervalo);
+        result_cit = view.findViewById(R.id.result_cit);
+        result_cit_compuesto = view.findViewById(R.id.result_cit_compuesto);
+        result_cit_percentil = view.findViewById(R.id.result_cit_percentil);
+        result_cit_intervalo = view.findViewById(R.id.result_cit_intervalo);
+
+
+        PuntuacionCI puntuacionCI = new PuntuacionCI();
+
+        List<String> list = new ArrayList<>();
+
+        result_icv.setText(Utilidades.icv);
+//        list = puntuacionCI.PuntoCI(getContext(),Utilidades.icv, "ICV");
+//        result_icv_compuesto.setText(list.get(0));
+//        result_icv_percentil.setText(list.get(1));
+//        result_icv_intervalo.setText(list.get(2));
+
+        result_irp.setText(Utilidades.irp);
+//        list = puntuacionCI.PuntoCI(getContext(),Utilidades.irp, "IRP");
+//        result_irp_compuesto.setText(list.get(0));
+//        result_irp_percentil.setText(list.get(1));
+//        result_irp_intervalo.setText(list.get(2));
+
+        result_imo.setText(Utilidades.imo);
+//        list = puntuacionCI.PuntoCI(getContext(),Utilidades.imo, "IMO");
+//        result_imo_compuesto.setText(list.get(0));
+//        result_imo_percentil.setText(list.get(1));
+//        result_imo_intervalo.setText(list.get(2));
+
+        result_ivp.setText(Utilidades.ivp);
+//        list = puntuacionCI.PuntoCI(getContext(),Utilidades.ivp, "IVP");
+//        result_ivp_compuesto.setText(list.get(0));
+//        result_ivp_percentil.setText(list.get(1));
+//        result_ivp_intervalo.setText(list.get(2));
+
+        result_cit.setText(Utilidades.cit);
+//        list = puntuacionCI.PuntoCI(getContext(),Utilidades.cit, "CIT");
+//        result_cit_compuesto.setText(list.get(0));
+//        result_cit_percentil.setText(list.get(1));
+//        result_cit_intervalo.setText(list.get(2));
+
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

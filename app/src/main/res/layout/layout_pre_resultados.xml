@@ -277,6 +277,37 @@
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RadioGroup
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:id="@+id/radioGroup"
+            android:layout_margin="50dp"
+            android:padding="20dp"
+            android:visibility="gone"
+            android:background="@drawable/border">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="intérvalo de confianza:"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginRight="30dp"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="90%"
+                android:id="@+id/radio_90"/>
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="95%"
+                android:id="@+id/radio_95"/>
+        </RadioGroup>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:orientation="vertical"
@@ -303,12 +334,14 @@
                 android:textAlignment="center"
                 android:textColor="#fff"
                 android:id="@+id/btn_si"
+                android:visibility="gone"
                 android:background="@color/colorPrimaryDark"/>
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_margin="20dp"
                 android:text="NO"
+                android:visibility="gone"
                 android:textAlignment="center"
                 android:textColor="#fff"
                 android:id="@+id/btn_no"
