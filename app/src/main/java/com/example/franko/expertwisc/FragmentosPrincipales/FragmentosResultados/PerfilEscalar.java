@@ -112,7 +112,7 @@ public class PerfilEscalar extends Fragment {
         lineDataSet.setFillAlpha(110);
         lineDataSet.setColor(Color.RED);
         lineDataSet.setLineWidth(3f);
-        lineDataSet.setValueTextSize(10f);
+        lineDataSet.setValueTextSize(15f);
         lineDataSet.setValueTextColor(Color.DKGRAY);
 
         lineDataSet.setCircleColor(Color.BLUE);

@@ -240,12 +240,12 @@ public class Home extends AppCompatActivity
             fab.hide();
             CambioTitulo("Registro de pacientes");
         } else if (id == R.id.nav_slideshow) {
-            fragment = new GeneralSubPruebas();
+//            fragment = new GeneralSubPruebas();
             aBoolean = true;
             fab.hide();
             CambioTitulo("Sub Test");
         } else if (id == R.id.nav_manage) {
-            fragment = new Resultados();
+//            fragment = new Resultados();
             aBoolean = true;
             fab.hide();
             CambioTitulo("Resultados");

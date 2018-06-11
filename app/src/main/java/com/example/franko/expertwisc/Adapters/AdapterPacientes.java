@@ -10,7 +10,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.franko.expertwisc.Entidades.Paciente;
 import com.example.franko.expertwisc.Entidades.Persona;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Tools.CalcularEdad;
@@ -29,7 +28,7 @@ public class AdapterPacientes extends RecyclerView.Adapter<AdapterPacientes.View
     @NonNull
     @Override
     public ViewHolderPacientes onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.example_list, null, false);
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_pacientes, null, false);
         view.setOnClickListener(this);
         return new ViewHolderPacientes(view);
     }

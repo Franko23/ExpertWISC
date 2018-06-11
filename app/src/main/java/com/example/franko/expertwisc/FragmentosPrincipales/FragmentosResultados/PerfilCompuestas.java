@@ -88,11 +88,11 @@ public class PerfilCompuestas extends Fragment {
             entries.add(new Entry(i,Integer.parseInt(Utilidades.listResultCompuesta.get(i))));
         }
 
-        LineDataSet lineDataSet = new LineDataSet(entries, "Perfil de Puntuaciones Escalares");
+        LineDataSet lineDataSet = new LineDataSet(entries, "Perfil de Puntuaciones Compuestas");
         lineDataSet.setFillAlpha(110);
         lineDataSet.setColor(Color.RED);
         lineDataSet.setLineWidth(3f);
-        lineDataSet.setValueTextSize(10f);
+        lineDataSet.setValueTextSize(15f);
         lineDataSet.setValueTextColor(Color.DKGRAY);
 
         lineDataSet.setCircleColor(Color.BLUE);

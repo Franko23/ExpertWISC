@@ -1585,142 +1585,170 @@
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:textAlignment="center"
-                android:hint="0 1"/>
+                android:hint="0 1"
+                android:enabled="false"/>
         </LinearLayout>
     </LinearLayout>
     <LinearLayout

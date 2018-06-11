@@ -34,7 +34,7 @@ public class PuntuacionCI {
         List<String> newValues= new ArrayList<>();
 
         try{
-            BufferedReader jsonReader = new BufferedReader(new InputStreamReader(context.getResources().openRawResource(R.raw.americano)));
+            BufferedReader jsonReader = new BufferedReader(new InputStreamReader(context.getResources().openRawResource(R.raw.argentino)));
             StringBuilder jsonBuilder = new StringBuilder();
             for (String line = null; (line = jsonReader.readLine()) != null;) {
                 jsonBuilder.append(line).append("\n");

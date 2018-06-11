@@ -71,7 +71,7 @@
                 android:layout_weight="1"
                 android:textStyle="bold"
                 android:gravity="center"
-                android:text="#"
+                android:hint="#"
                 android:inputType="number"
                 android:id="@+id/res_ad"
                 android:background="#fcf0f0"/>

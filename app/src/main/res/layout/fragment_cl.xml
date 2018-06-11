@@ -177,20 +177,20 @@
                         android:textStyle="bold"
                         android:text="Puntuación \nTotal"
                         android:background="#f1f1f1"/>
-                    <!--<TextView-->
-                        <!--android:layout_width="match_parent"-->
-                        <!--android:layout_height="50dp"-->
-                        <!--android:textAlignment="center"-->
-                        <!--android:gravity="center"-->
-                        <!--android:textStyle="bold"-->
-                        <!--android:text="Máx = 65"/>-->
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:textAlignment="center"
                         android:gravity="center"
                         android:textStyle="bold"
-                        android:text="Máx = 65/119"/>
+                        android:text="Máx = 65"/>
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="50dp"
+                        android:textAlignment="center"
+                        android:gravity="center"
+                        android:textStyle="bold"
+                        android:text="Máx = 119"/>
                 </LinearLayout>
             </LinearLayout>
         //Con bonificación

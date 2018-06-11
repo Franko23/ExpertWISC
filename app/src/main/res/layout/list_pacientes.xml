@@ -3,7 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="?attr/listPreferredItemHeight"
     android:orientation="horizontal"
     android:paddingBottom="8dp"
     android:paddingLeft="@dimen/activity_horizontal_margin"
@@ -34,18 +33,15 @@
             android:layout_height="wrap_content"
             android:textStyle="bold"
             android:textSize="30dp"
-            android:text="Nombre"
             android:textColor="#292727"
-            android:textAppearance="?attr/textAppearanceListItem"
-            tools:text="Alexander Pierrot" />
+            tools:text="Sofía Quevedo" />
 
         <TextView
             android:id="@+id/txtListaPacienteEdad"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cargo"
             android:textSize="20dp"
-            tools:text="CEO" />
+            tools:text="6 años y 5 meses" />
     </LinearLayout>
 
     <LinearLayout

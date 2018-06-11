@@ -5,7 +5,6 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.CoordinatorLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -14,7 +13,6 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -22,7 +20,6 @@ import com.example.franko.expertwisc.Adapters.AdapterPacientes;
 import com.example.franko.expertwisc.ConexionHelper;
 import com.example.franko.expertwisc.Entidades.Paciente;
 import com.example.franko.expertwisc.Entidades.Persona;
-import com.example.franko.expertwisc.Home;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
@@ -91,7 +88,7 @@ public class ListaPacientes extends Fragment{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        vista = inflater.inflate(R.layout.fragment_lista_pacientes, container, false);
+        vista = inflater.inflate(R.layout.flp, container, false);
         con = new ConexionHelper(getContext(), "bd_wisc", null, 1);
         txt_mensaje_lista_paciente = vista.findViewById(R.id.txt_mensaje_lista_paciente);
 
