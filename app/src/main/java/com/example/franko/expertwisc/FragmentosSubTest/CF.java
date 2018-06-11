@@ -22,7 +22,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.franko.expertwisc.Entidades.SubTest.SubTestC;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestCC;
 import com.example.franko.expertwisc.Entidades.SubTest.SubTestCF;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestCo;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestM;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
@@ -179,14 +182,23 @@ public class CF extends Fragment {
                 //Guardar en bd la inhabilitación de la selección
                 if (radioButtonCC.isChecked()){
                     Utilidades.R_cc = Utilidades.R_cc+"r";
+                    SubTestCC subTestCC = new SubTestCC();
+                    subTestCC.setPuntuacionDirectaTotalCC(Utilidades.R_cc);
+                    subTestCC.RegistrarCC(getContext());
 //                    Toast.makeText(getContext(),"Cc",Toast.LENGTH_SHORT).show();
                 }
                 if (radioButtonCo.isChecked()){
                     Utilidades.R_co = Utilidades.R_co+"r";
+                    SubTestCo subTestCo = new SubTestCo();
+                    subTestCo.setPuntuacionDirectaTotalCo(Utilidades.R_co);
+                    subTestCo.RegistrarCo(getContext());
 //                    Toast.makeText(getContext(),"Co",Toast.LENGTH_SHORT).show();
                 }
                 if (radioButtonM.isChecked()){
                     Utilidades.R_m = Utilidades.R_m+"r";
+                    SubTestM subTestM = new SubTestM();
+                    subTestM.setPuntuacionDirectaTotalM(Utilidades.R_m);
+                    subTestM.RegistrarM(getContext());
 //                    Toast.makeText(getContext(),"M",Toast.LENGTH_SHORT).show();
                 }
             }

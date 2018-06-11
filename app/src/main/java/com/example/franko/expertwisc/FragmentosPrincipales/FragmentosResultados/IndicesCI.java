@@ -105,37 +105,44 @@ public class IndicesCI extends Fragment {
         PuntuacionCI puntuacionCI = new PuntuacionCI();
 
         List<String> list = new ArrayList<>();
+        List<String> listCompuestas = new ArrayList<>();
 
         result_icv.setText(Utilidades.icv);
 //        list = puntuacionCI.PuntoCI(getContext(),Utilidades.icv, "ICV");
 //        result_icv_compuesto.setText(list.get(0));
+//        listCompuestas.add(list.get(0));
 //        result_icv_percentil.setText(list.get(1));
 //        result_icv_intervalo.setText(list.get(2));
 
         result_irp.setText(Utilidades.irp);
 //        list = puntuacionCI.PuntoCI(getContext(),Utilidades.irp, "IRP");
 //        result_irp_compuesto.setText(list.get(0));
+//        listCompuestas.add(list.get(0));
 //        result_irp_percentil.setText(list.get(1));
 //        result_irp_intervalo.setText(list.get(2));
 
         result_imo.setText(Utilidades.imo);
 //        list = puntuacionCI.PuntoCI(getContext(),Utilidades.imo, "IMO");
 //        result_imo_compuesto.setText(list.get(0));
+//        listCompuestas.add(list.get(0));
 //        result_imo_percentil.setText(list.get(1));
 //        result_imo_intervalo.setText(list.get(2));
 
         result_ivp.setText(Utilidades.ivp);
 //        list = puntuacionCI.PuntoCI(getContext(),Utilidades.ivp, "IVP");
 //        result_ivp_compuesto.setText(list.get(0));
+//        listCompuestas.add(list.get(0));
 //        result_ivp_percentil.setText(list.get(1));
 //        result_ivp_intervalo.setText(list.get(2));
 
         result_cit.setText(Utilidades.cit);
-//        list = puntuacionCI.PuntoCI(getContext(),Utilidades.cit, "CIT");
-//        result_cit_compuesto.setText(list.get(0));
-//        result_cit_percentil.setText(list.get(1));
-//        result_cit_intervalo.setText(list.get(2));
+        list = puntuacionCI.PuntoCI(getContext(),Utilidades.cit, "CIT");
+        result_cit_compuesto.setText(list.get(0));
+        listCompuestas.add(list.get(0));
+        result_cit_percentil.setText(list.get(1));
+        result_cit_intervalo.setText(list.get(2));
 
+        Utilidades.listResultCompuesta = listCompuestas;
 
         return view;
     }

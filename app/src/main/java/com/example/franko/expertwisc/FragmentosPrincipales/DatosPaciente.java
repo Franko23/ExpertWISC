@@ -39,9 +39,25 @@ import com.example.franko.expertwisc.Adapters.AdapterTest;
 import com.example.franko.expertwisc.ConexionHelper;
 import com.example.franko.expertwisc.Entidades.Paciente;
 import com.example.franko.expertwisc.Entidades.Persona;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestA;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestAd;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestAr;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestBS;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestC;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestCC;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestCF;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestCl;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestCo;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestI;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestLN;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestM;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestRD;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestS;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestV;
 import com.example.franko.expertwisc.Entidades.Test;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Tools.BlurBuilder;
+import com.example.franko.expertwisc.Tools.CalcularEdad;
 import com.example.franko.expertwisc.Tools.PBDialog;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
@@ -85,8 +101,6 @@ public class DatosPaciente extends Fragment {
     EditText editNombres, editApellidos, editFechaNac, editMotivo, editAntecedentes;
     TextView  nombrePrincipal, txt_mensaje_test, cantidadTest;
     Button btn_actualizar_paciente;
-    ListView listView;
-    AdapterTest adapterTest;
     ConexionHelper con;
     FloatingActionButton nuevo_test;
     LinearLayout layout_datos_edit, linear_back;
@@ -186,6 +200,8 @@ public class DatosPaciente extends Fragment {
             editNombres.setText(persona.getNombre_persona());
             editApellidos.setText(persona.getApellido_persona());
             editFechaNac.setText(persona.getFecha_nacimiento_persona());
+            CalcularEdad calcularEdad = new CalcularEdad(persona.getFecha_nacimiento_persona());
+            calcularEdad.CalcularEdad();
             byte[] image = persona.getImagen_persona();
             Bitmap bitmap = BitmapFactory.decodeByteArray(image,0,image.length);
             imgDatospaciente.setImageBitmap(bitmap);
@@ -208,21 +224,36 @@ public class DatosPaciente extends Fragment {
         Test test = new Test();
         listaTest = consultarTablaTest(paciente.getId_paciente());
 
+        AdapterTest adapterTest = new AdapterTest(listaTest);
+        recyclerViewTest.setAdapter(adapterTest);
         cantidadTest.setText(listaTest.size()+"");
 
         if (listaTest.isEmpty()){
             recyclerViewTest.setVisibility(View.INVISIBLE);
         }else{
             txt_mensaje_test.setVisibility(View.GONE);
-//            adapterTest =new AdapterTest(getContext(),R.layout.list_test,listaTest);
-
-            AdapterTest adapterTest = new AdapterTest(listaTest);
-            // Cargamos los datos al ListView
-
-            recyclerViewTest.setAdapter(adapterTest);
-//            listView.setAdapter(adapterTest);
         }
 
+        adapterTest.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                String estado = listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getEstado_test();
+                int id_test = listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test();
+                if (estado.equals("EN CURSO")){
+//                    Fragment fragment =  new GeneralSubPruebas();
+//                    getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
+                    Toast.makeText(getContext(),estado,Toast.LENGTH_SHORT).show();
+                }else if (estado.equals("FINALIZADO")){
+
+                    ConsultaView(id_test);
+
+                    Fragment fragment =  new Resultados();
+                    getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
+                    Toast.makeText(getContext(),estado,Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
 
         nuevo_test.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -321,6 +352,152 @@ public class DatosPaciente extends Fragment {
         return view;
     }
 
+    private void ConsultaView(int id_test) {
+        SQLiteDatabase db = con.getReadableDatabase();
+        SubTestCC subTestCC = null;
+        SubTestS subTestS = null;
+        SubTestRD subTestRD= null;
+        SubTestCo subTestCo = null;
+        SubTestCl subTestCl = null;
+        SubTestV subTestV = null;
+        SubTestLN subTestLN = null;
+        SubTestM subTestM = null;
+        SubTestC subTestC= null;
+        SubTestBS subTestBS = null;
+        SubTestCF subTestCF = null;
+        SubTestA subTestA = null;
+        SubTestI subTestI= null;
+        SubTestAr subTestAr = null;
+        SubTestAd subTestAd = null;
+        Test test = null;
+        Cursor cursor = null;
+
+        //Consulta CC
+        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_CC+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
+        while (cursor.moveToNext()){
+            subTestCC = new SubTestCC();
+            subTestCC.setPuntuacionDirectaTotalCC(cursor.getString(1));
+            Utilidades.R_cc = subTestCC.getPuntuacionDirectaTotalCC();
+        }
+        //Consulta CC
+        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_CC+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
+        while (cursor.moveToNext()){
+            subTestCC = new SubTestCC();
+            subTestCC.setPuntuacionDirectaTotalCC(cursor.getString(1));
+            Utilidades.R_cc = subTestCC.getPuntuacionDirectaTotalCC();
+        }
+        //Consulta S
+        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_S+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
+        while (cursor.moveToNext()){
+            subTestS = new SubTestS();
+            subTestS.setPuntuacionDirectaTotalS(cursor.getString(1));
+            Utilidades.R_s = subTestS.getPuntuacionDirectaTotalS();
+        }
+        //Consulta RD
+        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_RD+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
+        while (cursor.moveToNext()){
+            subTestRD = new SubTestRD();
+            subTestRD.setPuntuacionDirectaTotalRD(cursor.getString(3));
+            Utilidades.R_rd = subTestRD.getPuntuacionDirectaTotalRD();
+        }
+        //Consulta Co
+        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_CO+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
+        while (cursor.moveToNext()){
+            subTestCo = new SubTestCo();
+            subTestCo.setPuntuacionDirectaTotalCo(cursor.getString(1));
+            Utilidades.R_co = subTestCo.getPuntuacionDirectaTotalCo();
+        }
+        //Consulta CL
+        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_CL+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
+        while (cursor.moveToNext()){
+            subTestCl = new SubTestCl();
+            subTestCl.setPuntuacionDirectaTotalCl(cursor.getString(1));
+            Utilidades.R_cl = subTestCl.getPuntuacionDirectaTotalCl();
+        }
+        //Consulta V
+        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_V+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
+        while (cursor.moveToNext()){
+            subTestV = new SubTestV();
+            subTestV.setPuntuacionDirectaTotalV(cursor.getString(1));
+            Utilidades.R_v = subTestV.getPuntuacionDirectaTotalV();
+        }
+        //Consulta LN
+        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_LN+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
+        while (cursor.moveToNext()){
+            subTestLN = new SubTestLN();
+            subTestLN.setPuntuacionDirectaTotalLN(cursor.getString(1));
+            Utilidades.R_ln = subTestLN.getPuntuacionDirectaTotalLN();
+        }
+        //Consulta M
+        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_M+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
+        while (cursor.moveToNext()){
+            subTestM = new SubTestM();
+            subTestM.setPuntuacionDirectaTotalM(cursor.getString(1));
+            Utilidades.R_m = subTestM.getPuntuacionDirectaTotalM();
+        }
+        //Consulta C
+        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_C+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
+        while (cursor.moveToNext()){
+            subTestC = new SubTestC();
+            subTestC.setPuntuacionDirectaTotalC(cursor.getString(1));
+            Utilidades.R_c = subTestC.getPuntuacionDirectaTotalC();
+        }
+        //Consulta BS
+        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_BS+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
+        while (cursor.moveToNext()){
+            subTestBS = new SubTestBS();
+            subTestBS.setPuntuacionDirectaTotalBS(cursor.getString(1));
+            Utilidades.R_bs = subTestBS.getPuntuacionDirectaTotalBS();
+        }
+        //Consulta CF
+        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_CF+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
+        while (cursor.moveToNext()){
+            subTestCF = new SubTestCF();
+            subTestCF.setPuntuacionDirectaTotalCF(cursor.getString(1));
+            Utilidades.R_cf = subTestCF.getPuntuacionDirectaTotalCF();
+        }
+        //Consulta A
+        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_A+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
+        while (cursor.moveToNext()){
+            subTestA = new SubTestA();
+            subTestA.setPuntuacionDirectaTotalA(cursor.getString(1));
+            Utilidades.R_a = subTestA.getPuntuacionDirectaTotalA();
+        }
+        //Consulta I
+        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_I +" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
+        while (cursor.moveToNext()){
+            subTestI = new SubTestI();
+            subTestI.setPuntuacionDirectaTotalI(cursor.getString(1));
+            Utilidades.R_i = subTestI.getPuntuacionDirectaTotalI();
+        }
+        //Consulta Ar
+        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_AR+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
+        while (cursor.moveToNext()){
+            subTestAr = new SubTestAr();
+            subTestAr.setPuntuacionDirectaTotalAr(cursor.getString(1));
+            Utilidades.R_ar = subTestAr.getPuntuacionDirectaTotalAr();
+        }
+        //Consulta Ad
+        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_AD+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
+        while (cursor.moveToNext()){
+            subTestAd = new SubTestAd();
+            subTestAd.setPuntuacionDirectaTotalAd(cursor.getString(1));
+            Utilidades.R_ad = subTestAd.getPuntuacionDirectaTotalAd();
+        }
+        //Consulta Intervalo
+        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_TEST+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
+        while (cursor.moveToNext()){
+            test = new Test();
+            test.setIntervalo_confianza(cursor.getString(4));
+            test.setEdad_test(cursor.getString(5));
+            Utilidades.intervalo_confianza = test.getIntervalo_confianza();
+            Utilidades.edadActual = test.getEdad_test();
+        }
+
+
+        db.close();
+    }
+
     private Drawable ConvertBitmapToDrawable(Bitmap bitmap) {
         Drawable drawable = new BitmapDrawable(getResources(),bitmap);
         return drawable;
@@ -355,8 +532,8 @@ public class DatosPaciente extends Fragment {
 
             if (okPaciente == 1 && okPersona == 1){
                 Toast.makeText(getContext(),"Datos actualizados satisfactoriamente", Toast.LENGTH_SHORT).show();
+                nombrePrincipal.setText(editNombres.getText().toString()+" "+editApellidos.getText().toString());
             }
-
 
 
         }catch (Exception e){
@@ -372,11 +549,13 @@ public class DatosPaciente extends Fragment {
 
         //Insertamos los datos del test en la tabla test
         ContentValues test = new ContentValues();
+
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat mdformat = new SimpleDateFormat("dd/MM/yyyy");
         String fechaActual = mdformat.format(calendar.getTime());
-        test.put(Utilidades.CAMPO_FECHA_TEST,fechaActual);
 
+        test.put(Utilidades.CAMPO_FECHA_TEST,fechaActual);
+        test.put(Utilidades.CAMPO_EDAD_TEST, Utilidades.edadActual);
 
         Persona persona = null;
 
@@ -428,6 +607,8 @@ public class DatosPaciente extends Fragment {
                 test.setFecha_test(cursor.getString(1));
                 test.setEvaluador_test(cursor.getString(2));
                 test.setEstado_test(cursor.getString(3));
+                test.setIntervalo_confianza(cursor.getString(4));
+                test.setEdad_test(cursor.getString(5));
 
                 listaTest.add(test);
             }

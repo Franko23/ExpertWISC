@@ -1,6 +1,8 @@
 package com.example.franko.expertwisc.FragmentosPrincipales;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -63,7 +65,7 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    ConexionHelper con;
     View view, view_cc, view_s, view_rd, view_co, view_cl, view_v, view_ln, view_m, view_c, view_bs, view_cf, view_a, view_i, view_ar, view_ad;
 
     private AppBarLayout appBarLayout;
@@ -130,7 +132,7 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
 
         finalizar = view.findViewById(R.id.finalizar);
 
-        if (Utilidades.rotacion == 0){
+        if (Utilidades.rotacionG == 0){
             View parent = (View) container.getParent();
             if (appBarLayout == null){
                 appBarLayout = parent.findViewById(R.id.appBar);
@@ -159,20 +161,8 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
             tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         }else{
-            Utilidades.rotacion =1;
+            Utilidades.rotacionG =1;
         }
-
-//        View v = inflater.inflate(R.layout.fragment_cc, null, true);
-//        res_cl_a = viewPager.
-////        int as = container.getChildCount();
-////        Toast.makeText(getContext(),"Childs "+as, Toast.LENGTH_SHORT).show();
-//        res_cl_a.setText("8888");
-
-
-
-
-//        valores = view.findViewById(R.id.valores);
-//        datoPaciente = view.findViewById(R.id.DatoPaciente);
 
         bundle = getArguments();
         Persona persona = null;
@@ -184,42 +174,22 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
             Titulo = persona.getNombre_persona() + " - " + edadPersona;
         }
 
-//        int Argentino= Integer.getInteger(AñoTotal);
-
-
-//        if (6<=7){
-//            res_cl_a.setEnabled(true);
-//            res_cl_b.setEnabled(false);
-//
-//            res_cl = res_cl_a.getText().toString();
-//            Toast.makeText(getContext(),"A HABILITADO", Toast.LENGTH_SHORT).show();
-//        }else {
-//            res_cl_b.setEnabled(true);
-//            res_cl_a.setEnabled(false);
-//
-//            res_cl = res_cl_b.getText().toString();
-//            Toast.makeText(getContext(),"B HABILITADO "+res_cl, Toast.LENGTH_SHORT).show();
-//        }
-
-
         finalizar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                android.support.v4.app.Fragment fragment = new Resultados();
+                Fragment fragment = new Resultados();
                 getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
-//
-//                String cc, cf="0", a="0", i="0", ar="0", ad="0";
-//
-//                Toast.makeText(getContext(),"VALOR CC actual "+cc, Toast.LENGTH_SHORT).show();
-
             }
         });
 
 
         getActivity().setTitle(Titulo);
 
+
+
         return view;
     }
+
 
     private void llenarViewPager(ViewPager viewPager) {
         SeccionesAdapter seccionesAdapter = new SeccionesAdapter(getFragmentManager());
@@ -235,6 +205,22 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
             seccionesAdapter.addFragment(new M(),"M");
             seccionesAdapter.addFragment(new C(),"C");
             seccionesAdapter.addFragment(new BS(),"BS");
+
+            Utilidades.R_cc = "Sin valor";
+            Utilidades.R_s = "Sin valor";
+            Utilidades.R_rd = "Sin valor";
+            Utilidades.R_co = "Sin valor";
+            Utilidades.R_cl = "Sin valor";
+            Utilidades.R_v = "Sin valor";
+            Utilidades.R_ln = "Sin valor";
+            Utilidades.R_m = "Sin valor";
+            Utilidades.R_c = "Sin valor";
+            Utilidades.R_bs = "Sin valor";
+            Utilidades. R_cf = "Sin valor";
+            Utilidades.R_a = "Sin valor";
+            Utilidades.R_i = "Sin valor";
+            Utilidades.R_ar = "Sin valor";
+            Utilidades.R_ad = "Sin valor";
         }
         if (Utilidades.pages==5){
             seccionesAdapter.addFragment(new CF(),"CF");
@@ -276,7 +262,7 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        if (Utilidades.rotacion == 0){
+        if (Utilidades.rotacionG == 0){
             appBarLayout.removeView(tabLayout);
         }
     }

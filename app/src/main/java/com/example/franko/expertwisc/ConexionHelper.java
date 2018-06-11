@@ -59,7 +59,6 @@ public class ConexionHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(Utilidades.CREAR_TABLA_PUNTUACIONES_I);
         sqLiteDatabase.execSQL(Utilidades.CREAR_TABLA_PUNTUACIONES_AR);
         sqLiteDatabase.execSQL(Utilidades.CREAR_TABLA_PUNTUACIONES_AD);
-        sqLiteDatabase.execSQL(Utilidades.CREAR_TABLA_INTERVALO);
         sqLiteDatabase.execSQL(Utilidades.CREAR_TABLA_ESCALAR);
     }
 

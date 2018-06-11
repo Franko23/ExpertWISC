@@ -145,6 +145,7 @@
                         android:layout_height="50dp"
                         android:textAlignment="center"
                         android:gravity="center"
+                        android:inputType="number"
                         android:id="@+id/res_cl_a"
                         android:textStyle="bold" />
                     <EditText

@@ -60,7 +60,7 @@ public class CalcularEdad {
             MesTotal = 12 - (MesNac - MesEva);
         }
 
-        Utilidades.edadActual = AñoTotal+"."+MesTotal; //Setteamos el formato de la Argentino en Integer
+        Utilidades.edadActual = AñoTotal+"."+MesTotal; //Setteamos el formato de la edad en Integer
 
         String mes = "meses";
         if (MesTotal == 1){

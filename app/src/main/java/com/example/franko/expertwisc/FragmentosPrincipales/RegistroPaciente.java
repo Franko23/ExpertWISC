@@ -243,72 +243,73 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
             @Override
             public void onClick(View view) {
                 //Registramos al nuevo Paciente
-                registrarPaciente();
+                if (Double.parseDouble(Utilidades.edadActual) >= 6 && Double.parseDouble(Utilidades.edadActual)<17){
+                    registrarPaciente();
 
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setMessage("¿DESEA COMENZAR CON EL TEST?");
-                builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setMessage("¿DESEA COMENZAR CON EL TEST?");
+                    builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
 
-                        SQLiteDatabase db = con.getWritableDatabase();
+                                    SQLiteDatabase db = con.getWritableDatabase();
 
-                        //Insertamos los datos del test en la tabla test
-                        ContentValues test = new ContentValues();
-                        Calendar calendar = Calendar.getInstance();
-                        SimpleDateFormat mdformat = new SimpleDateFormat("dd/MM/yyyy");
-                        String fechaActual = mdformat.format(calendar.getTime());
-                        test.put(Utilidades.CAMPO_FECHA_TEST,fechaActual);
+                                    //Insertamos los datos del test en la tabla test
+                                    ContentValues test = new ContentValues();
+                                    Calendar calendar = Calendar.getInstance();
+                                    SimpleDateFormat mdformat = new SimpleDateFormat("dd/MM/yyyy");
+                                    String fechaActual = mdformat.format(calendar.getTime());
+                                    test.put(Utilidades.CAMPO_FECHA_TEST,fechaActual);
 
-                        //Consultamos el usuario actual
-//                        int id = consultarUsuarioActivo(Utilidades.currentUser);
-                        Persona persona = null;
+                                    Persona persona = null;
+                                    //Consultamos los datos de Persona del usuario actual
+                                    persona = consultarPersona(Utilidades.currentUserIdPersona);
 
-                        //Consultamos los datos de Persona del usuario actual
-                        persona = consultarPersona(Utilidades.currentUserIdPersona);
+                                    test.put(Utilidades.CAMPO_EVALUADOR_TEST, persona.getNombre_persona()+" "+persona.getApellido_persona());
+                                    test.put(Utilidades.CAMPO_ESTADO_TEST, "EN CURSO");
+                                    test.put(Utilidades.CAMPO_EDAD_TEST, Utilidades.edadActual);
+                                    test.put(Utilidades.CAMPO_ID_PACIENTE, id_paciente);
+                                    Long idTest = db.insert(Utilidades.TABLA_TEST,Utilidades.CAMPO_ID_TEST,test);
+                                    String a = Long.toString(idTest);
+                                    int id_test = Integer.parseInt(a);
+                                    Utilidades.currentTest = id_test;
+                                    Toast.makeText(getContext(),"Id_Test: "+a ,  Toast.LENGTH_SHORT).show();
 
-                        test.put(Utilidades.CAMPO_EVALUADOR_TEST, persona.getNombre_persona()+" "+persona.getApellido_persona());
-                        test.put(Utilidades.CAMPO_ESTADO_TEST, "EN CURSO");
-                        test.put(Utilidades.CAMPO_ID_PACIENTE, id_paciente);
-                        Long idTest = db.insert(Utilidades.TABLA_TEST,Utilidades.CAMPO_ID_TEST,test);
-                        String a = Long.toString(idTest);
-                        int id_test = Integer.parseInt(a);
-                        Utilidades.currentTest = id_test;
-                        Toast.makeText(getContext(),"Id_Test: "+a ,  Toast.LENGTH_SHORT).show();
+                                    Fragment fragment = new GeneralSubPruebas();
+                                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
-                        Fragment fragment = new GeneralSubPruebas();
-                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                    //Obtenemos datos de la persona para enviar a GeneralSubPruebas
+                                    persona = consultarPersona(id_persona);
 
-                        //Obtenemos datos de la persona para enviar a GeneralSubPruebas
-                        persona = consultarPersona(id_persona);
+                                    Bundle bundle = new Bundle();
+                                    bundle.putSerializable("Persona",persona);
 
-                        Bundle bundle = new Bundle();
-                        bundle.putSerializable("Persona",persona);
+                                    fragment.setArguments(bundle);
 
-                        fragment.setArguments(bundle);
+                                    transaction.replace(R.id.content_main, fragment);
+                                    transaction.addToBackStack(null);
+                                    transaction.commit();
 
-                        transaction.replace(R.id.content_main, fragment);
-                        transaction.addToBackStack(null);
-                        transaction.commit();
+                                }
+                            }
+                    );
+                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
 
-                    }
+                            Fragment fragment = new ListaPacientes();
+                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                            transaction.replace(R.id.content_main, fragment);
+                            transaction.addToBackStack(null);
+                            transaction.commit();
+                        }
+                    });
+
+                    AlertDialog dialog = builder.create();
+                    dialog.show();
+                }else{
+                    Toast.makeText(getContext(),"La edad tiene que ser mayor a 6 y menor a 17 años",Toast.LENGTH_LONG).show();
                 }
-                );
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-
-                        Fragment fragment = new ListaPacientes();
-                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                        transaction.replace(R.id.content_main, fragment);
-                        transaction.addToBackStack(null);
-                        transaction.commit();
-                    }
-                });
-
-                AlertDialog dialog = builder.create();
-                dialog.show();
-
             }
         });
         return view;

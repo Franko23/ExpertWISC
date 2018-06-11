@@ -480,6 +480,7 @@
                     android:textStyle="bold"
                     android:gravity="center"
                     android:hint="#"
+                    android:inputType="number"
                     android:id="@+id/res_s"
                     android:background="#fcf0f0"/>
             </LinearLayout>

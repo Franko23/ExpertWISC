@@ -133,7 +133,6 @@ public class CC extends Fragment {
                     SubTestCC subTestCC = new SubTestCC();
                     subTestCC.setPuntuacionDirectaTotalCC(res_cc.getText().toString());
                     subTestCC.RegistrarCC(getContext());
-//
                     Utilidades.R_cc = (res_cc.getText().toString());
                     guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 //                    Toast.makeText(getContext(),Utilidades.R_cc+" GUARDADO",Toast.LENGTH_SHORT).show();

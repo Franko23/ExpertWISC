@@ -95,10 +95,12 @@ public class DialogPreResultados extends DialogFragment{
                 switch (checkedId) {
                     case R.id.radio_90:
                         Utilidades.intervalo_confianza = "90";
+                        UpdateTest(Utilidades.intervalo_confianza);
                         Toast.makeText(getContext(), Utilidades.intervalo_confianza, Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.radio_95:
                         Utilidades.intervalo_confianza = "95";
+                        UpdateTest(Utilidades.intervalo_confianza);
                         Toast.makeText(getContext(), Utilidades.intervalo_confianza, Toast.LENGTH_SHORT).show();
                         break;
                 }
@@ -136,21 +138,6 @@ public class DialogPreResultados extends DialogFragment{
         if (Utilidades.R_bs.equals("Sin valor")){
             result_bs.setTextColor(getResources().getColor(R.color.colorAccent));
         }
-//        if (Utilidades.R_cf.equals("Sin valor")){
-//            result_cf.setTextColor(getResources().getColor(R.color.colorAccent));
-//        }
-//        if (Utilidades.R_a.equals("Sin valor")){
-//            result_a.setTextColor(getResources().getColor(R.color.colorAccent));
-//        }
-//        if (Utilidades.R_i.equals("Sin valor")){
-//            result_i.setTextColor(getResources().getColor(R.color.colorAccent));
-//        }
-//        if (Utilidades.R_ar.equals("Sin valor")){
-//            result_ar.setTextColor(getResources().getColor(R.color.colorAccent));
-//        }
-//        if (Utilidades.R_ad.equals("Sin valor")){
-//            result_ad.setTextColor(getResources().getColor(R.color.colorAccent));
-//        }
 
         if (
             Utilidades.R_cc.equals("Sin valor") ||
@@ -163,11 +150,6 @@ public class DialogPreResultados extends DialogFragment{
             Utilidades.R_m.equals("Sin valor") ||
             Utilidades.R_c.equals("Sin valor") ||
             Utilidades.R_bs.equals("Sin valor")
-//            Utilidades.R_cf.equals("Sin valor") &&
-//            Utilidades.R_a.equals("Sin valor") &&
-//            Utilidades.R_i.equals("Sin valor") &&
-//            Utilidades.R_ar.equals("Sin valor") &&
-//            Utilidades.R_ad.equals("Sin valor")
                 ){
             mensaje.setText(getResources().getString(R.string.mensajeCompletar));
             mensaje.setTextColor(getResources().getColor(R.color.colorAccent));
@@ -181,8 +163,6 @@ public class DialogPreResultados extends DialogFragment{
         no.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                //Verificamos si el intervalo de confianza está seleccionados
 
                 getDialog().dismiss();
 
@@ -205,6 +185,16 @@ public class DialogPreResultados extends DialogFragment{
         });
 
         return alertLayout;
+    }
+
+    private void UpdateTest(String intervalo) {
+        SQLiteDatabase db = con.getWritableDatabase();
+
+        ContentValues test = new ContentValues();
+        test.put(Utilidades.CAMPO_INTERVALO, intervalo);
+        int ok = db.update(Utilidades.TABLA_TEST,test,Utilidades.CAMPO_ID_TEST+"="+Utilidades.currentTest,null);
+        Toast.makeText(getContext(),"Intervalo "+intervalo+" = "+ok,Toast.LENGTH_SHORT).show();
+        db.close();
     }
 
     @Override

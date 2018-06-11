@@ -1735,6 +1735,7 @@
                 android:textStyle="bold"
                 android:gravity="center"
                 android:hint="#"
+                android:inputType="number"
                 android:id="@+id/res_rd"
                 android:background="#ffffff"/>
         </LinearLayout>

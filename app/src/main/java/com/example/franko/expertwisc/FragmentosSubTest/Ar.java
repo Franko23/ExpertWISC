@@ -25,6 +25,8 @@ import android.widget.Toast;
 
 import com.example.franko.expertwisc.Entidades.SubTest.SubTestAr;
 import com.example.franko.expertwisc.Entidades.SubTest.SubTestC;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestLN;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestRD;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Tools.DialogPreResultados;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
@@ -178,10 +180,16 @@ public class Ar extends Fragment {
                 //Guardar en bd la inhabilitación de la selección
                 if (radioButtonRd.isChecked()){
                     Utilidades.R_rd = Utilidades.R_rd+"r";
+                    SubTestRD subTestRD = new SubTestRD();
+                    subTestRD.setPuntuacionDirectaTotalRD(Utilidades.R_rd);
+                    subTestRD.RegistrarRD(getContext());
 //                    Toast.makeText(getContext(),"Cc",Toast.LENGTH_SHORT).show();
                 }
                 if (radioButtonLn.isChecked()){
                     Utilidades.R_ln = Utilidades.R_ln+"r";
+                    SubTestLN subTestLN = new SubTestLN();
+                    subTestLN.setPuntuacionDirectaTotalLN(Utilidades.R_ln);
+                    subTestLN.RegistrarLN(getContext());
 //                    Toast.makeText(getContext(),"Co",Toast.LENGTH_SHORT).show();
                 }
 

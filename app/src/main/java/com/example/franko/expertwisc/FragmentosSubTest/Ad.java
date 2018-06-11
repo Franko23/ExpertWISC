@@ -23,6 +23,9 @@ import android.widget.Toast;
 
 import com.example.franko.expertwisc.Entidades.SubTest.SubTestAd;
 import com.example.franko.expertwisc.Entidades.SubTest.SubTestAr;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestC;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestS;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestV;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
@@ -188,16 +191,25 @@ public class Ad extends Fragment {
                 if (radioButtonS.isChecked()){
                     radioButtonS.setEnabled(false);
                     Utilidades.R_s = Utilidades.R_s+"r";
+                    SubTestS subTestS = new SubTestS();
+                    subTestS.setPuntuacionDirectaTotalS(Utilidades.R_s);
+                    subTestS.RegistrarS(getContext());
 //                    Toast.makeText(getContext(),"Cc",Toast.LENGTH_SHORT).show();
                 }
                 if (radioButtonV.isChecked()){
                     radioButtonV.setEnabled(false);
                     Utilidades.R_v = Utilidades.R_v+"r";
+                    SubTestV subTestV = new SubTestV();
+                    subTestV.setPuntuacionDirectaTotalV(Utilidades.R_v);
+                    subTestV.RegistrarV(getContext());
 //                    Toast.makeText(getContext(),"Co",Toast.LENGTH_SHORT).show();
                 }
                 if (radioButtonC.isChecked()){
                     radioButtonC.setEnabled(false);
                     Utilidades.R_c = Utilidades.R_c+"r";
+                    SubTestC subTestC = new SubTestC();
+                    subTestC.setPuntuacionDirectaTotalC(Utilidades.R_c);
+                    subTestC.RegistrarC(getContext());
 //                    Toast.makeText(getContext(),"Co",Toast.LENGTH_SHORT).show();
                 }
 

@@ -95,8 +95,9 @@ public class PerfilEscalar extends Fragment {
                 if (Utilidades.listResultEscalar.get(value[i]).contains("r")){
                     String[]  datos = Utilidades.listResultEscalar.get(value[i]).split("r");
                     entries.add(new Entry(i,Integer.parseInt(datos[0])));
+                }else{
+                    entries.add(new Entry(i,Integer.parseInt(Utilidades.listResultEscalar.get(value[i]))));
                 }
-                entries.add(new Entry(i,Integer.parseInt(Utilidades.listResultEscalar.get(value[i]))));
             }
 
         }

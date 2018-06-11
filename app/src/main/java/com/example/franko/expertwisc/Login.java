@@ -144,6 +144,8 @@ public class Login extends AppCompatActivity {
             }
         }
 
+        db.close();
+
     }
 
     private Persona llenarUsuario(int id) {

@@ -14,12 +14,12 @@ import com.example.franko.expertwisc.R;
 
 import java.util.ArrayList;
 
-public class AdapterTest extends RecyclerView.Adapter<AdapterTest.ViewHolderTest> {
+public class AdapterTest extends RecyclerView.Adapter<AdapterTest.ViewHolderTest> implements View.OnClickListener{
 
     ArrayList<Test> listaTest;
     Context context;
     View root;
-
+    private View.OnClickListener listener;
     public AdapterTest(ArrayList<Test> listatest) {
         this.listaTest = listatest;
     }
@@ -29,9 +29,12 @@ public class AdapterTest extends RecyclerView.Adapter<AdapterTest.ViewHolderTest
     public ViewHolderTest onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.list_test, null, false);
         root = view.getRootView();
+        view.setOnClickListener(this);
         return new ViewHolderTest(view);
 
     }
+
+
     public class ViewHolderTest extends RecyclerView.ViewHolder {
         private TextView fecha_prueba;
         private TextView estado;
@@ -61,5 +64,14 @@ public class AdapterTest extends RecyclerView.Adapter<AdapterTest.ViewHolderTest
         return listaTest.size();
     }
 
+    public void setOnClickListener(View.OnClickListener listener){
+        this.listener = listener;
+    }
 
+    @Override
+    public void onClick(View v) {
+        if (listener!=null){
+            listener.onClick(v);
+        }
+    }
 }

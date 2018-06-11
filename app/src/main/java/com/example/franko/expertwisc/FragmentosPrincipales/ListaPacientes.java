@@ -95,9 +95,6 @@ public class ListaPacientes extends Fragment{
         con = new ConexionHelper(getContext(), "bd_wisc", null, 1);
         txt_mensaje_lista_paciente = vista.findViewById(R.id.txt_mensaje_lista_paciente);
 
-
-//        lista = vista.findViewById(R.id.listaPacientes);
-
         consultarListaPacientes();
 
         recyclerViewPacientes = vista.findViewById(R.id.listaPacientes);

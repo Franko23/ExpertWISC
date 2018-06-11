@@ -10,7 +10,8 @@ import java.util.List;
 
 public class Utilidades {
     //Variable de PageViewer
-    public static int rotacion = 0;
+    public static int rotacionG = 0;
+    public static int rotacionR = 0;
 
     public static String edadActual; //Edad del paciente actual
 
@@ -31,6 +32,7 @@ public class Utilidades {
     public static String R_ad = "Sin valor";
 
     public static List<String> listResultEscalar;
+    public static List<String> listResultCompuesta;
 
     public static String icv;
     public static String irp;
@@ -138,12 +140,6 @@ public class Utilidades {
     public static String CAMPO_ID_PUNTUACION_AD = "id_puntuacion_ad";
     public static String CAMPO_AD = "campo_ad";
 
-    //Constantes campo intervalo
-
-    public static String TABLA_INTERVALO = "intervalo";
-    public static String CAMPO_ID_INTERVALO = "id_intervalo";
-    public static String CAMPO_INTERVALO = "campo_intervalo";
-
     //Constantes tabla 1
 
     public static String TABLA_ESCALAR = "escalar";
@@ -161,6 +157,8 @@ public class Utilidades {
     public static final String CAMPO_FECHA_TEST = "fecha_test";
     public static final String CAMPO_EVALUADOR_TEST = "evaluador_test";
     public static final String CAMPO_ESTADO_TEST = "estado_test";
+    public static final String CAMPO_EDAD_TEST = "edad_test";
+    public static final String CAMPO_INTERVALO = "campo_intervalo";
 
 
     ///////////////////////////////////////////
@@ -267,6 +265,8 @@ public class Utilidades {
             CAMPO_FECHA_TEST + " TEXT, " +
             CAMPO_EVALUADOR_TEST + " TEXT, " +
             CAMPO_ESTADO_TEST + " TEXT, " +
+            CAMPO_INTERVALO+ " TEXT, " +
+            CAMPO_EDAD_TEST+ " TEXT, " +
             CAMPO_ID_PACIENTE + " INTEGER)";
 
 
@@ -295,12 +295,6 @@ public class Utilidades {
             CAMPO_CONTRASENA_USUARIO + " TEXT," +
             CAMPO_ID_PERSONA+" INTEGER"+
             ")";
-
-
-    public static final String CREAR_TABLA_INTERVALO = "CREATE TABLE " + TABLA_INTERVALO +
-            "(" +
-            CAMPO_ID_INTERVALO + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
-            CAMPO_INTERVALO + " INTEGER )";
 
 
     public static final String CREAR_TABLA_ESCALAR = "CREATE TABLE " + TABLA_ESCALAR +

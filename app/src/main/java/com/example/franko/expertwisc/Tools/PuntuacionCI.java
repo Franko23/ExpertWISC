@@ -16,12 +16,13 @@ import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.List;
 
 public class PuntuacionCI {
     Context context ;
     String value;
-    List<String> newValues;
+
     public PuntuacionCI() {
     }
 
@@ -30,9 +31,10 @@ public class PuntuacionCI {
     public List<String> PuntoCI(Context context, String value, String grupo){ //grupo = ICV, IRP, IMO, IVP, CIT
         this.context = context;
         this.value = value;
+        List<String> newValues= new ArrayList<>();
 
         try{
-            BufferedReader jsonReader = new BufferedReader(new InputStreamReader(context.getResources().openRawResource(R.raw.argentino)));
+            BufferedReader jsonReader = new BufferedReader(new InputStreamReader(context.getResources().openRawResource(R.raw.americano)));
             StringBuilder jsonBuilder = new StringBuilder();
             for (String line = null; (line = jsonReader.readLine()) != null;) {
                 jsonBuilder.append(line).append("\n");

@@ -1,6 +1,8 @@
 package com.example.franko.expertwisc.FragmentosPrincipales;
 
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
@@ -11,8 +13,11 @@ import android.support.v4.view.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.example.franko.expertwisc.Adapters.SeccionesAdapter;
+import com.example.franko.expertwisc.ConexionHelper;
+import com.example.franko.expertwisc.Entidades.Test;
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.DirectaEscalar;
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.IndicesCI;
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.PerfilCompuestas;
@@ -56,6 +61,7 @@ public class Resultados extends Fragment {
     private AppBarLayout appBarLayout;
     private TabLayout tabLayout;
     private ViewPager viewPager;
+    ConexionHelper con;
     private OnFragmentInteractionListener mListener;
 
     public Resultados() {
@@ -87,6 +93,7 @@ public class Resultados extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        con = new ConexionHelper(getContext(),"bd_wisc", null, 1);
     }
 
     @Override
@@ -96,7 +103,7 @@ public class Resultados extends Fragment {
         view = inflater.inflate(R.layout.fragment_resultados, container, false);
 
 
-        if (Utilidades.rotacion == 0){
+        if (Utilidades.rotacionR == 0){
             View parent = (View) container.getParent();
             if (appBarLayout == null){
                 appBarLayout = parent.findViewById(R.id.appBar);
@@ -121,9 +128,25 @@ public class Resultados extends Fragment {
             tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
 
         }else{
-            Utilidades.rotacion =1;
+            Utilidades.rotacionR =1;
         }
+
+        Test test = new Test();
+        test.UpdateTestState(getContext());
+//        UpdateTestState();
+
+
         return view;
+    }
+
+    private void UpdateTestState() {
+        SQLiteDatabase db = con.getWritableDatabase();
+
+        ContentValues test = new ContentValues();
+        test.put(Utilidades.CAMPO_ESTADO_TEST, "FINALIZADO");
+        int id = db.update(Utilidades.TABLA_TEST,test,Utilidades.CAMPO_ID_TEST+"="+Utilidades.currentTest,null);
+        Toast.makeText(getContext(),""+id,Toast.LENGTH_SHORT).show();
+        db.close();
     }
 
     private void llenarViewPager(ViewPager viewPager) {
@@ -158,6 +181,14 @@ public class Resultados extends Fragment {
     public void onDetach() {
         super.onDetach();
         mListener = null;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        if (Utilidades.rotacionR == 0){
+            appBarLayout.removeView(tabLayout);
+        }
     }
 
     /**

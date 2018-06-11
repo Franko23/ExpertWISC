@@ -1,6 +1,7 @@
 package com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -9,6 +10,16 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.franko.expertwisc.R;
+import com.example.franko.expertwisc.Utilidades.Utilidades;
+import com.github.mikephil.charting.charts.LineChart;
+import com.github.mikephil.charting.components.LimitLine;
+import com.github.mikephil.charting.components.YAxis;
+import com.github.mikephil.charting.data.Entry;
+import com.github.mikephil.charting.data.LineData;
+import com.github.mikephil.charting.data.LineDataSet;
+import com.github.mikephil.charting.interfaces.datasets.ILineDataSet;
+
+import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,7 +38,8 @@ public class PerfilCompuestas extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    View view;
+    private LineChart lineChart;
     private OnFragmentInteractionListener mListener;
 
     public PerfilCompuestas() {
@@ -65,7 +77,40 @@ public class PerfilCompuestas extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_perfil_compuestas, container, false);
+        view = inflater.inflate(R.layout.fragment_perfil_compuestas, container, false);
+        lineChart = view.findViewById(R.id.lineChartCompuesta);
+        lineChart.setDragEnabled(true);
+        lineChart.setScaleEnabled(true);
+
+        ArrayList<Entry> entries =  new ArrayList<>();
+
+        for (int i = 0; i< Utilidades.listResultCompuesta.size();i++){
+            entries.add(new Entry(i,Integer.parseInt(Utilidades.listResultCompuesta.get(i))));
+        }
+
+        LineDataSet lineDataSet = new LineDataSet(entries, "Perfil de Puntuaciones Escalares");
+        lineDataSet.setFillAlpha(110);
+        lineDataSet.setColor(Color.RED);
+        lineDataSet.setLineWidth(3f);
+        lineDataSet.setValueTextSize(10f);
+        lineDataSet.setValueTextColor(Color.DKGRAY);
+
+        lineDataSet.setCircleColor(Color.BLUE);
+
+
+        LimitLine max = new LimitLine(100,"Media");
+        YAxis leftAxis = lineChart.getAxisLeft();
+        leftAxis.addLimitLine(max);
+
+        ArrayList<ILineDataSet> iLineDataSets = new ArrayList<>();
+        iLineDataSets.add(lineDataSet);
+
+        LineData lineData = new LineData(iLineDataSets);
+
+        lineChart.setData(lineData);
+        lineChart.setContentDescription("");
+
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

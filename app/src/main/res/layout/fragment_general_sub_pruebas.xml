@@ -37,7 +37,7 @@
             android:textStyle="bold"
             android:background="@color/colorPrimaryDark"
             android:textColor="#ffffff"
-            android:text="SIGUIENTE"/>
+            android:text="FINALIZAR"/>
     </LinearLayout>
 
 </LinearLayout>

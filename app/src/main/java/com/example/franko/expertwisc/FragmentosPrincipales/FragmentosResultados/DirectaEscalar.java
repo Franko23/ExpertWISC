@@ -1,6 +1,7 @@
 package com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -250,8 +251,10 @@ public class DirectaEscalar extends Fragment {
         if (values.get(0).equals("0")||values.get(0).contains("r")){
             if (values.get(0).contains("r")){
                 puntos_cc_e.setText(values.get(0));
+                puntos_cc_e.setTextColor(Color.WHITE);
                 puntos_cc_e.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
                 result_cc_final.setText(values.get(0));
+                result_cc_final.setTextColor(Color.WHITE);
                 result_cc_final.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
             }else{
                 puntos_cc_e.setText("");
@@ -264,11 +267,13 @@ public class DirectaEscalar extends Fragment {
             irp.add(Integer.parseInt(values.get(0))); //IRP
             cit.add(Integer.parseInt(values.get(0))); //CIT
         }
-        if (values.get(1).equals("0")){
+        if (values.get(1).equals("0")||values.get(1).contains("r")){
             if (values.get(1).contains("r")){
                 puntos_s_e.setText(values.get(1));
+                puntos_s_e.setTextColor(Color.WHITE);
                 puntos_s_e.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
                 result_s_final.setText(values.get(1));
+                result_s_final.setTextColor(Color.WHITE);
                 result_s_final.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
             }else{
                 puntos_s_e.setText("");
@@ -280,11 +285,13 @@ public class DirectaEscalar extends Fragment {
             icv.add(Integer.parseInt(values.get(1))); //ICV
             cit.add(Integer.parseInt(values.get(1))); //CIT
         }
-        if (values.get(2).equals("0")){
+        if (values.get(2).equals("0")||values.get(2).contains("r")){
             if (values.get(2).contains("r")){
                 puntos_rd_e.setText(values.get(2));
+                puntos_rd_e.setTextColor(Color.WHITE);
                 puntos_rd_e.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
                 result_rd_final.setText(values.get(2));
+                result_rd_final.setTextColor(Color.WHITE);
                 result_rd_final.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
             }else{
                 puntos_rd_e.setText("");
@@ -296,11 +303,13 @@ public class DirectaEscalar extends Fragment {
             imo.add(Integer.parseInt(values.get(2))); //IMO
             cit.add(Integer.parseInt(values.get(2))); //CIT
         }
-        if (values.get(3).equals("0")){
+        if (values.get(3).equals("0")||values.get(3).contains("r")){
             if (values.get(3).contains("r")){
                 puntos_co_e.setText(values.get(3));
+                puntos_co_e.setTextColor(Color.WHITE);
                 puntos_co_e.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
                 result_co_final.setText(values.get(3));
+                result_co_final.setTextColor(Color.WHITE);
                 result_co_final.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
             }else{
                 puntos_co_e.setText("");
@@ -312,11 +321,13 @@ public class DirectaEscalar extends Fragment {
             irp.add(Integer.parseInt(values.get(3))); //IRP
             cit.add(Integer.parseInt(values.get(3))); //CIT
         }
-        if (values.get(4).equals("0")){
+        if (values.get(4).equals("0")||values.get(4).contains("r")){
             if (values.get(4).contains("r")){
                 puntos_cl_e.setText(values.get(4));
+                puntos_cl_e.setTextColor(Color.WHITE);
                 puntos_cl_e.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
                 result_cl_final.setText(values.get(4));
+                result_cl_final.setTextColor(Color.WHITE);
                 result_cl_final.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
             }else{
                 puntos_cl_e.setText("");
@@ -328,11 +339,13 @@ public class DirectaEscalar extends Fragment {
             ivp.add(Integer.parseInt(values.get(4))); //IVP
             cit.add(Integer.parseInt(values.get(4))); //CIT
         }
-        if (values.get(5).equals("0")){
+        if (values.get(5).equals("0")||values.get(5).contains("r")){
             if (values.get(5).contains("r")){
                 puntos_v_e.setText(values.get(5));
+                puntos_v_e.setTextColor(Color.WHITE);
                 puntos_v_e.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
                 result_v_final.setText(values.get(5));
+                result_v_final.setTextColor(Color.WHITE);
                 result_v_final.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
             }else{
                 puntos_v_e.setText("");
@@ -344,11 +357,13 @@ public class DirectaEscalar extends Fragment {
             icv.add(Integer.parseInt(values.get(5))); //ICV
             cit.add(Integer.parseInt(values.get(5))); //CIT
         }
-        if (values.get(6).equals("0")){
+        if (values.get(6).equals("0")||values.get(6).contains("r")){
             if (values.get(6).contains("r")){
                 puntos_ln_e.setText(values.get(6));
+                puntos_ln_e.setTextColor(Color.WHITE);
                 puntos_ln_e.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
                 result_ln_final.setText(values.get(6));
+                result_ln_final.setTextColor(Color.WHITE);
                 result_ln_final.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
             }else{
                 puntos_ln_e.setText("");
@@ -360,11 +375,13 @@ public class DirectaEscalar extends Fragment {
             imo.add(Integer.parseInt(values.get(6))); //IMO
             cit.add(Integer.parseInt(values.get(6))); //CIT
         }
-        if (values.get(7).equals("0")){
+        if (values.get(7).equals("0")||values.get(7).contains("r")){
             if (values.get(7).contains("r")){
                 puntos_m_e.setText(values.get(7));
+                puntos_m_e.setTextColor(Color.WHITE);
                 puntos_m_e.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
                 result_m_final.setText(values.get(7));
+                result_m_final.setTextColor(Color.WHITE);
                 result_m_final.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
             }else{
                 puntos_m_e.setText("");
@@ -376,11 +393,13 @@ public class DirectaEscalar extends Fragment {
             irp.add(Integer.parseInt(values.get(7))); //IRP
             cit.add(Integer.parseInt(values.get(7))); //CIT
         }
-        if (values.get(8).equals("0")){
+        if (values.get(8).equals("0")||values.get(8).contains("r")){
             if (values.get(8).contains("r")){
                 puntos_c_e.setText(values.get(8));
+                puntos_c_e.setTextColor(Color.WHITE);
                 puntos_c_e.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
                 result_c_final.setText(values.get(8));
+                result_c_final.setTextColor(Color.WHITE);
                 result_c_final.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
             }else{
                 puntos_c_e.setText("");
@@ -392,11 +411,13 @@ public class DirectaEscalar extends Fragment {
             icv.add(Integer.parseInt(values.get(8))); //ICV
             cit.add(Integer.parseInt(values.get(8))); //CIT
         }
-        if (values.get(9).equals("0")){
+        if (values.get(9).equals("0")||values.get(9).contains("r")){
             if (values.get(9).contains("r")){
                 puntos_bs_e.setText(values.get(9));
+                puntos_bs_e.setTextColor(Color.WHITE);
                 puntos_bs_e.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
                 result_bs_final.setText(values.get(9));
+                result_bs_final.setTextColor(Color.WHITE);
                 result_bs_final.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
             }else{
                 puntos_bs_e.setText("");
@@ -408,11 +429,13 @@ public class DirectaEscalar extends Fragment {
             ivp.add(Integer.parseInt(values.get(9))); //IVP
             cit.add(Integer.parseInt(values.get(9))); //CIT
         }
-        if (values.get(10).equals("0")){
+        if (values.get(10).equals("0")||values.get(10).contains("r")){
             if (values.get(10).contains("r")){
                 puntos_cf_e.setText(values.get(10));
+                puntos_cf_e.setTextColor(Color.WHITE);
                 puntos_cf_e.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
                 result_cf_final.setText(values.get(10));
+                result_cf_final.setTextColor(Color.WHITE);
                 result_cf_final.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
             }else{
                 puntos_cf_e.setText("");
@@ -424,11 +447,13 @@ public class DirectaEscalar extends Fragment {
             irp.add(Integer.parseInt(values.get(10))); //IRP
             cit.add(Integer.parseInt(values.get(10))); //CIT
         }
-        if (values.get(11).equals("0")){
+        if (values.get(11).equals("0")||values.get(11).contains("r")){
             if (values.get(11).contains("r")){
                 puntos_a_e.setText(values.get(11));
+                puntos_a_e.setTextColor(Color.WHITE);
                 puntos_a_e.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
                 result_a_final.setText(values.get(11));
+                result_a_final.setTextColor(Color.WHITE);
                 result_a_final.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
             }else{
                 puntos_a_e.setText("");
@@ -440,11 +465,13 @@ public class DirectaEscalar extends Fragment {
             ivp.add(Integer.parseInt(values.get(11))); //IVP
             cit.add(Integer.parseInt(values.get(11))); //CIT
         }
-        if (values.get(12).equals("0")){
+        if (values.get(12).equals("0")||values.get(12).contains("r")){
             if (values.get(12).contains("r")){
                 puntos_i_e.setText(values.get(12));
+                puntos_i_e.setTextColor(Color.WHITE);
                 puntos_i_e.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
                 result_i_final.setText(values.get(12));
+                result_i_final.setTextColor(Color.WHITE);
                 result_i_final.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
             }else{
                 puntos_i_e.setText("");
@@ -456,11 +483,13 @@ public class DirectaEscalar extends Fragment {
             icv.add(Integer.parseInt(values.get(12))); //ICV
             cit.add(Integer.parseInt(values.get(12))); //CIT
         }
-        if (values.get(13).equals("0")){
+        if (values.get(13).equals("0")||values.get(13).contains("r")){
             if (values.get(13).contains("r")){
                 puntos_ar_e.setText(values.get(13));
+                puntos_ar_e.setTextColor(Color.WHITE);
                 puntos_ar_e.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
                 result_ar_final.setText(values.get(13));
+                result_ar_final.setTextColor(Color.WHITE);
                 result_ar_final.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
             }else{
                 puntos_ar_e.setText("");
@@ -472,11 +501,13 @@ public class DirectaEscalar extends Fragment {
             imo.add(Integer.parseInt(values.get(13))); //IMO
             cit.add(Integer.parseInt(values.get(13))); //CIT
         }
-        if (values.get(14).equals("0")){
+        if (values.get(14).equals("0")||values.get(14).contains("r")){
             if (values.get(14).contains("r")){
                 puntos_ad_e.setText(values.get(14));
+                puntos_ad_e.setTextColor(Color.WHITE);
                 puntos_ad_e.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
                 result_ad_final.setText(values.get(14));
+                result_ad_final.setTextColor(Color.WHITE);
                 result_ad_final.setBackgroundColor(getResources().getColor(R.color.colorInProgress));
             }else{
                 puntos_ad_e.setText("");
