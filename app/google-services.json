@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "1071914631717",
+    "firebase_url": "https://expertwisc.firebaseio.com",
+    "project_id": "expertwisc",
+    "storage_bucket": "expertwisc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1071914631717:android:2ac70272e6d048c1",
+        "android_client_info": {
+          "package_name": "com.example.franko.expertwisc"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1071914631717-dhbc00fdq5gnni1rq3l0uan2d78uugeb.apps.googleusercontent.com",
+          "client_type": 3
+        },
+        {
+          "client_id": "1071914631717-dhbc00fdq5gnni1rq3l0uan2d78uugeb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBNkLNFyu6iLmblqrRIlNPNwRgyV4HjVCU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
