@@ -113,6 +113,7 @@ public class Ad extends Fragment {
                 myDialog.show();
             }
         });
+        res_ad.setText(Utilidades.R_ad);
 
         res_ad.addTextChangedListener(new TextWatcher() {
             @Override

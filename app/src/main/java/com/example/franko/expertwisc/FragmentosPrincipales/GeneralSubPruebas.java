@@ -126,10 +126,6 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
         viewPager = view.findViewById(R.id.sub_content);
         linearLayout = view.findViewById(R.id.l_finalizar);
 
-
-//        res_cl_a = view.findViewById(R.id.res_cl_a);
-//        res_cl_b = view.findViewById(R.id.res_cl_b);
-
         finalizar = view.findViewById(R.id.finalizar);
 
         if (Utilidades.rotacionG == 0){
@@ -149,11 +145,6 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
                     }
                 });
 
-//                res_cl_a = viewPager.findViewById(R.id.res_cl_a);
-//                res_cl_b = viewPager.findViewById(R.id.res_cl_b);
-//
-//                res_cl_a.setText("66777");
-
                 tabLayout.setupWithViewPager(viewPager);
                 tabLayout.setTabTextColors(Color.parseColor("#ffffff"),Color.parseColor("#ffffff"));
             }
@@ -164,15 +155,15 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
             Utilidades.rotacionG =1;
         }
 
-        bundle = getArguments();
+//        bundle = getArguments();
         Persona persona = null;
-        if (bundle != null) {
-            persona = (Persona) bundle.getSerializable("Persona") ;
+//        if (bundle != null) {
+//            persona = (Persona) bundle.getSerializable("Persona") ;
             //Calculamos la fecha de nacimiento de la persona
-            CalcularEdad calcularEdad = new CalcularEdad(persona.getFecha_nacimiento_persona());
-            String edadPersona = calcularEdad.CalcularEdad();
-            Titulo = persona.getNombre_persona() + " - " + edadPersona;
-        }
+//            CalcularEdad calcularEdad = new CalcularEdad(persona.getFecha_nacimiento_persona());
+//            String edadPersona = calcularEdad.CalcularEdad();
+//            Titulo = persona.getNombre_persona() + " - " + edadPersona;
+//        }
 
         finalizar.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -206,21 +197,6 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
             seccionesAdapter.addFragment(new C(),"C");
             seccionesAdapter.addFragment(new BS(),"BS");
 
-            Utilidades.R_cc = "Sin valor";
-            Utilidades.R_s = "Sin valor";
-            Utilidades.R_rd = "Sin valor";
-            Utilidades.R_co = "Sin valor";
-            Utilidades.R_cl = "Sin valor";
-            Utilidades.R_v = "Sin valor";
-            Utilidades.R_ln = "Sin valor";
-            Utilidades.R_m = "Sin valor";
-            Utilidades.R_c = "Sin valor";
-            Utilidades.R_bs = "Sin valor";
-            Utilidades. R_cf = "Sin valor";
-            Utilidades.R_a = "Sin valor";
-            Utilidades.R_i = "Sin valor";
-            Utilidades.R_ar = "Sin valor";
-            Utilidades.R_ad = "Sin valor";
         }
         if (Utilidades.pages==5){
             seccionesAdapter.addFragment(new CF(),"CF");

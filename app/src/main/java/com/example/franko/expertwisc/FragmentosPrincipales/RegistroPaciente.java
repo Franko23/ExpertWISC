@@ -40,6 +40,7 @@ import android.widget.Toast;
 import com.example.franko.expertwisc.ConexionHelper;
 import com.example.franko.expertwisc.Entidades.Paciente;
 import com.example.franko.expertwisc.Entidades.Persona;
+import com.example.franko.expertwisc.Entidades.Test;
 import com.example.franko.expertwisc.Entidades.Usuario;
 import com.example.franko.expertwisc.Home;
 import com.example.franko.expertwisc.R;
@@ -251,7 +252,6 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                     builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
                                 @Override
                                 public void onClick(DialogInterface dialog, int which) {
-
                                     SQLiteDatabase db = con.getWritableDatabase();
 
                                     //Insertamos los datos del test en la tabla test
@@ -279,12 +279,14 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
                                     //Obtenemos datos de la persona para enviar a GeneralSubPruebas
-                                    persona = consultarPersona(id_persona);
+                                    consultarPersona(id_persona);
 
-                                    Bundle bundle = new Bundle();
-                                    bundle.putSerializable("Persona",persona);
-
-                                    fragment.setArguments(bundle);
+//                                    Bundle bundle = new Bundle();
+//                                    bundle.putSerializable("Persona",persona);
+//
+//                                    fragment.setArguments(bundle);
+                                    Test test1 = new Test();
+                                    test1.Valores();
 
                                     transaction.replace(R.id.content_main, fragment);
                                     transaction.addToBackStack(null);

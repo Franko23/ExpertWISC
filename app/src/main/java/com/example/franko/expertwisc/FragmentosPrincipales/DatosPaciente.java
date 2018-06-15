@@ -240,12 +240,20 @@ public class DatosPaciente extends Fragment {
 
                 String estado = listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getEstado_test();
                 int id_test = listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test();
+                Utilidades.currentTest=id_test;
                 if (estado.equals("EN CURSO")){
-//                    Fragment fragment =  new GeneralSubPruebas();
-//                    getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
-                    Toast.makeText(getContext(),estado,Toast.LENGTH_SHORT).show();
-                }else if (estado.equals("FINALIZADO")){
+                    Test test = new Test();
+                    test.Valores();
+                    ConsultaView(id_test);
+                    Persona persona =  new Persona();
+                    persona.setNombre_persona(editNombres.getText().toString());
+                    persona.setFecha_nacimiento_persona(editFechaNac.getText().toString());
+                    Fragment fragment =  new GeneralSubPruebas();
+                    getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
 
+                }else if (estado.equals("FINALIZADO")){
+                    Test test = new Test();
+                    test.Valores();
                     ConsultaView(id_test);
 
                     Fragment fragment =  new Resultados();
@@ -261,7 +269,8 @@ public class DatosPaciente extends Fragment {
 
                 Fragment fragment = new GeneralSubPruebas();
                 FragmentTransaction transaction = getFragmentManager().beginTransaction();
-
+                Test test = new Test();
+                test.Valores();
                 //Registro de nuevo test
                 RegistroTest();
 
@@ -269,10 +278,10 @@ public class DatosPaciente extends Fragment {
                 persona.setNombre_persona(editNombres.getText().toString());
                 persona.setFecha_nacimiento_persona(editFechaNac.getText().toString());
 
-                Bundle bundle = new Bundle();
-                bundle.putSerializable("Persona", persona);
-
-                fragment.setArguments(bundle);
+//                Bundle bundle = new Bundle();
+//                bundle.putSerializable("Persona", persona);
+//
+//                fragment.setArguments(bundle);
 
                 transaction.replace(R.id.content_main, fragment);
                 transaction.addToBackStack(null);
@@ -354,148 +363,41 @@ public class DatosPaciente extends Fragment {
 
     private void ConsultaView(int id_test) {
         SQLiteDatabase db = con.getReadableDatabase();
-        SubTestCC subTestCC = null;
-        SubTestS subTestS = null;
-        SubTestRD subTestRD= null;
-        SubTestCo subTestCo = null;
-        SubTestCl subTestCl = null;
-        SubTestV subTestV = null;
-        SubTestLN subTestLN = null;
-        SubTestM subTestM = null;
-        SubTestC subTestC= null;
-        SubTestBS subTestBS = null;
-        SubTestCF subTestCF = null;
-        SubTestA subTestA = null;
-        SubTestI subTestI= null;
-        SubTestAr subTestAr = null;
-        SubTestAd subTestAd = null;
-        Test test = null;
-        Cursor cursor = null;
 
-        //Consulta CC
-        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_CC+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
-        while (cursor.moveToNext()){
-            subTestCC = new SubTestCC();
-            subTestCC.setPuntuacionDirectaTotalCC(cursor.getString(1));
-            Utilidades.R_cc = subTestCC.getPuntuacionDirectaTotalCC();
-        }
-        //Consulta CC
-        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_CC+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
-        while (cursor.moveToNext()){
-            subTestCC = new SubTestCC();
-            subTestCC.setPuntuacionDirectaTotalCC(cursor.getString(1));
-            Utilidades.R_cc = subTestCC.getPuntuacionDirectaTotalCC();
-        }
-        //Consulta S
-        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_S+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
-        while (cursor.moveToNext()){
-            subTestS = new SubTestS();
-            subTestS.setPuntuacionDirectaTotalS(cursor.getString(1));
-            Utilidades.R_s = subTestS.getPuntuacionDirectaTotalS();
-        }
-        //Consulta RD
-        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_RD+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
-        while (cursor.moveToNext()){
-            subTestRD = new SubTestRD();
-            subTestRD.setPuntuacionDirectaTotalRD(cursor.getString(3));
-            Utilidades.R_rd = subTestRD.getPuntuacionDirectaTotalRD();
-        }
-        //Consulta Co
-        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_CO+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
-        while (cursor.moveToNext()){
-            subTestCo = new SubTestCo();
-            subTestCo.setPuntuacionDirectaTotalCo(cursor.getString(1));
-            Utilidades.R_co = subTestCo.getPuntuacionDirectaTotalCo();
-        }
-        //Consulta CL
-        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_CL+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
-        while (cursor.moveToNext()){
-            subTestCl = new SubTestCl();
-            subTestCl.setPuntuacionDirectaTotalCl(cursor.getString(1));
-            Utilidades.R_cl = subTestCl.getPuntuacionDirectaTotalCl();
-        }
-        //Consulta V
-        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_V+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
-        while (cursor.moveToNext()){
-            subTestV = new SubTestV();
-            subTestV.setPuntuacionDirectaTotalV(cursor.getString(1));
-            Utilidades.R_v = subTestV.getPuntuacionDirectaTotalV();
-        }
-        //Consulta LN
-        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_LN+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
-        while (cursor.moveToNext()){
-            subTestLN = new SubTestLN();
-            subTestLN.setPuntuacionDirectaTotalLN(cursor.getString(1));
-            Utilidades.R_ln = subTestLN.getPuntuacionDirectaTotalLN();
-        }
-        //Consulta M
-        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_M+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
-        while (cursor.moveToNext()){
-            subTestM = new SubTestM();
-            subTestM.setPuntuacionDirectaTotalM(cursor.getString(1));
-            Utilidades.R_m = subTestM.getPuntuacionDirectaTotalM();
-        }
-        //Consulta C
-        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_C+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
-        while (cursor.moveToNext()){
-            subTestC = new SubTestC();
-            subTestC.setPuntuacionDirectaTotalC(cursor.getString(1));
-            Utilidades.R_c = subTestC.getPuntuacionDirectaTotalC();
-        }
-        //Consulta BS
-        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_BS+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
-        while (cursor.moveToNext()){
-            subTestBS = new SubTestBS();
-            subTestBS.setPuntuacionDirectaTotalBS(cursor.getString(1));
-            Utilidades.R_bs = subTestBS.getPuntuacionDirectaTotalBS();
-        }
-        //Consulta CF
-        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_CF+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
-        while (cursor.moveToNext()){
-            subTestCF = new SubTestCF();
-            subTestCF.setPuntuacionDirectaTotalCF(cursor.getString(1));
-            Utilidades.R_cf = subTestCF.getPuntuacionDirectaTotalCF();
-        }
-        //Consulta A
-        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_A+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
-        while (cursor.moveToNext()){
-            subTestA = new SubTestA();
-            subTestA.setPuntuacionDirectaTotalA(cursor.getString(1));
-            Utilidades.R_a = subTestA.getPuntuacionDirectaTotalA();
-        }
-        //Consulta I
-        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_I +" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
-        while (cursor.moveToNext()){
-            subTestI = new SubTestI();
-            subTestI.setPuntuacionDirectaTotalI(cursor.getString(1));
-            Utilidades.R_i = subTestI.getPuntuacionDirectaTotalI();
-        }
-        //Consulta Ar
-        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_AR+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
-        while (cursor.moveToNext()){
-            subTestAr = new SubTestAr();
-            subTestAr.setPuntuacionDirectaTotalAr(cursor.getString(1));
-            Utilidades.R_ar = subTestAr.getPuntuacionDirectaTotalAr();
-        }
-        //Consulta Ad
-        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_AD+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
-        while (cursor.moveToNext()){
-            subTestAd = new SubTestAd();
-            subTestAd.setPuntuacionDirectaTotalAd(cursor.getString(1));
-            Utilidades.R_ad = subTestAd.getPuntuacionDirectaTotalAd();
-        }
-        //Consulta Intervalo
-        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_TEST+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
-        while (cursor.moveToNext()){
-            test = new Test();
-            test.setIntervalo_confianza(cursor.getString(4));
-            test.setEdad_test(cursor.getString(5));
-            Utilidades.intervalo_confianza = test.getIntervalo_confianza();
-            Utilidades.edadActual = test.getEdad_test();
-        }
+        SubTestCC subTestCC = new SubTestCC();
+        subTestCC.ConsultaCC(getContext(), id_test);
+        SubTestS subTestS = new SubTestS();
+        subTestS.ConsultaS(getContext(),id_test);
+        SubTestRD subTestRD= new SubTestRD();
+        subTestRD.ConsultaRD(getContext(),id_test);
+        SubTestCo subTestCo = new SubTestCo();
+        subTestCo.ConsultaCo(getContext(),id_test);
+        SubTestCl subTestCl = new SubTestCl();
+        subTestCl.ConsultaCl(getContext(),id_test);
+        SubTestV subTestV = new SubTestV();
+        subTestV.ConsultaV(getContext(),id_test);
+        SubTestLN subTestLN = new SubTestLN();
+        subTestLN.ConsultaLN(getContext(),id_test);
+        SubTestM subTestM = new SubTestM();
+        subTestM.ConsultaM(getContext(),id_test);
+        SubTestC subTestC= new SubTestC();
+        subTestC.ConsultaC(getContext(),id_test);
+        SubTestBS subTestBS = new SubTestBS();
+        subTestBS.ConsultaBS(getContext(),id_test);
+        SubTestCF subTestCF = new SubTestCF();
+        subTestCF.ConsultaCF(getContext(),id_test);
+        SubTestA subTestA = new SubTestA();
+        subTestA.ConsultaA(getContext(),id_test);
+        SubTestI subTestI= new SubTestI();
+        subTestI.ConsultaI(getContext(),id_test);
+        SubTestAr subTestAr = new SubTestAr();
+        subTestAr.ConsultaAr(getContext(),id_test);
+        SubTestAd subTestAd = new SubTestAd();
+        subTestAd.ConsultaAd(getContext(),id_test);
 
+        Test test = new Test();
+        test.ConsultaIntervalo(getContext(),id_test);
 
-        db.close();
     }
 
     private Drawable ConvertBitmapToDrawable(Bitmap bitmap) {
@@ -533,6 +435,7 @@ public class DatosPaciente extends Fragment {
             if (okPaciente == 1 && okPersona == 1){
                 Toast.makeText(getContext(),"Datos actualizados satisfactoriamente", Toast.LENGTH_SHORT).show();
                 nombrePrincipal.setText(editNombres.getText().toString()+" "+editApellidos.getText().toString());
+                layout_datos_edit.setVisibility(View.GONE);
             }
 
 

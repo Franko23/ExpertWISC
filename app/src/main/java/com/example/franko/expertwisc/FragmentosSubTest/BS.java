@@ -115,7 +115,7 @@ public class BS extends Fragment {
                 myDialog.show();
             }
         });
-
+        res_bs.setText(Utilidades.R_bs);
         res_bs.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

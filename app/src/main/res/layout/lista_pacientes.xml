@@ -44,6 +44,7 @@
     <ImageView
         android:layout_width="40dp"
         android:layout_height="40dp"
-        android:layout_alignRight="@id/txtListaPacienteNombres"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
         android:src="@drawable/chevron_right"/>
 </RelativeLayout>

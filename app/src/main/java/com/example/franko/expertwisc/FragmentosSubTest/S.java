@@ -113,7 +113,7 @@ public class S extends Fragment {
                 myDialog.show();
             }
         });
-
+        res_s.setText(Utilidades.R_s);
 //                        .withText("Si el entrevistado no da una respuesta de 1 punto, brinde la respuesat que indica en el Manual de Administración y Puntuación")
 
         res_s.addTextChangedListener(new TextWatcher() {

@@ -87,7 +87,7 @@ public class PuntuacionEscalar {
                             temp = datos[1];
                         }
 
-                        if (values.get(i).equals("Sin valor")){
+                        if (values.get(i).isEmpty()){
                             res="0";
                             newValues.add(res);
                             index=100;

@@ -104,6 +104,7 @@ public class LN extends Fragment {
                 myDialog.show();
             }
         });
+        res_ln.setText(Utilidades.R_ln);
         res_ln.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

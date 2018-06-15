@@ -10,7 +10,7 @@
         android:id="@+id/txtclose"
         android:layout_width="25dp"
         android:layout_height="25dp"
-        android:textColor="#fff"
+        android:textColor="@color/colorAccent"
         android:text="@string/cerrar"
         android:textStyle="bold"
         android:layout_gravity="end"

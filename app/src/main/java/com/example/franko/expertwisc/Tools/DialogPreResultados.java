@@ -108,48 +108,58 @@ public class DialogPreResultados extends DialogFragment{
         });
 
 
-        if (Utilidades.R_cc.equals("Sin valor")){
+        if (Utilidades.R_cc.isEmpty()){
             result_cc.setTextColor(getResources().getColor(R.color.colorAccent));
+            result_cc.setText("Sin valor");
         }
-        if (Utilidades.R_s.equals("Sin valor")){
+        if (Utilidades.R_s.isEmpty()){
             result_s.setTextColor(getResources().getColor(R.color.colorAccent));
+            result_s.setText("Sin valor");
         }
-        if (Utilidades.R_rd.equals("Sin valor")){
+        if (Utilidades.R_rd.isEmpty()){
             result_rd.setTextColor(getResources().getColor(R.color.colorAccent));
+            result_rd.setText("Sin valor");
         }
-        if (Utilidades.R_co.equals("Sin valor")){
+        if (Utilidades.R_co.isEmpty()){
             result_co.setTextColor(getResources().getColor(R.color.colorAccent));
+            result_co.setText("Sin valor");
         }
-        if (Utilidades.R_cl.equals("Sin valor")){
+        if (Utilidades.R_cl.isEmpty()){
             result_cl.setTextColor(getResources().getColor(R.color.colorAccent));
+            result_cl.setText("Sin valor");
         }
-        if (Utilidades.R_v.equals("Sin valor")){
+        if (Utilidades.R_v.isEmpty()){
             result_v.setTextColor(getResources().getColor(R.color.colorAccent));
+            result_v.setText("Sin valor");
         }
-        if (Utilidades.R_ln.equals("Sin valor")){
+        if (Utilidades.R_ln.isEmpty()){
             result_ln.setTextColor(getResources().getColor(R.color.colorAccent));
+            result_ln.setText("Sin valor");
         }
-        if (Utilidades.R_m.equals("Sin valor")){
+        if (Utilidades.R_m.isEmpty()){
             result_m.setTextColor(getResources().getColor(R.color.colorAccent));
+            result_m.setText("Sin valor");
         }
-        if (Utilidades.R_c.equals("Sin valor")){
+        if (Utilidades.R_c.isEmpty()){
             result_c.setTextColor(getResources().getColor(R.color.colorAccent));
+            result_c.setText("Sin valor");
         }
-        if (Utilidades.R_bs.equals("Sin valor")){
+        if (Utilidades.R_bs.isEmpty()){
             result_bs.setTextColor(getResources().getColor(R.color.colorAccent));
+            result_bs.setText("Sin valor");
         }
 
         if (
-            Utilidades.R_cc.equals("Sin valor") ||
-            Utilidades.R_s.equals("Sin valor") ||
-            Utilidades.R_rd.equals("Sin valor") ||
-            Utilidades.R_co.equals("Sin valor") ||
-            Utilidades.R_cl.equals("Sin valor") ||
-            Utilidades.R_v.equals("Sin valor") ||
-            Utilidades.R_ln.equals("Sin valor") ||
-            Utilidades.R_m.equals("Sin valor") ||
-            Utilidades.R_c.equals("Sin valor") ||
-            Utilidades.R_bs.equals("Sin valor")
+            Utilidades.R_cc.isEmpty() ||
+            Utilidades.R_s.isEmpty() ||
+            Utilidades.R_rd.isEmpty() ||
+            Utilidades.R_co.isEmpty() ||
+            Utilidades.R_cl.isEmpty() ||
+            Utilidades.R_v.isEmpty() ||
+            Utilidades.R_ln.isEmpty() ||
+            Utilidades.R_m.isEmpty() ||
+            Utilidades.R_c.isEmpty() ||
+            Utilidades.R_bs.isEmpty()
                 ){
             mensaje.setText(getResources().getString(R.string.mensajeCompletar));
             mensaje.setTextColor(getResources().getColor(R.color.colorAccent));

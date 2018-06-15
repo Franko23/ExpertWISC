@@ -15,21 +15,21 @@ public class Utilidades {
 
     public static String edadActual; //Edad del paciente actual
 
-    public static String R_cc = "Sin valor";
-    public static String R_s = "Sin valor";
-    public static String R_rd = "Sin valor";
-    public static String R_co = "Sin valor";
-    public static String R_cl = "Sin valor";
-    public static String R_v = "Sin valor";
-    public static String R_ln = "Sin valor";
-    public static String R_m = "Sin valor";
-    public static String R_c = "Sin valor";
-    public static String R_bs = "Sin valor";
-    public static String R_cf = "Sin valor";
-    public static String R_a = "Sin valor";
-    public static String R_i = "Sin valor";
-    public static String R_ar = "Sin valor";
-    public static String R_ad = "Sin valor";
+    public static String R_cc;
+    public static String R_s;
+    public static String R_rd;
+    public static String R_co;
+    public static String R_cl;
+    public static String R_v;
+    public static String R_ln;
+    public static String R_m;
+    public static String R_c;
+    public static String R_bs;
+    public static String R_cf;
+    public static String R_a;
+    public static String R_i;
+    public static String R_ar;
+    public static String R_ad;
 
     public static List<String> listResultEscalar;
     public static List<String> listResultCompuesta;

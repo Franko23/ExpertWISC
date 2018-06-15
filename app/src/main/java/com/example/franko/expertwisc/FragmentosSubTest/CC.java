@@ -107,6 +107,8 @@ public class CC extends Fragment {
             }
         });
 
+        res_cc.setText(Utilidades.R_cc);
+
         res_cc.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

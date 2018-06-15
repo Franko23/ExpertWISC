@@ -118,7 +118,7 @@ public class Cl extends Fragment {
                 myDialog.show();
             }
         });
-
+        res_cl.setText(Utilidades.R_cl);
         res_cl.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

@@ -115,7 +115,7 @@ public class Ar extends Fragment {
                 myDialog.show();
             }
         });
-
+        res_ar.setText(Utilidades.R_ar);
         res_ar.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

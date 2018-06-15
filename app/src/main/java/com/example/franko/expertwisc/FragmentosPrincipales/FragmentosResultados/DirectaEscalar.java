@@ -153,22 +153,11 @@ public class DirectaEscalar extends Fragment {
         puntos_m.setText(Utilidades.R_m);
         puntos_c.setText(Utilidades.R_c);
         puntos_bs.setText(Utilidades.R_bs);
-
-        if (!Utilidades.R_cf.equals("Sin valor")){
-            puntos_cf.setText(Utilidades.R_cf);
-        }
-        if (!Utilidades.R_a.equals("Sin valor")){
-            puntos_a.setText(Utilidades.R_a);
-        }
-        if (!Utilidades.R_i.equals("Sin valor")){
-            puntos_i.setText(Utilidades.R_i);
-        }
-        if (!Utilidades.R_ar.equals("Sin valor")){
-            puntos_ar.setText(Utilidades.R_ar);
-        }
-        if (!Utilidades.R_ad.equals("Sin valor")){
-            puntos_ad.setText(Utilidades.R_ad);
-        }
+        puntos_cf.setText(Utilidades.R_cf);
+        puntos_a.setText(Utilidades.R_a);
+        puntos_i.setText(Utilidades.R_i);
+        puntos_ar.setText(Utilidades.R_ar);
+        puntos_ad.setText(Utilidades.R_ad);
 
         List<String> values0 = new ArrayList<>();
 

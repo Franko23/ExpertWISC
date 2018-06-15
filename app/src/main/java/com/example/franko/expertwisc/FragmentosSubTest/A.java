@@ -112,7 +112,7 @@ public class A extends Fragment {
                 myDialog.show();
             }
         });
-
+        res_a.setText(Utilidades.R_a);
         res_a.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {

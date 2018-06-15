@@ -172,42 +172,45 @@ public class Register extends AppCompatActivity {
             cancel = true;
         }else {
 
+            if (!textInputEditTextContraseña.equals(textInputEditTextConfirmarContraseña)){
+                Toast.makeText(getApplicationContext(),"La contraseña debe ser la misma",Toast.LENGTH_SHORT).show();
+                focusView = textInputEditTextConfirmarContraseña;
+            }else {
+                ContentValues persona = new ContentValues();
+                persona.put(Utilidades.CAMPO_NOMBRE_PERSONA, nombre);
+                persona.put(Utilidades.CAMPO_APELLIDO_PERSONA, apellido);
+                persona.put(Utilidades.CAMPO_IMAGEN_PERSONA, data);
+                persona.put(Utilidades.CAMPO_TIPO_PERSONA, "user");
 
-            ContentValues persona = new ContentValues();
-            persona.put(Utilidades.CAMPO_NOMBRE_PERSONA, nombre);
-            persona.put(Utilidades.CAMPO_APELLIDO_PERSONA, apellido);
-            persona.put(Utilidades.CAMPO_IMAGEN_PERSONA, data);
-            persona.put(Utilidades.CAMPO_TIPO_PERSONA, "user");
+                ContentValues user = new ContentValues();
 
-            ContentValues user = new ContentValues();
+                try {
+                    //ProgressDialog
+                    PBDialog PBDialog = new PBDialog(context);
+                    PBDialog.setProgressBar();
 
-            try {
-                //ProgressDialog
-                PBDialog PBDialog = new PBDialog(context);
-                PBDialog.setProgressBar();
+                    //Insert to Table Person
+                    Long resPersona=db.insert(Utilidades.TABLA_PERSONA, Utilidades.CAMPO_ID_PERSONA, persona);
+                    //Obtenemos el resultado en Long y convertimos a String
+                    String a, b;
+                    a = Long.toString(resPersona);
+                    //Convertimos el resultado String en int
+                    int number = Integer.parseInt(a);
 
-                //Insert to Table Person
-                Long resPersona=db.insert(Utilidades.TABLA_PERSONA, Utilidades.CAMPO_ID_PERSONA, persona);
-                //Obtenemos el resultado en Long y convertimos a String
-                String a, b;
-                a = Long.toString(resPersona);
-                //Convertimos el resultado String en int
-                int number = Integer.parseInt(a);
+                    user.put(Utilidades.CAMPO_NOMBRE_USUARIO, usuario);
+                    user.put(Utilidades.CAMPO_CONTRASENA_USUARIO, contraseña);
+                    user.put(Utilidades.CAMPO_ID_PERSONA, number);
 
-                user.put(Utilidades.CAMPO_NOMBRE_USUARIO, usuario);
-                user.put(Utilidades.CAMPO_CONTRASENA_USUARIO, contraseña);
-                user.put(Utilidades.CAMPO_ID_PERSONA, number);
+                    Long resUser=db.insert(Utilidades.TABLA_USUARIO, Utilidades.CAMPO_ID_USUARIO, user);
+                    b = Long.toString(resUser);
 
-                Long resUser=db.insert(Utilidades.TABLA_USUARIO, Utilidades.CAMPO_ID_USUARIO, user);
-                b = Long.toString(resUser);
-
-                Toast.makeText(getApplicationContext(),"Persona: "+a + " Usuario "+b, Toast.LENGTH_SHORT).show();
-                Intent intent =  new Intent(getApplicationContext(), Login.class);
-                startActivity(intent);
-            }catch (Exception e){
-                Toast.makeText(getApplicationContext(),"Error al insertar Usuario o Persona", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(getApplicationContext(),"Persona: "+a + " Usuario "+b, Toast.LENGTH_SHORT).show();
+                    Intent intent =  new Intent(getApplicationContext(), Login.class);
+                    startActivity(intent);
+                }catch (Exception e){
+                    Toast.makeText(getApplicationContext(),"Error al insertar Usuario o Persona", Toast.LENGTH_SHORT).show();
+                }
             }
-
         }
         db.close();
         if (cancel){

@@ -2,6 +2,7 @@ package com.example.franko.expertwisc.Entidades;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
 
@@ -89,6 +90,40 @@ public class Test {
         int id = db.update(Utilidades.TABLA_TEST,test,Utilidades.CAMPO_ID_TEST+"="+Utilidades.currentTest,null);
         Toast.makeText(context,"Cambio de estado = "+id,Toast.LENGTH_SHORT).show();
         db.close();
+    }
+
+    public void ConsultaIntervalo(Context context, int id_test){
+        this.context = context;
+        con = new ConexionHelper(context, "bd_wisc", null, 1);
+        SQLiteDatabase db = con.getWritableDatabase();
+
+        Cursor cursor;
+
+        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_TEST+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
+        while (cursor.moveToNext()){
+            setIntervalo_confianza(cursor.getString(1));
+            Utilidades.intervalo_confianza = getIntervalo_confianza();
+        }
+
+        db.close();
+    }
+
+    public void Valores(){
+        Utilidades.R_cc = "";
+        Utilidades.R_s = "";
+        Utilidades.R_rd = "";
+        Utilidades.R_co = "";
+        Utilidades.R_cl = "";
+        Utilidades.R_ln = "";
+        Utilidades.R_v = "";
+        Utilidades.R_m = "";
+        Utilidades.R_c = "";
+        Utilidades.R_bs = "";
+        Utilidades.R_cf = "";
+        Utilidades.R_a = "";
+        Utilidades.R_i = "";
+        Utilidades.R_ar = "";
+        Utilidades.R_ad = "";
     }
 
 }

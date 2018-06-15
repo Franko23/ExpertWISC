@@ -2,6 +2,7 @@ package com.example.franko.expertwisc.Entidades.SubTest;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
 
@@ -44,5 +45,22 @@ public class SubTestLN {
         }catch (Exception e){
             Toast.makeText(context,"Error al insertar puntuacion LN ",Toast.LENGTH_SHORT).show();
         }
+        db.close();
+    }
+
+    public void ConsultaLN(Context context, int id_test){
+        this.context = context;
+        con = new ConexionHelper(context, "bd_wisc", null, 1);
+        SQLiteDatabase db = con.getReadableDatabase();
+
+        Cursor cursor;
+
+        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_LN+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
+        while (cursor.moveToNext()){
+            setPuntuacionDirectaTotalLN(cursor.getString(1));
+            Utilidades.R_ln = getPuntuacionDirectaTotalLN();
+        }
+
+        db.close();
     }
 }

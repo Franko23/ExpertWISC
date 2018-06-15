@@ -2,6 +2,7 @@ package com.example.franko.expertwisc.Entidades.SubTest;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
 
@@ -44,5 +45,22 @@ public class SubTestAr {
         }catch (Exception e){
             Toast.makeText(context,"Error al insertar puntuacion Ar ",Toast.LENGTH_SHORT).show();
         }
+        db.close();
+    }
+
+    public void ConsultaAr(Context context, int id_test){
+        this.context = context;
+        con = new ConexionHelper(context, "bd_wisc", null, 1);
+        SQLiteDatabase db = con.getReadableDatabase();
+
+        Cursor cursor;
+
+        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_AR+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
+        while (cursor.moveToNext()){
+            setPuntuacionDirectaTotalAr(cursor.getString(1));
+            Utilidades.R_ar = getPuntuacionDirectaTotalAr();
+        }
+
+        db.close();
     }
 }

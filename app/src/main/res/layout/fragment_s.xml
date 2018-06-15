@@ -304,7 +304,8 @@
                         android:layout_width="match_parent"
                         android:layout_height="50dp"
                         android:gravity="center"
-                        android:inputType="number"/>
+                        android:inputType="number"
+                        android:enabled="false"/>
                     <EditText
                         android:layout_width="match_parent"
                         android:layout_height="50dp"

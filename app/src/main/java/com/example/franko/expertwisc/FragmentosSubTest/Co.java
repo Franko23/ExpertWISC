@@ -104,7 +104,7 @@ public class Co extends Fragment {
                 myDialog.show();
             }
         });
-
+        res_co.setText(Utilidades.R_co);
         res_co.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
