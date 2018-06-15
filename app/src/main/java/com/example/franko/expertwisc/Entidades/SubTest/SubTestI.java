@@ -41,7 +41,7 @@ public class SubTestI {
 
         try {
             Long id_I = db.insert(Utilidades.TABLA_PUNTUACIONES_I, Utilidades.CAMPO_ID_PUNTUACION_I, contentValues);
-            Toast.makeText(context,"Inserción de puntuacion I correcta",Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context,"Inserción de puntuacion I correcta",Toast.LENGTH_SHORT).show();
         }catch (Exception e){
             Toast.makeText(context,"Error al insertar puntuacion I ",Toast.LENGTH_SHORT).show();
         }

@@ -143,7 +143,7 @@ public class ListaPacientes extends Fragment{
                 FloatingActionButton floatingActionButton = view.findViewById(R.id.fab);
                 floatingActionButton.hide();
 
-                Toast.makeText(getContext(),"Id: "+listaPacientes.get(recyclerViewPacientes.getChildAdapterPosition(v)).getId_persona(),Toast.LENGTH_LONG).show();
+//                Toast.makeText(getContext(),"Id: "+listaPacientes.get(recyclerViewPacientes.getChildAdapterPosition(v)).getId_persona(),Toast.LENGTH_LONG).show();
             }
         });
 

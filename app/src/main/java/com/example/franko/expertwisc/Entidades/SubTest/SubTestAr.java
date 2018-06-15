@@ -41,7 +41,7 @@ public class SubTestAr {
 
         try {
             Long id_Ar = db.insert(Utilidades.TABLA_PUNTUACIONES_AR, Utilidades.CAMPO_ID_PUNTUACION_AR, contentValues);
-            Toast.makeText(context,"Inserción de puntuacion Ar correcta",Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context,"Inserción de puntuacion Ar correcta",Toast.LENGTH_SHORT).show();
         }catch (Exception e){
             Toast.makeText(context,"Error al insertar puntuacion Ar ",Toast.LENGTH_SHORT).show();
         }

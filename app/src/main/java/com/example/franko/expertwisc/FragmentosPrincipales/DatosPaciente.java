@@ -11,12 +11,14 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.AppCompatImageView;
@@ -242,6 +244,8 @@ public class DatosPaciente extends Fragment {
                 int id_test = listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test();
                 Utilidades.currentTest=id_test;
                 if (estado.equals("EN CURSO")){
+                    PBDialog PBDialog = new PBDialog(getContext());
+                    PBDialog.setProgressBar();
                     Test test = new Test();
                     test.Valores();
                     ConsultaView(id_test);
@@ -252,13 +256,15 @@ public class DatosPaciente extends Fragment {
                     getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
 
                 }else if (estado.equals("FINALIZADO")){
+                    PBDialog PBDialog = new PBDialog(getContext());
+                    PBDialog.setProgressBar();
                     Test test = new Test();
                     test.Valores();
                     ConsultaView(id_test);
 
                     Fragment fragment =  new Resultados();
                     getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
-                    Toast.makeText(getContext(),estado,Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(),estado,Toast.LENGTH_SHORT).show();
                 }
             }
         });
@@ -433,7 +439,9 @@ public class DatosPaciente extends Fragment {
             int okPaciente=db.update(Utilidades.TABLA_PACIENTE,pacienteUpdate,Utilidades.CAMPO_ID_PACIENTE+"="+paciente.getId_paciente(),null);
 
             if (okPaciente == 1 && okPersona == 1){
-                Toast.makeText(getContext(),"Datos actualizados satisfactoriamente", Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(),"Datos actualizados satisfactoriamente", Toast.LENGTH_SHORT).show();
+                Snackbar.make(view, "Datos actualizados satisfactoriamente", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).setActionTextColor(Color.RED).show();
                 nombrePrincipal.setText(editNombres.getText().toString()+" "+editApellidos.getText().toString());
                 layout_datos_edit.setVisibility(View.GONE);
             }
@@ -472,7 +480,7 @@ public class DatosPaciente extends Fragment {
         String a = Long.toString(idTest);
         int id_test = Integer.parseInt(a);
         Utilidades.currentTest = id_test;
-        Toast.makeText(getContext(),"Test nro "+a,Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(),"Test nro "+a,Toast.LENGTH_SHORT).show();
 
         db.close();
 

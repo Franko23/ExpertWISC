@@ -15,6 +15,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
 import android.support.v4.app.ActivityCompat;
@@ -37,6 +38,7 @@ import java.io.InputStream;
 public class Register extends AppCompatActivity {
     final Context context = this;
     ConexionHelper con;
+
 
     private TextInputLayout textInputLayoutNombre;
     private TextInputLayout textInputLayoutApellido;
@@ -90,7 +92,7 @@ public class Register extends AppCompatActivity {
         appCompatButtonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                registrarUsuario();
+                registrarUsuario(v);
             }
         });
 
@@ -135,7 +137,7 @@ public class Register extends AppCompatActivity {
 
     }
 
-    private void registrarUsuario() {
+    private void registrarUsuario(View view) {
 
         SQLiteDatabase db = con.getWritableDatabase();
         View focusView = null;
@@ -172,8 +174,9 @@ public class Register extends AppCompatActivity {
             cancel = true;
         }else {
 
-            if (!textInputEditTextContraseña.equals(textInputEditTextConfirmarContraseña)){
-                Toast.makeText(getApplicationContext(),"La contraseña debe ser la misma",Toast.LENGTH_SHORT).show();
+            if (!contraseña.equals(conContraseña)){
+//                Toast.makeText(getApplicationContext(),"La contraseña debe ser la misma",Toast.LENGTH_SHORT).show();
+                textInputLayoutConfirmararContraseña.setError(getString(R.string.error_password_equals));
                 focusView = textInputEditTextConfirmarContraseña;
             }else {
                 ContentValues persona = new ContentValues();
@@ -203,13 +206,17 @@ public class Register extends AppCompatActivity {
 
                     Long resUser=db.insert(Utilidades.TABLA_USUARIO, Utilidades.CAMPO_ID_USUARIO, user);
                     b = Long.toString(resUser);
+//                    Snackbar.make(view, "Usuario almacenado exitosamente", Snackbar.LENGTH_LONG)
+//                            .setAction("Action", null).show();
 
-                    Toast.makeText(getApplicationContext(),"Persona: "+a + " Usuario "+b, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getApplicationContext(),"Persona: "+a + " Usuario "+b, Toast.LENGTH_SHORT).show();
                     Intent intent =  new Intent(getApplicationContext(), Login.class);
                     startActivity(intent);
                 }catch (Exception e){
-                    Toast.makeText(getApplicationContext(),"Error al insertar Usuario o Persona", Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getApplicationContext(),"Error al insertar Usuario o Persona", Toast.LENGTH_SHORT).show();
                 }
+                Snackbar.make(view, "Error al guardar usuario", Snackbar.LENGTH_LONG)
+                        .setAction("Action", null).show();
             }
         }
         db.close();

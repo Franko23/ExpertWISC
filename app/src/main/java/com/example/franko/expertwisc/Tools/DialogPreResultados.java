@@ -96,12 +96,12 @@ public class DialogPreResultados extends DialogFragment{
                     case R.id.radio_90:
                         Utilidades.intervalo_confianza = "90";
                         UpdateTest(Utilidades.intervalo_confianza);
-                        Toast.makeText(getContext(), Utilidades.intervalo_confianza, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getContext(), Utilidades.intervalo_confianza, Toast.LENGTH_SHORT).show();
                         break;
                     case R.id.radio_95:
                         Utilidades.intervalo_confianza = "95";
                         UpdateTest(Utilidades.intervalo_confianza);
-                        Toast.makeText(getContext(), Utilidades.intervalo_confianza, Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getContext(), Utilidades.intervalo_confianza, Toast.LENGTH_SHORT).show();
                         break;
                 }
             }
@@ -203,7 +203,7 @@ public class DialogPreResultados extends DialogFragment{
         ContentValues test = new ContentValues();
         test.put(Utilidades.CAMPO_INTERVALO, intervalo);
         int ok = db.update(Utilidades.TABLA_TEST,test,Utilidades.CAMPO_ID_TEST+"="+Utilidades.currentTest,null);
-        Toast.makeText(getContext(),"Intervalo "+intervalo+" = "+ok,Toast.LENGTH_SHORT).show();
+//        Toast.makeText(getContext(),"Intervalo "+intervalo+" = "+ok,Toast.LENGTH_SHORT).show();
         db.close();
     }
 

@@ -19,6 +19,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.DialogFragment;
@@ -273,7 +274,7 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                                     String a = Long.toString(idTest);
                                     int id_test = Integer.parseInt(a);
                                     Utilidades.currentTest = id_test;
-                                    Toast.makeText(getContext(),"Id_Test: "+a ,  Toast.LENGTH_SHORT).show();
+//                                    Toast.makeText(getContext(),"Id_Test: "+a ,  Toast.LENGTH_SHORT).show();
 
                                     Fragment fragment = new GeneralSubPruebas();
                                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -310,7 +311,9 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                     AlertDialog dialog = builder.create();
                     dialog.show();
                 }else{
-                    Toast.makeText(getContext(),"La edad tiene que ser mayor a 6 y menor a 17 años",Toast.LENGTH_LONG).show();
+//                    Toast.makeText(getContext(),"La edad tiene que ser mayor a 6 y menor a 17 años",Toast.LENGTH_LONG).show();
+                    Snackbar.make(view, "La edad debe de ser mayor a 6 y menor a 17 años", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).show();
                 }
             }
         });
@@ -424,7 +427,7 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                 String b = Long.toString(idPaciente);
                 id_paciente = Integer.parseInt(b);
 
-                Toast.makeText(getContext(),"Persona "+a + " Paciente "+b, Toast.LENGTH_SHORT).show();
+//                Toast.makeText(getContext(),"Persona "+a + " Paciente "+b, Toast.LENGTH_SHORT).show();
 
                 db.close();
 

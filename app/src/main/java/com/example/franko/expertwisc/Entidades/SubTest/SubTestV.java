@@ -41,7 +41,7 @@ public class SubTestV {
 
         try {
             Long id_V = db.insert(Utilidades.TABLA_PUNTUACIONES_V, Utilidades.CAMPO_ID_PUNTUACION_V, contentValues);
-            Toast.makeText(context,"Inserción de puntuacion V correcta",Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context,"Inserción de puntuacion V correcta",Toast.LENGTH_SHORT).show();
         }catch (Exception e){
             Toast.makeText(context,"Error al insertar puntuacion V ",Toast.LENGTH_SHORT).show();
         }

@@ -241,14 +241,14 @@ public class Home extends AppCompatActivity
             CambioTitulo("Registro de pacientes");
         } else if (id == R.id.nav_slideshow) {
             fragment = new GeneralSubPruebas();
-            aBoolean = true;
-            fab.hide();
-            CambioTitulo("Sub Test");
+//            aBoolean = true;
+//            fab.hide();
+//            CambioTitulo("Cuenta");
         } else if (id == R.id.nav_manage) {
 //            fragment = new Resultados();
-            aBoolean = true;
-            fab.hide();
-            CambioTitulo("Resultados");
+//            aBoolean = true;
+//            fab.hide();
+//            CambioTitulo("Configuraciones");
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

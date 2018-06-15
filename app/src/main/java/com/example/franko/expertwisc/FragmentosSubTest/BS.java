@@ -6,6 +6,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
@@ -145,7 +146,8 @@ public class BS extends Fragment {
                     Utilidades.R_bs = (res_bs.getText().toString());
                     guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 //                    Toast.makeText(getContext(),Utilidades.R_bs+" GUARDADO",Toast.LENGTH_SHORT).show();
-
+                    Snackbar.make(view, Utilidades.R_bs +" puntos guardado", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).setActionTextColor(Color.RED).show();
                     //Mostramos el dialogo de Presultados
                     FragmentTransaction ft = getFragmentManager().beginTransaction();
                     Fragment prev = getFragmentManager().findFragmentByTag("dialog");
@@ -156,7 +158,10 @@ public class BS extends Fragment {
                     DialogFragment dialogFragment = new DialogPreResultados();
                     dialogFragment.show(ft, "dialog");
                 }else{
-                    Toast.makeText(getContext(),"El valor no debe de ser mayor a "+valorMax,Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(),"El valor no debe de ser mayor a "+valorMax,Toast.LENGTH_SHORT).show();
+                    Snackbar.make(view, "El valor no debe de ser mayor a "+valorMax, Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).setActionTextColor(Color.RED).show();
+
                 }
 
 

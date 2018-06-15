@@ -53,7 +53,7 @@ public class SubTestCC {
         try {
             Long id_CC = db.insert(Utilidades.TABLA_PUNTUACIONES_CC, Utilidades.CAMPO_ID_PUNTUACION_CC, contentValues);
             this.id_CC = Integer.parseInt(id_CC.toString());
-            Toast.makeText(context,"Inserción de puntuacion CC correcta",Toast.LENGTH_SHORT).show();
+//            Toast.makeText(context,"Inserción de puntuacion CC correcta",Toast.LENGTH_SHORT).show();
         }catch (Exception e){
             Toast.makeText(context,"Error al insertar puntuacion CC",Toast.LENGTH_SHORT).show();
         }

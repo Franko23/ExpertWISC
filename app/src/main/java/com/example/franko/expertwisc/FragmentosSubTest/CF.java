@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.text.Editable;
@@ -142,9 +143,13 @@ public class CF extends Fragment {
                     Utilidades.R_cf = (res_cf.getText().toString());
                     guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 //                    Toast.makeText(getContext(),Utilidades.R_cf+" GUARDADO",Toast.LENGTH_SHORT).show();
+                    Snackbar.make(view, Utilidades.R_cf +" puntos guardado", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).setActionTextColor(Color.RED).show();
                     Dialogreemplazo();
                 }else{
-                    Toast.makeText(getContext(),"El valor no debe de ser mayor a 38",Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getContext(),"El valor no debe de ser mayor a 38",Toast.LENGTH_SHORT).show();
+                    Snackbar.make(view, "El valor no debe de ser mayor a 38", Snackbar.LENGTH_LONG)
+                            .setAction("Action", null).setActionTextColor(Color.RED).show();
                 }
             }
         });

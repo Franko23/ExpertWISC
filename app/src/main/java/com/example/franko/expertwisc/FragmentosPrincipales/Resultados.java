@@ -139,16 +139,6 @@ public class Resultados extends Fragment {
         return view;
     }
 
-    private void UpdateTestState() {
-        SQLiteDatabase db = con.getWritableDatabase();
-
-        ContentValues test = new ContentValues();
-        test.put(Utilidades.CAMPO_ESTADO_TEST, "FINALIZADO");
-        int id = db.update(Utilidades.TABLA_TEST,test,Utilidades.CAMPO_ID_TEST+"="+Utilidades.currentTest,null);
-        Toast.makeText(getContext(),""+id,Toast.LENGTH_SHORT).show();
-        db.close();
-    }
-
     private void llenarViewPager(ViewPager viewPager) {
         SeccionesAdapter seccionesAdapter = new SeccionesAdapter(getFragmentManager());
         seccionesAdapter.addFragment(new DirectaEscalar(),"Conversión Directa Escalar");
