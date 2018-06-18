@@ -43,6 +43,7 @@ import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.IndicesCI;
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.PerfilCompuestas;
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.PerfilEscalar;
+import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.Sugerencias;
 import com.example.franko.expertwisc.FragmentosPrincipales.GeneralSubPruebas;
 import com.example.franko.expertwisc.FragmentosPrincipales.ListaPacientes;
 import com.example.franko.expertwisc.FragmentosPrincipales.RegistroPaciente;
@@ -95,7 +96,8 @@ public class Home extends AppCompatActivity
         DirectaEscalar.OnFragmentInteractionListener,
         IndicesCI.OnFragmentInteractionListener,
         PerfilCompuestas.OnFragmentInteractionListener,
-        PerfilEscalar.OnFragmentInteractionListener
+        PerfilEscalar.OnFragmentInteractionListener,
+        Sugerencias.OnFragmentInteractionListener
 {
     FloatingActionButton fab;
     ImageView imageViewProfile;
@@ -240,9 +242,9 @@ public class Home extends AppCompatActivity
             fab.hide();
             CambioTitulo("Registro de pacientes");
         } else if (id == R.id.nav_slideshow) {
-            fragment = new GeneralSubPruebas();
-//            aBoolean = true;
-//            fab.hide();
+            fragment = new Sugerencias();
+            aBoolean = true;
+            fab.hide();
 //            CambioTitulo("Cuenta");
         } else if (id == R.id.nav_manage) {
 //            fragment = new Resultados();

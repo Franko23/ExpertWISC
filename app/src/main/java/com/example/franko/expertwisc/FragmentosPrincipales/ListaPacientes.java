@@ -125,6 +125,7 @@ public class ListaPacientes extends Fragment{
 
                 //Obtenemos los datos de la persona por el id_persona
                 persona = obtenerPersona(id_persona);
+                Utilidades.currentPacienteName = persona.getNombre_persona();
                 //Serializamos los datos de la persona en bundlePersona
                 Bundle bundlePersona = new Bundle();
                 bundlePersona.putSerializable("persona",persona);

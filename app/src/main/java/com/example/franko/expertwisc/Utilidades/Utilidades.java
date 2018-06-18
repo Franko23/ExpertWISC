@@ -49,10 +49,19 @@ public class Utilidades {
     public static int currentUserIdPersona = 0;//Id_persona del usuario actual
     public static int currentUserIdUsuario = 0;//Id_usuario del usuario actual
 
+    public static String currentUserName;
+    public static String currentPacienteName;
+
     public static int currentTest = 0;
 
     public static Boolean disable = false;
 
+    public static String LEE;
+    public static String PROLEC;
+    public static String BENDER;
+    public static String TEPSI;
+    public static String PRECALCULO;
+    public static String PROCALCULO;
 
     //Constantes Campo Persona
     public static String TABLA_PERSONA = "persona";

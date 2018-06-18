@@ -126,6 +126,7 @@ public class Login extends AppCompatActivity {
 
                     Persona persona = null;
                     persona = llenarUsuario(id_persona);
+                    Utilidades.currentUserName = persona.getNombre_persona();
                     Bundle bundle = new Bundle();
                     bundle.putSerializable("persona",persona);
 

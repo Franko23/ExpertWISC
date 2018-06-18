@@ -155,15 +155,16 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
             Utilidades.rotacionG =1;
         }
 
-//        bundle = getArguments();
+        bundle = getArguments();
         Persona persona = null;
-//        if (bundle != null) {
-//            persona = (Persona) bundle.getSerializable("Persona") ;
-            //Calculamos la fecha de nacimiento de la persona
-//            CalcularEdad calcularEdad = new CalcularEdad(persona.getFecha_nacimiento_persona());
-//            String edadPersona = calcularEdad.CalcularEdad();
-//            Titulo = persona.getNombre_persona() + " - " + edadPersona;
-//        }
+        if (bundle != null) {
+            persona = (Persona) bundle.getSerializable("Persona") ;
+//            Calculamos la fecha de nacimiento de la persona
+            CalcularEdad calcularEdad = new CalcularEdad(persona.getFecha_nacimiento_persona());
+            String edadPersona = calcularEdad.CalcularEdad();
+            Titulo = persona.getNombre_persona() + " - " + edadPersona;
+            Utilidades.currentPacienteName = persona.getNombre_persona();
+        }
 
         finalizar.setOnClickListener(new View.OnClickListener() {
             @Override

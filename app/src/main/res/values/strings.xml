@@ -157,6 +157,20 @@
     <string name="mensajeContinuar">¿Desea continuar con los sub test opcionales?</string>
     <string name="mensajeCompletar">Por favor, completa los resultados que faltan</string>
     <string name="mensajeIntervalo">Selecciona el intérvalo de confianza</string>
+
+
+    <string name="sugerencia1">Estimado FranKo, hemos notado que José Vargas tiene algunas dificultades en el área de Indice de </string>
+    <string name="sugerencia2">, por lo cual te recomendamos que para tu intervención utilices la siguientes prueba.</string>
+
+    <string name="LEE">El test LEE fortalecerá los siguientes puntos: \n-Comprensión Lectora \n-Inferencias(Lógica verbal) \n-Prosodia(Sistema de Acentuación) \n-SP(Sistema de puntuación).</string>
+    <string name="PROLEC">El test PROLEC se centra en los procesos que intervienen en la comprensión del material escrito: Identificación de letras, Reconocimiento de palabras, Procesos sintácticos y Procesos semánticos.</string>
+    <string name="BENDER">El test BENDER aplica la exploración del retardo, la regresión, la pérdida de función y defectos cerebrales orgánicos, en adultos y en niños, así como de las desviaciones de la personalidad, en especial cuando se manifiesta fenómenos de regresión.</string>
+    <string name="TEPSI">El test de TEPSI evalúa al niño en tres áreas fundamentales: coordinación lenguaje y motrocidad.</string>
+    <string name="ProCalculo">El test Pro Cálculo evalúa la capacidad del niño respecto a su conocimiento del número en las áreas del cálculo y determinar su habilidad de procesamiento.</string>
+    <string name="PreCalculo">El test Pre Cálculo permite la realización de un análisis cualitativo y cuantitativo de las funciones relacionadas con el aprendizaje de las matemáticas.</string>
+
+
+
     <string name="title_activity_settings">Settings</string>
 
     <!-- Strings related to Settings -->

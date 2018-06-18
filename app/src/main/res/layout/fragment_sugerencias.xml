@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".FragmentosPrincipales.FragmentosResultados.Sugerencias">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="650dp"
+        android:orientation="horizontal"
+        android:padding="50dp">
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:src="@drawable/teach1"/>
+        <TextView
+            android:layout_width="400dp"
+            android:layout_height="match_parent"
+            android:textSize="35dp"
+            android:text=""
+            android:id="@+id/txt_sugerencia"
+            android:padding="50dp"/>
+        <TextView
+            android:layout_margin="20dp"
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:id="@+id/result_iq"
+            android:text="98"
+            android:gravity="center"
+            android:textAlignment="center"
+            android:textSize="35dp"
+            android:textColor="#fff"
+            android:background="@drawable/iq"/>
+    </LinearLayout>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <android.support.v7.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/rec_test"
+            android:layout_margin="25dp">
+        </android.support.v7.widget.RecyclerView>
+    </LinearLayout>
+
+
+
+</LinearLayout>
