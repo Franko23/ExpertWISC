@@ -154,7 +154,7 @@ public class BS extends Fragment {
                     if (prev != null) {
                         ft.remove(prev);
                     }
-                    ft.addToBackStack(null);
+//                    ft.addToBackStack(null);
                     DialogFragment dialogFragment = new DialogPreResultados();
                     dialogFragment.show(ft, "dialog");
                 }else{

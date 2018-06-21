@@ -49,6 +49,7 @@ import com.example.franko.expertwisc.FragmentosPrincipales.GeneralSubPruebas;
 import com.example.franko.expertwisc.Tools.CalcularEdad;
 import com.example.franko.expertwisc.Tools.PBDialog;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -255,7 +256,7 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                                 public void onClick(DialogInterface dialog, int which) {
                                     SQLiteDatabase db = con.getWritableDatabase();
 
-                                    //Insertamos los datos del test en la tabla test
+                                    //Insertamos los Datos del test en la tabla test
                                     ContentValues test = new ContentValues();
                                     Calendar calendar = Calendar.getInstance();
                                     SimpleDateFormat mdformat = new SimpleDateFormat("dd/MM/yyyy");
@@ -263,7 +264,7 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                                     test.put(Utilidades.CAMPO_FECHA_TEST,fechaActual);
 
                                     Persona persona = null;
-                                    //Consultamos los datos de Persona del usuario actual
+                                    //Consultamos los Datos de Persona del usuario actual
                                     persona = consultarPersona(Utilidades.currentUserIdPersona);
 
                                     test.put(Utilidades.CAMPO_EVALUADOR_TEST, persona.getNombre_persona()+" "+persona.getApellido_persona());
@@ -279,7 +280,7 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                                     Fragment fragment = new GeneralSubPruebas();
                                     FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
-                                    //Obtenemos datos de la persona para enviar a GeneralSubPruebas
+                                    //Obtenemos Datos de la persona para enviar a GeneralSubPruebas
                                     consultarPersona(id_persona);
 
 //                                    Bundle bundle = new Bundle();
@@ -396,7 +397,7 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
             Toast.makeText(getContext(),"Ingrese Valores", Toast.LENGTH_SHORT).show();
         }
         else {
-
+            FirebaseFirestore dbFire = FirebaseFirestore.getInstance();
             SQLiteDatabase db = con.getWritableDatabase();
 
             ContentValues persona = new ContentValues();
@@ -416,9 +417,12 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                 String a = Long.toString(idPersona);
                 id_persona = Integer.parseInt(a);
 
+
+
                 ContentValues paciente = new ContentValues();
                 paciente.put(Utilidades.CAMPO_MOTIVO_CONSULTA_PACIENTE, motivoConsulta.getText().toString());
                 paciente.put(Utilidades.CAMPO_ANTECEDENTES_PACIENTE, antecedentes.getText().toString());
+                paciente.put(Utilidades.CAMPO_UP_PACIENTE,"NO");
                 paciente.put(Utilidades.CAMPO_ID_PERSONA, id_persona);
                 paciente.put(Utilidades.CAMPO_ID_USUARIO, Utilidades.currentUserIdUsuario);
 
@@ -427,7 +431,6 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                 String b = Long.toString(idPaciente);
                 id_paciente = Integer.parseInt(b);
 
-//                Toast.makeText(getContext(),"Persona "+a + " Paciente "+b, Toast.LENGTH_SHORT).show();
 
                 db.close();
 

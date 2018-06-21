@@ -105,34 +105,35 @@ public class ListaPacientes extends Fragment{
         adapterPacientes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Fragment fragment =  new DatosPaciente();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
 
                 int id_persona = listaPacientes.get(recyclerViewPacientes.getChildAdapterPosition(v)).getId_persona();
 
                 Persona persona = new Persona();
                 Paciente paciente = new Paciente();
 
-                //Obtenemos los datos del paciente por el id_persona
+                //Obtenemos los Datos del paciente por el id_persona
                 paciente = obtenerPaciente(id_persona);
 
                 //Creamos un BundleMaster
                 Bundle bundleMaster = new Bundle();
 
-                //Serializamos los datos del paciente en bundlePaciente
+                //Serializamos los Datos del paciente en bundlePaciente
                 Bundle bundlePaciente = new Bundle();
                 bundlePaciente.putSerializable("paciente",paciente);
 
-                //Obtenemos los datos de la persona por el id_persona
+                //Obtenemos los Datos de la persona por el id_persona
                 persona = obtenerPersona(id_persona);
                 Utilidades.currentPacienteName = persona.getNombre_persona();
-                //Serializamos los datos de la persona en bundlePersona
+                //Serializamos los Datos de la persona en bundlePersona
                 Bundle bundlePersona = new Bundle();
                 bundlePersona.putSerializable("persona",persona);
 
 
                 bundleMaster.putBundle("Paciente",bundlePaciente);
                 bundleMaster.putBundle("Persona",bundlePersona);
+
+                Fragment fragment =  new DatosPaciente();
+                FragmentTransaction transaction = getFragmentManager().beginTransaction();
 //
                 fragment.setArguments(bundleMaster);
 //

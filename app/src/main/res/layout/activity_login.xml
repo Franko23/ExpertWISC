@@ -38,7 +38,7 @@
                 android:hint="@string/prompt_user"
                 android:inputType="textEmailAddress"
                 android:maxLines="1"
-                android:text="fr"
+                android:text="fran"
                 android:singleLine="true" />
 
         </android.support.design.widget.TextInputLayout>
@@ -81,9 +81,20 @@
             android:layout_marginTop="16dp"
             android:background="@color/colorPrimary"
             android:text="@string/action_sign_in"
-            android:textColor="#d9e5f3"
+            android:textColor="#fff"
             android:textStyle="bold" />
 
     </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="25dp"
+        android:textStyle="italic"
+        android:textColor="@color/colorPrimaryDark"
+        android:text="¿Quieres recuperar tus datos?"
+        android:gravity="bottom"
+        android:id="@+id/txt_recuperar"
+        android:textAlignment="textEnd"/>
 
 </android.support.constraint.ConstraintLayout>

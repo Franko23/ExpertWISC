@@ -10,15 +10,17 @@ public class Paciente implements Serializable {
     private Integer Id_paciente;
     private String MotivoConsulta_paciente;
     private String Antecedentes_paciente;
+    private String Up_paciente;
     private Integer Id_persona;
-    private Integer Id_test;
+    private Integer Id_usuario;
 
-    public Paciente(Integer id_paciente, String motivoConsulta_paciente, String antecedentes_paciente, String edad_paciente, Integer id_persona, Integer id_test) {
+    public Paciente(Integer id_paciente, String motivoConsulta_paciente, String antecedentes_paciente, String up_paciente, Integer id_persona, Integer Id_usuario) {
         Id_paciente = id_paciente;
         MotivoConsulta_paciente = motivoConsulta_paciente;
         Antecedentes_paciente = antecedentes_paciente;
+        Up_paciente = up_paciente;
         Id_persona = id_persona;
-        Id_test = id_test;
+        Id_usuario = Id_usuario;
     }
 
     public Paciente() {
@@ -40,6 +42,18 @@ public class Paciente implements Serializable {
         MotivoConsulta_paciente = motivoConsulta_paciente;
     }
 
+    public void setAntecedentes_paciente(String antecedentes_paciente) {
+        Antecedentes_paciente = antecedentes_paciente;
+    }
+
+    public String getUp_paciente() {
+        return Up_paciente;
+    }
+
+    public void setUp_paciente(String up_paciente) {
+        Up_paciente = up_paciente;
+    }
+
     public String getAntecedentes_paciente() {
         return Antecedentes_paciente;
     }
@@ -47,7 +61,6 @@ public class Paciente implements Serializable {
     public void setAntecedentes(String antecedentes_paciente) {
         Antecedentes_paciente = antecedentes_paciente;
     }
-
 
     public Integer getId_persona() {
         return Id_persona;
@@ -57,11 +70,11 @@ public class Paciente implements Serializable {
         Id_persona = id_persona;
     }
 
-    public Integer getId_test() {
-        return Id_test;
+    public Integer getId_usuario() {
+        return Id_usuario;
     }
 
-    public void setId_test(Integer id_test) {
-        Id_test = id_test;
+    public void setId_usuario(Integer id_usuario) {
+        Id_usuario = id_usuario;
     }
 }

@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "1071914631717-m5upr1frjdq14n576iju4mf1drrrqne7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.franko.expertwisc",
+            "certificate_hash": "4b75c6ce972db73b413d2868070b5d25e66191cc"
+          }
+        },
+        {
           "client_id": "1071914631717-dhbc00fdq5gnni1rq3l0uan2d78uugeb.apps.googleusercontent.com",
           "client_type": 3
         },
@@ -33,8 +41,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1071914631717-dhbc00fdq5gnni1rq3l0uan2d78uugeb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2

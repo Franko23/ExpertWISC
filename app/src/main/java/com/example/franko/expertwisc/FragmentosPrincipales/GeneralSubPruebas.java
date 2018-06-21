@@ -12,6 +12,7 @@ import android.support.design.widget.TextInputEditText;
 import android.support.v4.app.Fragment;
 import android.support.v4.view.ViewPager;
 import android.text.TextUtils;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -78,7 +79,7 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
     int id_paciente;
 
     LinearLayout linearLayout;
-
+    private long backPressed;
     String EdadPaciente, Titulo, res_cl, AñoTotal;
     private EditText res_cc, res_s, res_rd, res_co, res_cl_a, res_v, res_ln, res_m, res_c, res_bs, res_cf, res_a, res_i, res_ar, res_ad;
     TextInputEditText res_cl_b;
@@ -242,13 +243,43 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
         if (Utilidades.rotacionG == 0){
             appBarLayout.removeView(tabLayout);
         }
+
     }
 
     @Override
     public void onFragmentInteraction(Uri uri) {
 
     }
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(getView() == null){
+            return;
+        }
 
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK){
+
+                    if (backPressed + 2000 > System.currentTimeMillis()){
+                        Fragment inicio = new ListaPacientes();
+                        getFragmentManager().beginTransaction().replace(R.id.content_main,inicio).commit();
+                    }else{
+                        Toast.makeText(getContext(),"Presiona otra vez para ir al inicio",Toast.LENGTH_SHORT).show();
+                    }
+
+                    backPressed = System.currentTimeMillis();
+
+                    return true;
+                }
+                return false;
+            }
+        });
+    }
     /**
      * This interface must be implemented by activities that contain this
      * fragment to allow an interaction in this fragment to be communicated

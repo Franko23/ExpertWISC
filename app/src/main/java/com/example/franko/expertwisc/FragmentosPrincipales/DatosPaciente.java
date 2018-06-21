@@ -25,6 +25,7 @@ import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -117,6 +118,7 @@ public class DatosPaciente extends Fragment {
     private Boolean hasImageChanged = false;
     Bitmap thumbnail;
 
+    private long backPressed;
     private OnFragmentInteractionListener mListener;
 
     public DatosPaciente() {
@@ -149,7 +151,7 @@ public class DatosPaciente extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         con = new ConexionHelper(getContext(), "bd_wisc", null, 1);
-
+        Utilidades.rotacionFab=1;
     }
 
     @Override
@@ -448,7 +450,7 @@ public class DatosPaciente extends Fragment {
 
 
         }catch (Exception e){
-            Toast.makeText(getContext(),"Error al actualizar datos del paciente", Toast.LENGTH_SHORT).show();
+            Toast.makeText(getContext(),"Error al actualizar Datos del paciente", Toast.LENGTH_SHORT).show();
         }
 
         db.close();
@@ -458,7 +460,7 @@ public class DatosPaciente extends Fragment {
     private void RegistroTest() {
         SQLiteDatabase db = con.getWritableDatabase();
 
-        //Insertamos los datos del test en la tabla test
+        //Insertamos los Datos del test en la tabla test
         ContentValues test = new ContentValues();
 
         Calendar calendar = Calendar.getInstance();
@@ -470,7 +472,7 @@ public class DatosPaciente extends Fragment {
 
         Persona persona = null;
 
-        //Consultamos los datos de Persona del usuario actual
+        //Consultamos los Datos de Persona del usuario actual
         persona = consultarPersona(Utilidades.currentUserIdPersona);
 
         test.put(Utilidades.CAMPO_EVALUADOR_TEST, persona.getNombre_persona()+" "+persona.getApellido_persona());
@@ -611,5 +613,28 @@ public class DatosPaciente extends Fragment {
 //        appCompatImageView.setMaxWidth(300);
         imgDatospaciente.setImageBitmap(thumbnail);
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        if(getView() == null){
+            return;
+        }
+
+        getView().setFocusableInTouchMode(true);
+        getView().requestFocus();
+        getView().setOnKeyListener(new View.OnKeyListener() {
+            @Override
+            public boolean onKey(View v, int keyCode, KeyEvent event) {
+
+                if (event.getAction() == KeyEvent.ACTION_UP && keyCode == KeyEvent.KEYCODE_BACK){
+                    Fragment inicio = new ListaPacientes();
+                    getFragmentManager().beginTransaction().replace(R.id.content_main,inicio).commit();
+                    return true;
+                }
+                return false;
+            }
+        });
     }
 }

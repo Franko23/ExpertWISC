@@ -1,12 +1,7 @@
 package com.example.franko.expertwisc;
 
-import android.Manifest;
-import android.content.ContentValues;
-import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -14,11 +9,8 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.ActivityCompat;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
-import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -28,16 +20,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.franko.expertwisc.Entidades.Paciente;
 import com.example.franko.expertwisc.Entidades.Persona;
-import com.example.franko.expertwisc.Entidades.Usuario;
+import com.example.franko.expertwisc.FragmentosPrincipales.Datos;
 import com.example.franko.expertwisc.FragmentosPrincipales.DatosPaciente;
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.DirectaEscalar;
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.IndicesCI;
@@ -65,9 +54,6 @@ import com.example.franko.expertwisc.FragmentosSubTest.S;
 import com.example.franko.expertwisc.FragmentosSubTest.V;
 import com.example.franko.expertwisc.Tools.BlurBuilder;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
-
-import java.util.ArrayList;
-import java.util.UUID;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -97,7 +83,8 @@ public class Home extends AppCompatActivity
         IndicesCI.OnFragmentInteractionListener,
         PerfilCompuestas.OnFragmentInteractionListener,
         PerfilEscalar.OnFragmentInteractionListener,
-        Sugerencias.OnFragmentInteractionListener
+        Sugerencias.OnFragmentInteractionListener,
+        Datos.OnFragmentInteractionListener
 {
     FloatingActionButton fab;
     ImageView imageViewProfile;
@@ -115,21 +102,6 @@ public class Home extends AppCompatActivity
         con = new ConexionHelper(this,"bd_wisc", null, 1);
 
         fab = (FloatingActionButton) findViewById(R.id.fab);
-
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-//                Intent intent = new Intent(getApplicationContext(),NuevoPaciente.class);
-//                startActivity(intent);
-
-                Fragment fragment = new RegistroPaciente();
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
-                fab.hide();
-                CambioTitulo("Registro de paciente");
-            }
-        });
-
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -141,6 +113,24 @@ public class Home extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().add(R.id.content_main,fragment).commit();
             Utilidades.pantalla = false;
         }
+
+        if (Utilidades.rotacionFab==0){
+            fab.show();
+        }else{
+            fab.hide();
+        }
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fab.hide();
+                Utilidades.rotacionFab=1;
+                Fragment fragment = new RegistroPaciente();
+                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
+
+                CambioTitulo("Registro de paciente");
+            }
+        });
 
         Bundle bundle = getIntent().getExtras();
         Persona persona = null;
@@ -192,7 +182,29 @@ public class Home extends AppCompatActivity
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
-            super.onBackPressed();
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
+            builder.setTitle("SALIR");
+            builder.setMessage("¿Estás seguro de salir?");
+
+            builder.setPositiveButton("Si", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    Utilidades.pantalla=true;
+                    finish();
+                    moveTaskToBack(true);
+                }
+            });
+
+            builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+
+                }
+            });
+
+            builder.show();
+
         }
     }
 
@@ -231,22 +243,25 @@ public class Home extends AppCompatActivity
         Fragment fragment = null;
         Boolean aBoolean = false;
 
-        if (id == R.id.nav_home) {
+        if (id == R.id.nav_inicio) {
             fragment = new ListaPacientes();
             aBoolean = true;
             fab.show();
+            Utilidades.rotacionFab =0;
             CambioTitulo("Inicio");
-        } else if (id == R.id.nav_new) {
+        } else if (id == R.id.nav_nuevo_paciente) {
             fragment = new RegistroPaciente();
             aBoolean = true;
             fab.hide();
+            Utilidades.rotacionFab=1;
             CambioTitulo("Registro de pacientes");
-        } else if (id == R.id.nav_slideshow) {
-            fragment = new Sugerencias();
+        } else if (id == R.id.nav_datos) {
+            fragment = new Datos();
             aBoolean = true;
             fab.hide();
-//            CambioTitulo("Cuenta");
-        } else if (id == R.id.nav_manage) {
+            Utilidades.rotacionFab=1;
+            CambioTitulo("Datos");
+        } else if (id == R.id.nav_config) {
 //            fragment = new Resultados();
 //            aBoolean = true;
 //            fab.hide();

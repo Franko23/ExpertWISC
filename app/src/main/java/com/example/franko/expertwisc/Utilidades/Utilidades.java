@@ -12,6 +12,7 @@ public class Utilidades {
     //Variable de PageViewer
     public static int rotacionG = 0;
     public static int rotacionR = 0;
+    public static int rotacionFab = 0;
 
     public static String edadActual; //Edad del paciente actual
 
@@ -68,7 +69,7 @@ public class Utilidades {
     public static String CAMPO_ID_PERSONA = "id_persona";
     public static String CAMPO_NOMBRE_PERSONA = "nombre_persona";
     public static String CAMPO_APELLIDO_PERSONA = "apellido_persona";
-    public static String CAMPO_FECHA_NACIMIENTO_PERSONA = "edad_persona";
+    public static String CAMPO_FECHA_NACIMIENTO_PERSONA = "fecha_nacimiento_persona";
     public static String CAMPO_IMAGEN_PERSONA = "imagen_persona";
     public static String CAMPO_TIPO_PERSONA = "tipo_persona";
 
@@ -77,19 +78,21 @@ public class Utilidades {
     public static String CAMPO_ID_PACIENTE = "id_paciente";
     public static String CAMPO_MOTIVO_CONSULTA_PACIENTE = "motivo_consulta_paciente";
     public static String CAMPO_ANTECEDENTES_PACIENTE = "antecedentes_paciente";
+    public static String CAMPO_UP_PACIENTE = "up_paciente";
 
     //Constantes Campo Usuario
     public static String TABLA_USUARIO = "usuario";
     public static String CAMPO_ID_USUARIO = "id_usuario";
     public static String CAMPO_NOMBRE_USUARIO = "nombre_usuario";
+    public static String CAMPO_EMAIL_USUARIO = "email_usuario";
     public static String CAMPO_CONTRASENA_USUARIO = "contrasena_usuario";
-    public static String CAMPO_ACTIVO_USUARIO = "activo_usuario";
 
     //Constantes Campo Puntuaciones
     public static String TABLA_PUNTUACIONES_CC = "puntuacion_cc";
     public static String CAMPO_ID_PUNTUACION_CC = "id_puntuacion_cc";
     public static String CAMPO_CC = "campo_cc"; //CC1
     public static String CAMPO_CCS = "campo_ccs"; //CC2
+    public static String CAMPO_UP_CC = "campo_up_cc"; //CC2
 
     public static String TABLA_PUNTUACIONES_S = "puntuacion_s";
     public static String CAMPO_ID_PUNTUACION_S = "id_puntuacion_s";
@@ -168,6 +171,7 @@ public class Utilidades {
     public static final String CAMPO_ESTADO_TEST = "estado_test";
     public static final String CAMPO_EDAD_TEST = "edad_test";
     public static final String CAMPO_INTERVALO = "campo_intervalo";
+    public static final String CAMPO_UP_TEST = "campo_up_test";
 
 
     ///////////////////////////////////////////
@@ -284,6 +288,7 @@ public class Utilidades {
             CAMPO_ID_PACIENTE + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
             CAMPO_MOTIVO_CONSULTA_PACIENTE + " TEXT, " +
             CAMPO_ANTECEDENTES_PACIENTE + " TEXT, " +
+            CAMPO_UP_PACIENTE + " TEXT, " +
             CAMPO_ID_PERSONA+" INTEGER, "+
             CAMPO_ID_USUARIO+" INTEGER "+
             ")";
@@ -301,6 +306,7 @@ public class Utilidades {
             " (" +
             CAMPO_ID_USUARIO + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
             CAMPO_NOMBRE_USUARIO + " TEXT, " +
+            CAMPO_EMAIL_USUARIO + " TEXT, " +
             CAMPO_CONTRASENA_USUARIO + " TEXT," +
             CAMPO_ID_PERSONA+" INTEGER"+
             ")";

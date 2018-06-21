@@ -4,6 +4,8 @@ import android.content.ContentValues;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
+import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -28,6 +30,7 @@ import me.anwarshahriar.calligrapher.Calligrapher;
 public class Login extends AppCompatActivity {
     private TextInputEditText mUserView;
     private TextInputEditText mPasswordView;
+    TextView txt_recuperar;
     ConexionHelper con;
     ArrayList<Usuario> listaUsuario;
     @Override
@@ -40,6 +43,7 @@ public class Login extends AppCompatActivity {
 
         con = new ConexionHelper(this,"bd_wisc", null, 1);
 
+        txt_recuperar = findViewById(R.id.txt_recuperar);
         // Set up the login form.
         mUserView = (TextInputEditText) findViewById(R.id.user);
 //        populateAutoComplete();
@@ -54,6 +58,14 @@ public class Login extends AppCompatActivity {
                     return true;
                 }
                 return false;
+            }
+        });
+
+        txt_recuperar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+//                startActivity(new Intent(getApplicationContext(),Recuperar.class));
+                Snackbar.make(view, "Pronto", Snackbar.LENGTH_LONG).show();
             }
         });
 
