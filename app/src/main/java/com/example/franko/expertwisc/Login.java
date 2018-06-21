@@ -127,6 +127,7 @@ public class Login extends AppCompatActivity {
                         id_usuario = pw.getInt(1);
                     }
 
+                    Utilidades.currentUser = user;
                     Utilidades.currentUserIdPersona = id_usuario;
                     Utilidades.currentUserIdUsuario = id_usuario;
 //                    ContentValues usuario = new ContentValues();

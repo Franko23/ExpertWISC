@@ -4,8 +4,9 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.example.franko.expertwisc"
-        minSdkVersion 17
+        minSdkVersion 20
         targetSdkVersion 27
+        multiDexEnabled true
         renderscriptTargetApi 18
         renderscriptSupportModeEnabled true
         versionCode 1
@@ -34,7 +35,7 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.1.1'
     implementation 'com.android.support:design:27.1.1'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.0'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
     implementation 'de.hdodenhof:circleimageview:2.2.0'
     implementation 'com.android.support:support-v4:27.1.1'
     implementation 'com.android.support:recyclerview-v7:27.1.1'
@@ -46,10 +47,9 @@ dependencies {
     implementation 'me.anwarshahriar:calligrapher:1.0'
     implementation 'com.android.support:cardview-v7:27.1.1'
     implementation 'com.github.PhilJay:MPAndroidChart:v3.0.3'
-    implementation 'com.google.firebase:firebase-core:16.0.0'
+    implementation 'com.google.firebase:firebase-core:16.0.1'
     implementation 'com.google.firebase:firebase-database:16.0.1'
-    implementation 'com.google.firebase:firebase-auth:10.0.1'
-    implementation 'com.google.firebase:firebase-firestore:15.0.0'
+    implementation 'com.google.firebase:firebase-firestore:17.0.1'
     implementation files('sampledata/rule.jar')
     implementation 'com.treebo:internetavailabilitychecker:1.0.1'
 }

@@ -50,6 +50,7 @@ public class Utilidades {
     public static int currentUserIdPersona = 0;//Id_persona del usuario actual
     public static int currentUserIdUsuario = 0;//Id_usuario del usuario actual
 
+    public static String currentUser;
     public static String currentUserName;
     public static String currentPacienteName;
 

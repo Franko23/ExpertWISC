@@ -102,7 +102,7 @@ public class Datos extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_datos, container, false);
 
-        list_up = view.findViewById(R.id.list_up);
+        list_up = view.findViewById(R.id.list_paciente_up);
         btn_up = view.findViewById(R.id.btn_up);
         text_up = view.findViewById(R.id.text_up);
 
@@ -128,8 +128,10 @@ public class Datos extends Fragment {
                     up=true;
                 consultarPacientes(up);
                     up=false;
+
                     Fragment fragment = new Datos();
                 getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
+
                     Snackbar.make(view, "Datos Subidos", Snackbar.LENGTH_LONG)
                             .setActionTextColor(Color.CYAN)
                             .setAction("OK", null).show();
@@ -155,9 +157,10 @@ public class Datos extends Fragment {
 
     private void consultarPacientes(Boolean up) {
         SQLiteDatabase db = con.getReadableDatabase();
-        Persona persona;
+        List<Paciente> listaPaciente = new ArrayList<>();
+        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1);
         Paciente paciente;
-        List<Paciente> listaIdPersona = new ArrayList<>();
+
         Cursor cursor = db.rawQuery("SELECT * FROM paciente WHERE up_paciente = 'NO'",null);
         if (cursor.getCount()>0){
             while (cursor.moveToNext()){
@@ -168,15 +171,25 @@ public class Datos extends Fragment {
                 paciente.setUp_paciente(cursor.getString(3));
                 paciente.setId_persona(cursor.getInt(4));
                 paciente.setId_usuario(cursor.getInt(5));
-                if (up==true){
-                    subirPaciente(paciente);
-                }
-                listaIdPersona.add(paciente);
+
+                listaPaciente.add(paciente);
+
             }
+
+            consultarPersona(db,listaPaciente);
+
         }
-        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1);
-        for (int i = 0; i<listaIdPersona.size(); i++){
-            cursor = db.rawQuery("SELECT * FROM persona WHERE id_persona="+listaIdPersona.get(i).getId_persona().toString(),null);
+
+
+        db.close();
+    }
+
+    private void consultarPersona(SQLiteDatabase db, List<Paciente> listaPaciente) {
+
+        Persona persona;
+
+        for (int i = 0; i<listaPaciente.size(); i++){
+            Cursor cursor = db.rawQuery("SELECT * FROM persona WHERE id_persona="+listaPaciente.get(i).getId_persona().toString(),null);
             while (cursor.moveToNext()){
                 persona = new Persona();
                 persona.setId_persona(cursor.getInt(0));
@@ -185,77 +198,47 @@ public class Datos extends Fragment {
                 persona.setFecha_nacimiento_persona(cursor.getString(3));;
                 persona.setImagen_persona(cursor.getBlob(4));
                 persona.setTipo_persona(cursor.getString(5));
+
                 if (up==true){
-                    subirPersona(persona);
+                    subirPersona(persona, listaPaciente, i);
+                    ContentValues values = new ContentValues();
+                    //Actualizamos el campo paciente
+                    values.put(Utilidades.CAMPO_UP_PACIENTE, "SI");
+                    db.update(Utilidades.TABLA_PACIENTE,values,Utilidades.CAMPO_ID_PACIENTE+"="+listaPaciente.get(i).getId_paciente(),null);
                 }else {
                     adapter.add(persona.getNombre_persona()+" "+persona.getApellido_persona());
                 }
             }
 
         }
-
-        db.close();
     }
 
-    private void subirPersona(Persona persona) {
+    private void subirPersona(Persona persona, List<Paciente> listaPaciente, int i) {
         Map<String, Object> newPersona = new HashMap<>();
 
-        newPersona.put("id_persona",persona.getId_persona());
-        newPersona.put("nombre_persona",persona.getNombre_persona());
-        newPersona.put("apellido_persona",persona.getApellido_persona());
-        newPersona.put("fecha_nacimiento_persona",persona.getFecha_nacimiento_persona());
-        newPersona.put("imagen_persona",String.valueOf(persona.getImagen_persona()));
-        newPersona.put("tipo_persona",persona.getTipo_persona());
+        newPersona.put("nombres",persona.getNombre_persona());
+        newPersona.put("apellidos",persona.getApellido_persona());
+        newPersona.put("fechaNacimiento",persona.getFecha_nacimiento_persona());
+        newPersona.put("imagen",String.valueOf(persona.getImagen_persona()));
+        newPersona.put("motivo",listaPaciente.get(i).getMotivoConsulta_paciente());
+        newPersona.put("antecedentes",listaPaciente.get(i).getAntecedentes_paciente());
 
-        dbFire.collection("persona")
-                .add(newPersona)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+        dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(listaPaciente.get(i).getId_paciente().toString())
+                .set(newPersona)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "Persona agregada correctamente: " + documentReference.getId());
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "Paciente subido corectamente");
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
                     @Override
                     public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error agregando persona", e);
+                        Log.w(TAG, "Error subiendo paciente", e);
                     }
                 });
     }
 
-    private void subirPaciente(Paciente paciente) {
-        SQLiteDatabase db = con.getWritableDatabase();
-        ContentValues values = new ContentValues();
-        values.put(Utilidades.CAMPO_UP_PACIENTE, "SI");
-        db.update(Utilidades.TABLA_PACIENTE,values,Utilidades.CAMPO_ID_PACIENTE+"="+paciente.getId_paciente(),null);
-        paciente.setUp_paciente("SI");
-
-        Map<String, Object> newPaciente = new HashMap<>();
-        newPaciente.put("id_paciente",paciente.getId_paciente());
-        newPaciente.put("motivo_consulta_paciente",paciente.getMotivoConsulta_paciente());
-        newPaciente.put("antecedentes_paciente",paciente.getAntecedentes_paciente());
-        newPaciente.put("up_paciente",paciente.getUp_paciente());
-        newPaciente.put("id_persona",paciente.getId_persona());
-        newPaciente.put("id_usuario",paciente.getId_usuario());
-
-        dbFire.collection("paciente")
-                .add(newPaciente)
-                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "Paciente agregado correctamente: " + documentReference.getId());
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error agregando paciente", e);
-                    }
-                });
-
-
-
-    }
 
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {

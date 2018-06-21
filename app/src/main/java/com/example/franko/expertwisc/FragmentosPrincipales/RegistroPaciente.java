@@ -27,6 +27,7 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
 import android.text.Layout;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,9 @@ import com.example.franko.expertwisc.FragmentosPrincipales.GeneralSubPruebas;
 import com.example.franko.expertwisc.Tools.CalcularEdad;
 import com.example.franko.expertwisc.Tools.PBDialog;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
@@ -57,6 +61,8 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.HashMap;
+import java.util.Map;
 
 import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 
@@ -79,7 +85,8 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    private static final String TAG = "Mensaje";
+    FirebaseFirestore dbFire = FirebaseFirestore.getInstance();
     private Context mContext;
 
     String fecha;
@@ -432,12 +439,39 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                 id_paciente = Integer.parseInt(b);
 
 
-                db.close();
-
             }catch (Exception e){
 
                 Toast.makeText(getContext(),"Error al registrar paciente", Toast.LENGTH_SHORT).show();
             }
+
+            db.close();
+
+//            DocumentReference usuarios = dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document("");
+
+//            Map<String, Object> newPaciente = new HashMap<>();
+//            newPaciente.put("nombres",nombres.getText().toString());
+//            newPaciente.put("apellidos",apellidos.getText().toString());
+//            newPaciente.put("motivo",motivoConsulta.getText().toString());
+//            newPaciente.put("antecedentes",antecedentes.getText().toString());
+//            newPaciente.put("fechaNacimiento",fecha_nacimiento.getText().toString());
+//
+//            dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(nombres.getText().toString())
+//                    .set(newPaciente)
+//                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                        @Override
+//                        public void onSuccess(Void aVoid) {
+//                            Log.d(TAG, "Paciente agregado corectamente");
+//                        }
+//                    })
+//                    .addOnFailureListener(new OnFailureListener() {
+//                        @Override
+//                        public void onFailure(@NonNull Exception e) {
+//                            Log.w(TAG, "Error writing document", e);
+//                        }
+//                    });
+
+
+
         }
     }
 

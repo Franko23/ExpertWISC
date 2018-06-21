@@ -15,9 +15,11 @@ import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
+import android.os.Build;
 import android.os.Handler;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
+import android.support.annotation.RequiresApi;
 import android.support.design.widget.Snackbar;
 import android.support.design.widget.TextInputEditText;
 import android.support.design.widget.TextInputLayout;
@@ -136,8 +138,10 @@ public class Register extends AppCompatActivity {
             public void onClick(View view) {
                 dbFire.collection("usuarios")
                         .whereEqualTo("usuario", textInputEditTextUsuario.getText().toString())
+                        .whereEqualTo("contraseña",textInputEditTextContraseña.getText().toString())
                         .get()
                         .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                            @RequiresApi(api = Build.VERSION_CODES.M)
                             @Override
                             public void onComplete(@NonNull Task<QuerySnapshot> task) {
                                 if (task.isSuccessful()) {
@@ -151,16 +155,25 @@ public class Register extends AppCompatActivity {
                                     }
                                     if (existe){
                                         mensaje.setText("CONECTADO!");
-                                        textInputEditTextUsuario.setVisibility(View.GONE);
-                                        textInputEditTextContraseña.setVisibility(View.GONE);
-                                        textInputEditTextNombre.setVisibility(View.VISIBLE);
-                                        textInputEditTextApellido.setVisibility(View.VISIBLE);
-                                        appCompatButtonConectar.setVisibility(View.GONE);
-                                        appCompatButtonRegister.setVisibility(View.VISIBLE);
-                                        appCompatImageView.setVisibility(View.VISIBLE);
+                                        mensaje.setTextColor(getColor(R.color.colorPrimaryDark));
                                         appCompatImageViewUser.setVisibility(View.GONE);
+                                        textInputEditTextUsuario.setEnabled(false);
+                                        textInputEditTextContraseña.setEnabled(false);
+                                        appCompatButtonConectar.setVisibility(View.GONE);
+
+                                        appCompatImageView.setVisibility(View.VISIBLE);
+                                        textInputEditTextNombre.setVisibility(View.VISIBLE);
+                                        textInputLayoutNombre.setVisibility(View.VISIBLE);
+                                        textInputEditTextApellido.setVisibility(View.VISIBLE);
+                                        textInputLayoutApellido.setVisibility(View.VISIBLE);
+                                        textInputEditTextEmail.setVisibility(View.VISIBLE);
+                                        textInputLayoutEmail.setVisibility(View.VISIBLE);
+                                        appCompatButtonRegister.setVisibility(View.VISIBLE);
+
+
                                     }else {
                                         mensaje.setText("No existe el usuario");
+                                        mensaje.setTextColor(getColor(R.color.colorAccent));
                                     }
 
 
@@ -300,6 +313,7 @@ public class Register extends AppCompatActivity {
 
             // Add a new document with a generated id.
             Map<String, Object> currentUser = new HashMap<>();
+            currentUser.put("imagen",String.valueOf(data));
             currentUser.put("nombres", textInputEditTextNombre.getText().toString());
             currentUser.put("apellidos", textInputEditTextApellido.getText().toString());
             currentUser.put("email", textInputEditTextEmail.getText().toString());
