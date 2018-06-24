@@ -121,6 +121,7 @@ public class DatosPaciente extends Fragment {
 
     Paciente paciente = null;
     Persona persona = null;
+    Test test = null;
 
     private static final int SELECT_PHOTO = 1;
     private static final int CAPTURE_PHOTO = 2;
@@ -241,7 +242,7 @@ public class DatosPaciente extends Fragment {
         recyclerViewTest.setLayoutManager(new LinearLayoutManager(getContext()));
         //Enviamos fecha de prueba y el estado
         //Consultamos desde la tabla test la fecha y el estado de acuerdo al id paciente
-        Test test = new Test();
+
         listaTest = consultarTablaTest(paciente.getId_paciente());
 
         AdapterTest adapterTest = new AdapterTest(listaTest);
@@ -265,44 +266,103 @@ public class DatosPaciente extends Fragment {
                 up.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getContext(),"UP" + String.valueOf(recyclerViewTest.getChildAdapterPosition(v)),Toast.LENGTH_SHORT).show();
+//
+                        if (up_paciente.getVisibility()==View.VISIBLE){
+                            Toast.makeText(getContext(),"PRIMERO DEBE DE SUBIR LOS DATOS DEL PACIENTE" ,Toast.LENGTH_SHORT).show();
+                        }else {
+                            Map<String, Object> newTest = new HashMap<>();
+
+                            Calendar calendar = Calendar.getInstance();
+                            SimpleDateFormat mdformat = new SimpleDateFormat("dd/MM/yyyy");
+                            String fechaActual = mdformat.format(calendar.getTime());
+
+                            newTest.put("fechaTest",fechaActual);
+                            newTest.put("edadPaciente",Utilidades.edadActual);
+
+                            newTest.put("CC","");
+                            newTest.put("S","");
+                            newTest.put("RD","");
+                            newTest.put("Co","");
+                            newTest.put("Cl","");
+                            newTest.put("V","");
+                            newTest.put("LN","");
+                            newTest.put("M","");
+                            newTest.put("C","");
+                            newTest.put("BS","");
+                            newTest.put("CF","");
+                            newTest.put("A","");
+                            newTest.put("I","");
+                            newTest.put("Ar","");
+                            newTest.put("Ai","");
+
+                            dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(paciente.getId_paciente().toString()).collection("test").document(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test().toString())
+                                    .set(newTest)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "Test actualizado corectamente");
+                                            up.setVisibility(View.INVISIBLE);
+
+                                            SQLiteDatabase db = con.getWritableDatabase();
+                                            ContentValues personaUpdate = new ContentValues();
+                                            personaUpdate.put(Utilidades.CAMPO_UP_TEST,"SI");
+                                            try {
+                                                int okTest=db.update(Utilidades.TABLA_TEST,personaUpdate,Utilidades.CAMPO_ID_TEST+"="+listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test(),null);
+                                                if (okTest==1){
+                                                    Snackbar.make(view, "Test actualizado corectamente", Snackbar.LENGTH_LONG).show();
+                                                }
+                                            }catch (Exception e){
+                                                Toast.makeText(getContext(),"Error al actualizar Test", Toast.LENGTH_SHORT).show();
+                                            }
+
+
+
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Error subiendo test", e);
+                                        }
+                                    });
+                        }
+
                     }
                 });
 
                 estado.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
-                        Toast.makeText(getContext(),"ESTADO"+String.valueOf(recyclerViewTest.getChildAdapterPosition(v)),Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getContext(),"ESTADO"+String.valueOf(recyclerViewTest.getChildAdapterPosition(v)),Toast.LENGTH_SHORT).show();
+                        String estado = listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getEstado_test();
+                        int id_test = listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test();
+                        Utilidades.currentTest=id_test;
+                        if (estado.equals("EN CURSO")){
+                            PBDialog PBDialog = new PBDialog(getContext());
+                            PBDialog.setProgressBar();
+                            Test test = new Test();
+                            test.Valores();
+                            ConsultaView(id_test);
+                            Persona persona =  new Persona();
+                            persona.setNombre_persona(editNombres.getText().toString());
+                            persona.setFecha_nacimiento_persona(editFechaNac.getText().toString());
+                            Fragment fragment =  new GeneralSubPruebas();
+                            getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
+
+                        }else if (estado.equals("FINALIZADO")){
+                            PBDialog PBDialog = new PBDialog(getContext());
+                            PBDialog.setProgressBar();
+                            Test test = new Test();
+                            test.Valores();
+                            ConsultaView(id_test);
+
+                            Fragment fragment =  new Resultados();
+                            getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
+        //                    Toast.makeText(getContext(),estado,Toast.LENGTH_SHORT).show();
+                        }
                     }
                 });
 
-
-//                String estado = listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getEstado_test();
-//                int id_test = listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test();
-//                Utilidades.currentTest=id_test;
-//                if (estado.equals("EN CURSO")){
-//                    PBDialog PBDialog = new PBDialog(getContext());
-//                    PBDialog.setProgressBar();
-//                    Test test = new Test();
-//                    test.Valores();
-//                    ConsultaView(id_test);
-//                    Persona persona =  new Persona();
-//                    persona.setNombre_persona(editNombres.getText().toString());
-//                    persona.setFecha_nacimiento_persona(editFechaNac.getText().toString());
-//                    Fragment fragment =  new GeneralSubPruebas();
-//                    getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
-//
-//                }else if (estado.equals("FINALIZADO")){
-//                    PBDialog PBDialog = new PBDialog(getContext());
-//                    PBDialog.setProgressBar();
-//                    Test test = new Test();
-//                    test.Valores();
-//                    ConsultaView(id_test);
-//
-//                    Fragment fragment =  new Resultados();
-//                    getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
-////                    Toast.makeText(getContext(),estado,Toast.LENGTH_SHORT).show();
-//                }
             }
         });
 
@@ -320,11 +380,6 @@ public class DatosPaciente extends Fragment {
                 Persona persona =  new Persona();
                 persona.setNombre_persona(editNombres.getText().toString());
                 persona.setFecha_nacimiento_persona(editFechaNac.getText().toString());
-
-//                Bundle bundle = new Bundle();
-//                bundle.putSerializable("Persona", persona);
-//
-//                fragment.setArguments(bundle);
 
                 transaction.replace(R.id.content_main, fragment);
                 transaction.addToBackStack(null);
@@ -414,12 +469,18 @@ public class DatosPaciente extends Fragment {
     private void subirPaciente() {
         Map<String, Object> newPersona = new HashMap<>();
 
-        newPersona.put("nombres",persona.getNombre_persona());
-        newPersona.put("apellidos",persona.getApellido_persona());
-        newPersona.put("fechaNacimiento",persona.getFecha_nacimiento_persona());
-        newPersona.put("imagen",String.valueOf(persona.getImagen_persona()));
-        newPersona.put("motivo", paciente.getMotivoConsulta_paciente());
-        newPersona.put("antecedentes",paciente.getAntecedentes_paciente());
+        newPersona.put("nombres",editNombres.getText().toString());
+        newPersona.put("apellidos",editApellidos.getText().toString());
+        newPersona.put("fechaNacimiento",editFechaNac.getText().toString());
+
+        Bitmap bitmap =  imgDatospaciente.getDrawingCache();
+        ByteArrayOutputStream baos  = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG,100, baos);
+        byte[] data = baos.toByteArray();
+
+        newPersona.put("imagen",String.valueOf(data));
+        newPersona.put("motivo", editMotivo.getText().toString());
+        newPersona.put("antecedentes",editAntecedentes.getText().toString());
 
         dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(paciente.getId_paciente().toString())
                 .set(newPersona)
@@ -427,7 +488,7 @@ public class DatosPaciente extends Fragment {
                     @Override
                     public void onSuccess(Void aVoid) {
                         Log.d(TAG, "Paciente subido corectamente");
-                        up_paciente.setVisibility(View.GONE);
+                        up_paciente.setVisibility(View.INVISIBLE);
 
                         SQLiteDatabase db = con.getWritableDatabase();
                         ContentValues personaUpdate = new ContentValues();
@@ -529,6 +590,7 @@ public class DatosPaciente extends Fragment {
                 nombrePrincipal.setText(editNombres.getText().toString()+" "+editApellidos.getText().toString());
                 layout_datos_edit.setVisibility(View.GONE);
                 switchCompat.setChecked(false);
+                up_paciente.setVisibility(View.VISIBLE);
             }
 
 

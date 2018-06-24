@@ -9,7 +9,7 @@ import com.example.franko.expertwisc.ConexionHelper;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
 public class Test {
-    private int Id_test;
+    private Integer Id_test;
     private String Fecha_test;
     private String Evaluador_test;
     private String Estado_test;
@@ -20,8 +20,8 @@ public class Test {
     ConexionHelper con;
     Context context;
 
-    public Test(int id_test, String fecha_test, String evaluador_test, String estado_test, String intervalo_confianza, String edad_test, String up_test) {
-        this.Id_test = id_test;
+    public Test(Integer id_test, String fecha_test, String evaluador_test, String estado_test, String intervalo_confianza, String edad_test, String up_test) {
+        Id_test = id_test;
         Fecha_test = fecha_test;
         Evaluador_test = evaluador_test;
         Estado_test = estado_test;
@@ -33,11 +33,11 @@ public class Test {
     public Test() {
     }
 
-    public int getId_test() {
+    public Integer getId_test() {
         return Id_test;
     }
 
-    public void setId_test(int id_test) {
+    public void setId_test(Integer id_test) {
         this.Id_test = id_test;
     }
 
