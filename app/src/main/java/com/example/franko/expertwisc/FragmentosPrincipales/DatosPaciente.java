@@ -17,6 +17,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
@@ -25,6 +26,7 @@ import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SwitchCompat;
+import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -33,6 +35,7 @@ import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -58,11 +61,15 @@ import com.example.franko.expertwisc.Entidades.SubTest.SubTestRD;
 import com.example.franko.expertwisc.Entidades.SubTest.SubTestS;
 import com.example.franko.expertwisc.Entidades.SubTest.SubTestV;
 import com.example.franko.expertwisc.Entidades.Test;
+import com.example.franko.expertwisc.FragmentosSubTest.V;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Tools.BlurBuilder;
 import com.example.franko.expertwisc.Tools.CalcularEdad;
 import com.example.franko.expertwisc.Tools.PBDialog;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
 import java.io.FileNotFoundException;
@@ -71,6 +78,8 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -89,7 +98,7 @@ public class DatosPaciente extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    private static final String TAG ="FireDatos";
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -101,6 +110,7 @@ public class DatosPaciente extends Fragment {
     SwitchCompat switchCompat = null;
     View view;
     CircleImageView imgDatospaciente;
+    ImageView up_paciente;
     EditText editNombres, editApellidos, editFechaNac, editMotivo, editAntecedentes;
     TextView  nombrePrincipal, txt_mensaje_test, cantidadTest;
     Button btn_actualizar_paciente;
@@ -119,6 +129,7 @@ public class DatosPaciente extends Fragment {
     Bitmap thumbnail;
 
     private long backPressed;
+    FirebaseFirestore dbFire = FirebaseFirestore.getInstance();
     private OnFragmentInteractionListener mListener;
 
     public DatosPaciente() {
@@ -163,6 +174,7 @@ public class DatosPaciente extends Fragment {
         layout_datos_edit = view.findViewById(R.id.layout_datos_edit);
         linear_back = view.findViewById(R.id.linear_back);
         imgDatospaciente = view.findViewById(R.id.imgDatospaciente);
+        up_paciente = view.findViewById(R.id.up_paciente);
         switchCompat = view.findViewById(R.id.swicth_profile);
         nombrePrincipal = view.findViewById(R.id.nombrePrincipal);
         editNombres = view.findViewById(R.id.EditNombres);
@@ -219,6 +231,10 @@ public class DatosPaciente extends Fragment {
             }catch (Exception e){
 
             }
+            if (persona.getUp_persona().equals("NO")){
+                up_paciente.setVisibility(View.VISIBLE);
+            }
+
         }
 
         recyclerViewTest = view.findViewById(R.id.recv_pruebas);
@@ -238,36 +254,55 @@ public class DatosPaciente extends Fragment {
             txt_mensaje_test.setVisibility(View.GONE);
         }
 
+
         adapterTest.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
-                String estado = listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getEstado_test();
-                int id_test = listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test();
-                Utilidades.currentTest=id_test;
-                if (estado.equals("EN CURSO")){
-                    PBDialog PBDialog = new PBDialog(getContext());
-                    PBDialog.setProgressBar();
-                    Test test = new Test();
-                    test.Valores();
-                    ConsultaView(id_test);
-                    Persona persona =  new Persona();
-                    persona.setNombre_persona(editNombres.getText().toString());
-                    persona.setFecha_nacimiento_persona(editFechaNac.getText().toString());
-                    Fragment fragment =  new GeneralSubPruebas();
-                    getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
+                ImageView up = v.findViewById(R.id.up_test);
+                TextView estado = v.findViewById(R.id.estado);
 
-                }else if (estado.equals("FINALIZADO")){
-                    PBDialog PBDialog = new PBDialog(getContext());
-                    PBDialog.setProgressBar();
-                    Test test = new Test();
-                    test.Valores();
-                    ConsultaView(id_test);
+                up.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(getContext(),"UP" + String.valueOf(recyclerViewTest.getChildAdapterPosition(v)),Toast.LENGTH_SHORT).show();
+                    }
+                });
 
-                    Fragment fragment =  new Resultados();
-                    getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
-//                    Toast.makeText(getContext(),estado,Toast.LENGTH_SHORT).show();
-                }
+                estado.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        Toast.makeText(getContext(),"ESTADO"+String.valueOf(recyclerViewTest.getChildAdapterPosition(v)),Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
+//                String estado = listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getEstado_test();
+//                int id_test = listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test();
+//                Utilidades.currentTest=id_test;
+//                if (estado.equals("EN CURSO")){
+//                    PBDialog PBDialog = new PBDialog(getContext());
+//                    PBDialog.setProgressBar();
+//                    Test test = new Test();
+//                    test.Valores();
+//                    ConsultaView(id_test);
+//                    Persona persona =  new Persona();
+//                    persona.setNombre_persona(editNombres.getText().toString());
+//                    persona.setFecha_nacimiento_persona(editFechaNac.getText().toString());
+//                    Fragment fragment =  new GeneralSubPruebas();
+//                    getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
+//
+//                }else if (estado.equals("FINALIZADO")){
+//                    PBDialog PBDialog = new PBDialog(getContext());
+//                    PBDialog.setProgressBar();
+//                    Test test = new Test();
+//                    test.Valores();
+//                    ConsultaView(id_test);
+//
+//                    Fragment fragment =  new Resultados();
+//                    getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
+////                    Toast.makeText(getContext(),estado,Toast.LENGTH_SHORT).show();
+//                }
             }
         });
 
@@ -366,7 +401,54 @@ public class DatosPaciente extends Fragment {
         });
 
 
+        up_paciente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                subirPaciente();
+            }
+        });
+
         return view;
+    }
+
+    private void subirPaciente() {
+        Map<String, Object> newPersona = new HashMap<>();
+
+        newPersona.put("nombres",persona.getNombre_persona());
+        newPersona.put("apellidos",persona.getApellido_persona());
+        newPersona.put("fechaNacimiento",persona.getFecha_nacimiento_persona());
+        newPersona.put("imagen",String.valueOf(persona.getImagen_persona()));
+        newPersona.put("motivo", paciente.getMotivoConsulta_paciente());
+        newPersona.put("antecedentes",paciente.getAntecedentes_paciente());
+
+        dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(paciente.getId_paciente().toString())
+                .set(newPersona)
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        Log.d(TAG, "Paciente subido corectamente");
+                        up_paciente.setVisibility(View.GONE);
+
+                        SQLiteDatabase db = con.getWritableDatabase();
+                        ContentValues personaUpdate = new ContentValues();
+                        personaUpdate.put(Utilidades.CAMPO_UP_PERSONA,"SI");
+                        try {
+                            int okPersona=db.update(Utilidades.TABLA_PERSONA,personaUpdate,Utilidades.CAMPO_ID_PERSONA+"="+persona.getId_persona(),null);
+                            if (okPersona==1){
+                                Snackbar.make(view, "Datos subidos correctamente", Snackbar.LENGTH_LONG).show();
+                            }
+                        }catch (Exception e){
+                            Toast.makeText(getContext(),"Error al actualizar Datos del paciente", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error subiendo paciente", e);
+                    }
+                });
     }
 
     private void ConsultaView(int id_test) {
@@ -432,6 +514,7 @@ public class DatosPaciente extends Fragment {
         personaUpdate.put(Utilidades.CAMPO_APELLIDO_PERSONA, editApellidos.getText().toString());
         personaUpdate.put(Utilidades.CAMPO_FECHA_NACIMIENTO_PERSONA, editFechaNac.getText().toString());
         personaUpdate.put(Utilidades.CAMPO_IMAGEN_PERSONA, data);
+        personaUpdate.put(Utilidades.CAMPO_UP_PERSONA,"NO");
 
         pacienteUpdate.put(Utilidades.CAMPO_MOTIVO_CONSULTA_PACIENTE, editMotivo.getText().toString());
         pacienteUpdate.put(Utilidades.CAMPO_ANTECEDENTES_PACIENTE, editAntecedentes.getText().toString());
@@ -442,10 +525,10 @@ public class DatosPaciente extends Fragment {
 
             if (okPaciente == 1 && okPersona == 1){
 //                Toast.makeText(getContext(),"Datos actualizados satisfactoriamente", Toast.LENGTH_SHORT).show();
-                Snackbar.make(view, "Datos actualizados satisfactoriamente", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).setActionTextColor(Color.RED).show();
+                Snackbar.make(view, "Datos actualizados satisfactoriamente", Snackbar.LENGTH_LONG).show();
                 nombrePrincipal.setText(editNombres.getText().toString()+" "+editApellidos.getText().toString());
                 layout_datos_edit.setVisibility(View.GONE);
+                switchCompat.setChecked(false);
             }
 
 
@@ -477,12 +560,14 @@ public class DatosPaciente extends Fragment {
 
         test.put(Utilidades.CAMPO_EVALUADOR_TEST, persona.getNombre_persona()+" "+persona.getApellido_persona());
         test.put(Utilidades.CAMPO_ESTADO_TEST, "EN CURSO");
+        test.put(Utilidades.CAMPO_EDAD_TEST, Utilidades.edadActual);
+        test.put(Utilidades.CAMPO_UP_TEST, "NO");
         test.put(Utilidades.CAMPO_ID_PACIENTE, paciente.getId_paciente());
+
         Long idTest = db.insert(Utilidades.TABLA_TEST,Utilidades.CAMPO_ID_TEST,test);
         String a = Long.toString(idTest);
         int id_test = Integer.parseInt(a);
         Utilidades.currentTest = id_test;
-//        Toast.makeText(getContext(),"Test nro "+a,Toast.LENGTH_SHORT).show();
 
         db.close();
 
@@ -522,6 +607,7 @@ public class DatosPaciente extends Fragment {
                 test.setEstado_test(cursor.getString(3));
                 test.setIntervalo_confianza(cursor.getString(4));
                 test.setEdad_test(cursor.getString(5));
+                test.setUp_test(cursor.getString(6));
 
                 listaTest.add(test);
             }

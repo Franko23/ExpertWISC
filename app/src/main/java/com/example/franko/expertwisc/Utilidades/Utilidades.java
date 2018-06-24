@@ -73,13 +73,13 @@ public class Utilidades {
     public static String CAMPO_FECHA_NACIMIENTO_PERSONA = "fecha_nacimiento_persona";
     public static String CAMPO_IMAGEN_PERSONA = "imagen_persona";
     public static String CAMPO_TIPO_PERSONA = "tipo_persona";
+    public static String CAMPO_UP_PERSONA = "up_persona";
 
     //Constantes Campo Pacientes
     public static String TABLA_PACIENTE = "paciente";
     public static String CAMPO_ID_PACIENTE = "id_paciente";
     public static String CAMPO_MOTIVO_CONSULTA_PACIENTE = "motivo_consulta_paciente";
     public static String CAMPO_ANTECEDENTES_PACIENTE = "antecedentes_paciente";
-    public static String CAMPO_UP_PACIENTE = "up_paciente";
 
     //Constantes Campo Usuario
     public static String TABLA_USUARIO = "usuario";
@@ -281,6 +281,7 @@ public class Utilidades {
             CAMPO_ESTADO_TEST + " TEXT, " +
             CAMPO_INTERVALO+ " TEXT, " +
             CAMPO_EDAD_TEST+ " TEXT, " +
+            CAMPO_UP_TEST+ " TEXT, " +
             CAMPO_ID_PACIENTE + " INTEGER)";
 
 
@@ -289,7 +290,6 @@ public class Utilidades {
             CAMPO_ID_PACIENTE + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
             CAMPO_MOTIVO_CONSULTA_PACIENTE + " TEXT, " +
             CAMPO_ANTECEDENTES_PACIENTE + " TEXT, " +
-            CAMPO_UP_PACIENTE + " TEXT, " +
             CAMPO_ID_PERSONA+" INTEGER, "+
             CAMPO_ID_USUARIO+" INTEGER "+
             ")";
@@ -301,6 +301,7 @@ public class Utilidades {
             CAMPO_APELLIDO_PERSONA + " TEXT, " +
             CAMPO_FECHA_NACIMIENTO_PERSONA+ " TEXT, " +
             CAMPO_IMAGEN_PERSONA + " BLOB,"+
+            CAMPO_UP_PERSONA + " TEXT, "+
             CAMPO_TIPO_PERSONA + " TEXT )";
 
     public static final String CREAR_TABLA_USUARIO = "CREATE TABLE " + TABLA_USUARIO +

@@ -277,7 +277,9 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                                     test.put(Utilidades.CAMPO_EVALUADOR_TEST, persona.getNombre_persona()+" "+persona.getApellido_persona());
                                     test.put(Utilidades.CAMPO_ESTADO_TEST, "EN CURSO");
                                     test.put(Utilidades.CAMPO_EDAD_TEST, Utilidades.edadActual);
+                                    test.put(Utilidades.CAMPO_UP_TEST, "NO");
                                     test.put(Utilidades.CAMPO_ID_PACIENTE, id_paciente);
+
                                     Long idTest = db.insert(Utilidades.TABLA_TEST,Utilidades.CAMPO_ID_TEST,test);
                                     String a = Long.toString(idTest);
                                     int id_test = Integer.parseInt(a);
@@ -412,6 +414,7 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
             persona.put(Utilidades.CAMPO_APELLIDO_PERSONA, apellidos.getText().toString());
             persona.put(Utilidades.CAMPO_FECHA_NACIMIENTO_PERSONA, fecha_nacimiento.getText().toString());
             persona.put(Utilidades.CAMPO_IMAGEN_PERSONA, data);
+            persona.put(Utilidades.CAMPO_UP_PERSONA,"NO");
             persona.put(Utilidades.CAMPO_TIPO_PERSONA, "paciente");
 
             try {
@@ -429,7 +432,6 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                 ContentValues paciente = new ContentValues();
                 paciente.put(Utilidades.CAMPO_MOTIVO_CONSULTA_PACIENTE, motivoConsulta.getText().toString());
                 paciente.put(Utilidades.CAMPO_ANTECEDENTES_PACIENTE, antecedentes.getText().toString());
-                paciente.put(Utilidades.CAMPO_UP_PACIENTE,"NO");
                 paciente.put(Utilidades.CAMPO_ID_PERSONA, id_persona);
                 paciente.put(Utilidades.CAMPO_ID_USUARIO, Utilidades.currentUserIdUsuario);
 

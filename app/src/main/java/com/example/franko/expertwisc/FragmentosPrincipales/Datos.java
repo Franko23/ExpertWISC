@@ -106,7 +106,7 @@ public class Datos extends Fragment {
         btn_up = view.findViewById(R.id.btn_up);
         text_up = view.findViewById(R.id.text_up);
 
-        consultarPacientes(up);
+        consultarPacientes();
 
 
         if(!adapter.isEmpty()){
@@ -126,7 +126,7 @@ public class Datos extends Fragment {
 
                 if (internet==true){
                     up=true;
-                consultarPacientes(up);
+                consultarPacientes();
                     up=false;
 
                     Fragment fragment = new Datos();
@@ -155,10 +155,10 @@ public class Datos extends Fragment {
 
     }
 
-    private void consultarPacientes(Boolean up) {
+    private void consultarPacientes() {
         SQLiteDatabase db = con.getReadableDatabase();
         List<Paciente> listaPaciente = new ArrayList<>();
-        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_1);
+        adapter = new ArrayAdapter<String>(getContext(), android.R.layout.simple_list_item_2);
         Paciente paciente;
 
         Cursor cursor = db.rawQuery("SELECT * FROM paciente WHERE up_paciente = 'NO'",null);
@@ -203,7 +203,7 @@ public class Datos extends Fragment {
                     subirPersona(persona, listaPaciente, i);
                     ContentValues values = new ContentValues();
                     //Actualizamos el campo paciente
-                    values.put(Utilidades.CAMPO_UP_PACIENTE, "SI");
+//                    values.put(Utilidades.CAMPO_UP_PACIENTE, "SI");
                     db.update(Utilidades.TABLA_PACIENTE,values,Utilidades.CAMPO_ID_PACIENTE+"="+listaPaciente.get(i).getId_paciente(),null);
                 }else {
                     adapter.add(persona.getNombre_persona()+" "+persona.getApellido_persona());

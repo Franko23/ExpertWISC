@@ -106,13 +106,18 @@ public class ListaPacientes extends Fragment{
             @Override
             public void onClick(View v) {
 
-                int id_persona = listaPacientes.get(recyclerViewPacientes.getChildAdapterPosition(v)).getId_persona();
-
                 Persona persona = new Persona();
-                Paciente paciente = new Paciente();
+                persona.setId_persona(listaPersonas.get(recyclerViewPacientes.getChildAdapterPosition(v)).getId_persona());
+                persona.setNombre_persona(listaPersonas.get(recyclerViewPacientes.getChildAdapterPosition(v)).getNombre_persona());
+                persona.setApellido_persona(listaPersonas.get(recyclerViewPacientes.getChildAdapterPosition(v)).getApellido_persona());
+                persona.setFecha_nacimiento_persona(listaPersonas.get(recyclerViewPacientes.getChildAdapterPosition(v)).getFecha_nacimiento_persona());
+                persona.setImagen_persona(listaPersonas.get(recyclerViewPacientes.getChildAdapterPosition(v)).getImagen_persona());
+                persona.setUp_persona(listaPersonas.get(recyclerViewPacientes.getChildAdapterPosition(v)).getUp_persona());
 
-                //Obtenemos los Datos del paciente por el id_persona
-                paciente = obtenerPaciente(id_persona);
+                Paciente paciente = new Paciente();
+                paciente.setId_paciente(listaPacientes.get(recyclerViewPacientes.getChildAdapterPosition(v)).getId_paciente());
+                paciente.setMotivoConsulta_paciente(listaPacientes.get(recyclerViewPacientes.getChildAdapterPosition(v)).getMotivoConsulta_paciente());
+                paciente.setAntecedentes_paciente(listaPacientes.get(recyclerViewPacientes.getChildAdapterPosition(v)).getAntecedentes_paciente());
 
                 //Creamos un BundleMaster
                 Bundle bundleMaster = new Bundle();
@@ -121,9 +126,8 @@ public class ListaPacientes extends Fragment{
                 Bundle bundlePaciente = new Bundle();
                 bundlePaciente.putSerializable("paciente",paciente);
 
-                //Obtenemos los Datos de la persona por el id_persona
-                persona = obtenerPersona(id_persona);
                 Utilidades.currentPacienteName = persona.getNombre_persona();
+
                 //Serializamos los Datos de la persona en bundlePersona
                 Bundle bundlePersona = new Bundle();
                 bundlePersona.putSerializable("persona",persona);
@@ -154,42 +158,6 @@ public class ListaPacientes extends Fragment{
         return vista;
     }
 
-    private Paciente obtenerPaciente(int id_persona) {
-        SQLiteDatabase db = con.getReadableDatabase();
-        Paciente paciente = null;
-
-        Cursor cursor = db.rawQuery("SELECT * FROM paciente WHERE id_persona="+id_persona ,null);
-
-        while (cursor.moveToNext()){
-
-            paciente = new Paciente();
-            paciente.setId_paciente(cursor.getInt(0));
-            paciente.setMotivoConsulta_paciente(cursor.getString(1));
-            paciente.setAntecedentes(cursor.getString(2));
-            paciente.setId_persona(cursor.getInt(3));
-        }
-
-        return paciente;
-    }
-
-    private Persona obtenerPersona(int id_persona) {
-        SQLiteDatabase db = con.getReadableDatabase();
-        Persona persona = null;
-
-        Cursor cursor = db.rawQuery("SELECT * FROM persona WHERE id_persona="+id_persona ,null);
-
-        while (cursor.moveToNext()){
-            persona = new Persona();
-
-            persona.setId_persona(cursor.getInt(0));
-            persona.setNombre_persona(cursor.getString(1));
-            persona.setApellido_persona(cursor.getString(2));
-            persona.setFecha_nacimiento_persona(cursor.getString(3));
-            persona.setImagen_persona(cursor.getBlob(4));
-        }
-        return persona;
-    }
-
     // TODO: Rename method, update argument and hook method into UI event
     public void onButtonPressed(Uri uri) {
         if (mListener != null) {
@@ -208,11 +176,14 @@ public class ListaPacientes extends Fragment{
         listaPersonas = new ArrayList<>();
 
         //SELECT * FROM PACIENTES
-        Cursor pac = db.rawQuery("SELECT id_persona FROM paciente WHERE id_usuario"+"="+Utilidades.currentUserIdUsuario,null);
+        Cursor pac = db.rawQuery("SELECT * FROM paciente WHERE id_usuario"+"="+Utilidades.currentUserIdUsuario,null);
 
         while (pac.moveToNext()){
             paciente = new Paciente();
-            paciente.setId_persona(pac.getInt(0));
+            paciente.setId_paciente(pac.getInt(0));
+            paciente.setMotivoConsulta_paciente(pac.getString(1));
+            paciente.setAntecedentes_paciente(pac.getString(2));
+            paciente.setId_persona(pac.getInt(3));
             listaPacientes.add(paciente);
         }
 
@@ -229,6 +200,7 @@ public class ListaPacientes extends Fragment{
                 persona.setApellido_persona(cursor.getString(2));
                 persona.setFecha_nacimiento_persona(cursor.getString(3));
                 persona.setImagen_persona(cursor.getBlob(4));
+                persona.setUp_persona(cursor.getString(5));
 
                 listaPersonas.add(persona);
             }

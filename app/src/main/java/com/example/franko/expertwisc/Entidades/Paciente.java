@@ -14,13 +14,13 @@ public class Paciente implements Serializable {
     private Integer Id_persona;
     private Integer Id_usuario;
 
-    public Paciente(Integer id_paciente, String motivoConsulta_paciente, String antecedentes_paciente, String up_paciente, Integer id_persona, Integer Id_usuario) {
+    public Paciente(Integer id_paciente, String motivoConsulta_paciente, String antecedentes_paciente, String up_paciente, Integer id_persona, Integer id_usuario) {
         Id_paciente = id_paciente;
         MotivoConsulta_paciente = motivoConsulta_paciente;
         Antecedentes_paciente = antecedentes_paciente;
         Up_paciente = up_paciente;
         Id_persona = id_persona;
-        Id_usuario = Id_usuario;
+        Id_usuario = id_usuario;
     }
 
     public Paciente() {
@@ -41,6 +41,9 @@ public class Paciente implements Serializable {
     public void setMotivoConsulta_paciente(String motivoConsulta_paciente) {
         MotivoConsulta_paciente = motivoConsulta_paciente;
     }
+    public String getAntecedentes_paciente() {
+        return Antecedentes_paciente;
+    }
 
     public void setAntecedentes_paciente(String antecedentes_paciente) {
         Antecedentes_paciente = antecedentes_paciente;
@@ -54,13 +57,7 @@ public class Paciente implements Serializable {
         Up_paciente = up_paciente;
     }
 
-    public String getAntecedentes_paciente() {
-        return Antecedentes_paciente;
-    }
 
-    public void setAntecedentes(String antecedentes_paciente) {
-        Antecedentes_paciente = antecedentes_paciente;
-    }
 
     public Integer getId_persona() {
         return Id_persona;

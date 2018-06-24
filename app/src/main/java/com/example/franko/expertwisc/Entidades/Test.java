@@ -4,7 +4,6 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.widget.Toast;
 
 import com.example.franko.expertwisc.ConexionHelper;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
@@ -16,17 +15,19 @@ public class Test {
     private String Estado_test;
     private String Intervalo_confianza;
     private String Edad_test;
+    private String Up_test;
 
     ConexionHelper con;
     Context context;
 
-    public Test(int id_test, String fecha_test, String evaluador_test, String estado_test, String intervalo_confianza, String edad_test) {
+    public Test(int id_test, String fecha_test, String evaluador_test, String estado_test, String intervalo_confianza, String edad_test, String up_test) {
         this.Id_test = id_test;
         Fecha_test = fecha_test;
         Evaluador_test = evaluador_test;
         Estado_test = estado_test;
         Intervalo_confianza = intervalo_confianza;
         Edad_test = edad_test;
+        Up_test = up_test;
     }
 
     public Test() {
@@ -78,6 +79,15 @@ public class Test {
 
     public void setEdad_test(String edad_test) {
         Edad_test = edad_test;
+    }
+
+
+    public String getUp_test() {
+        return Up_test;
+    }
+
+    public void setUp_test(String up_test) {
+        Up_test = up_test;
     }
 
     public void UpdateTestState(Context context){

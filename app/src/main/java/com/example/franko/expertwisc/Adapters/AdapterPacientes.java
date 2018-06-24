@@ -36,13 +36,14 @@ public class AdapterPacientes extends RecyclerView.Adapter<AdapterPacientes.View
     public class ViewHolderPacientes extends RecyclerView.ViewHolder {
 
         private TextView txtNombres, txtEdad;
-        private ImageView Imagen;
+        private ImageView Imagen, alertCloud;
 
         public ViewHolderPacientes(View itemView) {
             super(itemView);
-            txtNombres = (TextView) itemView.findViewById(R.id.txtListaPacienteNombres);
-            txtEdad = (TextView) itemView.findViewById(R.id.txtListaPacienteEdad);
-            Imagen = (ImageView) itemView.findViewById(R.id.imgListaPaciente);
+            txtNombres = itemView.findViewById(R.id.txtListaPacienteNombres);
+            txtEdad = itemView.findViewById(R.id.txtListaPacienteEdad);
+            Imagen =  itemView.findViewById(R.id.imgListaPaciente);
+            alertCloud = itemView.findViewById(R.id.alert_cloud);
         }
     }
     @Override
@@ -54,6 +55,11 @@ public class AdapterPacientes extends RecyclerView.Adapter<AdapterPacientes.View
         byte[] image = listaPacientes.get(position).getImagen_persona();
         Bitmap bitmap = BitmapFactory.decodeByteArray(image,0,image.length);
         holder.Imagen.setImageBitmap(bitmap);
+
+        if (listaPacientes.get(position).getUp_persona().equals("NO")){
+            holder.alertCloud.setVisibility(View.VISIBLE);
+        }
+
     }
 
     @Override

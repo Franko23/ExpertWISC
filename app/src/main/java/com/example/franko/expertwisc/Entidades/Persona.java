@@ -9,14 +9,16 @@ public class Persona implements Serializable {
     private String Fecha_nacimiento_persona;
     private byte[] Imagen_persona;
     private String Tipo_persona;
+    private String Up_persona;
 
-    public Persona(Integer id_persona, String nombre_persona, String apellido_persona, String fecha_nacimiento_persona, byte[] imagen_persona, String tipo_persona) {
+    public Persona(Integer id_persona, String nombre_persona, String apellido_persona, String fecha_nacimiento_persona, byte[] imagen_persona, String tipo_persona, String up_persona) {
         Id_persona = id_persona;
         Nombre_persona = nombre_persona;
         Apellido_persona = apellido_persona;
         Fecha_nacimiento_persona = fecha_nacimiento_persona;
         Imagen_persona = imagen_persona;
         Tipo_persona = tipo_persona;
+        Up_persona = up_persona;
     }
 
     public Persona() {
@@ -60,6 +62,14 @@ public class Persona implements Serializable {
 
     public void setImagen_persona(byte[] imagen_persona) {
         Imagen_persona = imagen_persona;
+    }
+
+    public String getUp_persona() {
+        return Up_persona;
+    }
+
+    public void setUp_persona(String up_persona) {
+        Up_persona = up_persona;
     }
 
     public String getTipo_persona() {

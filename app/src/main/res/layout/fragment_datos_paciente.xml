@@ -8,7 +8,7 @@
         android:orientation="vertical">
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="405dp">
+            android:layout_height="455dp">
 
             <LinearLayout
                 android:background="@drawable/person"
@@ -16,9 +16,16 @@
                 android:layout_height="350dp"
                 android:orientation="vertical"
                 android:id="@+id/linear_back">
+                <ImageView
+                    android:id="@+id/up_paciente"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:srcCompat="@drawable/cloud_upload"
+                    android:layout_gravity="right"
+                    android:padding="20dp"/>
+
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imgDatospaciente"
-                    android:layout_marginTop="45dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="180dp"
                     android:layout_height="180dp"
@@ -27,7 +34,6 @@
                     app:civ_border_width="5dp" />
                 <TextView
                     android:id="@+id/nombrePrincipal"
-                    android:layout_marginTop="10dp"
                     android:layout_gravity="center_horizontal"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -41,12 +47,13 @@
                     android:layout_gravity="bottom"
                     android:layout_marginRight="50dp"
                     android:id="@+id/swicth_profile"/>
+
             </LinearLayout>
             <android.support.v7.widget.CardView
                 android:layout_width="400dp"
                 android:layout_height="120dp"
                 android:layout_centerHorizontal="true"
-                android:layout_marginTop="275dp">
+                android:layout_marginTop="305dp">
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="match_parent">
@@ -259,15 +266,7 @@
                 android:orientation="vertical">
 
             </android.support.v7.widget.RecyclerView>
-            <!--<Button-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:text="Nuevo Test"-->
-                <!--android:id="@+id/nuevo_test"-->
-                <!--android:padding="20dp"-->
-                <!--android:background="@color/colorPrimaryDark"-->
-                <!--android:textColor="#fff"-->
-                <!--android:layout_margin="20dp"/>-->
+
             <android.support.design.widget.FloatingActionButton
                 android:id="@+id/nuevo_test"
                 android:layout_width="wrap_content"

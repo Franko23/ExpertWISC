@@ -7,6 +7,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.franko.expertwisc.Entidades.Test;
@@ -20,7 +21,8 @@ public class AdapterTest extends RecyclerView.Adapter<AdapterTest.ViewHolderTest
     Context context;
     View root;
     private View.OnClickListener listener;
-    public AdapterTest(ArrayList<Test> listatest) {
+
+    public  AdapterTest(ArrayList<Test> listatest) {
         this.listaTest = listatest;
     }
 
@@ -39,11 +41,13 @@ public class AdapterTest extends RecyclerView.Adapter<AdapterTest.ViewHolderTest
         private TextView fecha_prueba;
         private TextView estado;
         private TextView nroTest;
+        private ImageView up_test;
         public ViewHolderTest(View itemView) {
             super(itemView);
-            fecha_prueba= (TextView) itemView.findViewById(R.id.fecha_prueba);
-            estado= (TextView) itemView.findViewById(R.id.estado);
-            nroTest= (TextView) itemView.findViewById(R.id.nro_test);
+            fecha_prueba = itemView.findViewById(R.id.fecha_prueba);
+            estado =  itemView.findViewById(R.id.estado);
+            nroTest = itemView.findViewById(R.id.nro_test);
+            up_test = itemView.findViewById(R.id.up_test);
         }
     }
     @Override
@@ -56,6 +60,9 @@ public class AdapterTest extends RecyclerView.Adapter<AdapterTest.ViewHolderTest
             holder.estado.setBackgroundColor(Color.parseColor("#e73922"));
         }else {
             holder.estado.setBackgroundColor(Color.parseColor("#0d9318"));
+        }
+        if (listaTest.get(position).getUp_test().equals("NO")){
+            holder.up_test.setVisibility(View.VISIBLE);
         }
     }
 
