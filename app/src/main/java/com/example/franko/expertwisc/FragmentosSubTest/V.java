@@ -131,7 +131,7 @@ public class V extends Fragment {
                 if (Integer.parseInt(res_v.getText().toString())<=68){
                     SubTestV subTestV = new SubTestV();
                     subTestV.setPuntuacionDirectaTotalV(res_v.getText().toString());
-                    subTestV.RegistrarV(getContext());
+                    subTestV.UpdateV(getContext());
                     Utilidades.R_v = (res_v.getText().toString());
                     guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 //                    Toast.makeText(getContext(),Utilidades.R_v +" GUARDADO",Toast.LENGTH_SHORT).show();

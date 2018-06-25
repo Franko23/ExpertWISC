@@ -4,13 +4,17 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.franko.expertwisc.ConexionHelper;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
 public class SubTestCo {
+
+    private Integer Id_Co;
     private String PuntuacionDirectaTotalCo;
+
     Context context;
     ConexionHelper con;
 
@@ -20,6 +24,13 @@ public class SubTestCo {
 
     public SubTestCo(String puntuacionDirectaTotalCo) {
         PuntuacionDirectaTotalCo = puntuacionDirectaTotalCo;
+    }
+    public Integer getId_Co() {
+        return Id_Co;
+    }
+
+    public void setId_Co(Integer id_Co) {
+        Id_Co = id_Co;
     }
 
     public String getPuntuacionDirectaTotalCo() {
@@ -36,7 +47,7 @@ public class SubTestCo {
         SQLiteDatabase db = con.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(Utilidades.CAMPO_CO,getPuntuacionDirectaTotalCo());
+        contentValues.put(Utilidades.CAMPO_CO,"");
         contentValues.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
 
         try {
@@ -45,6 +56,27 @@ public class SubTestCo {
         }catch (Exception e){
             Toast.makeText(context,"Error al insertar puntuacion Co ",Toast.LENGTH_SHORT).show();
         }
+        db.close();
+    }
+
+    public void UpdateCo(Context context){
+        this.context = context;
+
+        con = new ConexionHelper(context,"bd_wisc",null,1);
+        SQLiteDatabase db = con.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Utilidades.CAMPO_CO,getPuntuacionDirectaTotalCo());
+
+        try {
+            int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_CO,contentValues,Utilidades.CAMPO_ID_PUNTUACION_CO+"="+getId_Co(),null);
+            if (okTest==1){
+                Log.d("Mensaje:", "SubTestCo actualizado corectamente");
+            }
+        }catch (Exception e){
+            Toast.makeText(context,"Error al actualizar SubTestCo", Toast.LENGTH_SHORT).show();
+        }
+
         db.close();
     }
 
@@ -57,10 +89,12 @@ public class SubTestCo {
 
         cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_CO+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
         while (cursor.moveToNext()){
+            setId_Co(cursor.getInt(0));
             setPuntuacionDirectaTotalCo(cursor.getString(1));
             Utilidades.R_co = getPuntuacionDirectaTotalCo();
         }
 
         db.close();
     }
+
 }

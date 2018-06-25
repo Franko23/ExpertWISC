@@ -143,7 +143,7 @@ public class I extends Fragment {
                 if (Integer.parseInt(res_i.getText().toString())<=33){
                     SubTestI subTestI = new SubTestI();
                     subTestI.setPuntuacionDirectaTotalI(res_i.getText().toString());
-                    subTestI.RegistrarI(getContext());
+                    subTestI.UpdateI(getContext());
                     Utilidades.R_i = (res_i.getText().toString());
                     guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 //                    Toast.makeText(getContext(),Utilidades.R_i+" GUARDADO",Toast.LENGTH_SHORT).show();
@@ -192,21 +192,21 @@ public class I extends Fragment {
                     Utilidades.R_s = Utilidades.R_s+"r";
                     SubTestS subTestS = new SubTestS();
                     subTestS.setPuntuacionDirectaTotalS(Utilidades.R_s);
-                    subTestS.RegistrarS(getContext());
+                    subTestS.UpdateS(getContext());
 //                    Toast.makeText(getContext(),"Cc",Toast.LENGTH_SHORT).show();
                 }
                 if (radioButtonV.isChecked()){
                     Utilidades.R_v = Utilidades.R_v+"r";
                     SubTestV subTestV = new SubTestV();
                     subTestV.setPuntuacionDirectaTotalV(Utilidades.R_v);
-                    subTestV.RegistrarV(getContext());
+                    subTestV.UpdateV(getContext());
 //                    Toast.makeText(getContext(),"Co",Toast.LENGTH_SHORT).show();
                 }
                 if (radioButtonC.isChecked()){
                     Utilidades.R_c = Utilidades.R_c+"r";
                     SubTestC subTestC = new SubTestC();
                     subTestC.setPuntuacionDirectaTotalC(Utilidades.R_c);
-                    subTestC.RegistrarC(getContext());
+                    subTestC.UpdateC(getContext());
 //                    Toast.makeText(getContext(),"Co",Toast.LENGTH_SHORT).show();
                 }
 

@@ -145,7 +145,7 @@ public class Ad extends Fragment {
                 if (Integer.parseInt(res_ad.getText().toString())<=24){
                     SubTestAd subTestAd = new SubTestAd();
                     subTestAd.setPuntuacionDirectaTotalAd(res_ad.getText().toString());
-                    subTestAd.RegistrarAd(getContext());
+                    subTestAd.UpdateAd(getContext());
                     Utilidades.R_ad = (res_ad.getText().toString());
                     guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 //                    Toast.makeText(getContext(),Utilidades.R_ad+" GUARDADO",Toast.LENGTH_SHORT).show();
@@ -199,7 +199,7 @@ public class Ad extends Fragment {
                     Utilidades.R_s = Utilidades.R_s+"r";
                     SubTestS subTestS = new SubTestS();
                     subTestS.setPuntuacionDirectaTotalS(Utilidades.R_s);
-                    subTestS.RegistrarS(getContext());
+                    subTestS.UpdateS(getContext());
 //                    Toast.makeText(getContext(),"Cc",Toast.LENGTH_SHORT).show();
                 }
                 if (radioButtonV.isChecked()){
@@ -207,7 +207,7 @@ public class Ad extends Fragment {
                     Utilidades.R_v = Utilidades.R_v+"r";
                     SubTestV subTestV = new SubTestV();
                     subTestV.setPuntuacionDirectaTotalV(Utilidades.R_v);
-                    subTestV.RegistrarV(getContext());
+                    subTestV.UpdateV(getContext());
 //                    Toast.makeText(getContext(),"Co",Toast.LENGTH_SHORT).show();
                 }
                 if (radioButtonC.isChecked()){
@@ -215,7 +215,7 @@ public class Ad extends Fragment {
                     Utilidades.R_c = Utilidades.R_c+"r";
                     SubTestC subTestC = new SubTestC();
                     subTestC.setPuntuacionDirectaTotalC(Utilidades.R_c);
-                    subTestC.RegistrarC(getContext());
+                    subTestC.UpdateC(getContext());
 //                    Toast.makeText(getContext(),"Co",Toast.LENGTH_SHORT).show();
                 }
 

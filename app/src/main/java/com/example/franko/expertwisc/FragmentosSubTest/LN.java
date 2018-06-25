@@ -129,7 +129,7 @@ public class LN extends Fragment {
                 if (Integer.parseInt(res_ln.getText().toString())<=30){
                     SubTestLN subTestLN = new SubTestLN();
                     subTestLN.setPuntuacionDirectaTotalLN(res_ln.getText().toString());
-                    subTestLN.RegistrarLN(getContext());
+                    subTestLN.UpdateLN(getContext());
                     Utilidades.R_ln = (res_ln.getText().toString());
                     guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 //                    Toast.makeText(getContext(),Utilidades.R_ln+" GUARDADO",Toast.LENGTH_SHORT).show();

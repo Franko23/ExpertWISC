@@ -279,21 +279,6 @@ public class DatosPaciente extends Fragment {
                             newTest.put("fechaTest",fechaActual);
                             newTest.put("edadPaciente",Utilidades.edadActual);
 
-                            newTest.put("CC","");
-                            newTest.put("S","");
-                            newTest.put("RD","");
-                            newTest.put("Co","");
-                            newTest.put("Cl","");
-                            newTest.put("V","");
-                            newTest.put("LN","");
-                            newTest.put("M","");
-                            newTest.put("C","");
-                            newTest.put("BS","");
-                            newTest.put("CF","");
-                            newTest.put("A","");
-                            newTest.put("I","");
-                            newTest.put("Ar","");
-                            newTest.put("Ai","");
 
                             dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(paciente.getId_paciente().toString()).collection("test").document(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test().toString())
                                     .set(newTest)
@@ -325,6 +310,587 @@ public class DatosPaciente extends Fragment {
                                             Log.w(TAG, "Error subiendo test", e);
                                         }
                                     });
+
+                            Test test = new Test();
+                            test.Valores();
+                            ConsultaView(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
+
+                            Map<String, Object> subTestCC = new HashMap<>();
+                            subTestCC.put("ResultadoCC",Utilidades.R_cc);
+                            subTestCC.put("ResultadoCCS","");
+                            Map<String, Object> subTestS = new HashMap<>();
+                            subTestS.put("S",Utilidades.R_s);
+                            Map<String, Object> subTestRD = new HashMap<>();
+                            subTestRD.put("RD",Utilidades.R_rd);
+                            Map<String, Object> subTestCo = new HashMap<>();
+                            subTestCo.put("Co",Utilidades.R_co);
+                            Map<String, Object> subTestCl = new HashMap<>();
+                            subTestCl.put("Cl",Utilidades.R_cl);
+                            Map<String, Object> subTestV = new HashMap<>();
+                            subTestV.put("V",Utilidades.R_v);
+                            Map<String, Object> subTestLN = new HashMap<>();
+                            subTestLN.put("LN",Utilidades.R_ln);
+                            Map<String, Object> subTestM= new HashMap<>();
+                            subTestM.put("M",Utilidades.R_m);
+                            Map<String, Object> subTestC = new HashMap<>();
+                            subTestC.put("C",Utilidades.R_c);
+                            Map<String, Object> subTestBS = new HashMap<>();
+                            subTestBS.put("BS",Utilidades.R_bs);
+                            Map<String, Object> subTestCF = new HashMap<>();
+                            subTestCF.put("CF",Utilidades.R_cf);
+                            Map<String, Object> subTestA = new HashMap<>();
+                            subTestA.put("A",Utilidades.R_a);
+                            Map<String, Object> subTestI = new HashMap<>();
+                            subTestI.put("I",Utilidades.R_i);
+                            Map<String, Object> subTestAr = new HashMap<>();
+                            subTestAr.put("Ar",Utilidades.R_ar);
+                            Map<String, Object> subTestAd = new HashMap<>();
+                            subTestAd.put("Ad",Utilidades.R_ad);
+
+
+                            SQLiteDatabase db = con.getWritableDatabase();
+
+                            //Subimos el SubTest CC
+                            dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(paciente.getId_paciente().toString())
+                                    .collection("test").document(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test().toString())
+                                    .collection("subTest").document("CC")
+                                    .set(subTestCC)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "SubTestCC subido corectamente");
+                                            up.setVisibility(View.INVISIBLE);
+
+                                            SubTestCC testCC = new SubTestCC();
+                                            testCC.ConsultaCC(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
+
+
+                                            ContentValues subTestUpdate = new ContentValues();
+                                            subTestUpdate.put(Utilidades.CAMPO_UP_CC,"SI");
+
+                                            try {
+                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_CC,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_CC+"="+testCC.getId_CC(),null);
+                                                if (okTest==1){
+                                                    Log.d(TAG, "SubTestCC actualizado corectamente");
+                                                }
+                                            }catch (Exception e){
+                                                Toast.makeText(getContext(),"Error al actualizar SubTestCC", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Error subiendo SubTestC", e);
+                                        }
+                                    });
+
+                            //Subimos el SubTest S
+                            dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(paciente.getId_paciente().toString())
+                                    .collection("test").document(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test().toString())
+                                    .collection("subTest").document("S")
+                                    .set(subTestCC)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "SubTestS subido corectamente");
+                                            up.setVisibility(View.INVISIBLE);
+
+                                            SubTestS testS = new SubTestS();
+                                            testS.ConsultaS(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
+
+
+                                            ContentValues subTestUpdate = new ContentValues();
+                                            subTestUpdate.put(Utilidades.CAMPO_UP_S,"SI");
+
+                                            try {
+                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_S,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_S+"="+testS.getId_S(),null);
+                                                if (okTest==1){
+                                                    Log.d(TAG, "SubTestS actualizado corectamente");
+                                                }
+                                            }catch (Exception e){
+                                                Toast.makeText(getContext(),"Error al actualizar SubTestS", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Error subiendo SubTestS ", e);
+                                        }
+                                    });
+
+
+                            //Subimos el SubTest RD
+                            dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(paciente.getId_paciente().toString())
+                                    .collection("test").document(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test().toString())
+                                    .collection("subTest").document("RD")
+                                    .set(subTestRD)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "SubTestRD subido corectamente");
+                                            up.setVisibility(View.INVISIBLE);
+
+                                            SubTestRD testRD = new SubTestRD();
+                                            testRD.ConsultaRD(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
+
+
+                                            ContentValues subTestUpdate = new ContentValues();
+                                            subTestUpdate.put(Utilidades.CAMPO_UP_RD,"SI");
+
+                                            try {
+                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_RD,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_RD+"="+testRD.getId_RD(),null);
+                                                if (okTest==1){
+                                                    Log.d(TAG, "SubTestRD actualizado corectamente");
+                                                }
+                                            }catch (Exception e){
+                                                Toast.makeText(getContext(),"Error al actualizar SubTestRD", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Error subiendo SubTestRD ", e);
+                                        }
+                                    });
+
+
+                            //Subimos el SubTest Co
+                            dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(paciente.getId_paciente().toString())
+                                    .collection("test").document(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test().toString())
+                                    .collection("subTest").document("Co")
+                                    .set(subTestCo)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "SubTestCo subido corectamente");
+                                            up.setVisibility(View.INVISIBLE);
+
+                                            SubTestCo testCo = new SubTestCo();
+                                            testCo.ConsultaCo(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
+
+
+                                            ContentValues subTestUpdate = new ContentValues();
+                                            subTestUpdate.put(Utilidades.CAMPO_UP_CO,"SI");
+
+                                            try {
+                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_CO,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_CO+"="+testCo.getId_Co(),null);
+                                                if (okTest==1){
+                                                    Log.d(TAG, "SubTestCo actualizado corectamente");
+                                                }
+                                            }catch (Exception e){
+                                                Toast.makeText(getContext(),"Error al actualizar SubTestCo", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Error subiendo SubTestCo ", e);
+                                        }
+                                    });
+
+
+
+                            //Subimos el SubTest Cl
+                            dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(paciente.getId_paciente().toString())
+                                    .collection("test").document(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test().toString())
+                                    .collection("subTest").document("Cl")
+                                    .set(subTestCl)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "SubTestCl subido corectamente");
+                                            up.setVisibility(View.INVISIBLE);
+
+                                            SubTestCl testCl = new SubTestCl();
+                                            testCl.ConsultaCl(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
+
+
+                                            ContentValues subTestUpdate = new ContentValues();
+                                            subTestUpdate.put(Utilidades.CAMPO_UP_CL,"SI");
+
+                                            try {
+                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_CL,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_CL+"="+testCl.getId_Cl(),null);
+                                                if (okTest==1){
+                                                    Log.d(TAG, "SubTestCl actualizado corectamente");
+                                                }
+                                            }catch (Exception e){
+                                                Toast.makeText(getContext(),"Error al actualizar SubTestCl", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Error subiendo SubTestCL ", e);
+                                        }
+                                    });
+
+
+
+                            //Subimos el SubTest V
+                            dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(paciente.getId_paciente().toString())
+                                    .collection("test").document(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test().toString())
+                                    .collection("subTest").document("V")
+                                    .set(subTestV)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "SubTestV subido corectamente");
+                                            up.setVisibility(View.INVISIBLE);
+
+                                            SubTestV testV = new SubTestV();
+                                            testV.ConsultaV(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
+
+
+                                            ContentValues subTestUpdate = new ContentValues();
+                                            subTestUpdate.put(Utilidades.CAMPO_UP_V,"SI");
+
+                                            try {
+                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_V,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_V+"="+testV.getId_V(),null);
+                                                if (okTest==1){
+                                                    Log.d(TAG, "SubTestV actualizado corectamente");
+                                                }
+                                            }catch (Exception e){
+                                                Toast.makeText(getContext(),"Error al actualizar SubTestV", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Error subiendo SubTestV ", e);
+                                        }
+                                    });
+
+                            //Subimos el SubTest LN
+                            dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(paciente.getId_paciente().toString())
+                                    .collection("test").document(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test().toString())
+                                    .collection("subTest").document("LN")
+                                    .set(subTestLN)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "SubTestLN subido corectamente");
+                                            up.setVisibility(View.INVISIBLE);
+
+                                            SubTestLN testLN = new SubTestLN();
+                                            testLN.ConsultaLN(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
+
+
+                                            ContentValues subTestUpdate = new ContentValues();
+                                            subTestUpdate.put(Utilidades.CAMPO_UP_LN,"SI");
+
+                                            try {
+                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_LN,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_LN+"="+testLN.getId_LN(),null);
+                                                if (okTest==1){
+                                                    Log.d(TAG, "SubTestLN actualizado corectamente");
+                                                }
+                                            }catch (Exception e){
+                                                Toast.makeText(getContext(),"Error al actualizar SubTestLN", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Error subiendo SubTestLN ", e);
+                                        }
+                                    });
+
+
+                            //Subimos el SubTest M
+                            dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(paciente.getId_paciente().toString())
+                                    .collection("test").document(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test().toString())
+                                    .collection("subTest").document("M")
+                                    .set(subTestM)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "SubTestM subido corectamente");
+                                            up.setVisibility(View.INVISIBLE);
+
+                                            SubTestM testM = new SubTestM();
+                                            testM.ConsultaM(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
+
+
+                                            ContentValues subTestUpdate = new ContentValues();
+                                            subTestUpdate.put(Utilidades.CAMPO_UP_M,"SI");
+
+                                            try {
+                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_M,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_M+"="+testM.getId_M(),null);
+                                                if (okTest==1){
+                                                    Log.d(TAG, "SubTestM actualizado corectamente");
+                                                }
+                                            }catch (Exception e){
+                                                Toast.makeText(getContext(),"Error al actualizar SubTestM", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Error subiendo SubTestM ", e);
+                                        }
+                                    });
+
+
+
+                            //Subimos el SubTest C
+                            dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(paciente.getId_paciente().toString())
+                                    .collection("test").document(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test().toString())
+                                    .collection("subTest").document("C")
+                                    .set(subTestC)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "SubTestC subido corectamente");
+                                            up.setVisibility(View.INVISIBLE);
+
+                                            SubTestC testC = new SubTestC();
+                                            testC.ConsultaC(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
+
+
+                                            ContentValues subTestUpdate = new ContentValues();
+                                            subTestUpdate.put(Utilidades.CAMPO_UP_C,"SI");
+
+                                            try {
+                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_C,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_C+"="+testC.getId_C(),null);
+                                                if (okTest==1){
+                                                    Log.d(TAG, "SubTestC actualizado corectamente");
+                                                }
+                                            }catch (Exception e){
+                                                Toast.makeText(getContext(),"Error al actualizar SubTestC", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Error subiendo SubTestC ", e);
+                                        }
+                                    });
+
+                            //Subimos el SubTest BS
+                            dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(paciente.getId_paciente().toString())
+                                    .collection("test").document(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test().toString())
+                                    .collection("subTest").document("BS")
+                                    .set(subTestBS)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "SubTestBS subido corectamente");
+                                            up.setVisibility(View.INVISIBLE);
+
+                                            SubTestBS testBS = new SubTestBS();
+                                            testBS.ConsultaBS(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
+
+
+                                            ContentValues subTestUpdate = new ContentValues();
+                                            subTestUpdate.put(Utilidades.CAMPO_UP_BS,"SI");
+
+                                            try {
+                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_BS,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_BS+"="+testBS.getId_BS(),null);
+                                                if (okTest==1){
+                                                    Log.d(TAG, "SubTestBS actualizado corectamente");
+                                                }
+                                            }catch (Exception e){
+                                                Toast.makeText(getContext(),"Error al actualizar SubTestBS", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Error subiendo SubTestBS ", e);
+                                        }
+                                    });
+
+
+                            //Subimos el SubTest CF
+                            dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(paciente.getId_paciente().toString())
+                                    .collection("test").document(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test().toString())
+                                    .collection("subTest").document("CF")
+                                    .set(subTestCF)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "SubTestCF subido corectamente");
+                                            up.setVisibility(View.INVISIBLE);
+
+                                            SubTestCF testCF = new SubTestCF();
+                                            testCF.ConsultaCF(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
+
+
+                                            ContentValues subTestUpdate = new ContentValues();
+                                            subTestUpdate.put(Utilidades.CAMPO_UP_CF,"SI");
+
+                                            try {
+                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_CF,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_CF+"="+testCF.getId_CF(),null);
+                                                if (okTest==1){
+                                                    Log.d(TAG, "SubTestCF actualizado corectamente");
+                                                }
+                                            }catch (Exception e){
+                                                Toast.makeText(getContext(),"Error al actualizar SubTestCF", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Error subiendo SubTestCF ", e);
+                                        }
+                                    });
+
+
+                            //Subimos el SubTest A
+                            dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(paciente.getId_paciente().toString())
+                                    .collection("test").document(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test().toString())
+                                    .collection("subTest").document("A")
+                                    .set(subTestA)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "SubTestA subido corectamente");
+                                            up.setVisibility(View.INVISIBLE);
+
+                                            SubTestA testA = new SubTestA();
+                                            testA.ConsultaA(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
+
+
+                                            ContentValues subTestUpdate = new ContentValues();
+                                            subTestUpdate.put(Utilidades.CAMPO_UP_A,"SI");
+
+                                            try {
+                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_A,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_A+"="+testA.getId_A(),null);
+                                                if (okTest==1){
+                                                    Log.d(TAG, "SubTestA actualizado corectamente");
+                                                }
+                                            }catch (Exception e){
+                                                Toast.makeText(getContext(),"Error al actualizar SubTestA", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Error subiendo SubTestA ", e);
+                                        }
+                                    });
+
+
+
+                            //Subimos el SubTest I
+                            dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(paciente.getId_paciente().toString())
+                                    .collection("test").document(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test().toString())
+                                    .collection("subTest").document("I")
+                                    .set(subTestI)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "SubTestI subido corectamente");
+                                            up.setVisibility(View.INVISIBLE);
+
+                                            SubTestI testI = new SubTestI();
+                                            testI.ConsultaI(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
+
+
+                                            ContentValues subTestUpdate = new ContentValues();
+                                            subTestUpdate.put(Utilidades.CAMPO_UP_I,"SI");
+
+                                            try {
+                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_I,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_I+"="+testI.getId_I(),null);
+                                                if (okTest==1){
+                                                    Log.d(TAG, "SubTestI actualizado corectamente");
+                                                }
+                                            }catch (Exception e){
+                                                Toast.makeText(getContext(),"Error al actualizar SubTestI", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Error subiendo SubTestI", e);
+                                        }
+                                    });
+
+
+                            //Subimos el SubTest Ad
+                            dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(paciente.getId_paciente().toString())
+                                    .collection("test").document(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test().toString())
+                                    .collection("subTest").document("Ad")
+                                    .set(subTestAd)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "SubTestAd subido corectamente");
+                                            up.setVisibility(View.INVISIBLE);
+
+                                            SubTestAd testAd = new SubTestAd();
+                                            testAd.ConsultaAd(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
+
+
+                                            ContentValues subTestUpdate = new ContentValues();
+                                            subTestUpdate.put(Utilidades.CAMPO_UP_AD,"SI");
+
+                                            try {
+                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_AD,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_AD+"="+testAd.getId_Ad(),null);
+                                                if (okTest==1){
+                                                    Log.d(TAG, "SubTestAd actualizado corectamente");
+                                                }
+                                            }catch (Exception e){
+                                                Toast.makeText(getContext(),"Error al actualizar SubTestAd", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Error subiendo SubTestAd ", e);
+                                        }
+                                    });
+
+
+                            //Subimos el SubTest Ar
+                            dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(paciente.getId_paciente().toString())
+                                    .collection("test").document(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test().toString())
+                                    .collection("subTest").document("Ar")
+                                    .set(subTestAr)
+                                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                        @Override
+                                        public void onSuccess(Void aVoid) {
+                                            Log.d(TAG, "SubTestAr subido corectamente");
+                                            up.setVisibility(View.INVISIBLE);
+
+                                            SubTestAr testAr = new SubTestAr();
+                                            testAr.ConsultaAr(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
+
+
+                                            ContentValues subTestUpdate = new ContentValues();
+                                            subTestUpdate.put(Utilidades.CAMPO_UP_AR,"SI");
+
+                                            try {
+                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_AR,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_AR+"="+testAr.getId_Ar(),null);
+                                                if (okTest==1){
+                                                    Log.d(TAG, "SubTestAr actualizado corectamente");
+                                                }
+                                            }catch (Exception e){
+                                                Toast.makeText(getContext(),"Error al actualizar SubTestAr", Toast.LENGTH_SHORT).show();
+                                            }
+                                        }
+                                    })
+                                    .addOnFailureListener(new OnFailureListener() {
+                                        @Override
+                                        public void onFailure(@NonNull Exception e) {
+                                            Log.w(TAG, "Error subiendo SubTestA ", e);
+                                        }
+                                    });
+
+
                         }
 
                     }
@@ -376,6 +942,9 @@ public class DatosPaciente extends Fragment {
                 test.Valores();
                 //Registro de nuevo test
                 RegistroTest();
+
+                //Registramos los SubTest de el Test Actual
+                RegistrarSubTest();
 
                 Persona persona =  new Persona();
                 persona.setNombre_persona(editNombres.getText().toString());
@@ -464,6 +1033,41 @@ public class DatosPaciente extends Fragment {
         });
 
         return view;
+    }
+
+    private void RegistrarSubTest() {
+
+        SubTestCC testCC = new SubTestCC();
+        testCC.RegistrarCC(getContext());
+        SubTestS subTestS = new SubTestS();
+        subTestS.RegistrarS(getContext());
+        SubTestRD subTestRD= new SubTestRD();
+        subTestRD.RegistrarRD(getContext());
+        SubTestCo subTestCo = new SubTestCo();
+        subTestCo.RegistrarCo(getContext());
+        SubTestCl subTestCl = new SubTestCl();
+        subTestCl.RegistrarCl(getContext());
+        SubTestV subTestV = new SubTestV();
+        subTestV.RegistrarV(getContext());
+        SubTestLN subTestLN = new SubTestLN();
+        subTestLN.RegistrarLN(getContext());
+        SubTestM subTestM = new SubTestM();
+        subTestM.RegistrarM(getContext());
+        SubTestC subTestC= new SubTestC();
+        subTestC.RegistrarC(getContext());
+        SubTestBS subTestBS = new SubTestBS();
+        subTestBS.RegistrarBS(getContext());
+        SubTestCF subTestCF = new SubTestCF();
+        subTestCF.RegistrarCF(getContext());
+        SubTestA subTestA = new SubTestA();
+        subTestA.RegistrarA(getContext());
+        SubTestI subTestI= new SubTestI();
+        subTestI.RegistrarI(getContext());
+        SubTestAr subTestAr = new SubTestAr();
+        subTestAr.RegistrarAr(getContext());
+        SubTestAd subTestAd = new SubTestAd();
+        subTestAd.RegistrarAd(getContext());
+
     }
 
     private void subirPaciente() {
@@ -605,7 +1209,7 @@ public class DatosPaciente extends Fragment {
     private void RegistroTest() {
         SQLiteDatabase db = con.getWritableDatabase();
 
-        //Insertamos los Datos del test en la tabla test
+        //Insertamos los datos del test en la tabla test
         ContentValues test = new ContentValues();
 
         Calendar calendar = Calendar.getInstance();

@@ -140,7 +140,7 @@ public class Ar extends Fragment {
                 if (Integer.parseInt(res_ar.getText().toString())<=34){
                     SubTestAr subTestAr = new SubTestAr();
                     subTestAr.setPuntuacionDirectaTotalAr(res_ar.getText().toString());
-                    subTestAr.RegistrarAr(getContext());
+                    subTestAr.UpdateAr(getContext());
                     Utilidades.R_ar = (res_ar.getText().toString());
                     guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 //                    Toast.makeText(getContext(),Utilidades.R_ar+" GUARDADO",Toast.LENGTH_SHORT).show();
@@ -187,14 +187,14 @@ public class Ar extends Fragment {
                     Utilidades.R_rd = Utilidades.R_rd+"r";
                     SubTestRD subTestRD = new SubTestRD();
                     subTestRD.setPuntuacionDirectaTotalRD(Utilidades.R_rd);
-                    subTestRD.RegistrarRD(getContext());
+                    subTestRD.UpdateRD(getContext());
 //                    Toast.makeText(getContext(),"Cc",Toast.LENGTH_SHORT).show();
                 }
                 if (radioButtonLn.isChecked()){
                     Utilidades.R_ln = Utilidades.R_ln+"r";
                     SubTestLN subTestLN = new SubTestLN();
                     subTestLN.setPuntuacionDirectaTotalLN(Utilidades.R_ln);
-                    subTestLN.RegistrarLN(getContext());
+                    subTestLN.UpdateLN(getContext());
 //                    Toast.makeText(getContext(),"Co",Toast.LENGTH_SHORT).show();
                 }
 

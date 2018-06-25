@@ -143,7 +143,7 @@ public class S extends Fragment {
 
                     SubTestS subTestS = new SubTestS();
                     subTestS.setPuntuacionDirectaTotalS(res_s.getText().toString());
-                    subTestS.RegistrarS(getContext());
+                    subTestS.UpdateS(getContext());
                     Utilidades.R_s = (res_s.getText().toString());
                     guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 //                    Toast.makeText(getContext(),Utilidades.R_s +" GUARDADO",Toast.LENGTH_SHORT).show();

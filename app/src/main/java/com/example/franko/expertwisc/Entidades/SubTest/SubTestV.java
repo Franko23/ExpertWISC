@@ -4,12 +4,15 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.franko.expertwisc.ConexionHelper;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
 public class SubTestV {
+
+    private Integer Id_V;
     private String PuntuacionDirectaTotalV;
     Context context;
     ConexionHelper con;
@@ -20,6 +23,15 @@ public class SubTestV {
 
     public SubTestV(String puntuacionDirectaTotalV) {
         PuntuacionDirectaTotalV = puntuacionDirectaTotalV;
+    }
+
+
+    public Integer getId_V() {
+        return Id_V;
+    }
+
+    public void setId_V(Integer id_V) {
+        Id_V = id_V;
     }
 
     public String getPuntuacionDirectaTotalV() {
@@ -36,7 +48,7 @@ public class SubTestV {
         SQLiteDatabase db = con.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(Utilidades.CAMPO_V,getPuntuacionDirectaTotalV());
+        contentValues.put(Utilidades.CAMPO_V, "");
         contentValues.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
 
         try {
@@ -45,6 +57,27 @@ public class SubTestV {
         }catch (Exception e){
             Toast.makeText(context,"Error al insertar puntuacion V ",Toast.LENGTH_SHORT).show();
         }
+        db.close();
+    }
+
+    public void UpdateV(Context context){
+        this.context = context;
+
+        con = new ConexionHelper(context,"bd_wisc",null,1);
+        SQLiteDatabase db = con.getWritableDatabase();
+
+        ContentValues contentValues = new ContentValues();
+        contentValues.put(Utilidades.CAMPO_V,getPuntuacionDirectaTotalV());
+
+        try {
+            int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_V,contentValues,Utilidades.CAMPO_ID_PUNTUACION_V+"="+getId_V(),null);
+            if (okTest==1){
+                Log.d("Mensaje:", "SubTestV actualizado corectamente");
+            }
+        }catch (Exception e){
+            Toast.makeText(context,"Error al actualizar SubTestV", Toast.LENGTH_SHORT).show();
+        }
+
         db.close();
     }
 
@@ -57,7 +90,9 @@ public class SubTestV {
 
         cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_PUNTUACIONES_V+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
         while (cursor.moveToNext()){
+            setId_V(cursor.getInt(0));
             setPuntuacionDirectaTotalV(cursor.getString(1));
+
             Utilidades.R_v = getPuntuacionDirectaTotalV();
         }
 

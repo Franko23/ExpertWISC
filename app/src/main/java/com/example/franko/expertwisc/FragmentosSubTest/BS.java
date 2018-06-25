@@ -141,7 +141,7 @@ public class BS extends Fragment {
 
                     SubTestBS subTestBS = new SubTestBS();
                     subTestBS.setPuntuacionDirectaTotalBS(res_bs.getText().toString());
-                    subTestBS.RegistrarBS(getContext());
+                    subTestBS.UpdateBS(getContext());
 
                     Utilidades.R_bs = (res_bs.getText().toString());
                     guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));

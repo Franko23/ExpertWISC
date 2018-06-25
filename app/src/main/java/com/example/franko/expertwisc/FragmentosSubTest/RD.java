@@ -131,7 +131,7 @@ public class RD extends Fragment {
                 if (Integer.parseInt(res_rd.getText().toString())<=32){
                     SubTestRD subTestRD = new SubTestRD();
                     subTestRD.setPuntuacionDirectaTotalRD(res_rd.getText().toString());
-                    subTestRD.RegistrarRD(getContext());
+                    subTestRD.UpdateRD(getContext());
                     Utilidades.R_rd = (res_rd.getText().toString());
                     guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 //                    Toast.makeText(getContext(),Utilidades.R_rd +" GUARDADO",Toast.LENGTH_SHORT).show();

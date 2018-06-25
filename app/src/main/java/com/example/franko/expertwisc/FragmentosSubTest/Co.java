@@ -130,7 +130,7 @@ public class Co extends Fragment {
                 if (Integer.parseInt(res_co.getText().toString())<=28){
                     SubTestCo subTestCo = new SubTestCo();
                     subTestCo.setPuntuacionDirectaTotalCo(res_co.getText().toString());
-                    subTestCo.RegistrarCo(getContext());
+                    subTestCo.UpdateCo(getContext());
                     Utilidades.R_co = (res_co.getText().toString());
                     guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 //                    Toast.makeText(getContext(),Utilidades.R_co+" GUARDADO",Toast.LENGTH_SHORT).show();

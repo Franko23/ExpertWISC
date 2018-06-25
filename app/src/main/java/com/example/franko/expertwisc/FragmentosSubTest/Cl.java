@@ -144,7 +144,7 @@ public class Cl extends Fragment {
                 if (Integer.parseInt(res_cl.getText().toString())<=valorMax){
                     SubTestCl subTestCl = new SubTestCl();
                     subTestCl.setPuntuacionDirectaTotalCl(res_cl.getText().toString());
-                    subTestCl.RegistrarCl(getContext());
+                    subTestCl.UpdateCl(getContext());
                     Utilidades.R_cl = (res_cl.getText().toString());
                     guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 //                    Toast.makeText(getContext(),Utilidades.R_cl +" GUARDADO",Toast.LENGTH_SHORT).show();

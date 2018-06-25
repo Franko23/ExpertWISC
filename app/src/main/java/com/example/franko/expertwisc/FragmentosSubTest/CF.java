@@ -139,7 +139,7 @@ public class CF extends Fragment {
                 if (Integer.parseInt(res_cf.getText().toString())<=38){
                     SubTestCF subTestCF = new SubTestCF();
                     subTestCF.setPuntuacionDirectaTotalCF(res_cf.getText().toString());
-                    subTestCF.RegistrarCF(getContext());
+                    subTestCF.UpdateCF(getContext());
                     Utilidades.R_cf = (res_cf.getText().toString());
                     guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 //                    Toast.makeText(getContext(),Utilidades.R_cf+" GUARDADO",Toast.LENGTH_SHORT).show();
@@ -189,21 +189,21 @@ public class CF extends Fragment {
                     Utilidades.R_cc = Utilidades.R_cc+"r";
                     SubTestCC subTestCC = new SubTestCC();
                     subTestCC.setPuntuacionDirectaTotalCC(Utilidades.R_cc);
-                    subTestCC.RegistrarCC(getContext());
+                    subTestCC.UpdateCC(getContext());
 //                    Toast.makeText(getContext(),"Cc",Toast.LENGTH_SHORT).show();
                 }
                 if (radioButtonCo.isChecked()){
                     Utilidades.R_co = Utilidades.R_co+"r";
                     SubTestCo subTestCo = new SubTestCo();
                     subTestCo.setPuntuacionDirectaTotalCo(Utilidades.R_co);
-                    subTestCo.RegistrarCo(getContext());
+                    subTestCo.UpdateCo(getContext());
 //                    Toast.makeText(getContext(),"Co",Toast.LENGTH_SHORT).show();
                 }
                 if (radioButtonM.isChecked()){
                     Utilidades.R_m = Utilidades.R_m+"r";
                     SubTestM subTestM = new SubTestM();
                     subTestM.setPuntuacionDirectaTotalM(Utilidades.R_m);
-                    subTestM.RegistrarM(getContext());
+                    subTestM.UpdateM(getContext());
 //                    Toast.makeText(getContext(),"M",Toast.LENGTH_SHORT).show();
                 }
             }
