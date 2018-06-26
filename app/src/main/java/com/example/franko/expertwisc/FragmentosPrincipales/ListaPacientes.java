@@ -20,6 +20,7 @@ import com.example.franko.expertwisc.Adapters.AdapterPacientes;
 import com.example.franko.expertwisc.ConexionHelper;
 import com.example.franko.expertwisc.Entidades.Paciente;
 import com.example.franko.expertwisc.Entidades.Persona;
+import com.example.franko.expertwisc.Entidades.Test;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
@@ -82,6 +83,7 @@ public class ListaPacientes extends Fragment{
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        con = new ConexionHelper(getContext(), "bd_wisc", null, 1);
     }
 
     @Override
@@ -89,14 +91,18 @@ public class ListaPacientes extends Fragment{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         vista = inflater.inflate(R.layout.flp, container, false);
-        con = new ConexionHelper(getContext(), "bd_wisc", null, 1);
         txt_mensaje_lista_paciente = vista.findViewById(R.id.txt_mensaje_lista_paciente);
 
         consultarListaPacientes();
 
+        //Mostramos el FloatIconButton de Nuevo Paciente
+//        View view = vista.getRootView().findViewById(R.id.content_main);
+//        FloatingActionButton fb = view.findViewById(R.id.fab);
+//        fb.show();
+
         recyclerViewPacientes = vista.findViewById(R.id.listaPacientes);
         recyclerViewPacientes.setLayoutManager(new LinearLayoutManager(getContext()));
-        AdapterPacientes adapterPacientes = new AdapterPacientes(listaPersonas);
+        AdapterPacientes adapterPacientes = new AdapterPacientes(listaPersonas,listaPacientes);
 
         if (listaPersonas.isEmpty()){
             txt_mensaje_lista_paciente.setVisibility(View.VISIBLE);
@@ -165,7 +171,6 @@ public class ListaPacientes extends Fragment{
         }
     }
 
-
     private void consultarListaPacientes() {
         SQLiteDatabase db = con.getReadableDatabase();
 
@@ -184,6 +189,15 @@ public class ListaPacientes extends Fragment{
             paciente.setMotivoConsulta_paciente(pac.getString(1));
             paciente.setAntecedentes_paciente(pac.getString(2));
             paciente.setId_persona(pac.getInt(3));
+
+            Test test = new Test();
+            test.consultarTablaTest(paciente.getId_paciente(), getContext());
+            if (Utilidades.TestUp>0){
+                paciente.setUp_paciente("NO");
+            }else {
+                paciente.setUp_paciente("SI");
+            }
+
             listaPacientes.add(paciente);
         }
 
@@ -206,7 +220,6 @@ public class ListaPacientes extends Fragment{
             }
         }
     }
-
 
     @Override
     public void onAttach(Context context) {

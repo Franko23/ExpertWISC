@@ -17,24 +17,9 @@ import java.io.File;
  */
 
 public class ConexionHelper extends SQLiteOpenHelper {
-    //The Android's default system path of your application database.
-//    private static String DB_PATH = "/data/data/example/franko/expertwisc";
-//    private static String DB_NAME = "bd_wisc";
-//    private static Context myContext;
+
     public ConexionHelper(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
         super(context, name, factory, version);
-//        myContext = context;
-
-//        boolean b = myContext.deleteDatabase(DB_NAME); // true if deleted
-
-//        // DEPRECATED
-//        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-//            SQLiteDatabase.deleteDatabase(new File(DB_PATH + DB_NAME));
-//        }
-//
-//        if (b){
-//
-//        }
     }
 
 
@@ -59,7 +44,6 @@ public class ConexionHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(Utilidades.CREAR_TABLA_PUNTUACIONES_I);
         sqLiteDatabase.execSQL(Utilidades.CREAR_TABLA_PUNTUACIONES_AR);
         sqLiteDatabase.execSQL(Utilidades.CREAR_TABLA_PUNTUACIONES_AD);
-        sqLiteDatabase.execSQL(Utilidades.CREAR_TABLA_ESCALAR);
     }
 
     @Override
@@ -83,8 +67,6 @@ public class ConexionHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS puntuacion_is");
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS puntuacion_ars");
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS puntuacion_ads");
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS intervalos");
-        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS escalars");
         onCreate(sqLiteDatabase);
     }
 

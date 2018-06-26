@@ -4,9 +4,12 @@ import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.util.Log;
 
 import com.example.franko.expertwisc.ConexionHelper;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
+
+import java.util.ArrayList;
 
 public class Test {
     private Integer Id_test;
@@ -90,6 +93,8 @@ public class Test {
         Up_test = up_test;
     }
 
+
+
     public void UpdateTestState(Context context){
         this.context = context;
         con = new ConexionHelper(context, "bd_wisc", null, 1);
@@ -100,6 +105,56 @@ public class Test {
         int id = db.update(Utilidades.TABLA_TEST,test,Utilidades.CAMPO_ID_TEST+"="+Utilidades.currentTest,null);
 //        Toast.makeText(context,"Cambio de estado = "+id,Toast.LENGTH_SHORT).show();
         db.close();
+    }
+
+    public void UpdateTestUp(Context context){
+        this.context = context;
+        con = new ConexionHelper(context, "bd_wisc", null, 1);
+        SQLiteDatabase db = con.getWritableDatabase();
+
+        ContentValues test = new ContentValues();
+        test.put(Utilidades.CAMPO_UP_TEST, "NO");
+
+
+        int id = db.update(Utilidades.TABLA_TEST,test,Utilidades.CAMPO_ID_TEST+"="+Utilidades.currentTest,null);
+        if (id==1){
+            Log.d("Mensaje","Campo UP actualizado");
+        }else {
+            Log.d("Mensaje","Error al actualizar campo UP");
+        }
+//        Toast.makeText(context,"Cambio de estado = "+id,Toast.LENGTH_SHORT).show();
+        db.close();
+    }
+
+    public ArrayList<Test> consultarTablaTest(Integer id_paciente, Context context) {
+        this.context = context;
+        Utilidades.TestUp=0;
+        con = new ConexionHelper(context, "bd_wisc", null, 1);
+        SQLiteDatabase db = con.getReadableDatabase();
+
+        ArrayList<Test> listaTest = new ArrayList<>();
+
+        Cursor cursor = db.rawQuery("SELECT * FROM test WHERE id_paciente"+"="+id_paciente,null);
+
+        if (cursor.getCount()>0){
+            while (cursor.moveToNext()){
+                Test test = new Test();
+
+                test.setId_test(cursor.getInt(0));
+                test.setFecha_test(cursor.getString(1));
+                test.setEvaluador_test(cursor.getString(2));
+                test.setEstado_test(cursor.getString(3));
+                test.setIntervalo_confianza(cursor.getString(4));
+                test.setEdad_test(cursor.getString(5));
+                test.setUp_test(cursor.getString(6));
+                if (test.getUp_test().equals("NO")){
+                    Utilidades.TestUp++;
+                }
+                listaTest.add(test);
+            }
+        }
+        db.close();
+        return listaTest;
     }
 
     public void ConsultaIntervalo(Context context, int id_test){

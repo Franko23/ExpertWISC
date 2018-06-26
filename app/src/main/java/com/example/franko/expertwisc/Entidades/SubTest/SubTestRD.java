@@ -61,11 +61,11 @@ public class SubTestRD {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_RDT,"");
-        contentValues.put(Utilidades.CAMPO_UP_RD,"NO");
         contentValues.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
 
         try {
             Long id_RD = db.insert(Utilidades.TABLA_PUNTUACIONES_RD, Utilidades.CAMPO_ID_PUNTUACION_RD, contentValues);
+            Utilidades.currentRD = Integer.parseInt(id_RD.toString());
 //            Toast.makeText(context,"Inserción de puntuacion RD correcta",Toast.LENGTH_SHORT).show();
         }catch (Exception e){
             Toast.makeText(context,"Error al insertar puntuacion RD ",Toast.LENGTH_SHORT).show();
@@ -81,10 +81,9 @@ public class SubTestRD {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_RDT,getPuntuacionDirectaTotalRD());
-        contentValues.put(Utilidades.CAMPO_UP_RD,"NO");
 
         try {
-            int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_RD,contentValues,Utilidades.CAMPO_ID_PUNTUACION_RD+"="+getId_RD(),null);
+            int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_RD,contentValues,Utilidades.CAMPO_ID_PUNTUACION_RD+"="+Utilidades.currentRD,null);
             if (okTest==1){
                 Log.d("Mensaje:", "SubTestRD actualizado corectamente");
             }
@@ -108,6 +107,7 @@ public class SubTestRD {
             setPuntuacionDirectaTotalRD(cursor.getString(3));
             setUp_RD(cursor.getString(4));
 
+            Utilidades.currentRD = getId_RD();
             Utilidades.R_rd = getPuntuacionDirectaTotalRD();
         }
 

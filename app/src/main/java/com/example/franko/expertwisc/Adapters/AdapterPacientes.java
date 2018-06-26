@@ -10,6 +10,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.franko.expertwisc.Entidades.Paciente;
 import com.example.franko.expertwisc.Entidades.Persona;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Tools.CalcularEdad;
@@ -18,10 +19,12 @@ import java.util.ArrayList;
 
 public class AdapterPacientes extends RecyclerView.Adapter<AdapterPacientes.ViewHolderPacientes> implements View.OnClickListener{
 
-    ArrayList<Persona> listaPacientes;
+    ArrayList<Persona> listaPersonas;
+    ArrayList<Paciente> listaPacientes;
     private View.OnClickListener listener;
 
-    public AdapterPacientes(ArrayList<Persona> listaPacientes) {
+    public AdapterPacientes(ArrayList<Persona> listaPersonas, ArrayList<Paciente> listaPacientes) {
+        this.listaPersonas = listaPersonas;
         this.listaPacientes = listaPacientes;
     }
 
@@ -48,15 +51,15 @@ public class AdapterPacientes extends RecyclerView.Adapter<AdapterPacientes.View
     }
     @Override
     public void onBindViewHolder(@NonNull ViewHolderPacientes holder, int position) {
-        holder.txtNombres.setText(listaPacientes.get(position).getNombre_persona()+ "  "+listaPacientes.get(position).getApellido_persona());
-        CalcularEdad calcularEdad = new CalcularEdad(listaPacientes.get(position).getFecha_nacimiento_persona());
+        holder.txtNombres.setText(listaPersonas.get(position).getNombre_persona()+ "  "+listaPersonas.get(position).getApellido_persona());
+        CalcularEdad calcularEdad = new CalcularEdad(listaPersonas.get(position).getFecha_nacimiento_persona());
         String edad = calcularEdad.CalcularEdad();
         holder.txtEdad.setText(edad);
-        byte[] image = listaPacientes.get(position).getImagen_persona();
+        byte[] image = listaPersonas.get(position).getImagen_persona();
         Bitmap bitmap = BitmapFactory.decodeByteArray(image,0,image.length);
         holder.Imagen.setImageBitmap(bitmap);
 
-        if (listaPacientes.get(position).getUp_persona().equals("NO")){
+        if (listaPersonas.get(position).getUp_persona().equals("NO") || listaPacientes.get(position).getUp_paciente().equals("NO")){
             holder.alertCloud.setVisibility(View.VISIBLE);
         }
 
@@ -64,7 +67,7 @@ public class AdapterPacientes extends RecyclerView.Adapter<AdapterPacientes.View
 
     @Override
     public int getItemCount() {
-        return listaPacientes.size();
+        return listaPersonas.size();
     }
 
     public void setOnClickListener(View.OnClickListener listener){

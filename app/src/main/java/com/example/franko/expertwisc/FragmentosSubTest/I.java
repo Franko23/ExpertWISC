@@ -26,6 +26,7 @@ import com.example.franko.expertwisc.Entidades.SubTest.SubTestC;
 import com.example.franko.expertwisc.Entidades.SubTest.SubTestI;
 import com.example.franko.expertwisc.Entidades.SubTest.SubTestS;
 import com.example.franko.expertwisc.Entidades.SubTest.SubTestV;
+import com.example.franko.expertwisc.Entidades.Test;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
@@ -145,6 +146,8 @@ public class I extends Fragment {
                     subTestI.setPuntuacionDirectaTotalI(res_i.getText().toString());
                     subTestI.UpdateI(getContext());
                     Utilidades.R_i = (res_i.getText().toString());
+                    Test test = new Test();
+                    test.UpdateTestUp(getContext());
                     guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 //                    Toast.makeText(getContext(),Utilidades.R_i+" GUARDADO",Toast.LENGTH_SHORT).show();
                     Snackbar.make(view, Utilidades.R_i +" puntos guardado", Snackbar.LENGTH_LONG)

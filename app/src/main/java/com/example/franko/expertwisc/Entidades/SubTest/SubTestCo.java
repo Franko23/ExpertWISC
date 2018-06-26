@@ -59,11 +59,11 @@ public class SubTestCo {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_CO,"");
-        contentValues.put(Utilidades.CAMPO_UP_CO,"NO");
         contentValues.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
 
         try {
             Long id_Co = db.insert(Utilidades.TABLA_PUNTUACIONES_CO, Utilidades.CAMPO_ID_PUNTUACION_CO, contentValues);
+            Utilidades.currentCo = Integer.parseInt(id_Co.toString());
 //            Toast.makeText(context,"Inserción de puntuacion Co correcta",Toast.LENGTH_SHORT).show();
         }catch (Exception e){
             Toast.makeText(context,"Error al insertar puntuacion Co ",Toast.LENGTH_SHORT).show();
@@ -79,10 +79,9 @@ public class SubTestCo {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_CO,getPuntuacionDirectaTotalCo());
-        contentValues.put(Utilidades.CAMPO_UP_CO,"NO");
 
         try {
-            int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_CO,contentValues,Utilidades.CAMPO_ID_PUNTUACION_CO+"="+getId_Co(),null);
+            int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_CO,contentValues,Utilidades.CAMPO_ID_PUNTUACION_CO+"="+Utilidades.currentCl,null);
             if (okTest==1){
                 Log.d("Mensaje:", "SubTestCo actualizado corectamente");
             }
@@ -106,6 +105,7 @@ public class SubTestCo {
             setPuntuacionDirectaTotalCo(cursor.getString(1));
             setUp_Co(cursor.getString(2));
 
+            Utilidades.currentCo = getId_Co();
             Utilidades.R_co = getPuntuacionDirectaTotalCo();
         }
 

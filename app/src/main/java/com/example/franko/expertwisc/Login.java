@@ -128,7 +128,7 @@ public class Login extends AppCompatActivity {
                     }
 
                     Utilidades.currentUser = user;
-                    Utilidades.currentUserIdPersona = id_usuario;
+                    Utilidades.currentUserIdPersona = id_persona;
                     Utilidades.currentUserIdUsuario = id_usuario;
 //                    ContentValues usuario = new ContentValues();
 //                    usuario.put(Utilidades.CAMPO_ACTIVO_USUARIO,1);
@@ -137,7 +137,7 @@ public class Login extends AppCompatActivity {
 
                     intent = new Intent(getApplicationContext(), Home.class);
 
-                    Persona persona = null;
+                    Persona persona;
                     persona = llenarUsuario(id_persona);
                     Utilidades.currentUserName = persona.getNombre_persona();
                     Bundle bundle = new Bundle();

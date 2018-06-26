@@ -24,6 +24,7 @@ import android.widget.Toast;
 
 import com.example.franko.expertwisc.Entidades.SubTest.SubTestCC;
 import com.example.franko.expertwisc.Entidades.SubTest.SubTestS;
+import com.example.franko.expertwisc.Entidades.Test;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
@@ -145,6 +146,8 @@ public class S extends Fragment {
                     subTestS.setPuntuacionDirectaTotalS(res_s.getText().toString());
                     subTestS.UpdateS(getContext());
                     Utilidades.R_s = (res_s.getText().toString());
+                    Test test = new Test();
+                    test.UpdateTestUp(getContext());
                     guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 //                    Toast.makeText(getContext(),Utilidades.R_s +" GUARDADO",Toast.LENGTH_SHORT).show();
                     Snackbar.make(view, Utilidades.R_s +" puntos guardado", Snackbar.LENGTH_LONG)

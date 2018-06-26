@@ -27,6 +27,7 @@ import com.example.franko.expertwisc.Entidades.SubTest.SubTestCC;
 import com.example.franko.expertwisc.Entidades.SubTest.SubTestCF;
 import com.example.franko.expertwisc.Entidades.SubTest.SubTestCo;
 import com.example.franko.expertwisc.Entidades.SubTest.SubTestM;
+import com.example.franko.expertwisc.Entidades.Test;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
@@ -141,6 +142,8 @@ public class CF extends Fragment {
                     subTestCF.setPuntuacionDirectaTotalCF(res_cf.getText().toString());
                     subTestCF.UpdateCF(getContext());
                     Utilidades.R_cf = (res_cf.getText().toString());
+                    Test test = new Test();
+                    test.UpdateTestUp(getContext());
                     guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 //                    Toast.makeText(getContext(),Utilidades.R_cf+" GUARDADO",Toast.LENGTH_SHORT).show();
                     Snackbar.make(view, Utilidades.R_cf +" puntos guardado", Snackbar.LENGTH_LONG)

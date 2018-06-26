@@ -72,12 +72,11 @@ public class SubTestCC {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_CC, "");
-        contentValues.put(Utilidades.CAMPO_UP_CC,"NO");
         contentValues.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
 
         try {
             Long id_CC = db.insert(Utilidades.TABLA_PUNTUACIONES_CC, Utilidades.CAMPO_ID_PUNTUACION_CC, contentValues);
-            this.Id_CC = Integer.parseInt(id_CC.toString());
+            Utilidades.currentCC = Integer.parseInt(id_CC.toString());
 //            Toast.makeText(context,"Inserción de puntuacion CC correcta",Toast.LENGTH_SHORT).show();
         }catch (Exception e){
             Toast.makeText(context,"Error al insertar puntuacion CC",Toast.LENGTH_SHORT).show();
@@ -93,10 +92,9 @@ public class SubTestCC {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_CC,getPuntuacionDirectaTotalCC());
-        contentValues.put(Utilidades.CAMPO_UP_CC,"NO");
 
         try {
-            int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_CC,contentValues,Utilidades.CAMPO_ID_PUNTUACION_CC+"="+getId_CC(),null);
+            int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_CC,contentValues,Utilidades.CAMPO_ID_PUNTUACION_CC+"="+Utilidades.currentCC,null);
             if (okTest==1){
                 Log.d("Mensaje", "SubTestCC actualizado corectamente");
             }
@@ -120,6 +118,7 @@ public class SubTestCC {
             setPuntuacionDirectaTotalCC(cursor.getString(1));
             setUp_CC(cursor.getString(3));
 
+            Utilidades.currentCC = getId_CC();
             Utilidades.R_cc = getPuntuacionDirectaTotalCC();
         }
 

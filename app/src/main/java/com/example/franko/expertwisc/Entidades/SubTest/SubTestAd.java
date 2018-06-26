@@ -60,11 +60,11 @@ public class SubTestAd {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_AD, "");
-        contentValues.put(Utilidades.CAMPO_UP_AD,"NO");
         contentValues.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
 
         try {
             Long id_Ad = db.insert(Utilidades.TABLA_PUNTUACIONES_AD, Utilidades.CAMPO_ID_PUNTUACION_AD, contentValues);
+            Utilidades.currentAd = Integer.parseInt(id_Ad.toString());
 //            Toast.makeText(context,"Inserción de puntuacion Ad correcta",Toast.LENGTH_SHORT).show();
         }catch (Exception e){
             Toast.makeText(context,"Error al insertar puntuacion Ad ",Toast.LENGTH_SHORT).show();
@@ -80,10 +80,9 @@ public class SubTestAd {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_AD,getPuntuacionDirectaTotalAd());
-        contentValues.put(Utilidades.CAMPO_UP_AD,"NO");
 
         try {
-            int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_AD,contentValues,Utilidades.CAMPO_ID_PUNTUACION_AD+"="+getId_Ad(),null);
+            int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_AD,contentValues,Utilidades.CAMPO_ID_PUNTUACION_AD+"="+Utilidades.currentAd,null);
             if (okTest==1){
                 Log.d("Mensaje", "SubTestAd actualizado corectamente");
             }
@@ -106,6 +105,8 @@ public class SubTestAd {
             setId_Ad(cursor.getInt(0));
             setPuntuacionDirectaTotalAd(cursor.getString(1));
             setUp_Ad(cursor.getString(2));
+
+            Utilidades.currentAd = getId_Ad();
             Utilidades.R_ad = getPuntuacionDirectaTotalAd();
         }
 

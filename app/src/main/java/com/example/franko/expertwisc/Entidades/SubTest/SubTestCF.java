@@ -60,11 +60,11 @@ public class SubTestCF {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_CF, "");
-        contentValues.put(Utilidades.CAMPO_UP_CF,"NO");
         contentValues.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
 
         try {
             Long id_CF = db.insert(Utilidades.TABLA_PUNTUACIONES_CF, Utilidades.CAMPO_ID_PUNTUACION_CF, contentValues);
+            Utilidades.currentCF = Integer.parseInt(id_CF.toString());
 //            Toast.makeText(context,"Inserción de puntuacion CF correcta",Toast.LENGTH_SHORT).show();
         }catch (Exception e){
             Toast.makeText(context,"Error al insertar puntuacion CF ",Toast.LENGTH_SHORT).show();
@@ -80,10 +80,9 @@ public class SubTestCF {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_CF,getPuntuacionDirectaTotalCF());
-        contentValues.put(Utilidades.CAMPO_UP_CF,"NO");
 
         try {
-            int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_CF,contentValues,Utilidades.CAMPO_ID_PUNTUACION_CF+"="+getId_CF(),null);
+            int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_CF,contentValues,Utilidades.CAMPO_ID_PUNTUACION_CF+"="+Utilidades.currentCF,null);
             if (okTest==1){
                 Log.d("Mensaje:", "SubTestCF actualizado corectamente");
             }
@@ -107,6 +106,7 @@ public class SubTestCF {
             setPuntuacionDirectaTotalCF(cursor.getString(1));
             setUp_CF(cursor.getString(2));
 
+            Utilidades.currentCF = getId_CF();
             Utilidades.R_cf = getPuntuacionDirectaTotalCF();
         }
 

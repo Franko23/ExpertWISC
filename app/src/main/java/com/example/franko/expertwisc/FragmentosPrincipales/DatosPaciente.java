@@ -243,7 +243,8 @@ public class DatosPaciente extends Fragment {
         //Enviamos fecha de prueba y el estado
         //Consultamos desde la tabla test la fecha y el estado de acuerdo al id paciente
 
-        listaTest = consultarTablaTest(paciente.getId_paciente());
+        Test test = new Test();
+        listaTest = test.consultarTablaTest(paciente.getId_paciente(),getContext());
 
         AdapterTest adapterTest = new AdapterTest(listaTest);
         recyclerViewTest.setAdapter(adapterTest);
@@ -269,7 +270,7 @@ public class DatosPaciente extends Fragment {
 //
                         if (up_paciente.getVisibility()==View.VISIBLE){
                             Toast.makeText(getContext(),"PRIMERO DEBE DE SUBIR LOS DATOS DEL PACIENTE" ,Toast.LENGTH_SHORT).show();
-                        }else if(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getUp_test().equals("NO")) {
+                        }else {
 
 
                             Map<String, Object> newTest = new HashMap<>();
@@ -278,8 +279,8 @@ public class DatosPaciente extends Fragment {
                             SimpleDateFormat mdformat = new SimpleDateFormat("dd/MM/yyyy");
                             String fechaActual = mdformat.format(calendar.getTime());
 
-                            newTest.put("fechaTest",fechaActual);
-                            newTest.put("edadPaciente",Utilidades.edadActual);
+                            newTest.put("fechaTest", fechaActual);
+                            newTest.put("edadPaciente", Utilidades.edadActual);
 
 
                             dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(paciente.getId_paciente().toString()).collection("test").document(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test().toString())
@@ -292,16 +293,15 @@ public class DatosPaciente extends Fragment {
 
                                             SQLiteDatabase db = con.getWritableDatabase();
                                             ContentValues personaUpdate = new ContentValues();
-                                            personaUpdate.put(Utilidades.CAMPO_UP_TEST,"SI");
+                                            personaUpdate.put(Utilidades.CAMPO_UP_TEST, "SI");
                                             try {
-                                                int okTest=db.update(Utilidades.TABLA_TEST,personaUpdate,Utilidades.CAMPO_ID_TEST+"="+listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test(),null);
-                                                if (okTest==1){
+                                                int okTest = db.update(Utilidades.TABLA_TEST, personaUpdate, Utilidades.CAMPO_ID_TEST + "=" + listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test(), null);
+                                                if (okTest == 1) {
                                                     Snackbar.make(view, "Test actualizado corectamente, ya puede subir los SubTest", Snackbar.LENGTH_LONG).show();
                                                 }
-                                            }catch (Exception e){
-                                                Toast.makeText(getContext(),"Error al actualizar Test", Toast.LENGTH_SHORT).show();
+                                            } catch (Exception e) {
+                                                Toast.makeText(getContext(), "Error al actualizar Test", Toast.LENGTH_SHORT).show();
                                             }
-
 
 
                                         }
@@ -312,42 +312,42 @@ public class DatosPaciente extends Fragment {
                                             Log.w(TAG, "Error subiendo test", e);
                                         }
                                     });
-                        }else{
+
                             Test test = new Test();
                             test.Valores();
                             ConsultaView(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
 
                             Map<String, Object> subTestCC = new HashMap<>();
-                            subTestCC.put("ResultadoCC",Utilidades.R_cc);
-                            subTestCC.put("ResultadoCCS","");
+                            subTestCC.put("ResultadoCC", Utilidades.R_cc);
+                            subTestCC.put("ResultadoCCS", "");
                             Map<String, Object> subTestS = new HashMap<>();
-                            subTestS.put("S",Utilidades.R_s);
+                            subTestS.put("ResultadoS", Utilidades.R_s);
                             Map<String, Object> subTestRD = new HashMap<>();
-                            subTestRD.put("RD",Utilidades.R_rd);
+                            subTestRD.put("ResultadoRD", Utilidades.R_rd);
                             Map<String, Object> subTestCo = new HashMap<>();
-                            subTestCo.put("Co",Utilidades.R_co);
+                            subTestCo.put("ResultadoCo", Utilidades.R_co);
                             Map<String, Object> subTestCl = new HashMap<>();
-                            subTestCl.put("Cl",Utilidades.R_cl);
+                            subTestCl.put("ResultadoCl", Utilidades.R_cl);
                             Map<String, Object> subTestV = new HashMap<>();
-                            subTestV.put("V",Utilidades.R_v);
+                            subTestV.put("ResultadoV", Utilidades.R_v);
                             Map<String, Object> subTestLN = new HashMap<>();
-                            subTestLN.put("LN",Utilidades.R_ln);
-                            Map<String, Object> subTestM= new HashMap<>();
-                            subTestM.put("M",Utilidades.R_m);
+                            subTestLN.put("ResultadoLN", Utilidades.R_ln);
+                            Map<String, Object> subTestM = new HashMap<>();
+                            subTestM.put("ResultadoM", Utilidades.R_m);
                             Map<String, Object> subTestC = new HashMap<>();
-                            subTestC.put("C",Utilidades.R_c);
+                            subTestC.put("ResultadoC", Utilidades.R_c);
                             Map<String, Object> subTestBS = new HashMap<>();
-                            subTestBS.put("BS",Utilidades.R_bs);
+                            subTestBS.put("ResultadoBS", Utilidades.R_bs);
                             Map<String, Object> subTestCF = new HashMap<>();
-                            subTestCF.put("CF",Utilidades.R_cf);
+                            subTestCF.put("ResultadoCF", Utilidades.R_cf);
                             Map<String, Object> subTestA = new HashMap<>();
-                            subTestA.put("A",Utilidades.R_a);
+                            subTestA.put("ResultadoA", Utilidades.R_a);
                             Map<String, Object> subTestI = new HashMap<>();
-                            subTestI.put("I",Utilidades.R_i);
+                            subTestI.put("ResultadoI", Utilidades.R_i);
                             Map<String, Object> subTestAr = new HashMap<>();
-                            subTestAr.put("Ar",Utilidades.R_ar);
+                            subTestAr.put("ResultadoAr", Utilidades.R_ar);
                             Map<String, Object> subTestAd = new HashMap<>();
-                            subTestAd.put("Ad",Utilidades.R_ad);
+                            subTestAd.put("ResultadoAd", Utilidades.R_ad);
 
 
                             SQLiteDatabase db = con.getWritableDatabase();
@@ -362,22 +362,6 @@ public class DatosPaciente extends Fragment {
                                         public void onSuccess(Void aVoid) {
                                             Log.d(TAG, "SubTestCC subido corectamente");
                                             up.setVisibility(View.INVISIBLE);
-
-                                            SubTestCC testCC = new SubTestCC();
-                                            testCC.ConsultaCC(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
-
-
-                                            ContentValues subTestUpdate = new ContentValues();
-                                            subTestUpdate.put(Utilidades.CAMPO_UP_CC,"SI");
-
-                                            try {
-                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_CC,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_CC+"="+testCC.getId_CC(),null);
-                                                if (okTest==1){
-                                                    Log.d(TAG, "SubTestCC actualizado corectamente");
-                                                }
-                                            }catch (Exception e){
-                                                Toast.makeText(getContext(),"Error al actualizar SubTestCC", Toast.LENGTH_SHORT).show();
-                                            }
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -398,21 +382,6 @@ public class DatosPaciente extends Fragment {
                                             Log.d(TAG, "SubTestS subido corectamente");
                                             up.setVisibility(View.INVISIBLE);
 
-                                            SubTestS testS = new SubTestS();
-                                            testS.ConsultaS(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
-
-
-                                            ContentValues subTestUpdate = new ContentValues();
-                                            subTestUpdate.put(Utilidades.CAMPO_UP_S,"SI");
-
-                                            try {
-                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_S,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_S+"="+testS.getId_S(),null);
-                                                if (okTest==1){
-                                                    Log.d(TAG, "SubTestS actualizado corectamente");
-                                                }
-                                            }catch (Exception e){
-                                                Toast.makeText(getContext(),"Error al actualizar SubTestS", Toast.LENGTH_SHORT).show();
-                                            }
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -434,21 +403,6 @@ public class DatosPaciente extends Fragment {
                                             Log.d(TAG, "SubTestRD subido corectamente");
                                             up.setVisibility(View.INVISIBLE);
 
-                                            SubTestRD testRD = new SubTestRD();
-                                            testRD.ConsultaRD(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
-
-
-                                            ContentValues subTestUpdate = new ContentValues();
-                                            subTestUpdate.put(Utilidades.CAMPO_UP_RD,"SI");
-
-                                            try {
-                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_RD,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_RD+"="+testRD.getId_RD(),null);
-                                                if (okTest==1){
-                                                    Log.d(TAG, "SubTestRD actualizado corectamente");
-                                                }
-                                            }catch (Exception e){
-                                                Toast.makeText(getContext(),"Error al actualizar SubTestRD", Toast.LENGTH_SHORT).show();
-                                            }
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -470,21 +424,6 @@ public class DatosPaciente extends Fragment {
                                             Log.d(TAG, "SubTestCo subido corectamente");
                                             up.setVisibility(View.INVISIBLE);
 
-                                            SubTestCo testCo = new SubTestCo();
-                                            testCo.ConsultaCo(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
-
-
-                                            ContentValues subTestUpdate = new ContentValues();
-                                            subTestUpdate.put(Utilidades.CAMPO_UP_CO,"SI");
-
-                                            try {
-                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_CO,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_CO+"="+testCo.getId_Co(),null);
-                                                if (okTest==1){
-                                                    Log.d(TAG, "SubTestCo actualizado corectamente");
-                                                }
-                                            }catch (Exception e){
-                                                Toast.makeText(getContext(),"Error al actualizar SubTestCo", Toast.LENGTH_SHORT).show();
-                                            }
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -493,7 +432,6 @@ public class DatosPaciente extends Fragment {
                                             Log.w(TAG, "Error subiendo SubTestCo ", e);
                                         }
                                     });
-
 
 
                             //Subimos el SubTest Cl
@@ -507,21 +445,6 @@ public class DatosPaciente extends Fragment {
                                             Log.d(TAG, "SubTestCl subido corectamente");
                                             up.setVisibility(View.INVISIBLE);
 
-                                            SubTestCl testCl = new SubTestCl();
-                                            testCl.ConsultaCl(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
-
-
-                                            ContentValues subTestUpdate = new ContentValues();
-                                            subTestUpdate.put(Utilidades.CAMPO_UP_CL,"SI");
-
-                                            try {
-                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_CL,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_CL+"="+testCl.getId_Cl(),null);
-                                                if (okTest==1){
-                                                    Log.d(TAG, "SubTestCl actualizado corectamente");
-                                                }
-                                            }catch (Exception e){
-                                                Toast.makeText(getContext(),"Error al actualizar SubTestCl", Toast.LENGTH_SHORT).show();
-                                            }
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -530,7 +453,6 @@ public class DatosPaciente extends Fragment {
                                             Log.w(TAG, "Error subiendo SubTestCL ", e);
                                         }
                                     });
-
 
 
                             //Subimos el SubTest V
@@ -544,21 +466,6 @@ public class DatosPaciente extends Fragment {
                                             Log.d(TAG, "SubTestV subido corectamente");
                                             up.setVisibility(View.INVISIBLE);
 
-                                            SubTestV testV = new SubTestV();
-                                            testV.ConsultaV(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
-
-
-                                            ContentValues subTestUpdate = new ContentValues();
-                                            subTestUpdate.put(Utilidades.CAMPO_UP_V,"SI");
-
-                                            try {
-                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_V,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_V+"="+testV.getId_V(),null);
-                                                if (okTest==1){
-                                                    Log.d(TAG, "SubTestV actualizado corectamente");
-                                                }
-                                            }catch (Exception e){
-                                                Toast.makeText(getContext(),"Error al actualizar SubTestV", Toast.LENGTH_SHORT).show();
-                                            }
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -579,21 +486,6 @@ public class DatosPaciente extends Fragment {
                                             Log.d(TAG, "SubTestLN subido corectamente");
                                             up.setVisibility(View.INVISIBLE);
 
-                                            SubTestLN testLN = new SubTestLN();
-                                            testLN.ConsultaLN(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
-
-
-                                            ContentValues subTestUpdate = new ContentValues();
-                                            subTestUpdate.put(Utilidades.CAMPO_UP_LN,"SI");
-
-                                            try {
-                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_LN,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_LN+"="+testLN.getId_LN(),null);
-                                                if (okTest==1){
-                                                    Log.d(TAG, "SubTestLN actualizado corectamente");
-                                                }
-                                            }catch (Exception e){
-                                                Toast.makeText(getContext(),"Error al actualizar SubTestLN", Toast.LENGTH_SHORT).show();
-                                            }
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -615,21 +507,6 @@ public class DatosPaciente extends Fragment {
                                             Log.d(TAG, "SubTestM subido corectamente");
                                             up.setVisibility(View.INVISIBLE);
 
-                                            SubTestM testM = new SubTestM();
-                                            testM.ConsultaM(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
-
-
-                                            ContentValues subTestUpdate = new ContentValues();
-                                            subTestUpdate.put(Utilidades.CAMPO_UP_M,"SI");
-
-                                            try {
-                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_M,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_M+"="+testM.getId_M(),null);
-                                                if (okTest==1){
-                                                    Log.d(TAG, "SubTestM actualizado corectamente");
-                                                }
-                                            }catch (Exception e){
-                                                Toast.makeText(getContext(),"Error al actualizar SubTestM", Toast.LENGTH_SHORT).show();
-                                            }
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -638,7 +515,6 @@ public class DatosPaciente extends Fragment {
                                             Log.w(TAG, "Error subiendo SubTestM ", e);
                                         }
                                     });
-
 
 
                             //Subimos el SubTest C
@@ -651,22 +527,6 @@ public class DatosPaciente extends Fragment {
                                         public void onSuccess(Void aVoid) {
                                             Log.d(TAG, "SubTestC subido corectamente");
                                             up.setVisibility(View.INVISIBLE);
-
-                                            SubTestC testC = new SubTestC();
-                                            testC.ConsultaC(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
-
-
-                                            ContentValues subTestUpdate = new ContentValues();
-                                            subTestUpdate.put(Utilidades.CAMPO_UP_C,"SI");
-
-                                            try {
-                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_C,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_C+"="+testC.getId_C(),null);
-                                                if (okTest==1){
-                                                    Log.d(TAG, "SubTestC actualizado corectamente");
-                                                }
-                                            }catch (Exception e){
-                                                Toast.makeText(getContext(),"Error al actualizar SubTestC", Toast.LENGTH_SHORT).show();
-                                            }
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -686,22 +546,6 @@ public class DatosPaciente extends Fragment {
                                         public void onSuccess(Void aVoid) {
                                             Log.d(TAG, "SubTestBS subido corectamente");
                                             up.setVisibility(View.INVISIBLE);
-
-                                            SubTestBS testBS = new SubTestBS();
-                                            testBS.ConsultaBS(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
-
-
-                                            ContentValues subTestUpdate = new ContentValues();
-                                            subTestUpdate.put(Utilidades.CAMPO_UP_BS,"SI");
-
-                                            try {
-                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_BS,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_BS+"="+testBS.getId_BS(),null);
-                                                if (okTest==1){
-                                                    Log.d(TAG, "SubTestBS actualizado corectamente");
-                                                }
-                                            }catch (Exception e){
-                                                Toast.makeText(getContext(),"Error al actualizar SubTestBS", Toast.LENGTH_SHORT).show();
-                                            }
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -722,22 +566,6 @@ public class DatosPaciente extends Fragment {
                                         public void onSuccess(Void aVoid) {
                                             Log.d(TAG, "SubTestCF subido corectamente");
                                             up.setVisibility(View.INVISIBLE);
-
-                                            SubTestCF testCF = new SubTestCF();
-                                            testCF.ConsultaCF(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
-
-
-                                            ContentValues subTestUpdate = new ContentValues();
-                                            subTestUpdate.put(Utilidades.CAMPO_UP_CF,"SI");
-
-                                            try {
-                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_CF,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_CF+"="+testCF.getId_CF(),null);
-                                                if (okTest==1){
-                                                    Log.d(TAG, "SubTestCF actualizado corectamente");
-                                                }
-                                            }catch (Exception e){
-                                                Toast.makeText(getContext(),"Error al actualizar SubTestCF", Toast.LENGTH_SHORT).show();
-                                            }
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -758,22 +586,6 @@ public class DatosPaciente extends Fragment {
                                         public void onSuccess(Void aVoid) {
                                             Log.d(TAG, "SubTestA subido corectamente");
                                             up.setVisibility(View.INVISIBLE);
-
-                                            SubTestA testA = new SubTestA();
-                                            testA.ConsultaA(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
-
-
-                                            ContentValues subTestUpdate = new ContentValues();
-                                            subTestUpdate.put(Utilidades.CAMPO_UP_A,"SI");
-
-                                            try {
-                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_A,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_A+"="+testA.getId_A(),null);
-                                                if (okTest==1){
-                                                    Log.d(TAG, "SubTestA actualizado corectamente");
-                                                }
-                                            }catch (Exception e){
-                                                Toast.makeText(getContext(),"Error al actualizar SubTestA", Toast.LENGTH_SHORT).show();
-                                            }
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -782,7 +594,6 @@ public class DatosPaciente extends Fragment {
                                             Log.w(TAG, "Error subiendo SubTestA ", e);
                                         }
                                     });
-
 
 
                             //Subimos el SubTest I
@@ -796,21 +607,6 @@ public class DatosPaciente extends Fragment {
                                             Log.d(TAG, "SubTestI subido corectamente");
                                             up.setVisibility(View.INVISIBLE);
 
-                                            SubTestI testI = new SubTestI();
-                                            testI.ConsultaI(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
-
-
-                                            ContentValues subTestUpdate = new ContentValues();
-                                            subTestUpdate.put(Utilidades.CAMPO_UP_I,"SI");
-
-                                            try {
-                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_I,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_I+"="+testI.getId_I(),null);
-                                                if (okTest==1){
-                                                    Log.d(TAG, "SubTestI actualizado corectamente");
-                                                }
-                                            }catch (Exception e){
-                                                Toast.makeText(getContext(),"Error al actualizar SubTestI", Toast.LENGTH_SHORT).show();
-                                            }
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -831,22 +627,6 @@ public class DatosPaciente extends Fragment {
                                         public void onSuccess(Void aVoid) {
                                             Log.d(TAG, "SubTestAd subido corectamente");
                                             up.setVisibility(View.INVISIBLE);
-
-                                            SubTestAd testAd = new SubTestAd();
-                                            testAd.ConsultaAd(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
-
-
-                                            ContentValues subTestUpdate = new ContentValues();
-                                            subTestUpdate.put(Utilidades.CAMPO_UP_AD,"SI");
-
-                                            try {
-                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_AD,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_AD+"="+testAd.getId_Ad(),null);
-                                                if (okTest==1){
-                                                    Log.d(TAG, "SubTestAd actualizado corectamente");
-                                                }
-                                            }catch (Exception e){
-                                                Toast.makeText(getContext(),"Error al actualizar SubTestAd", Toast.LENGTH_SHORT).show();
-                                            }
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -867,22 +647,6 @@ public class DatosPaciente extends Fragment {
                                         public void onSuccess(Void aVoid) {
                                             Log.d(TAG, "SubTestAr subido corectamente");
                                             up.setVisibility(View.INVISIBLE);
-
-                                            SubTestAr testAr = new SubTestAr();
-                                            testAr.ConsultaAr(getContext(),listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
-
-
-                                            ContentValues subTestUpdate = new ContentValues();
-                                            subTestUpdate.put(Utilidades.CAMPO_UP_AR,"SI");
-
-                                            try {
-                                                int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_AR,subTestUpdate,Utilidades.CAMPO_ID_PUNTUACION_AR+"="+testAr.getId_Ar(),null);
-                                                if (okTest==1){
-                                                    Log.d(TAG, "SubTestAr actualizado corectamente");
-                                                }
-                                            }catch (Exception e){
-                                                Toast.makeText(getContext(),"Error al actualizar SubTestAr", Toast.LENGTH_SHORT).show();
-                                            }
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -891,8 +655,8 @@ public class DatosPaciente extends Fragment {
                                             Log.w(TAG, "Error subiendo SubTestA ", e);
                                         }
                                     });
-                        }
 
+                        }
                     }
                 });
 
@@ -956,7 +720,6 @@ public class DatosPaciente extends Fragment {
 
             }
         });
-
 
         btn_actualizar_paciente.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -1024,7 +787,6 @@ public class DatosPaciente extends Fragment {
             }
         });
 
-
         up_paciente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -1076,6 +838,9 @@ public class DatosPaciente extends Fragment {
         newPersona.put("nombres",editNombres.getText().toString());
         newPersona.put("apellidos",editApellidos.getText().toString());
         newPersona.put("fechaNacimiento",editFechaNac.getText().toString());
+
+        imgDatospaciente.setDrawingCacheEnabled(true);
+        imgDatospaciente.buildDrawingCache();
 
         Bitmap bitmap =  imgDatospaciente.getDrawingCache();
         ByteArrayOutputStream baos  = new ByteArrayOutputStream();
@@ -1217,9 +982,8 @@ public class DatosPaciente extends Fragment {
         String fechaActual = mdformat.format(calendar.getTime());
 
         test.put(Utilidades.CAMPO_FECHA_TEST,fechaActual);
-        test.put(Utilidades.CAMPO_EDAD_TEST, Utilidades.edadActual);
 
-        Persona persona = null;
+        Persona persona;
 
         //Consultamos los Datos de Persona del usuario actual
         persona = consultarPersona(Utilidades.currentUserIdPersona);
@@ -1253,33 +1017,6 @@ public class DatosPaciente extends Fragment {
         }
 
         return persona;
-    }
-
-    private ArrayList<Test> consultarTablaTest(Integer id_paciente) {
-        SQLiteDatabase db = con.getReadableDatabase();
-        Test test = null;
-        listaTest = new ArrayList<>();
-
-
-        Cursor cursor = db.rawQuery("SELECT * FROM test WHERE id_paciente"+"="+id_paciente,null);
-
-        if (cursor.getCount()>0){
-            while (cursor.moveToNext()){
-                test = new Test();
-
-                test.setId_test(cursor.getInt(0));
-                test.setFecha_test(cursor.getString(1));
-                test.setEvaluador_test(cursor.getString(2));
-                test.setEstado_test(cursor.getString(3));
-                test.setIntervalo_confianza(cursor.getString(4));
-                test.setEdad_test(cursor.getString(5));
-                test.setUp_test(cursor.getString(6));
-
-                listaTest.add(test);
-            }
-        }
-        db.close();
-        return listaTest;
     }
 
     // TODO: Rename method, update argument and hook method into UI event

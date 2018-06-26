@@ -20,6 +20,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.franko.expertwisc.Entidades.SubTest.SubTestCC;
+import com.example.franko.expertwisc.Entidades.Test;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
@@ -137,14 +138,14 @@ public class CC extends Fragment {
                     subTestCC.setPuntuacionDirectaTotalCC(res_cc.getText().toString());
                     subTestCC.UpdateCC(getContext());
                     Utilidades.R_cc = (res_cc.getText().toString());
+                    Test test = new Test();
+                    test.UpdateTestUp(getContext());
                     guardar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
 //                    Toast.makeText(getContext(),Utilidades.R_cc+" GUARDADO",Toast.LENGTH_SHORT).show();
-                    Snackbar.make(view, Utilidades.R_cc +" puntos guardado", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).setActionTextColor(Color.RED).show();
+                    Snackbar.make(view, Utilidades.R_cc +" puntos guardado", Snackbar.LENGTH_LONG).show();
                 }else{
 //                    Toast.makeText(getContext(),"El valor no debe de ser mayor a 68",Toast.LENGTH_SHORT).show();
-                    Snackbar.make(view, "El valor no debe de ser mayor a 68", Snackbar.LENGTH_LONG)
-                            .setAction("Action", null).setActionTextColor(Color.RED).show();
+                    Snackbar.make(view, "El valor no debe de ser mayor a 68", Snackbar.LENGTH_LONG).show();
                 }
 
             }

@@ -26,7 +26,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.franko.expertwisc.Entidades.Persona;
-import com.example.franko.expertwisc.FragmentosPrincipales.Datos;
 import com.example.franko.expertwisc.FragmentosPrincipales.DatosPaciente;
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.DirectaEscalar;
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.IndicesCI;
@@ -83,8 +82,7 @@ public class Home extends AppCompatActivity
         IndicesCI.OnFragmentInteractionListener,
         PerfilCompuestas.OnFragmentInteractionListener,
         PerfilEscalar.OnFragmentInteractionListener,
-        Sugerencias.OnFragmentInteractionListener,
-        Datos.OnFragmentInteractionListener
+        Sugerencias.OnFragmentInteractionListener
 {
     FloatingActionButton fab;
     ImageView imageViewProfile;
@@ -97,12 +95,12 @@ public class Home extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         con = new ConexionHelper(this,"bd_wisc", null, 1);
 
-        fab = (FloatingActionButton) findViewById(R.id.fab);
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        fab = findViewById(R.id.fab);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
@@ -133,17 +131,17 @@ public class Home extends AppCompatActivity
         });
 
         Bundle bundle = getIntent().getExtras();
-        Persona persona = null;
+        Persona persona;
         persona = (Persona) bundle.getSerializable("persona");
 
 
-        NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
+        NavigationView navigationView = findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
         View hView =  navigationView.getHeaderView(0);
 
-        textViewNameProfile = (TextView)hView.findViewById(R.id.nameProfile);
-        circleImageView = (CircleImageView) hView.findViewById(R.id.imageViewProfile);
-        linear_back = (LinearLayout) hView.findViewById(R.id.linear_back_header);
+        textViewNameProfile = hView.findViewById(R.id.nameProfile);
+        circleImageView = hView.findViewById(R.id.imageViewProfile);
+        linear_back = hView.findViewById(R.id.linear_back_header);
 
         if (persona != null){
 
@@ -178,7 +176,7 @@ public class Home extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
@@ -239,7 +237,6 @@ public class Home extends AppCompatActivity
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-        Intent intent;
         Fragment fragment = null;
         Boolean aBoolean = false;
 
@@ -256,11 +253,11 @@ public class Home extends AppCompatActivity
             Utilidades.rotacionFab=1;
             CambioTitulo("Registro de pacientes");
         } else if (id == R.id.nav_datos) {
-            fragment = new Datos();
-            aBoolean = true;
-            fab.hide();
-            Utilidades.rotacionFab=1;
-            CambioTitulo("Datos");
+//            fragment = new Datos();
+//            aBoolean = true;
+//            fab.hide();
+//            Utilidades.rotacionFab=1;
+//            CambioTitulo("Datos");
         } else if (id == R.id.nav_config) {
 //            fragment = new Resultados();
 //            aBoolean = true;
@@ -277,7 +274,7 @@ public class Home extends AppCompatActivity
             getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
         }
 
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        DrawerLayout drawer = findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
     }

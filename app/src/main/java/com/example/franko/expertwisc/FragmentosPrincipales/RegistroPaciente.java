@@ -42,6 +42,21 @@ import android.widget.Toast;
 import com.example.franko.expertwisc.ConexionHelper;
 import com.example.franko.expertwisc.Entidades.Paciente;
 import com.example.franko.expertwisc.Entidades.Persona;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestA;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestAd;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestAr;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestBS;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestC;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestCC;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestCF;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestCl;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestCo;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestI;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestLN;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestM;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestRD;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestS;
+import com.example.franko.expertwisc.Entidades.SubTest.SubTestV;
 import com.example.franko.expertwisc.Entidades.Test;
 import com.example.franko.expertwisc.Entidades.Usuario;
 import com.example.franko.expertwisc.Home;
@@ -284,6 +299,8 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                                     String a = Long.toString(idTest);
                                     int id_test = Integer.parseInt(a);
                                     Utilidades.currentTest = id_test;
+
+                                    RegistrarSubTest();
 //                                    Toast.makeText(getContext(),"Id_Test: "+a ,  Toast.LENGTH_SHORT).show();
 
                                     Fragment fragment = new GeneralSubPruebas();
@@ -328,6 +345,41 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
             }
         });
         return view;
+    }
+
+    private void RegistrarSubTest() {
+
+        SubTestCC testCC = new SubTestCC();
+        testCC.RegistrarCC(getContext());
+        SubTestS subTestS = new SubTestS();
+        subTestS.RegistrarS(getContext());
+        SubTestRD subTestRD= new SubTestRD();
+        subTestRD.RegistrarRD(getContext());
+        SubTestCo subTestCo = new SubTestCo();
+        subTestCo.RegistrarCo(getContext());
+        SubTestCl subTestCl = new SubTestCl();
+        subTestCl.RegistrarCl(getContext());
+        SubTestV subTestV = new SubTestV();
+        subTestV.RegistrarV(getContext());
+        SubTestLN subTestLN = new SubTestLN();
+        subTestLN.RegistrarLN(getContext());
+        SubTestM subTestM = new SubTestM();
+        subTestM.RegistrarM(getContext());
+        SubTestC subTestC= new SubTestC();
+        subTestC.RegistrarC(getContext());
+        SubTestBS subTestBS = new SubTestBS();
+        subTestBS.RegistrarBS(getContext());
+        SubTestCF subTestCF = new SubTestCF();
+        subTestCF.RegistrarCF(getContext());
+        SubTestA subTestA = new SubTestA();
+        subTestA.RegistrarA(getContext());
+        SubTestI subTestI= new SubTestI();
+        subTestI.RegistrarI(getContext());
+        SubTestAr subTestAr = new SubTestAr();
+        subTestAr.RegistrarAr(getContext());
+        SubTestAd subTestAd = new SubTestAd();
+        subTestAd.RegistrarAd(getContext());
+
     }
 
     private Persona consultarPersona(int id) {
@@ -392,7 +444,6 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
         void onFragmentInteraction(Uri uri);
     }
 
-
     private void registrarPaciente() {
         imageView.setDrawingCacheEnabled(true);
         imageView.buildDrawingCache();
@@ -426,7 +477,6 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                 //Obtenemos el id del Log y convertimos en String y luego en int
                 String a = Long.toString(idPersona);
                 id_persona = Integer.parseInt(a);
-
 
 
                 ContentValues paciente = new ContentValues();
@@ -476,7 +526,6 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
 
         }
     }
-
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
