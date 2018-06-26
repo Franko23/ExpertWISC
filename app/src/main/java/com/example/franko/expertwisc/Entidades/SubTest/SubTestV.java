@@ -14,6 +14,8 @@ public class SubTestV {
 
     private Integer Id_V;
     private String PuntuacionDirectaTotalV;
+    private String Up_V;
+
     Context context;
     ConexionHelper con;
 
@@ -42,13 +44,22 @@ public class SubTestV {
         PuntuacionDirectaTotalV = puntuacionDirectaTotalV;
     }
 
+    public String getUp_V() {
+        return Up_V;
+    }
+
+    public void setUp_V(String up_V) {
+        Up_V = up_V;
+    }
+
+
     public void RegistrarV (Context context){
         this.context = context;
         con = new ConexionHelper(context, "bd_wisc", null, 1);
         SQLiteDatabase db = con.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(Utilidades.CAMPO_V, "");
+        contentValues.put(Utilidades.CAMPO_V, "NO");
         contentValues.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
 
         try {
@@ -68,6 +79,7 @@ public class SubTestV {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_V,getPuntuacionDirectaTotalV());
+        contentValues.put(Utilidades.CAMPO_V, "NO");
 
         try {
             int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_V,contentValues,Utilidades.CAMPO_ID_PUNTUACION_V+"="+getId_V(),null);
@@ -92,10 +104,12 @@ public class SubTestV {
         while (cursor.moveToNext()){
             setId_V(cursor.getInt(0));
             setPuntuacionDirectaTotalV(cursor.getString(1));
+            setUp_V(cursor.getString(2));
 
             Utilidades.R_v = getPuntuacionDirectaTotalV();
         }
 
         db.close();
     }
+
 }

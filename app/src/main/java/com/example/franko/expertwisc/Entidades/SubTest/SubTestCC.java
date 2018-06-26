@@ -72,6 +72,7 @@ public class SubTestCC {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_CC, "");
+        contentValues.put(Utilidades.CAMPO_UP_CC,"NO");
         contentValues.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
 
         try {
@@ -92,6 +93,7 @@ public class SubTestCC {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_CC,getPuntuacionDirectaTotalCC());
+        contentValues.put(Utilidades.CAMPO_UP_CC,"NO");
 
         try {
             int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_CC,contentValues,Utilidades.CAMPO_ID_PUNTUACION_CC+"="+getId_CC(),null);

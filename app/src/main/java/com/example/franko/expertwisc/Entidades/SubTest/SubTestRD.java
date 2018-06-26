@@ -13,6 +13,8 @@ import com.example.franko.expertwisc.Utilidades.Utilidades;
 public class SubTestRD {
     private Integer Id_RD;
     private String PuntuacionDirectaTotalRD;
+    private String Up_RD;
+
     Context context;
     ConexionHelper con;
 
@@ -41,6 +43,17 @@ public class SubTestRD {
         PuntuacionDirectaTotalRD = puntuacionDirectaTotalRD;
     }
 
+    public String getUp_RD() {
+        return Up_RD;
+    }
+
+    public void setUp_RD(String up_RD) {
+        Up_RD = up_RD;
+    }
+
+
+
+
     public void RegistrarRD (Context context){
         this.context = context;
         con = new ConexionHelper(context, "bd_wisc", null, 1);
@@ -48,6 +61,7 @@ public class SubTestRD {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_RDT,"");
+        contentValues.put(Utilidades.CAMPO_UP_RD,"NO");
         contentValues.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
 
         try {
@@ -67,6 +81,7 @@ public class SubTestRD {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_RDT,getPuntuacionDirectaTotalRD());
+        contentValues.put(Utilidades.CAMPO_UP_RD,"NO");
 
         try {
             int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_RD,contentValues,Utilidades.CAMPO_ID_PUNTUACION_RD+"="+getId_RD(),null);
@@ -91,10 +106,12 @@ public class SubTestRD {
         while (cursor.moveToNext()){
             setId_RD(cursor.getInt(0));
             setPuntuacionDirectaTotalRD(cursor.getString(3));
+            setUp_RD(cursor.getString(4));
 
             Utilidades.R_rd = getPuntuacionDirectaTotalRD();
         }
 
         db.close();
     }
+
 }

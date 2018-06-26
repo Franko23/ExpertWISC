@@ -13,6 +13,8 @@ import com.example.franko.expertwisc.Utilidades.Utilidades;
 public class SubTestC {
     private Integer Id_C;
     private String PuntuacionDirectaTotalC;
+    private String Up_C;
+
     Context context;
     ConexionHelper con;
 
@@ -40,6 +42,15 @@ public class SubTestC {
         PuntuacionDirectaTotalC = puntuacionDirectaTotalC;
     }
 
+    public String getUp_C() {
+        return Up_C;
+    }
+
+    public void setUp_C(String up_C) {
+        Up_C = up_C;
+    }
+
+
     public void RegistrarC (Context context){
         this.context = context;
         con = new ConexionHelper(context, "bd_wisc", null, 1);
@@ -47,6 +58,7 @@ public class SubTestC {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_C, "");
+        contentValues.put(Utilidades.CAMPO_UP_C,"NO");
         contentValues.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
 
         try {
@@ -66,6 +78,7 @@ public class SubTestC {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_C,getPuntuacionDirectaTotalC());
+        contentValues.put(Utilidades.CAMPO_UP_C,"NO");
 
         try {
             int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_C,contentValues,Utilidades.CAMPO_ID_PUNTUACION_C+"="+getId_C(),null);
@@ -90,6 +103,7 @@ public class SubTestC {
         while (cursor.moveToNext()){
             setId_C(cursor.getInt(0));
             setPuntuacionDirectaTotalC(cursor.getString(1));
+            setUp_C(cursor.getString(2));
 
             Utilidades.R_c = getPuntuacionDirectaTotalC();
         }

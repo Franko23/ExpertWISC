@@ -14,6 +14,7 @@ public class SubTestCo {
 
     private Integer Id_Co;
     private String PuntuacionDirectaTotalCo;
+    private String Up_Co;
 
     Context context;
     ConexionHelper con;
@@ -41,6 +42,16 @@ public class SubTestCo {
         PuntuacionDirectaTotalCo = puntuacionDirectaTotalCo;
     }
 
+    public String getUp_Co() {
+        return Up_Co;
+    }
+
+    public void setUp_Co(String up_Co) {
+        Up_Co = up_Co;
+    }
+
+
+
     public void RegistrarCo (Context context){
         this.context = context;
         con = new ConexionHelper(context, "bd_wisc", null, 1);
@@ -48,6 +59,7 @@ public class SubTestCo {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_CO,"");
+        contentValues.put(Utilidades.CAMPO_UP_CO,"NO");
         contentValues.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
 
         try {
@@ -67,6 +79,7 @@ public class SubTestCo {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_CO,getPuntuacionDirectaTotalCo());
+        contentValues.put(Utilidades.CAMPO_UP_CO,"NO");
 
         try {
             int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_CO,contentValues,Utilidades.CAMPO_ID_PUNTUACION_CO+"="+getId_Co(),null);
@@ -91,6 +104,8 @@ public class SubTestCo {
         while (cursor.moveToNext()){
             setId_Co(cursor.getInt(0));
             setPuntuacionDirectaTotalCo(cursor.getString(1));
+            setUp_Co(cursor.getString(2));
+
             Utilidades.R_co = getPuntuacionDirectaTotalCo();
         }
 

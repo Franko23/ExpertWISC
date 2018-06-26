@@ -13,6 +13,8 @@ import com.example.franko.expertwisc.Utilidades.Utilidades;
 public class SubTestS {
     private Integer Id_S;
     private String PuntuacionDirectaTotalS;
+    private String Up_S;
+
     Context context;
     ConexionHelper con;
 
@@ -40,7 +42,13 @@ public class SubTestS {
         PuntuacionDirectaTotalS = puntuacionDirectaTotalS;
     }
 
+    public String getUp_S() {
+        return Up_S;
+    }
 
+    public void setUp_S(String up_S) {
+        Up_S = up_S;
+    }
 
 
     public void RegistrarS (Context context){
@@ -50,6 +58,7 @@ public class SubTestS {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_S, "");
+        contentValues.put(Utilidades.CAMPO_UP_S,"NO");
         contentValues.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
 
         try {
@@ -69,6 +78,7 @@ public class SubTestS {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_S,getPuntuacionDirectaTotalS());
+        contentValues.put(Utilidades.CAMPO_UP_S,"NO");
 
         try {
             int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_S,contentValues,Utilidades.CAMPO_ID_PUNTUACION_S+"="+getId_S(),null);
@@ -92,6 +102,7 @@ public class SubTestS {
         while (cursor.moveToNext()){
             setId_S(cursor.getInt(0));
             setPuntuacionDirectaTotalS(cursor.getString(1));
+            setUp_S(cursor.getString(2));
 
             Utilidades.R_s = getPuntuacionDirectaTotalS();
         }

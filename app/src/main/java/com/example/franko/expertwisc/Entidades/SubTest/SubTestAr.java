@@ -14,6 +14,8 @@ public class SubTestAr {
 
     private Integer Id_Ar;
     private String PuntuacionDirectaTotalAr;
+    private String Up_Ar;
+
     Context context;
     ConexionHelper con;
 
@@ -41,6 +43,15 @@ public class SubTestAr {
         PuntuacionDirectaTotalAr = puntuacionDirectaTotalAr;
     }
 
+    public String getUp_Ar() {
+        return Up_Ar;
+    }
+
+    public void setUp_Ar(String up_Ar) {
+        Up_Ar = up_Ar;
+    }
+
+
     public void RegistrarAr (Context context){
         this.context = context;
         con = new ConexionHelper(context, "bd_wisc", null, 1);
@@ -48,6 +59,7 @@ public class SubTestAr {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_AR, "");
+        contentValues.put(Utilidades.CAMPO_UP_AR,"NO");
         contentValues.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
 
         try {
@@ -67,6 +79,7 @@ public class SubTestAr {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_AR,getPuntuacionDirectaTotalAr());
+        contentValues.put(Utilidades.CAMPO_UP_AR,"NO");
 
         try {
             int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_AR,contentValues,Utilidades.CAMPO_ID_PUNTUACION_AR+"="+getId_Ar(),null);
@@ -91,6 +104,7 @@ public class SubTestAr {
         while (cursor.moveToNext()){
             setId_Ar(cursor.getInt(0));
             setPuntuacionDirectaTotalAr(cursor.getString(1));
+            setUp_Ar(cursor.getString(2));
 
             Utilidades.R_ar = getPuntuacionDirectaTotalAr();
         }

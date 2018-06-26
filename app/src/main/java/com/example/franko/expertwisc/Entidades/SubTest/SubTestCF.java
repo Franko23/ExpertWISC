@@ -14,6 +14,8 @@ public class SubTestCF {
 
     private Integer Id_CF;
     private String PuntuacionDirectaTotalCF;
+    private String Up_CF;
+
     Context context;
     ConexionHelper con;
 
@@ -42,6 +44,15 @@ public class SubTestCF {
         PuntuacionDirectaTotalCF = puntuacionDirectaTotalCF;
     }
 
+    public String getUp_CF() {
+        return Up_CF;
+    }
+
+    public void setUp_CF(String up_CF) {
+        Up_CF = up_CF;
+    }
+
+
     public void RegistrarCF (Context context){
         this.context = context;
         con = new ConexionHelper(context, "bd_wisc", null, 1);
@@ -49,6 +60,7 @@ public class SubTestCF {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_CF, "");
+        contentValues.put(Utilidades.CAMPO_UP_CF,"NO");
         contentValues.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
 
         try {
@@ -68,6 +80,7 @@ public class SubTestCF {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_CF,getPuntuacionDirectaTotalCF());
+        contentValues.put(Utilidades.CAMPO_UP_CF,"NO");
 
         try {
             int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_CF,contentValues,Utilidades.CAMPO_ID_PUNTUACION_CF+"="+getId_CF(),null);
@@ -92,6 +105,7 @@ public class SubTestCF {
         while (cursor.moveToNext()){
             setId_CF(cursor.getInt(0));
             setPuntuacionDirectaTotalCF(cursor.getString(1));
+            setUp_CF(cursor.getString(2));
 
             Utilidades.R_cf = getPuntuacionDirectaTotalCF();
         }

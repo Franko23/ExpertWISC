@@ -14,6 +14,8 @@ public class SubTestCl {
 
     private Integer Id_Cl;
     private String PuntuacionDirectaTotalCl;
+    private String Up_Cl;
+
     Context context;
     ConexionHelper con;
 
@@ -41,6 +43,15 @@ public class SubTestCl {
         PuntuacionDirectaTotalCl = puntuacionDirectaTotalCl;
     }
 
+    public String getUp_Cl() {
+        return Up_Cl;
+    }
+
+    public void setUp_Cl(String up_Cl) {
+        Up_Cl = up_Cl;
+    }
+
+
     public void RegistrarCl (Context context){
         this.context = context;
         con = new ConexionHelper(context, "bd_wisc", null, 1);
@@ -48,6 +59,7 @@ public class SubTestCl {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_CL,"");
+        contentValues.put(Utilidades.CAMPO_UP_CL,"NO");
         contentValues.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
 
         try {
@@ -67,6 +79,7 @@ public class SubTestCl {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_CL,getPuntuacionDirectaTotalCl());
+        contentValues.put(Utilidades.CAMPO_UP_CL,"NO");
 
         try {
             int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_CL,contentValues,Utilidades.CAMPO_ID_PUNTUACION_CL+"="+getId_Cl(),null);
@@ -91,6 +104,8 @@ public class SubTestCl {
         while (cursor.moveToNext()){
             setId_Cl(cursor.getInt(0));
             setPuntuacionDirectaTotalCl(cursor.getString(1));
+            setUp_Cl(cursor.getString(2));
+
             Utilidades.R_cl = getPuntuacionDirectaTotalCl();
         }
 

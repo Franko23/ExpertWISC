@@ -269,7 +269,9 @@ public class DatosPaciente extends Fragment {
 //
                         if (up_paciente.getVisibility()==View.VISIBLE){
                             Toast.makeText(getContext(),"PRIMERO DEBE DE SUBIR LOS DATOS DEL PACIENTE" ,Toast.LENGTH_SHORT).show();
-                        }else {
+                        }else if(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getUp_test().equals("NO")) {
+
+
                             Map<String, Object> newTest = new HashMap<>();
 
                             Calendar calendar = Calendar.getInstance();
@@ -294,7 +296,7 @@ public class DatosPaciente extends Fragment {
                                             try {
                                                 int okTest=db.update(Utilidades.TABLA_TEST,personaUpdate,Utilidades.CAMPO_ID_TEST+"="+listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test(),null);
                                                 if (okTest==1){
-                                                    Snackbar.make(view, "Test actualizado corectamente", Snackbar.LENGTH_LONG).show();
+                                                    Snackbar.make(view, "Test actualizado corectamente, ya puede subir los SubTest", Snackbar.LENGTH_LONG).show();
                                                 }
                                             }catch (Exception e){
                                                 Toast.makeText(getContext(),"Error al actualizar Test", Toast.LENGTH_SHORT).show();
@@ -310,7 +312,7 @@ public class DatosPaciente extends Fragment {
                                             Log.w(TAG, "Error subiendo test", e);
                                         }
                                     });
-
+                        }else{
                             Test test = new Test();
                             test.Valores();
                             ConsultaView(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
@@ -889,8 +891,6 @@ public class DatosPaciente extends Fragment {
                                             Log.w(TAG, "Error subiendo SubTestA ", e);
                                         }
                                     });
-
-
                         }
 
                     }

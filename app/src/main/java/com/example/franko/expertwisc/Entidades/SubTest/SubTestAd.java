@@ -15,6 +15,8 @@ public class SubTestAd {
 
     private Integer Id_Ad;
     private String PuntuacionDirectaTotalAd;
+    private String Up_Ad;
+
     Context context;
     ConexionHelper con;
 
@@ -42,6 +44,15 @@ public class SubTestAd {
         PuntuacionDirectaTotalAd = puntuacionDirectaTotalAd;
     }
 
+
+    public String getUp_Ad() {
+        return Up_Ad;
+    }
+
+    public void setUp_Ad(String up_Ad) {
+        Up_Ad = up_Ad;
+    }
+
     public void RegistrarAd (Context context){
         this.context = context;
         con = new ConexionHelper(context, "bd_wisc", null, 1);
@@ -49,6 +60,7 @@ public class SubTestAd {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_AD, "");
+        contentValues.put(Utilidades.CAMPO_UP_AD,"NO");
         contentValues.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
 
         try {
@@ -68,6 +80,7 @@ public class SubTestAd {
 
         ContentValues contentValues = new ContentValues();
         contentValues.put(Utilidades.CAMPO_AD,getPuntuacionDirectaTotalAd());
+        contentValues.put(Utilidades.CAMPO_UP_AD,"NO");
 
         try {
             int okTest=db.update(Utilidades.TABLA_PUNTUACIONES_AD,contentValues,Utilidades.CAMPO_ID_PUNTUACION_AD+"="+getId_Ad(),null);
@@ -92,7 +105,7 @@ public class SubTestAd {
         while (cursor.moveToNext()){
             setId_Ad(cursor.getInt(0));
             setPuntuacionDirectaTotalAd(cursor.getString(1));
-
+            setUp_Ad(cursor.getString(2));
             Utilidades.R_ad = getPuntuacionDirectaTotalAd();
         }
 
