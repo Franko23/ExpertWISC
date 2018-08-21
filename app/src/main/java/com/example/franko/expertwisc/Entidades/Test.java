@@ -166,9 +166,24 @@ public class Test {
 
         cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_TEST+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
         while (cursor.moveToNext()){
-            setIntervalo_confianza(cursor.getString(1));
+            setIntervalo_confianza(cursor.getString(4));
             Utilidades.intervalo_confianza = getIntervalo_confianza();
         }
+
+        db.close();
+    }
+    public void ConsultarFechaTest(Context context, int id_test){
+        this.context = context;
+        con = new ConexionHelper(context, "bd_wisc", null, 1);
+        SQLiteDatabase db = con.getWritableDatabase();
+
+        Cursor cursor;
+
+        cursor = db.rawQuery("SELECT * FROM "+Utilidades.TABLA_TEST+" WHERE " + Utilidades.CAMPO_ID_TEST+ "=" + id_test,null);
+        while (cursor.moveToNext()){
+            setFecha_test(cursor.getString(1));
+        }
+        Utilidades.fechaEvaluacion = getFecha_test();
 
         db.close();
     }

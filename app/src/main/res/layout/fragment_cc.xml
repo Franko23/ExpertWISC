@@ -10,14 +10,14 @@
     <!-- TODO: Update blank fragment layout -->
 
     <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="#F8F6F9"
-                    android:elevation="5dp"
-                    android:orientation="horizontal"
-                    android:baselineAligned="false">
-                    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="#F8F6F9"
+        android:elevation="5dp"
+        android:orientation="horizontal"
+        android:baselineAligned="false">
+        <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:orientation="horizontal"
@@ -40,7 +40,7 @@
                         android:id="@+id/show_cc"
                             android:contentDescription="Información de la sub prueba"/>
                     </LinearLayout>
-                    <LinearLayout
+        <LinearLayout
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:orientation="vertical"
@@ -63,25 +63,25 @@
 
                     </LinearLayout>
 
-                </LinearLayout>
+    </LinearLayout>
 
     <ScrollView
-                    android:layout_width="fill_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="20">
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="20">
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:baselineAligned="false">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:baselineAligned="false">
 
-                        <LinearLayout
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"
-                            android:orientation="vertical">
-                            <TextView
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <TextView
                                 android:layout_width="match_parent"
                                 android:layout_height="50dp"
                                 android:textStyle="bold"
@@ -949,7 +949,7 @@
                         </LinearLayout>
 
                     </LinearLayout>
-                </ScrollView>
+    </ScrollView>
     <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

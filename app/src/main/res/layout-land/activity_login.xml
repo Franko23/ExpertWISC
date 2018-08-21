@@ -9,10 +9,10 @@
 
     <ImageView xmlns:app="http://schemas.android.com/apk/res-auto"
         android:id="@+id/profile"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:layout_marginEnd="64dp"
-        android:layout_marginStart="64dp"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_marginEnd="328dp"
+        android:layout_marginStart="328dp"
         android:layout_marginTop="32dp"
         android:clickable="true"
         android:elevation="5dp"
@@ -25,9 +25,9 @@
         android:id="@+id/textInputLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
-        android:layout_marginStart="64dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginEnd="228dp"
+        android:layout_marginStart="228dp"
+        android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/profile">
@@ -48,13 +48,24 @@
         android:id="@+id/textInputLayout4"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
-        android:layout_marginStart="64dp"
+        android:layout_marginEnd="228dp"
+        android:layout_marginStart="228dp"
         android:layout_marginTop="8dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textInputLayout">
 
+        <!--<EditText-->
+        <!--android:id="@+id/password"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:hint="@string/prompt_password"-->
+        <!--android:imeActionId="6"-->
+        <!--android:imeActionLabel="@string/action_sign_in_short"-->
+        <!--android:imeOptions="actionUnspecified"-->
+        <!--android:inputType="textPassword"-->
+        <!--android:maxLines="1"-->
+        <!--android:singleLine="true" />            -->
         <android.support.design.widget.TextInputEditText
             android:id="@+id/password"
             android:layout_width="match_parent"
@@ -75,8 +86,9 @@
         style="?android:textAppearanceSmall"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="64dp"
-        android:layout_marginStart="64dp"
+        android:layout_marginEnd="228dp"
+        android:layout_marginStart="228dp"
+        android:layout_marginTop="32dp"
         android:background="@color/colorPrimary"
         android:text="@string/action_sign_in"
         android:textColor="#fff"
@@ -97,7 +109,7 @@
         android:textAlignment="viewEnd"
         android:padding="10dp"
         android:textColor="@color/colorPrimaryDark"
-        android:textSize="0.1in"
+        android:textSize="25dp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toBottomOf="parent" />
 

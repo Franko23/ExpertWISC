@@ -4,7 +4,7 @@ android {
     compileSdkVersion 27
     defaultConfig {
         applicationId "com.example.franko.expertwisc"
-        minSdkVersion 20
+        minSdkVersion 19
         targetSdkVersion 27
         multiDexEnabled true
         renderscriptTargetApi 18

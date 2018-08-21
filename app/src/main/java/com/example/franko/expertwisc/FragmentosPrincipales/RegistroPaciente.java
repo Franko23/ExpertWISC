@@ -26,7 +26,9 @@ import android.support.v4.app.DialogFragment;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.content.ContextCompat;
+import android.text.Editable;
 import android.text.Layout;
+import android.text.TextWatcher;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -104,10 +106,11 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
     FirebaseFirestore dbFire = FirebaseFirestore.getInstance();
     private Context mContext;
 
-    String fecha;
+    String fecha, fechaActual;
 
     View view;
-    TextInputEditText nombres, apellidos, motivoConsulta, antecedentes , fecha_nacimiento;
+    TextInputEditText nombres, apellidos, motivoConsulta, antecedentes;
+    TextView fechaNac, fechaEva;
 
     ImageView imageView;
     private static final int SELECT_PHOTO = 1;
@@ -174,8 +177,8 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
         circularProgressButton = view.findViewById(R.id.guardar_nuevo_paciente);
         calcular = view.findViewById(R.id.calcular);
 
-        fecha_nacimiento = view.findViewById(R.id.txtFechaNacimiento);
-//        t2 = view.findViewById(R.id.txtFechaEvaluacion);
+        fechaNac = view.findViewById(R.id.txtFechaNacimiento);
+        fechaEva = view.findViewById(R.id.txtFechaEvaluacion);
         Edad = view.findViewById(R.id.edad);
 
         imageView = view.findViewById(R.id.imgPaciente);
@@ -186,6 +189,31 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
         final int dd = calendario.get(Calendar.DAY_OF_MONTH);
 
         circularProgressButton.setVisibility(View.INVISIBLE);
+
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat mdformat = new SimpleDateFormat("dd-MM-yyyy");
+        fechaActual = mdformat.format(calendar.getTime());
+
+        fechaEva.setText("Fecha de evaluación: HOY - "+fechaActual);
+
+        apellidos.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence charSequence, int i, int i1, int i2) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable editable) {
+                enableSubmitIfReady();
+            }
+        });
+
 
 
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -209,7 +237,7 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                                 startActivityForResult(intent, CAPTURE_PHOTO);
                                 break;
                             case 2:
-                                imageView.setImageResource(R.drawable.n_user);
+                                imageView.setImageResource(R.drawable.n_paciente);
                                 break;
                         }
                     }
@@ -224,8 +252,7 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
             }
         });
 
-
-        fecha_nacimiento.setOnClickListener(new View.OnClickListener() {
+        fechaNac.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
@@ -236,16 +263,37 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
 
                        fecha = String.valueOf(dayOfMonth)+"-"+String.valueOf(monthOfYear+1)
                                 +"-"+String.valueOf(year);
-                        fecha_nacimiento.setText(fecha);
+                        fechaNac.setText("Fecha de nacimiento: "+fecha);
                         AñoNac = year;
                         MesNac =monthOfYear+1;
                         DiaNac = dayOfMonth;
+                        calcular.setVisibility(View.VISIBLE);
+                        fechaEva.setVisibility(View.VISIBLE);
 
                     }
                 }, yy, mm, dd);
 
                 datePicker.show();
-                calcular.setVisibility(View.VISIBLE);
+
+
+            }
+        });
+
+        fechaEva.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                DatePickerDialog datePicker = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener(){
+
+                    @Override
+                    public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
+                        fechaActual = String.valueOf(i2)+"-"+String.valueOf(i1+1)
+                                +"-"+String.valueOf(i);
+                        fechaEva.setText("Fecha de evaluación: "+fechaActual);
+                    }
+                },yy, mm, dd);
+
+                datePicker.show();
 
             }
         });
@@ -254,7 +302,7 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
             @Override
             public void onClick(View view) {
 
-                CalcularEdad calcularEdad = new CalcularEdad(fecha);
+                CalcularEdad calcularEdad = new CalcularEdad(fecha, fechaActual);
                 String edad = calcularEdad.CalcularEdad();
 
                 Edad.setText(edad);
@@ -269,74 +317,80 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
             public void onClick(View view) {
                 //Registramos al nuevo Paciente
                 if (Double.parseDouble(Utilidades.edadActual) >= 6 && Double.parseDouble(Utilidades.edadActual)<17){
-                    registrarPaciente();
 
-                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                    builder.setMessage("¿DESEA COMENZAR CON EL TEST?");
-                    builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    SQLiteDatabase db = con.getWritableDatabase();
+                    if (nombres.getText().toString().isEmpty() || apellidos.getText().toString().isEmpty())
+                    {
+                        Toast.makeText(getContext(),"Ingrese Valores", Toast.LENGTH_SHORT).show();
+                    }else{
+                        registrarPaciente();
 
-                                    //Insertamos los Datos del test en la tabla test
-                                    ContentValues test = new ContentValues();
-                                    Calendar calendar = Calendar.getInstance();
-                                    SimpleDateFormat mdformat = new SimpleDateFormat("dd/MM/yyyy");
-                                    String fechaActual = mdformat.format(calendar.getTime());
-                                    test.put(Utilidades.CAMPO_FECHA_TEST,fechaActual);
+                        AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                        builder.setMessage("¿DESEA COMENZAR CON EL TEST?");
+                        builder.setPositiveButton("SI", new DialogInterface.OnClickListener() {
 
-                                    Persona persona = null;
-                                    //Consultamos los Datos de Persona del usuario actual
-                                    persona = consultarPersona(Utilidades.currentUserIdPersona);
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                SQLiteDatabase db = con.getWritableDatabase();
 
-                                    test.put(Utilidades.CAMPO_EVALUADOR_TEST, persona.getNombre_persona()+" "+persona.getApellido_persona());
-                                    test.put(Utilidades.CAMPO_ESTADO_TEST, "EN CURSO");
-                                    test.put(Utilidades.CAMPO_EDAD_TEST, Utilidades.edadActual);
-                                    test.put(Utilidades.CAMPO_UP_TEST, "NO");
-                                    test.put(Utilidades.CAMPO_ID_PACIENTE, id_paciente);
+                                //Insertamos los Datos del test en la tabla test
+                                ContentValues test = new ContentValues();
 
-                                    Long idTest = db.insert(Utilidades.TABLA_TEST,Utilidades.CAMPO_ID_TEST,test);
-                                    String a = Long.toString(idTest);
-                                    int id_test = Integer.parseInt(a);
-                                    Utilidades.currentTest = id_test;
+                                Persona persona;
+                                //Consultamos los Datos de Persona del usuario actual
 
-                                    RegistrarSubTest();
-//                                    Toast.makeText(getContext(),"Id_Test: "+a ,  Toast.LENGTH_SHORT).show();
+                                persona = consultarPersona(Utilidades.currentUserIdPersona);
 
-                                    Fragment fragment = new GeneralSubPruebas();
-                                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                test.put(Utilidades.CAMPO_EVALUADOR_TEST, persona.getNombre_persona()+" "+persona.getApellido_persona());
+                                test.put(Utilidades.CAMPO_ESTADO_TEST, "EN CURSO");
+                                test.put(Utilidades.CAMPO_FECHA_TEST,fechaActual);
+                                test.put(Utilidades.CAMPO_EDAD_TEST, Utilidades.edadActual);
+                                test.put(Utilidades.CAMPO_UP_TEST, "NO");
+                                test.put(Utilidades.CAMPO_ID_PACIENTE, id_paciente);
 
-                                    //Obtenemos Datos de la persona para enviar a GeneralSubPruebas
-                                    consultarPersona(id_persona);
+                                Long idTest = db.insert(Utilidades.TABLA_TEST,Utilidades.CAMPO_ID_TEST,test);
+                                String a = Long.toString(idTest);
+                                int id_test = Integer.parseInt(a);
+                                Utilidades.currentTest = id_test;
 
-//                                    Bundle bundle = new Bundle();
-//                                    bundle.putSerializable("Persona",persona);
-//
-//                                    fragment.setArguments(bundle);
-                                    Test test1 = new Test();
-                                    test1.Valores();
+                                RegistrarSubTest();
 
-                                    transaction.replace(R.id.content_main, fragment);
-                                    transaction.addToBackStack(null);
-                                    transaction.commit();
+                                //Obtenemos Datos de la persona para enviar a GeneralSubPruebas
+                                consultarPersona(id_persona);
+
+                                Bundle bundle = new Bundle();
+                                persona.setNombre_persona(nombres.getText().toString());
+                                persona.setFecha_nacimiento_persona(fecha);
+                                bundle.putSerializable("Persona",persona);
+
+                                Test test1 = new Test();
+                                test1.Valores();
+
+                                test1.ConsultarFechaTest(getContext(),id_test);
+
+                                Fragment fragment =  new GeneralSubPruebas();
+                                fragment.setArguments(bundle);
+                                getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
 
                                 }
-                            }
-                    );
-                    builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Fragment fragment = new ListaPacientes();
-                            FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                            transaction.replace(R.id.content_main, fragment);
-                            transaction.addToBackStack(null);
-                            transaction.commit();
                         }
-                    });
+                        );
+                        builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
 
-                    AlertDialog dialog = builder.create();
-                    dialog.show();
+                                Fragment fragment = new ListaPacientes();
+                                FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                                transaction.replace(R.id.content_main, fragment);
+                                transaction.addToBackStack(null);
+                                transaction.commit();
+                            }
+                        });
+
+                        AlertDialog dialog = builder.create();
+                        dialog.show();
+                    }
+
+
                 }else{
 //                    Toast.makeText(getContext(),"La edad tiene que ser mayor a 6 y menor a 17 años",Toast.LENGTH_LONG).show();
                     Snackbar.make(view, "La edad debe de ser mayor a 6 y menor a 17 años", Snackbar.LENGTH_LONG)
@@ -345,6 +399,15 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
             }
         });
         return view;
+    }
+
+    private void enableSubmitIfReady() {
+        boolean isReady = apellidos.getText().toString().length() >= 3;
+        if (isReady) {
+            fechaNac.setVisibility(View.VISIBLE);
+        }else{
+            fechaNac.setVisibility(View.GONE);
+        }
     }
 
     private void RegistrarSubTest() {
@@ -452,18 +515,13 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
         bitmap.compress(Bitmap.CompressFormat.JPEG,100, baos);
         byte[] data = baos.toByteArray();
 
-        if (nombres.getText().toString().isEmpty()||apellidos.getText().toString().isEmpty())
-        {
-            Toast.makeText(getContext(),"Ingrese Valores", Toast.LENGTH_SHORT).show();
-        }
-        else {
-            FirebaseFirestore dbFire = FirebaseFirestore.getInstance();
+
             SQLiteDatabase db = con.getWritableDatabase();
 
             ContentValues persona = new ContentValues();
             persona.put(Utilidades.CAMPO_NOMBRE_PERSONA, nombres.getText().toString());
             persona.put(Utilidades.CAMPO_APELLIDO_PERSONA, apellidos.getText().toString());
-            persona.put(Utilidades.CAMPO_FECHA_NACIMIENTO_PERSONA, fecha_nacimiento.getText().toString());
+            persona.put(Utilidades.CAMPO_FECHA_NACIMIENTO_PERSONA, fecha);
             persona.put(Utilidades.CAMPO_IMAGEN_PERSONA, data);
             persona.put(Utilidades.CAMPO_UP_PERSONA,"NO");
             persona.put(Utilidades.CAMPO_TIPO_PERSONA, "paciente");
@@ -498,33 +556,6 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
 
             db.close();
 
-//            DocumentReference usuarios = dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document("");
-
-//            Map<String, Object> newPaciente = new HashMap<>();
-//            newPaciente.put("nombres",nombres.getText().toString());
-//            newPaciente.put("apellidos",apellidos.getText().toString());
-//            newPaciente.put("motivo",motivoConsulta.getText().toString());
-//            newPaciente.put("antecedentes",antecedentes.getText().toString());
-//            newPaciente.put("fechaNacimiento",fecha_nacimiento.getText().toString());
-//
-//            dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(nombres.getText().toString())
-//                    .set(newPaciente)
-//                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-//                        @Override
-//                        public void onSuccess(Void aVoid) {
-//                            Log.d(TAG, "Paciente agregado corectamente");
-//                        }
-//                    })
-//                    .addOnFailureListener(new OnFailureListener() {
-//                        @Override
-//                        public void onFailure(@NonNull Exception e) {
-//                            Log.w(TAG, "Error writing document", e);
-//                        }
-//                    });
-
-
-
-        }
     }
 
     @Override

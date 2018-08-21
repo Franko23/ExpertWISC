@@ -96,9 +96,7 @@ public class ListaPacientes extends Fragment{
         consultarListaPacientes();
 
         //Mostramos el FloatIconButton de Nuevo Paciente
-//        View view = vista.getRootView().findViewById(R.id.content_main);
-//        FloatingActionButton fb = view.findViewById(R.id.fab);
-//        fb.show();
+
 
         recyclerViewPacientes = vista.findViewById(R.id.listaPacientes);
         recyclerViewPacientes.setLayoutManager(new LinearLayoutManager(getContext()));
@@ -160,6 +158,10 @@ public class ListaPacientes extends Fragment{
         });
 
         recyclerViewPacientes.setAdapter(adapterPacientes);
+
+//        View view = vista.getRootView();
+//        FloatingActionButton floatingActionButton = view.findViewById(R.id.fab);
+//        floatingActionButton.hide();
 
         return vista;
     }

@@ -26,6 +26,7 @@ import com.example.franko.expertwisc.Adapters.SeccionesAdapter;
 import com.example.franko.expertwisc.ConexionHelper;
 import com.example.franko.expertwisc.Entidades.Paciente;
 import com.example.franko.expertwisc.Entidades.Persona;
+import com.example.franko.expertwisc.Entidades.Test;
 import com.example.franko.expertwisc.FragmentosSubTest.A;
 import com.example.franko.expertwisc.FragmentosSubTest.Ad;
 import com.example.franko.expertwisc.FragmentosSubTest.Ar;
@@ -80,7 +81,7 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
 
     LinearLayout linearLayout;
     private long backPressed;
-    String EdadPaciente, Titulo, res_cl, AñoTotal;
+    String EdadPaciente, Titulo="hhhhh", res_cl, AñoTotal;
     private EditText res_cc, res_s, res_rd, res_co, res_cl_a, res_v, res_ln, res_m, res_c, res_bs, res_cf, res_a, res_i, res_ar, res_ad;
     TextInputEditText res_cl_b;
 
@@ -157,13 +158,14 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
         }
 
         bundle = getArguments();
-        Persona persona = null;
+        Persona persona;
         if (bundle != null) {
             persona = (Persona) bundle.getSerializable("Persona") ;
 //            Calculamos la fecha de nacimiento de la persona
-            CalcularEdad calcularEdad = new CalcularEdad(persona.getFecha_nacimiento_persona());
+            CalcularEdad calcularEdad = new CalcularEdad(persona.getFecha_nacimiento_persona(),Utilidades.fechaEvaluacion);
             String edadPersona = calcularEdad.CalcularEdad();
-            Titulo = persona.getNombre_persona() + " - " + edadPersona;
+            Titulo = persona.getNombre_persona() + " - " + edadPersona+"(Se está evaluando al paciente con esta edad)";
+            this.getActivity().setTitle(Titulo);
             Utilidades.currentPacienteName = persona.getNombre_persona();
         }
 
@@ -174,10 +176,6 @@ public class GeneralSubPruebas extends Fragment implements Cl.OnFragmentInteract
                 getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
             }
         });
-
-
-        getActivity().setTitle(Titulo);
-
 
 
         return view;

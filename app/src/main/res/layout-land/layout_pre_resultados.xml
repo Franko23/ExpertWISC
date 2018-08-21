@@ -3,8 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#fff">
+    android:orientation="vertical">
 
     <TextView
         android:layout_width="match_parent"
@@ -14,12 +13,13 @@
         android:textSize="30dp"
         android:textStyle="bold"
         android:textAlignment="center"
+        android:background="#f4f4f4"
         android:padding="15dp"/>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="450dp"
-        android:background="#f6f6f6">
+        android:layout_height="292dp"
+        android:layout_weight="1">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -317,43 +317,41 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
+        android:layout_height="wrap_content"
+        android:layout_weight="2">
         <RadioGroup
-            android:id="@+id/radioGroup"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_margin="10dp"
-            android:background="@drawable/border"
-            android:gravity="center"
             android:orientation="horizontal"
+            android:gravity="center"
+            android:id="@+id/radioGroup"
+            android:layout_margin="10dp"
+            android:padding="5dp"
 
-            android:padding="5dp">
-
+            android:background="@drawable/border">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:layout_marginRight="30dp"
                 android:text="intérvalo de confianza:"
+                android:textStyle="bold"
                 android:textSize="20dp"
-                android:textStyle="bold" />
-
+                android:layout_marginRight="30dp"/>
             <RadioButton
-                android:id="@+id/radio_90"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="90%" />
-
+                android:text="90%"
+                android:id="@+id/radio_90"/>
             <RadioButton
-                android:id="@+id/radio_95"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="95%" />
+                android:text="95%"
+                android:id="@+id/radio_95"/>
         </RadioGroup>
     </LinearLayout>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_weight="2"
         android:orientation="vertical">
         <TextView
             android:layout_width="match_parent"
@@ -385,10 +383,10 @@
                 android:layout_height="match_parent"
                 android:layout_margin="20dp"
                 android:text="NO"
+                android:visibility="gone"
                 android:textAlignment="center"
                 android:textColor="#fff"
                 android:id="@+id/btn_no"
-                android:visibility="gone"
                 android:background="@color/colorPrimaryDark"/>
         </LinearLayout>
     </LinearLayout>

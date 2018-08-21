@@ -99,8 +99,8 @@ public class PerfilEscalar extends Fragment {
                     entries.add(new Entry(i,Integer.parseInt(Utilidades.listResultEscalar.get(value[i]))));
                 }
             }
-
         }
+
         int promedio = 0;
         for (int i = 0; i < entries.size(); i++){
             promedio +=  entries.get(i).getY();
@@ -114,9 +114,7 @@ public class PerfilEscalar extends Fragment {
         lineDataSet.setLineWidth(3f);
         lineDataSet.setValueTextSize(15f);
         lineDataSet.setValueTextColor(Color.DKGRAY);
-
         lineDataSet.setCircleColor(Color.BLUE);
-
 
         LimitLine max = new LimitLine(promedio,"Promedio");
         YAxis leftAxis = lineChart.getAxisLeft();

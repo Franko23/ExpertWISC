@@ -117,7 +117,7 @@ public class Register extends AppCompatActivity {
         appCompatButtonConectar = (AppCompatButton) findViewById(R.id.appCompatButtonConectar);
 
         appCompatImageView = (AppCompatImageView) findViewById(R.id.imgProfilePic);
-        appCompatImageViewUser = (AppCompatImageView) findViewById(R.id.imgUser);
+//        appCompatImageViewUser = (AppCompatImageView) findViewById(R.id.imgUser);
 
         mensaje = findViewById(R.id.txt_mensaje);
 
@@ -155,8 +155,9 @@ public class Register extends AppCompatActivity {
                                     }
                                     if (existe){
                                         mensaje.setText("CONECTADO!");
-                                        mensaje.setTextColor(getColor(R.color.colorPrimaryDark));
-                                        appCompatImageViewUser.setVisibility(View.GONE);
+//                                        mensaje.setTextColor(getColor(R.color.colorPrimaryDark));
+                                        mensaje.setTextColor(getResources().getColor(R.color.colorPrimaryDark));
+//                                        appCompatImageViewUser.setVisibility(View.GONE);
                                         textInputEditTextUsuario.setEnabled(false);
                                         textInputEditTextContraseña.setEnabled(false);
                                         appCompatButtonConectar.setVisibility(View.GONE);
@@ -173,7 +174,8 @@ public class Register extends AppCompatActivity {
 
                                     }else {
                                         mensaje.setText("No existe el usuario");
-                                        mensaje.setTextColor(getColor(R.color.colorAccent));
+//                                        mensaje.setTextColor(getColor(R.color.colorAccent));
+                                        mensaje.setTextColor(getResources().getColor(R.color.colorAccent));
                                     }
 
 
@@ -316,7 +318,7 @@ public class Register extends AppCompatActivity {
             currentUser.put("imagen",String.valueOf(data));
             currentUser.put("nombres", textInputEditTextNombre.getText().toString());
             currentUser.put("apellidos", textInputEditTextApellido.getText().toString());
-            currentUser.put("email", textInputEditTextEmail.getText().toString());
+            currentUser.put("e-mail", textInputEditTextEmail.getText().toString());
 
 
             usuarios

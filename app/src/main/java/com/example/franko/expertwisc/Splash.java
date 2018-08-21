@@ -14,7 +14,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class Splash extends AppCompatActivity {
@@ -130,17 +133,20 @@ public class Splash extends AppCompatActivity {
         private void StartAnimationImage () {
             Animation anim = AnimationUtils.loadAnimation(this, R.anim.alpha);
             anim.reset();
-            LinearLayout l = (LinearLayout) findViewById(R.id.lin_lay);
-            l.clearAnimation();
-            l.startAnimation(anim);
+            ImageView img = (ImageView) findViewById(R.id.logo);
+            img.clearAnimation();
+            img.startAnimation(anim);
 
         }
 
         private void StartAnimationText () {
             Animation anim = AnimationUtils.loadAnimation(this, R.anim.translate);
             anim.reset();
-            LinearLayout tv = (LinearLayout) findViewById(R.id.Texto);
-            tv.clearAnimation();
-            tv.startAnimation(anim);
+            TextView nombre = (TextView) findViewById(R.id.Nombre);
+            TextView año = (TextView) findViewById(R.id.Año);
+            nombre.clearAnimation();
+            año.clearAnimation();
+            nombre.startAnimation(anim);
+            año.startAnimation(anim);
         }
     }

@@ -15,7 +15,9 @@ import com.example.franko.expertwisc.Entidades.Persona;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Tools.CalcularEdad;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 
 public class AdapterPacientes extends RecyclerView.Adapter<AdapterPacientes.ViewHolderPacientes> implements View.OnClickListener{
 
@@ -51,8 +53,13 @@ public class AdapterPacientes extends RecyclerView.Adapter<AdapterPacientes.View
     }
     @Override
     public void onBindViewHolder(@NonNull ViewHolderPacientes holder, int position) {
+
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat mdformat = new SimpleDateFormat("dd-MM-yyyy");
+        String fechaActual = mdformat.format(calendar.getTime());
+
         holder.txtNombres.setText(listaPersonas.get(position).getNombre_persona()+ "  "+listaPersonas.get(position).getApellido_persona());
-        CalcularEdad calcularEdad = new CalcularEdad(listaPersonas.get(position).getFecha_nacimiento_persona());
+        CalcularEdad calcularEdad = new CalcularEdad(listaPersonas.get(position).getFecha_nacimiento_persona(), fechaActual);
         String edad = calcularEdad.CalcularEdad();
         holder.txtEdad.setText(edad);
         byte[] image = listaPersonas.get(position).getImagen_persona();

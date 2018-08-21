@@ -15,6 +15,7 @@ public class SistemaExperto {
 
     String resultado;
 
+    //Base de hechos
     public String getResultado(String edad, String area) {
         BaseDeConocimiento();
         Edad.setValue(edad);

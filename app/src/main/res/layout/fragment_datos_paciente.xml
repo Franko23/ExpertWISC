@@ -1,282 +1,292 @@
 <?xml version="1.0" encoding="utf-8"?>
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".FragmentosPrincipales.DatosPaciente"
-        android:orientation="vertical">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="455dp">
-
-            <LinearLayout
-                android:background="@drawable/person"
-                android:layout_width="match_parent"
-                android:layout_height="350dp"
-                android:orientation="vertical"
-                android:id="@+id/linear_back">
-                <ImageView
-                    android:id="@+id/up_paciente"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:srcCompat="@drawable/cloud_upload"
-                    android:layout_gravity="end"
-                    android:visibility="invisible"
-                    android:padding="20dp"/>
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/imgDatospaciente"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_width="180dp"
-                    android:layout_height="180dp"
-                    android:src="@drawable/person"
-                    app:civ_border_color="#FFFFFFFF"
-                    app:civ_border_width="5dp" />
-                <TextView
-                    android:id="@+id/nombrePrincipal"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nombre de paciente"
-                    android:textColor="#fff"
-                    android:textStyle="bold"
-                    android:textSize="21sp"/>
-                <android.support.v7.widget.SwitchCompat
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="bottom"
-                    android:layout_marginRight="50dp"
-                    android:id="@+id/swicth_profile"/>
-
-            </LinearLayout>
-            <android.support.v7.widget.CardView
-                android:layout_width="400dp"
-                android:layout_height="120dp"
-                android:layout_centerHorizontal="true"
-                android:layout_marginTop="305dp">
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-                    <LinearLayout
-                        android:gravity="center"
-                        android:orientation="vertical"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:layout_height="match_parent"
-                        android:id="@+id/layout_pruebas">
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Pruebas"
-                            android:textSize="20sp" />
-                        <TextView
-                            android:id="@+id/cantidad_test"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="1"
-                            android:textStyle="bold"
-                            android:textSize="20sp"
-                            android:paddingTop="10dp"
-                            android:textColor="@color/colorPrimaryDark"/>
-                    </LinearLayout>
-
-                </LinearLayout>
-
-            </android.support.v7.widget.CardView>
-        </RelativeLayout>
-
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".FragmentosPrincipales.DatosPaciente"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
         <LinearLayout
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:layout_gravity="center"
-            android:layout_marginTop="5dp"
-            android:layout_marginRight="50dp"
-            android:layout_marginLeft="50dp"
-            android:layout_marginBottom="20dp"
-            android:visibility="gone"
-            android:id="@+id/layout_datos_edit">
-            <LinearLayout
+            android:orientation="vertical">
+            <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
+                android:layout_height="455dp">
+
                 <LinearLayout
+                    android:background="@drawable/person"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="350dp"
                     android:orientation="vertical"
-                    android:layout_weight="1"
-                    android:background="#fff"
-                    android:padding="15dp">
-                    <LinearLayout
-                        android:orientation="horizontal"
+                    android:id="@+id/linear_back">
+                    <ImageView
+                        android:id="@+id/up_paciente"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:srcCompat="@drawable/cloud_upload"
+                        android:layout_gravity="end"
+                        android:visibility="invisible"
+                        android:padding="20dp"/>
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgDatospaciente"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="180dp"
+                        android:layout_height="180dp"
+                        android:src="@drawable/person"
+                        app:civ_border_color="#FFFFFFFF"
+                        app:civ_border_width="5dp" />
+                    <TextView
+                        android:id="@+id/nombrePrincipal"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre de paciente"
+                        android:textColor="#fff"
+                        android:textStyle="bold"
+                        android:textSize="21sp"/>
+                    <android.support.v7.widget.SwitchCompat
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:saveEnabled="false">
-                        <TextView
-                            android:layout_gravity="center_vertical"
-                            android:layout_width="100dp"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="50dp"
+                        android:id="@+id/swicth_profile"/>
+
+                </LinearLayout>
+                <android.support.v7.widget.CardView
+                    android:layout_width="400dp"
+                    android:layout_height="120dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="305dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <LinearLayout
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
                             android:layout_height="match_parent"
-                            android:text="Nombres:"
-                            android:gravity="center_vertical"
-                            android:textStyle="bold"/>
-                        <EditText
-                            android:layout_gravity="center_vertical"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/layout_pruebas">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Pruebas"
+                                android:textSize="20sp" />
+                            <TextView
+                                android:id="@+id/cantidad_test"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1"
+                                android:textStyle="bold"
+                                android:textSize="20sp"
+                                android:paddingTop="10dp"
+                                android:textColor="@color/colorPrimaryDark"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+            </RelativeLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="50dp"
+                android:layout_marginLeft="50dp"
+                android:layout_marginBottom="20dp"
+                android:visibility="gone"
+                android:id="@+id/layout_datos_edit"
+                android:scrollbarAlwaysDrawVerticalTrack="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:padding="15dp">
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:text="Nombres de paciente"
-                            android:textColor="#767474"
-                            android:id="@+id/EditNombres"/>
+                            android:saveEnabled="false">
+                            <TextView
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="100dp"
+                                android:layout_height="match_parent"
+                                android:text="Nombres:"
+                                android:gravity="center_vertical"
+                                android:textStyle="bold"/>
+                            <EditText
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Nombres de paciente"
+                                android:textColor="#767474"
+                                android:id="@+id/EditNombres"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="100dp"
+                                android:layout_height="match_parent"
+                                android:text="Apellidos:"
+                                android:gravity="center_vertical"
+                                android:textStyle="bold"/>
+                            <EditText
+                                android:textColor="#767474"
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Apellidos de paciente"
+                                android:id="@+id/EditApellido"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="100dp"
+                                android:layout_height="match_parent"
+                                android:text="Fecha de Nacimiento:"
+                                android:gravity="center_vertical"
+                                android:textStyle="bold"/>
+                            <EditText
+                                android:textColor="#767474"
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Edad de paciente"
+                                android:id="@+id/EditFechaNac" />
+                        </LinearLayout>
                     </LinearLayout>
                     <LinearLayout
-                        android:orientation="horizontal"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_gravity="center_vertical"
-                            android:layout_width="100dp"
-                            android:layout_height="match_parent"
-                            android:text="Apellidos:"
-                            android:gravity="center_vertical"
-                            android:textStyle="bold"/>
-                        <EditText
-                            android:textColor="#767474"
-                            android:layout_gravity="center_vertical"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Apellidos de paciente"
-                            android:id="@+id/EditApellido"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_gravity="center_vertical"
-                            android:layout_width="100dp"
-                            android:layout_height="match_parent"
-                            android:text="Fecha de Nacimiento:"
-                            android:gravity="center_vertical"
-                            android:textStyle="bold"/>
-                        <EditText
-                            android:textColor="#767474"
-                            android:layout_gravity="center_vertical"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="Edad de paciente"
-                            android:id="@+id/EditFechaNac" />
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:background="#fff"
+                        android:layout_weight="1"
+                        android:padding="15dp">
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="Motivo de consulta:"
+                                android:gravity="center_vertical"
+                                android:textStyle="bold"/>
+                            <EditText
+                                android:textColor="#767474"
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="El motivo de consulta es pffffffffffffffffffffffforque tal, tal y tal, etc, etc, etc"
+                                android:id="@+id/EditMotivo"
+                                android:paddingLeft="15dp"
+                                android:singleLine="false"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="Antecedentes:"
+                                android:gravity="center_vertical"
+                                android:textStyle="bold"/>
+                            <EditText
+                                android:textColor="#767474"
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:paddingLeft="15dp"
+                                android:text="Apellidos de pacienteApellidos de pacienteApellidos de pacienteApellidos de pacienteApellidos de pacienteApellidos de pacienteApellidos de pacienteApellidos de paciente"
+                                android:id="@+id/EditAntecedentes"/>
+                        </LinearLayout>
                     </LinearLayout>
                 </LinearLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical"
-                    android:background="#fff"
+                    android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:padding="15dp">
-                    <LinearLayout
-                        android:orientation="vertical"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:gravity="center_horizontal"
+                    android:background="#fff">
+                    <Button
+                        android:id="@+id/btn_actualizar_paciente"
+                        android:textColor="#fff"
+                        android:background="@drawable/gradientbackground"
+                        android:layout_marginRight="100dp"
+                        android:layout_marginLeft="100dp"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_gravity="center_vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="Motivo de consulta:"
-                            android:gravity="center_vertical"
-                            android:textStyle="bold"/>
-                        <EditText
-                            android:textColor="#767474"
-                            android:layout_gravity="center_vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:text="El motivo de consulta es pffffffffffffffffffffffforque tal, tal y tal, etc, etc, etc"
-                            android:id="@+id/EditMotivo"
-                            android:paddingLeft="15dp"
-                            android:singleLine="false"/>
-                    </LinearLayout>
-                    <LinearLayout
-                        android:orientation="vertical"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                        <TextView
-                            android:layout_gravity="center_vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:text="Antecedentes:"
-                            android:gravity="center_vertical"
-                            android:textStyle="bold"/>
-                        <EditText
-                            android:textColor="#767474"
-                            android:layout_gravity="center_vertical"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:paddingLeft="15dp"
-                            android:text="Apellidos de pacienteApellidos de pacienteApellidos de pacienteApellidos de pacienteApellidos de pacienteApellidos de pacienteApellidos de pacienteApellidos de paciente"
-                            android:id="@+id/EditAntecedentes"/>
-                    </LinearLayout>
+                        android:layout_height="wrap_content"
+                        android:text="GUARDAR"
+                        />
+
                 </LinearLayout>
+
             </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                android:layout_gravity="center"
-                android:gravity="center_horizontal"
-                android:background="#fff">
-                <Button
-                    android:id="@+id/btn_actualizar_paciente"
-                    android:textColor="#fff"
-                    android:background="@drawable/gradientbackground"
-                    android:layout_marginRight="100dp"
-                    android:layout_marginLeft="100dp"
-                    android:layout_marginBottom="10dp"
-                    android:gravity="center"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:text="GUARDAR"
-                    />
-
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="50dp"
-            android:layout_marginRight="50dp"
-            android:padding="20dp"
-            android:background="#fff"
-            android:orientation="vertical">
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Aún no hay test de este paciente"
-                android:textAlignment="center"
-                android:id="@+id/txt_mensaje_test"
-                android:textStyle="italic"/>
-
-            <android.support.v7.widget.RecyclerView
-                android:id="@+id/recv_pruebas"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_marginLeft="50dp"
+                android:layout_marginRight="50dp"
+                android:padding="20dp"
+                android:background="#fff"
                 android:orientation="vertical">
 
-            </android.support.v7.widget.RecyclerView>
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Aún no hay test de este paciente"
+                    android:textAlignment="center"
+                    android:id="@+id/txt_mensaje_test"
+                    android:textStyle="italic"/>
 
-            <android.support.design.widget.FloatingActionButton
-                android:id="@+id/nuevo_test"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="bottom|end"
-                android:layout_margin="@dimen/fab_margin"
-                app:srcCompat="@drawable/ic_file_plus_white_48dp" />
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recv_pruebas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                </android.support.v7.widget.RecyclerView>
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/nuevo_test"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="@dimen/fab_margin"
+                    app:srcCompat="@drawable/ic_file_plus_white_48dp" />
+            </LinearLayout>
         </LinearLayout>
 
+    </ScrollView>
 
-
-    </LinearLayout>
+</LinearLayout>

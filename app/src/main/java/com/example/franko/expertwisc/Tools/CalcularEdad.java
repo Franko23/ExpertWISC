@@ -16,23 +16,20 @@ public class CalcularEdad {
     private int DiaEva;
     private int DiaNac;
     private String EdadFinal;
-    String EdadPersona;
+    String EdadPersona, fechaEvaluacion;
 
-    public CalcularEdad(String edadPersona) {
+    public CalcularEdad(String edadPersona, String fechaEva) {
 
         EdadPersona = edadPersona;
+        fechaEvaluacion = fechaEva;
 
     }
 
     public String CalcularEdad() {
 
-        //Dividimos la Argentino de la Persona
+        //Dividimos la Edad de la Persona
         String [] fechaPersona;
-        String [] fechaActual;
-
-        Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat mdformat = new SimpleDateFormat("dd-MM-yyyy");
-        String strDate = mdformat.format(calendar.getTime());
+        String [] fechaEva;
 
         fechaPersona = EdadPersona.split("-",3);
         AñoNac = Integer.parseInt(fechaPersona[2]);
@@ -40,10 +37,10 @@ public class CalcularEdad {
         DiaNac = Integer.parseInt(fechaPersona[0]);
 
 
-        fechaActual = strDate.split("-",3);
-        AñoEva = Integer.parseInt(fechaActual[2]);
-        MesEva = Integer.parseInt(fechaActual[1]);
-        DiaEva = Integer.parseInt(fechaActual[0]);
+        fechaEva = fechaEvaluacion.split("-",3);
+        AñoEva = Integer.parseInt(fechaEva[2]);
+        MesEva = Integer.parseInt(fechaEva[1]);
+        DiaEva = Integer.parseInt(fechaEva[0]);
 
         AñoTotal = AñoEva - AñoNac;
         if(MesEva>=MesNac){

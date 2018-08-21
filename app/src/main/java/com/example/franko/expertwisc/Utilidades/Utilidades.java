@@ -15,6 +15,7 @@ public class Utilidades {
     public static int rotacionFab = 0;
 
     public static String edadActual; //Edad del paciente actual
+    public static String fechaEvaluacion; //Fecha de evaluación
 
     public static String R_cc;
     public static String R_s;

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -9,56 +9,52 @@
     android:orientation="vertical"
     android:id="@+id/lin_lay">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <ImageView
+        android:id="@+id/splash"
+        android:layout_width="0dp"
+        android:layout_height="417dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/logo2" />
+
+    <TextView
+        android:id="@+id/Nombre"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="89dp"
-        tools:layout_editor_absoluteY="57dp">
 
-        <ImageView
-            android:id="@+id/splash"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:paddingTop="180dp"
-            android:paddingBottom="5dp"
-            app:srcCompat="@drawable/logo2"
-            tools:layout_editor_absoluteX="57dp"
-            tools:layout_editor_absoluteY="144dp" />
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:text="Developed by FranKo"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/splash" />
 
-
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/Texto"
-        android:layout_width="match_parent"
+    <TextView
+        android:id="@+id/Año"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:gravity="bottom|center"
-        android:orientation="vertical"
-        tools:layout_editor_absoluteX="121dp"
-        tools:layout_editor_absoluteY="425dp">
 
-        <TextView
-            android:id="@+id/textView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="Developed by FranKo"
-            android:textSize="15sp"
-            tools:layout_editor_absoluteX="115dp"
-            tools:layout_editor_absoluteY="422dp" />
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:gravity="center_vertical"
-            android:text="2018"
-            android:textSize="8sp"
-            tools:layout_editor_absoluteX="164dp"
-            tools:layout_editor_absoluteY="441dp" />
-    </LinearLayout>
+        android:text="2018"
+        android:textSize="8sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Nombre"
+        app:layout_constraintVertical_bias="0.0" />
 
 
 
-</LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

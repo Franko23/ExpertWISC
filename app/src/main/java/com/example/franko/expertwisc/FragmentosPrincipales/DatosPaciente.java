@@ -206,6 +206,10 @@ public class DatosPaciente extends Fragment {
 
         bundle = getArguments();
 
+        Calendar calendar = Calendar.getInstance();
+        SimpleDateFormat mdformat = new SimpleDateFormat("dd-MM-yyyy");
+        String fechaActual = mdformat.format(calendar.getTime());
+
 
         if (bundle!= null){
 
@@ -217,7 +221,7 @@ public class DatosPaciente extends Fragment {
             editNombres.setText(persona.getNombre_persona());
             editApellidos.setText(persona.getApellido_persona());
             editFechaNac.setText(persona.getFecha_nacimiento_persona());
-            CalcularEdad calcularEdad = new CalcularEdad(persona.getFecha_nacimiento_persona());
+            CalcularEdad calcularEdad = new CalcularEdad(persona.getFecha_nacimiento_persona(), fechaActual);
             calcularEdad.CalcularEdad();
             byte[] image = persona.getImagen_persona();
             Bitmap bitmap = BitmapFactory.decodeByteArray(image,0,image.length);
@@ -283,7 +287,9 @@ public class DatosPaciente extends Fragment {
                             newTest.put("edadPaciente", Utilidades.edadActual);
 
 
-                            dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(paciente.getId_paciente().toString()).collection("test").document(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test().toString())
+                            dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").
+                                    document(paciente.getId_paciente().toString()).collection("test").
+                                    document(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test().toString())
                                     .set(newTest)
                                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                                         @Override
@@ -302,8 +308,6 @@ public class DatosPaciente extends Fragment {
                                             } catch (Exception e) {
                                                 Toast.makeText(getContext(), "Error al actualizar Test", Toast.LENGTH_SHORT).show();
                                             }
-
-
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {
@@ -673,10 +677,17 @@ public class DatosPaciente extends Fragment {
                             Test test = new Test();
                             test.Valores();
                             ConsultaView(id_test);
+
                             Persona persona =  new Persona();
                             persona.setNombre_persona(editNombres.getText().toString());
                             persona.setFecha_nacimiento_persona(editFechaNac.getText().toString());
+
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("Persona", persona);
+
+
                             Fragment fragment =  new GeneralSubPruebas();
+                            fragment.setArguments(bundle);
                             getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
 
                         }else if (estado.equals("FINALIZADO")){
@@ -685,6 +696,9 @@ public class DatosPaciente extends Fragment {
                             Test test = new Test();
                             test.Valores();
                             ConsultaView(id_test);
+
+                            //Setteamos la nuevamente la edad del paciente con la fecha del test seleccionado
+                            CalcularEdad calcularEdad = new CalcularEdad(persona.getFecha_nacimiento_persona(),test.getFecha_test());
 
                             Fragment fragment =  new Resultados();
                             getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
@@ -882,7 +896,6 @@ public class DatosPaciente extends Fragment {
     }
 
     private void ConsultaView(int id_test) {
-        SQLiteDatabase db = con.getReadableDatabase();
 
         SubTestCC subTestCC = new SubTestCC();
         subTestCC.ConsultaCC(getContext(), id_test);
@@ -917,6 +930,7 @@ public class DatosPaciente extends Fragment {
 
         Test test = new Test();
         test.ConsultaIntervalo(getContext(),id_test);
+        test.ConsultarFechaTest(getContext(),id_test);
 
     }
 
@@ -978,7 +992,7 @@ public class DatosPaciente extends Fragment {
         ContentValues test = new ContentValues();
 
         Calendar calendar = Calendar.getInstance();
-        SimpleDateFormat mdformat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat mdformat = new SimpleDateFormat("dd-MM-yyyy");
         String fechaActual = mdformat.format(calendar.getTime());
 
         test.put(Utilidades.CAMPO_FECHA_TEST,fechaActual);
@@ -1024,6 +1038,9 @@ public class DatosPaciente extends Fragment {
         if (mListener != null) {
             mListener.onFragmentInteraction(uri);
         }
+        View view = getView().getRootView();
+        FloatingActionButton floatingActionButton = view.findViewById(R.id.fab);
+        floatingActionButton.show();
     }
 
     @Override

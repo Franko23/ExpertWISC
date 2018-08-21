@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PuntuacionEscalar {
-    private String punto, edad  ="7.4-7.7";
+    private String punto, edad;
     List<String> values;
     String [] edades = {
                         "6.0-6.3","6.4-6.7","6.8-6.11",
