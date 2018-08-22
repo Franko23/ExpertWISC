@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="Recuperación de datos"
-        android:textSize="24sp"
+        android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.501"
@@ -21,20 +21,20 @@
 
     <EditText
         android:id="@+id/email"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="312dp"
+        android:layout_height="59dp"
         android:layout_marginTop="32dp"
         android:ems="10"
-        android:hint="usuario"
-        android:inputType="text"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView" />
 
     <EditText
         android:id="@+id/contra"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="314dp"
+        android:layout_height="56dp"
         android:layout_marginTop="8dp"
         android:ems="10"
         android:hint="Contraseña"
@@ -45,8 +45,8 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="207dp"
-        android:layout_height="146dp"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
         android:layout_marginTop="32dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -54,15 +54,13 @@
         app:srcCompat="@drawable/n_user" />
 
     <Button
-        android:id="@+id/verificar"
-        android:layout_width="211dp"
-        android:layout_height="46dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:id="@+id/sincronizar"
+        android:layout_width="323dp"
+        android:layout_height="78dp"
+        android:layout_marginTop="32dp"
         android:background="@color/colorPrimaryDark"
         android:padding="5dp"
-        android:text="Verificar"
+        android:text="Sincronizar"
         android:textColor="#fff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

@@ -1,5 +1,6 @@
 package com.example.franko.expertwisc.FragmentosPrincipales;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.content.ContentValues;
@@ -31,6 +32,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.DatePicker;
@@ -750,6 +752,8 @@ public class DatosPaciente extends Fragment {
             @Override
             public void onClick(View view) {
 
+                hideKeyboardwithoutPopulate(getActivity());
+
                 DatePickerDialog datePicker = new DatePickerDialog(getActivity(), new DatePickerDialog.OnDateSetListener() {
 
                     @Override
@@ -809,6 +813,14 @@ public class DatosPaciente extends Fragment {
         });
 
         return view;
+    }
+
+    public static void hideKeyboardwithoutPopulate(Activity activity) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) activity.getSystemService(
+                        Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(
+                activity.getCurrentFocus().getWindowToken(), 0);
     }
 
     private void RegistrarSubTest() {

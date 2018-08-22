@@ -1,5 +1,6 @@
 package com.example.franko.expertwisc.FragmentosSubTest;
 
+import android.app.Activity;
 import android.app.Dialog;
 import android.content.Context;
 import android.graphics.Color;
@@ -14,6 +15,7 @@ import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -139,9 +141,8 @@ public class S extends Fragment {
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                hideKeyboardwithoutPopulate(getActivity());
                 if (Integer.parseInt(res_s.getText().toString())<=44){
-
                     SubTestS subTestS = new SubTestS();
                     subTestS.setPuntuacionDirectaTotalS(res_s.getText().toString());
                     subTestS.UpdateS(getContext());
@@ -162,6 +163,14 @@ public class S extends Fragment {
         });
 
         return view;
+    }
+
+    public static void hideKeyboardwithoutPopulate(Activity activity) {
+        InputMethodManager inputMethodManager =
+                (InputMethodManager) activity.getSystemService(
+                        Activity.INPUT_METHOD_SERVICE);
+        inputMethodManager.hideSoftInputFromWindow(
+                activity.getCurrentFocus().getWindowToken(), 0);
     }
 
     private void enableSubmitIfReady() {

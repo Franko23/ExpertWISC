@@ -59,7 +59,7 @@ public class SubTestV {
         SQLiteDatabase db = con.getWritableDatabase();
 
         ContentValues contentValues = new ContentValues();
-        contentValues.put(Utilidades.CAMPO_V, "NO");
+        contentValues.put(Utilidades.CAMPO_V, "");
         contentValues.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
 
         try {
