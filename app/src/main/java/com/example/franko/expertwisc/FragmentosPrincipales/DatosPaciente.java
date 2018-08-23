@@ -321,7 +321,7 @@ public class DatosPaciente extends Fragment {
 
                             Test test = new Test();
                             test.Valores();
-                            ConsultaView(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test());
+                            ConsultaView(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test(), test);
 
                             Map<String, Object> subTestCC = new HashMap<>();
                             subTestCC.put("ResultadoCC", Utilidades.R_cc);
@@ -678,7 +678,7 @@ public class DatosPaciente extends Fragment {
                             PBDialog.setProgressBar();
                             Test test = new Test();
                             test.Valores();
-                            ConsultaView(id_test);
+                            ConsultaView(id_test, test);
 
                             Persona persona =  new Persona();
                             persona.setNombre_persona(editNombres.getText().toString());
@@ -697,10 +697,11 @@ public class DatosPaciente extends Fragment {
                             PBDialog.setProgressBar();
                             Test test = new Test();
                             test.Valores();
-                            ConsultaView(id_test);
+                            ConsultaView(id_test, test);
 
                             //Setteamos la nuevamente la edad del paciente con la fecha del test seleccionado
-                            CalcularEdad calcularEdad = new CalcularEdad(persona.getFecha_nacimiento_persona(),test.getFecha_test());
+                            CalcularEdad calcularEdad = new CalcularEdad(persona.getFecha_nacimiento_persona(), test.getFecha_test());
+                            calcularEdad.CalcularEdad();
 
                             Fragment fragment =  new Resultados();
                             getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
@@ -907,7 +908,7 @@ public class DatosPaciente extends Fragment {
                 });
     }
 
-    private void ConsultaView(int id_test) {
+    private void ConsultaView(int id_test, Test test) {
 
         SubTestCC subTestCC = new SubTestCC();
         subTestCC.ConsultaCC(getContext(), id_test);
@@ -940,7 +941,7 @@ public class DatosPaciente extends Fragment {
         SubTestAd subTestAd = new SubTestAd();
         subTestAd.ConsultaAd(getContext(),id_test);
 
-        Test test = new Test();
+
         test.ConsultaIntervalo(getContext(),id_test);
         test.ConsultarFechaTest(getContext(),id_test);
 

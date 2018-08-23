@@ -20,6 +20,7 @@ import java.util.List;
 
 public class PuntuacionEscalar {
     private String punto, edad;
+    Boolean r = false;
     List<String> values;
     String [] edades = {
                         "6.0-6.3","6.4-6.7","6.8-6.11",
@@ -65,9 +66,16 @@ public class PuntuacionEscalar {
             for (int i = 0; i<edades.length;i++){
                 String[] temp = edades[i].split("-");
                 String valor = temp[1];
-                if (Double.parseDouble(Utilidades.edadActual)<Double.parseDouble(valor)){
-                    edad = edades[i];
-                    i=100;
+                //Separamos por el "."
+                String [] uno = Utilidades.edadActual.split("\\.");
+                String [] dos = valor.split("\\.");
+
+                //Comparamos las edad del paciente con la edad de la tabla interna
+                if (Integer.parseInt(uno[0])<=Integer.parseInt(dos[0])){
+                    if (Integer.parseInt(uno[1])<=Integer.parseInt(dos[1])){
+                        edad = edades[i];
+                        i=100;
+                    }
                 }
             }
             JSONArray jsonArray = jsonObj.getJSONArray(edad);
@@ -86,28 +94,29 @@ public class PuntuacionEscalar {
                             datos = temp.split("-");
                             temp = datos[1];
                         }
-
                         if (values.get(i).isEmpty()){
                             res="0";
                             newValues.add(res);
                             index=100;
                         }else{
                             if (values.get(i).contains("r")){
-                                res = values.get(i);
+                                r=true;
+                                String[] sep = values.get(i).split("r");
+                                values.set(i,sep[0]);
+                            }
+                            if (Integer.parseInt(values.get(i))<=Integer.parseInt(temp)){
+                                if (r==true){
+                                    res = ""+(index+1)+"r";
+                                    r=false;
+                                }else {
+                                    res = ""+(index+1);
+                                }
                                 newValues.add(res);
                                 index=100;
                             }else{
-                                if (Integer.parseInt(values.get(i))<=Integer.parseInt(temp)){
-                                    res = ""+(index+1)  ;
-                                    newValues.add(res);
-                                    index=100;
-                                }else{
-                                    res = "Fuera de rango";
-
-                                }
+                                res = "Fuera de rango";
                             }
                         }
-//                        values.add(res);
                     }
                 }
             }
