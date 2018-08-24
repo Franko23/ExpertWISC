@@ -99,7 +99,7 @@ public class S extends Fragment {
         res_s = view.findViewById(R.id.res_s);
         guardar = view.findViewById(R.id.guardar_s);
         imageView = view.findViewById(R.id.show_s);
-        tool = view.findViewById(R.id.tool);
+//        tool = view.findViewById(R.id.tool);
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override

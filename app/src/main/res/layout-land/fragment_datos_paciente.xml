@@ -1,0 +1,291 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    tools:context=".FragmentosPrincipales.DatosPaciente"
+    android:orientation="vertical">
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+            <ImageView
+                android:id="@+id/up_paciente"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/cloud_upload"
+                android:layout_gravity="end"
+                android:visibility="gone"/>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="215dp">
+                <LinearLayout
+                    android:background="@drawable/person"
+                    android:layout_width="match_parent"
+                    android:layout_height="170dp"
+                    android:orientation="vertical"
+                    android:id="@+id/linear_back">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:id="@+id/imgDatospaciente"
+                        android:layout_width="80dp"
+                        android:layout_height="80dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_gravity="center_horizontal"
+                        android:src="@drawable/person"
+                        app:civ_border_color="#FFFFFFFF"
+                        app:civ_border_width="5dp" />
+                    <TextView
+                        android:id="@+id/nombrePrincipal"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nombre de paciente"
+                        android:textColor="#fff"
+                        android:textStyle="bold"
+                        android:textSize="18sp"/>
+                    <android.support.v7.widget.SwitchCompat
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="bottom"
+                        android:layout_marginRight="15dp"
+                        android:id="@+id/swicth_profile"/>
+
+                </LinearLayout>
+                <android.support.v7.widget.CardView
+                    android:layout_width="310dp"
+                    android:layout_height="80dp"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="125dp">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+                        <LinearLayout
+                            android:gravity="center"
+                            android:orientation="vertical"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:layout_height="match_parent"
+                            android:id="@+id/layout_pruebas">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="Pruebas"
+                                android:textSize="15sp" />
+                            <TextView
+                                android:id="@+id/cantidad_test"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="1"
+                                android:textStyle="bold"
+                                android:textSize="15sp"
+                                android:paddingTop="5dp"
+                                android:textColor="@color/colorPrimaryDark"/>
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </android.support.v7.widget.CardView>
+            </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_gravity="center"
+                android:layout_marginTop="5dp"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:layout_marginBottom="10dp"
+                android:id="@+id/layout_datos_edit"
+                android:visibility="gone"
+                android:scrollbarAlwaysDrawVerticalTrack="true">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="vertical"
+                        android:layout_weight="1"
+                        android:background="#fff"
+                        android:padding="10dp">
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:saveEnabled="false">
+                            <TextView
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="Nombres:"
+                                android:gravity="center_vertical"
+                                android:textStyle="bold"/>
+                            <EditText
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Nombres de paciente"
+                                android:textColor="#767474"
+                                android:textSize="15dp"
+                                android:layout_marginLeft="10dp"
+                                android:id="@+id/EditNombres"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="Apellidos:"
+                                android:gravity="center_vertical"
+                                android:textStyle="bold"/>
+                            <EditText
+                                android:textColor="#767474"
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Apellidos de paciente"
+                                android:textSize="15dp"
+                                android:layout_marginLeft="10dp"
+                                android:id="@+id/EditApellido"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="wrap_content"
+                                android:layout_height="match_parent"
+                                android:text="Fech. Nac.:"
+                                android:gravity="center_vertical"
+                                android:textStyle="bold"/>
+                            <EditText
+                                android:textColor="#767474"
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Edad de paciente"
+                                android:textSize="15dp"
+                                android:layout_marginLeft="10dp"
+                                android:id="@+id/EditFechaNac" />
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Motivo de consulta:"
+                                android:gravity="center_vertical"
+                                android:textStyle="bold"/>
+                            <EditText
+                                android:textColor="#767474"
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:text="El motivo de consulta es pffffffffffffffffffffffforque tal, tal y tal, etc, etc, etc"
+                                android:id="@+id/EditMotivo"
+                                android:textSize="15dp"
+                                android:singleLine="false"/>
+                        </LinearLayout>
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Antecedentes:"
+                                android:gravity="center_vertical"
+                                android:textStyle="bold"/>
+                            <EditText
+                                android:textColor="#767474"
+                                android:layout_gravity="center_vertical"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:textSize="15dp"
+                                android:text="Apellidos de pacienteApellidos de pacienteApellidos de pacienteApellidos de pacienteApellidos de pacienteApellidos de pacienteApellidos de pacienteApellidos de paciente"
+                                android:id="@+id/EditAntecedentes"/>
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal"
+                    android:layout_gravity="center"
+                    android:gravity="center_horizontal"
+                    android:background="#fff">
+                    <Button
+                        android:id="@+id/btn_actualizar_paciente"
+                        android:textColor="#fff"
+                        android:background="@drawable/gradientbackground"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginBottom="10dp"
+                        android:gravity="center"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="GUARDAR"
+                        />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:layout_marginRight="20dp"
+                android:padding="10dp"
+                android:background="#fff"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Aún no hay test de este paciente"
+                    android:textAlignment="center"
+                    android:id="@+id/txt_mensaje_test"
+                    android:textStyle="italic"/>
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/recv_pruebas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                </android.support.v7.widget.RecyclerView>
+
+                <android.support.design.widget.FloatingActionButton
+                    android:id="@+id/nuevo_test"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|end"
+                    android:layout_margin="@dimen/fab_margin_test"
+                    app:srcCompat="@drawable/ic_file_plus_white_48dp" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

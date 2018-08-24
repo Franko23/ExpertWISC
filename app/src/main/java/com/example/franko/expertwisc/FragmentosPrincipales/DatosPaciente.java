@@ -893,6 +893,7 @@ public class DatosPaciente extends Fragment {
                             int okPersona=db.update(Utilidades.TABLA_PERSONA,personaUpdate,Utilidades.CAMPO_ID_PERSONA+"="+persona.getId_persona(),null);
                             if (okPersona==1){
                                 Snackbar.make(view, "Datos subidos correctamente", Snackbar.LENGTH_LONG).show();
+                                up_paciente.setVisibility(View.INVISIBLE);
                             }
                         }catch (Exception e){
                             Toast.makeText(getContext(),"Error al actualizar Datos del paciente", Toast.LENGTH_SHORT).show();

@@ -120,8 +120,6 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
     private static final int CAPTURE_PHOTO = 2;
     Bitmap thumbnail;
 
-    CircularProgressButton circularProgressButton;
-
     Button empezar, calcular;
     ArrayList<Paciente> listaPacientes;
     ConexionHelper con;
@@ -177,7 +175,7 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
         apellidos = view.findViewById(R.id.txtApellidos) ;
         motivoConsulta = view.findViewById(R.id.txtMotivoConsulta) ;
         antecedentes = view.findViewById(R.id.txtAntecedentes) ;
-        circularProgressButton = view.findViewById(R.id.guardar_nuevo_paciente);
+        empezar = view.findViewById(R.id.guardar_nuevo_paciente);
         calcular = view.findViewById(R.id.calcular);
 
         fechaNac = view.findViewById(R.id.txtFechaNacimiento);
@@ -191,7 +189,7 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
         final int mm = calendario.get(Calendar.MONTH);
         final int dd = calendario.get(Calendar.DAY_OF_MONTH);
 
-        circularProgressButton.setVisibility(View.INVISIBLE);
+        empezar.setVisibility(View.INVISIBLE);
 
 
         Calendar calendar = Calendar.getInstance();
@@ -216,8 +214,6 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                 enableSubmitIfReady();
             }
         });
-
-
 
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -313,11 +309,11 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                 Edad.setText(edad);
 
                 Edad.setVisibility(View.VISIBLE);
-                circularProgressButton.setVisibility(View.VISIBLE);
+                empezar.setVisibility(View.VISIBLE);
             }
         });
 
-        circularProgressButton.setOnClickListener(new View.OnClickListener() {
+        empezar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Registramos al nuevo Paciente

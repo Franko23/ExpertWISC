@@ -1,29 +1,26 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".FragmentosPrincipales.RegistroPaciente">
 
-    <ScrollView
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent">
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
-        android:id="@+id/llProfile"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
 
-
+  <!---->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:background="#ffffff"
             android:elevation="5dp"
-            android:layout_margin="15dp">
+            android:layout_margin="15dp"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_marginBottom="45dp"
+            android:padding="5dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -36,10 +33,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:orientation="vertical"
-                    android:paddingLeft="20dp"
-                    android:paddingRight="20dp"
-                    android:paddingTop="20dp"
-                    android:paddingBottom="0dp">
+                    android:padding="5dp">
 
                     <android.support.design.widget.TextInputLayout
                         android:id="@+id/textInputLayoutNombres"
@@ -72,146 +66,133 @@
                     </android.support.design.widget.TextInputLayout>
 
 
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputLayoutMotivo"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp">
-                        <android.support.design.widget.TextInputEditText
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:inputType="textMultiLine"
-                            android:id="@+id/txtMotivoConsulta"
-                            android:ems="10"
-                            android:hint="Motivo de la consulta" />
-                    </android.support.design.widget.TextInputLayout>
-
-                    <android.support.design.widget.TextInputLayout
-                        android:id="@+id/textInputLayoutAntecedentes"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="8dp">
-                        <android.support.design.widget.TextInputEditText
-                            android:id="@+id/txtAntecedentes"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:hint="Antecedentes"
-                            android:inputType="textMultiLine"/>
-                    </android.support.design.widget.TextInputLayout>
-
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:paddingLeft="20dp"
-                        android:paddingRight="20dp"
-                        android:paddingTop="20dp"
-                        android:paddingBottom="0dp">
-
-                        <ImageView
-                            android:id="@+id/imgPaciente"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-
-                            android:src="@drawable/n_paciente" />
-                    </LinearLayout>
-
                 </LinearLayout>
 
                 <LinearLayout
-                    android:id="@+id/layout_calcular"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:elevation="10dp"
-                    android:clipToPadding="false"
-                    android:padding="5dp">
+                    android:layout_width="150dp"
+                    android:layout_height="120dp">
 
-                    <LinearLayout
+                    <ImageView
+                        android:id="@+id/imgPaciente"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="10dp">
-                        <TextView
-                            android:id="@+id/txtFechaNacimiento"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:visibility="gone"
-                            android:layout_weight="1"
-                            android:hint="Fecha de nacimiento:"/>
-                        <TextView
-                            android:id="@+id/txtFechaEvaluacion"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:ems="10"
-                            android:visibility="gone"
-                            android:layout_marginBottom="15dp"
-                            android:layout_weight="1"
-                            android:hint="Fecha de evaluación: "/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal"
-                        android:padding="10dp">
-                        <TextView
-                            android:id="@+id/edad"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="2"
-                            android:gravity="left"
-                            android:textStyle="bold"
-                            android:padding="5dp"
-                            android:visibility="gone"
-                            android:text="Edad"/>
-
-                        <Button
-                            android:id="@+id/calcular"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_weight="1"
-                            android:visibility="gone"
-                            android:background="@color/colorAccent"
-                            android:text="Calcular"
-                            android:textColor="#fff"/>
-                    </LinearLayout>
-
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:padding="5dp"
+                        android:src="@drawable/n_paciente" />
                 </LinearLayout>
 
             </LinearLayout>
-
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical">
-
-            <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
-                android:layout_width="250dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:id="@+id/guardar_nuevo_paciente"
-                android:layout_gravity="center_horizontal"
-                android:gravity="center"
-                android:text="GUARDAR"
-                android:background="@color/colorPrimary"
-                android:textColor="#fff"
-                android:textStyle="bold"
-                android:visibility="gone"
-                app:spinning_bar_color="#fff"
-                app:spinning_bar_padding="6dp"
-                app:spinning_bar_width="4dp"/>
+                android:orientation="vertical">
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/textInputLayoutMotivo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp">
+                    <android.support.design.widget.TextInputEditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:inputType="textMultiLine"
+                        android:id="@+id/txtMotivoConsulta"
+                        android:ems="10"
+                        android:hint="Motivo de la consulta" />
+                </android.support.design.widget.TextInputLayout>
+
+                <android.support.design.widget.TextInputLayout
+                    android:id="@+id/textInputLayoutAntecedentes"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp">
+                    <android.support.design.widget.TextInputEditText
+                        android:id="@+id/txtAntecedentes"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:ems="10"
+                        android:hint="Antecedentes"
+                        android:inputType="textMultiLine"/>
+                </android.support.design.widget.TextInputLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/layout_calcular"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_weight="1"
+                android:elevation="10dp"
+                android:clipToPadding="false">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="5dp">
+                    <TextView
+                        android:id="@+id/txtFechaNacimiento"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:paddingTop="5dp"
+                        android:layout_weight="1"
+                        android:visibility="gone"
+                        android:hint="Fecha de nacimiento:"/>
+                    <TextView
+                        android:id="@+id/txtFechaEvaluacion"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textStyle="bold"
+                        android:paddingTop="10dp"
+                        android:layout_weight="1"
+                        android:visibility="gone"
+                        android:hint="Fecha de evaluación: "/>
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:paddingTop="10dp">
+                    <TextView
+                        android:id="@+id/edad"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="left"
+                        android:textStyle="bold"
+                        android:padding="5dp"
+                        android:visibility="gone"
+                        android:background="#f7f7f7"
+                        android:text="Edad: 5 años y 6 meses"/>
+                    <Button
+                        android:id="@+id/calcular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="30dp"
+                        android:layout_weight="1"
+                        android:background="@color/colorAccent"
+                        android:text="Calcular"
+                        android:visibility="gone"
+                        android:textColor="#fff"/>
+                </LinearLayout>
+
+            </LinearLayout>
         </LinearLayout>
 
 
-    </LinearLayout>
-    </ScrollView>
+    <br.com.simplepass.loading_button_lib.customViews.CircularProgressButton
+        android:id="@+id/guardar_nuevo_paciente"
+        android:layout_width="250dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:background="@color/colorPrimary"
+        android:text="GUARDAR"
+        android:textColor="#fff"
+        android:textStyle="bold"
+        app:spinning_bar_color="#fff"
+        app:spinning_bar_padding="6dp"
+        app:spinning_bar_width="4dp" />
+        <!--</LinearLayout>-->
 
-</RelativeLayout>
+
+</LinearLayout>
