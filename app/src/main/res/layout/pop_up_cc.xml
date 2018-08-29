@@ -2,10 +2,10 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
-    android:layout_width="650dp"
+    android:layout_width="300dp"
     android:layout_height="wrap_content"
     android:background="@drawable/rounded"
-    android:padding="25dp"
+    android:padding="15dp"
     android:layout_gravity="center">
     <TextView
         android:id="@+id/txtclose"
@@ -16,198 +16,219 @@
         android:textStyle="bold"
         android:layout_gravity="end"
         android:gravity="center"
-        android:layout_margin="5dp"
+        android:layout_marginBottom="5dp"
         android:background="@drawable/white_circle_background"/>
 
-    <LinearLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:background="#fff">
-
+        android:layout_height="match_parent">
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:background="#fff">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:background="#F8F6F9">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Comienzo"
+                        android:padding="2dp"
+                        android:gravity="center"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:layout_gravity="center_vertical"
+                        app:srcCompat="@drawable/play_button"
+                        android:layout_weight="1"
+                        android:padding="5dp"/>
+                    <LinearLayout
+                        android:layout_width="250dp"
+                        android:layout_height="150dp"
+                        android:layout_weight="1"
+                        android:padding="5dp"
+                        android:orientation="vertical">
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:paddingTop="2dp"
+                            android:paddingLeft="5dp"
+                            android:text="@string/Comienzo_cc"/>
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:padding="2dp"
+                    android:gravity="center"
+                    android:background="#F8F6F9">
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Retrogresión"
+                        android:gravity="center"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        app:srcCompat="@drawable/clock"
+                        android:padding="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"/>
+                    <LinearLayout
+                        android:layout_width="250dp"
+                        android:layout_height="150dp"
+                        android:padding="5dp"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="match_parent"
+                            android:paddingTop="2dp"
+                            android:paddingLeft="5dp"
+                            android:text="@string/Retrogresion_cc"/>
+
+                    </LinearLayout>
+                </LinearLayout>
+
+            </LinearLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:background="#F8F6F9">
-                <TextView
+                android:orientation="vertical">
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Comienzo"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:textStyle="bold"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="200dp"
-                    android:layout_height="150dp"
-                    app:srcCompat="@drawable/arrow_right_bold"
-                    android:layout_weight="1"
-                    android:padding="5dp"/>
-                <LinearLayout
-                    android:layout_width="450dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:padding="5dp"
-                    android:orientation="vertical">
+                    android:background="#F8F6F9">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/Comienzo_cc"/>
+                        android:text="Interrupción"
+                        android:gravity="center"
+                        android:textStyle="bold"/>
                 </LinearLayout>
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="#F8F6F9">
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Retrogresión"
-                    android:gravity="center"
-                    android:textStyle="bold"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="horizontal">
-                <ImageView
-                    android:layout_width="200dp"
-                    android:layout_height="150dp"
-                    app:srcCompat="@drawable/update"
-                    android:padding="5dp"
-                    android:layout_weight="1"/>
-                <LinearLayout
-                    android:layout_width="450dp"
-                    android:layout_height="match_parent"
-                    android:padding="5dp"
-                    android:orientation="vertical"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        app:srcCompat="@drawable/stop"
+                        android:layout_gravity="center_vertical"
+                        android:padding="5dp"
+                        android:layout_weight="1"/>
+                    <LinearLayout
+                        android:layout_width="250dp"
+                        android:layout_height="150dp"
+                        android:paddingTop="2dp"
+                        android:paddingLeft="5dp"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/Retrogresion_cc"/>
-
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:paddingTop="2dp"
+                            android:paddingLeft="5dp"
+                            android:text="@string/Interrupcion_cc"/>
+                    </LinearLayout>
                 </LinearLayout>
+
             </LinearLayout>
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
                 android:layout_weight="1"
-                android:gravity="center"
-                android:background="#F8F6F9">
-                <TextView
+                android:orientation="vertical">
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Interrupción"
+                    android:layout_weight="1"
                     android:gravity="center"
-                    android:textStyle="bold"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
-                <ImageView
-                    android:layout_width="200dp"
-                    android:layout_height="150dp"
-                    app:srcCompat="@drawable/stop_circle"
-                    android:padding="5dp"
-                    android:layout_weight="1"/>
-                <LinearLayout
-                    android:layout_width="450dp"
-                    android:layout_height="match_parent"
-                    android:padding="5dp"
-                    android:orientation="vertical"
-                    android:layout_weight="1">
-
+                    android:background="#F8F6F9">
                     <TextView
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="@string/Interrupcion_cc"/>
+                        android:textStyle="bold"
+                        android:text="Puntuación"
+                        android:gravity="center"/>
                 </LinearLayout>
-            </LinearLayout>
-
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center"
-                android:background="#F8F6F9">
-                <TextView
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:textStyle="bold"
-                    android:text="Puntuación"
-                    android:gravity="center"/>
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:gravity="center">
-                <ImageView
-                    android:layout_width="200dp"
-                    android:layout_height="150dp"
-                    app:srcCompat="@drawable/pencil"
-                    android:padding="5dp"
-                    android:layout_weight="1"/>
-                <LinearLayout
-                    android:layout_width="450dp"
-                    android:layout_height="match_parent"
-                    android:padding="5dp"
-                    android:orientation="vertical"
-                    android:layout_weight="1">
+                    android:layout_weight="1"
+                    android:gravity="center">
+                    <ImageView
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        app:srcCompat="@drawable/pen"
+                        android:padding="5dp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_weight="1"/>
+                    <LinearLayout
+                        android:layout_width="250dp"
+                        android:layout_height="150dp"
+                        android:padding="5dp"
+                        android:orientation="vertical"
+                        android:layout_weight="1">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
+                            android:paddingTop="2dp"
+                            android:paddingLeft="5dp"
                             android:text="@string/Puntuacion_cc"/>
 
+                    </LinearLayout>
                 </LinearLayout>
+
             </LinearLayout>
 
+
         </LinearLayout>
+    </ScrollView>
 
 
-    </LinearLayout>
 
 </LinearLayout>

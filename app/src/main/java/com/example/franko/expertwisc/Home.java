@@ -253,7 +253,7 @@ public class Home extends AppCompatActivity
             Utilidades.rotacionFab=1;
             CambioTitulo("Registro de pacientes");
         } else if (id == R.id.nav_datos) {
-            fragment = new RD();
+            fragment = new CC();
             aBoolean = true;
             fab.hide();
 //            Utilidades.rotacionFab=1;
