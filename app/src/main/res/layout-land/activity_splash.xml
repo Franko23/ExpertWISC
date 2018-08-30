@@ -32,6 +32,7 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="24dp"
         android:text="Developed by FranKo"
+        android:textColor="@color/colorText"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -41,7 +42,7 @@
         android:id="@+id/Año"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:textColor="@color/colorText"
         android:layout_marginBottom="8dp"
         android:layout_marginEnd="8dp"
 

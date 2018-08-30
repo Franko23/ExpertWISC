@@ -153,7 +153,7 @@ public class Home extends AppCompatActivity
             Bitmap imageBlur = BlurBuilder.blur(getApplicationContext(), bitmap);
             try{
                 Drawable newImage = ConvertBitmapToDrawable(imageBlur);
-                linear_back.setBackground(newImage);
+//                linear_back.setBackground(newImage);
             }catch (Exception e){
 
             }
@@ -263,9 +263,11 @@ public class Home extends AppCompatActivity
 //            aBoolean = true;
 //            fab.hide();
 //            CambioTitulo("Configuraciones");
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
+        }
+//        else if (id == R.id.nav_share) {
+//
+//        }
+        else if (id == R.id.nav_send) {
 
             fab.show();
         }

@@ -234,7 +234,7 @@ public class DatosPaciente extends Fragment {
             Bitmap imageBlur = BlurBuilder.blur(getContext(), bitmap);
             try{
                 Drawable newImage = ConvertBitmapToDrawable(imageBlur);
-                linear_back.setBackground(newImage);
+//                linear_back.setBackground(newImage);
             }catch (Exception e){
 
             }
@@ -790,7 +790,7 @@ public class DatosPaciente extends Fragment {
                                 startActivityForResult(intent, CAPTURE_PHOTO);
                                 break;
                             case 2:
-                                imgDatospaciente.setImageResource(R.drawable.n_user);
+                                imgDatospaciente.setImageResource(R.drawable.n_paciente);
                                 break;
                         }
 

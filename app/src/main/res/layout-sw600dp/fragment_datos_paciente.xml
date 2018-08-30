@@ -18,7 +18,7 @@
                 android:layout_height="455dp">
 
                 <LinearLayout
-                    android:background="@drawable/person"
+                    android:background="@drawable/bg_d"
                     android:layout_width="match_parent"
                     android:layout_height="350dp"
                     android:orientation="vertical"
@@ -27,7 +27,7 @@
                         android:id="@+id/up_paciente"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        app:srcCompat="@drawable/cloud_upload"
+                        app:srcCompat="@drawable/cloud_upload_tablet"
                         android:layout_gravity="end"
                         android:visibility="invisible"
                         android:padding="20dp"/>
