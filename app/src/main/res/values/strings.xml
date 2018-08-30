@@ -27,20 +27,35 @@
 
     <!-- TODO: Titulos de sub pruebas -->
     <string name="sub_prueba_uno">1. Construcción con Cubos</string>
+    <string name="sub_prueba_cc">1. CC</string>
     <string name="sub_prueba_dos">2. Semejanzas</string>
+    <string name="sub_prueba_s">2. S</string>
     <string name="sub_prueba_tres">3. Retención de Dígitos</string>
+    <string name="sub_prueba_rd">3. RD</string>
     <string name="sub_prueba_cuatro">4. Conceptos</string>
+    <string name="sub_prueba_co">4. Co</string>
     <string name="sub_prueba_cinco">5. Claves</string>
+    <string name="sub_prueba_cl">5. Cl</string>
     <string name="sub_prueba_seis">6. Vocabulario</string>
+    <string name="sub_prueba_v">6. V</string>
     <string name="sub_prueba_siete">7. Letras y Números</string>
+    <string name="sub_prueba_ln">7. LN</string>
     <string name="sub_prueba_ocho">8. Matrices</string>
+    <string name="sub_prueba_m">8. M</string>
     <string name="sub_prueba_nueve">9. Comprensión</string>
+    <string name="sub_prueba_c">9. C</string>
     <string name="sub_prueba_diez">10. Búsqueda de Símbolos</string>
+    <string name="sub_prueba_bs">10. BS</string>
     <string name="sub_prueba_once">11. (Completamiento de Figuras)</string>
+    <string name="sub_prueba_cf">11. (CF)</string>
     <string name="sub_prueba_doce">12. (Animales)</string>
+    <string name="sub_prueba_a">12. (A)</string>
     <string name="sub_prueba_trece">13. (Información)</string>
+    <string name="sub_prueba_i">13. (I)</string>
     <string name="sub_prueba_catorce">14. (Aritmética)</string>
+    <string name="sub_prueba_ar">14. (Ar)</string>
     <string name="sub_prueba_quince">15. (Adivinanzas)</string>
+    <string name="sub_prueba_ad">15. (Ad)</string>
     <string name="title_activity_subtest">Subtest</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>

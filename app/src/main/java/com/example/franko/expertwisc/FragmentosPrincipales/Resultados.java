@@ -14,6 +14,7 @@ import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.Toast;
 
 import com.example.franko.expertwisc.Adapters.SeccionesAdapter;
@@ -145,6 +146,7 @@ public class Resultados extends Fragment {
 
     private void llenarViewPager(ViewPager viewPager) {
         SeccionesAdapter seccionesAdapter = new SeccionesAdapter(getFragmentManager());
+
         seccionesAdapter.addFragment(new DirectaEscalar(),"Conversión Directa Escalar");
         seccionesAdapter.addFragment(new IndicesCI(),"Índices y CI");
         seccionesAdapter.addFragment(new PerfilEscalar(),"Perfil Escalar");
