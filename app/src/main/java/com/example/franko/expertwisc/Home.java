@@ -253,23 +253,25 @@ public class Home extends AppCompatActivity
             Utilidades.rotacionFab=1;
             CambioTitulo("Registro de pacientes");
         } else if (id == R.id.nav_datos) {
-            fragment = new CC();
-            aBoolean = true;
-            fab.hide();
+//            fragment = new CC();
+//            aBoolean = true;
+//            fab.hide();
 //            Utilidades.rotacionFab=1;
 //            CambioTitulo("Datos");
+            Toast.makeText(getApplicationContext(),"Pronto...",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_config) {
 //            fragment = new Resultados();
 //            aBoolean = true;
 //            fab.hide();
 //            CambioTitulo("Configuraciones");
+            Toast.makeText(getApplicationContext(),"Pronto...",Toast.LENGTH_SHORT).show();
         }
 //        else if (id == R.id.nav_share) {
 //
 //        }
-        else if (id == R.id.nav_send) {
-
-            fab.show();
+        else if (id == R.id.nav_sobre) {
+            Toast.makeText(getApplicationContext(),"Pronto...",Toast.LENGTH_SHORT).show();
+//            fab.show();
         }
 
         if (aBoolean){

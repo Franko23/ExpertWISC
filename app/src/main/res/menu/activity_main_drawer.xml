@@ -29,7 +29,7 @@
                 <!--android:icon="@drawable/ic_menu_share"-->
                 <!--android:title="Sugerencia" />-->
             <item
-                android:id="@+id/nav_send"
+                android:id="@+id/nav_sobre"
                 android:icon="@drawable/information_drawer"
                 android:title="Sobre el desarrollador" />
         </menu>
