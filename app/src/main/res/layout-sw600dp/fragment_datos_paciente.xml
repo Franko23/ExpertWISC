@@ -18,7 +18,7 @@
                 android:layout_height="455dp">
 
                 <LinearLayout
-                    android:background="@drawable/bg_d"
+                    android:background="@drawable/bg_d_blur"
                     android:layout_width="match_parent"
                     android:layout_height="350dp"
                     android:orientation="vertical"

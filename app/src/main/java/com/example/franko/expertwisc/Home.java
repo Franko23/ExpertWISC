@@ -26,6 +26,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.franko.expertwisc.Entidades.Persona;
+import com.example.franko.expertwisc.FragmentosPrincipales.AboutMe;
 import com.example.franko.expertwisc.FragmentosPrincipales.DatosPaciente;
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.DirectaEscalar;
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.IndicesCI;
@@ -82,7 +83,8 @@ public class Home extends AppCompatActivity
         IndicesCI.OnFragmentInteractionListener,
         PerfilCompuestas.OnFragmentInteractionListener,
         PerfilEscalar.OnFragmentInteractionListener,
-        Sugerencias.OnFragmentInteractionListener
+        Sugerencias.OnFragmentInteractionListener,
+        AboutMe.OnFragmentInteractionListener
 {
     FloatingActionButton fab;
     ImageView imageViewProfile;
@@ -260,18 +262,20 @@ public class Home extends AppCompatActivity
 //            CambioTitulo("Datos");
             Toast.makeText(getApplicationContext(),"Pronto...",Toast.LENGTH_SHORT).show();
         } else if (id == R.id.nav_config) {
-//            fragment = new Resultados();
+//            fragment = new AboutMe();
 //            aBoolean = true;
 //            fab.hide();
-//            CambioTitulo("Configuraciones");
+//            CambioTitulo("Sobre mi");
             Toast.makeText(getApplicationContext(),"Pronto...",Toast.LENGTH_SHORT).show();
         }
 //        else if (id == R.id.nav_share) {
 //
 //        }
         else if (id == R.id.nav_sobre) {
-            Toast.makeText(getApplicationContext(),"Pronto...",Toast.LENGTH_SHORT).show();
-//            fab.show();
+            fragment = new AboutMe();
+            aBoolean = true;
+            fab.hide();
+            CambioTitulo("Sobre mi");
         }
 
         if (aBoolean){

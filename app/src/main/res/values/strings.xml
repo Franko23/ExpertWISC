@@ -262,4 +262,8 @@
     <string name="cargo">Cargo</string>
     <string name="todo">TODO</string>
 
+    <!-- Description about me  -->
+    <string name="name">Francisco Quevedo</string>
+    <string name="description">Ingeniero de sistemas experto en desarrollo de aplicaciones móviles. \n Para más información y contacto puedes buscarme en las siguientes redes sociales.</string>
+
 </resources>

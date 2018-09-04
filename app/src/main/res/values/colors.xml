@@ -6,4 +6,5 @@
     <color name="colorInProgress">#e73922</color>
     <color name="colorFinished">#0d9318</color>
     <color name="colorText">#838583</color>
+    <color name="background">#1f675e</color>
 </resources>
