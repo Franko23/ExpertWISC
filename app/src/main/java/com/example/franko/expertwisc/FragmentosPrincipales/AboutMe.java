@@ -84,12 +84,18 @@ public class AboutMe extends Fragment {
         return view;
     }
 
-
     public void onClick(View v) {
         // Perform action on click
         switch(v.getId()) {
             case R.id.facebook:
-                Intent facebook = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://profile/1103149942"));
+                Intent facebook;
+                try{
+                    getContext().getPackageManager().getPackageInfo("com.facebook.katana", 0);
+                    facebook = new Intent(Intent.ACTION_VIEW, Uri.parse("fb://profile/1103149942"));
+                }catch (Exception e){
+                    facebook = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.facebook.com/franko.quevedo"));
+                }
+
                 startActivity(facebook);
                 break;
             case R.id.whatsapp:
