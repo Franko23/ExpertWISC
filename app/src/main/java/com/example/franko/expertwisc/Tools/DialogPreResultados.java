@@ -162,6 +162,8 @@ public class DialogPreResultados extends DialogFragment{
             Utilidades.R_c.isEmpty() ||
             Utilidades.R_bs.isEmpty()
                 ){
+
+            rGroup.setVisibility(View.GONE);
             mensaje.setText(getResources().getString(R.string.mensajeCompletar));
             mensaje.setTextColor(getResources().getColor(R.color.colorAccent));
         }else {

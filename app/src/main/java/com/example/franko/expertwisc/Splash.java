@@ -81,15 +81,18 @@ public class Splash extends AppCompatActivity {
                     }
 //                    StartAnimationLayout();
                     Intent intent;
-                    Boolean isExist = Iniciar();
+//                    Boolean isExist = Iniciar();
 //                    Toast toast = Toast.makeText(getApplicationContext(),"RESP: "+isExist.toString(), Toast.LENGTH_LONG);
 //                    toast.show();
 
-                    if (isExist){
-                        intent = new Intent(getApplicationContext(), Login.class);
-                    }else{
-                        intent = new Intent(getApplicationContext(), Register.class);
-                    }
+                    intent = new Intent(getApplicationContext(), Login.class);
+
+//                    if (isExist){
+//                        intent = new Intent(getApplicationContext(), Login.class);
+//                    }else{
+//                        intent = new Intent(getApplicationContext(), Register.class);
+//                    }
+
                     intent.setFlags(Intent.FLAG_ACTIVITY_NO_ANIMATION);
                     startActivity(intent);
                     Splash.this.finish();
@@ -106,29 +109,29 @@ public class Splash extends AppCompatActivity {
     }
 
 
-        private Boolean Iniciar () {
-
-            boolean isExist = false;
-//        if (ContextCompat.checkSelfPermission(getApplicationContext(),
-//                Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED);
-
-            SQLiteDatabase db = con.getWritableDatabase();
-//            this.deleteDatabase("db_ws");
-            try {
-
-                Cursor cursor = db.rawQuery("select nombre_usuario from usuario", null);
-                if (cursor != null) {
-                    if (cursor.getCount() > 0) {
-                        isExist = true;
-                    }
-                    cursor.close();
-                }
-            } catch (Exception e) {
-
-            }
-
-            return isExist;
-        }
+//        private Boolean Iniciar () {
+//
+//            boolean isExist = false;
+////        if (ContextCompat.checkSelfPermission(getApplicationContext(),
+////                Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED);
+//
+//            SQLiteDatabase db = con.getWritableDatabase();
+////            this.deleteDatabase("db_ws");
+//            try {
+//
+//                Cursor cursor = db.rawQuery("select nombre_usuario from usuario", null);
+//                if (cursor != null) {
+//                    if (cursor.getCount() > 0) {
+//                        isExist = true;
+//                    }
+//                    cursor.close();
+//                }
+//            } catch (Exception e) {
+//
+//            }
+//
+//            return isExist;
+//        }
 
         private void StartAnimationImage () {
             Animation anim = AnimationUtils.loadAnimation(this, R.anim.alpha);

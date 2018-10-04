@@ -86,6 +86,7 @@ public class Register extends AppCompatActivity {
     private AppCompatImageView appCompatImageView;
     private AppCompatImageView appCompatImageViewUser;
 
+
     private static final int SELECT_PHOTO = 1;
     private static final int CAPTURE_PHOTO = 2;
 
@@ -117,7 +118,7 @@ public class Register extends AppCompatActivity {
         appCompatButtonConectar = (AppCompatButton) findViewById(R.id.appCompatButtonConectar);
 
         appCompatImageView = (AppCompatImageView) findViewById(R.id.imgProfilePic);
-//        appCompatImageViewUser = (AppCompatImageView) findViewById(R.id.imgUser);
+
 
         mensaje = findViewById(R.id.txt_mensaje);
 
@@ -177,6 +178,7 @@ public class Register extends AppCompatActivity {
 //                                        mensaje.setTextColor(getColor(R.color.colorAccent));
                                         mensaje.setTextColor(getResources().getColor(R.color.colorAccent));
                                     }
+                                    mensaje.setVisibility(View.VISIBLE);
 
 
                                 } else {

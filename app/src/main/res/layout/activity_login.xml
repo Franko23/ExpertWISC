@@ -11,9 +11,9 @@
         android:id="@+id/profile"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_marginEnd="64dp"
         android:layout_marginStart="64dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="64dp"
+        android:layout_marginEnd="64dp"
         android:clickable="true"
         android:elevation="5dp"
         android:src="@drawable/logo2"
@@ -89,16 +89,45 @@
 
 
     <TextView
-        android:id="@+id/txt_recuperar"
+        android:id="@+id/txt_nuevo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="bottom"
-        android:text="¿Quieres recuperar tus datos?"
-        android:textAlignment="viewEnd"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="76dp"
+        android:layout_marginEnd="8dp"
+        android:drawableRight="@drawable/ic_account_plus_grey600_18dp"
+        android:drawablePadding="10dp"
         android:padding="10dp"
+        android:text="¿Eres nuevo?, Regístrate"
+        android:textAlignment="textEnd"
         android:textColor="@color/colorPrimaryDark"
         android:textSize="0.1in"
         android:textStyle="bold|italic"
-        app:layout_constraintBottom_toBottomOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/ingresar" />
+
+    <TextView
+        android:id="@+id/txt_recuperar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:padding="10dp"
+        android:drawableRight="@drawable/ic_cloud_download_grey600_18dp"
+        android:drawablePadding="10dp"
+        android:textAlignment="textEnd"
+        android:text="¿Quieres recuperar tus datos?"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="0.1in"
+        android:textStyle="bold|italic"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_nuevo"
+        app:layout_constraintVertical_bias="0.0" />
 
 </android.support.constraint.ConstraintLayout>

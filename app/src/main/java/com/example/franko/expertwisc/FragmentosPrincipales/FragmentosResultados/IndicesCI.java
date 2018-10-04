@@ -1,6 +1,8 @@
 package com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados;
 
+import android.app.Activity;
 import android.content.Context;
+import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -72,12 +74,19 @@ public class IndicesCI extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+//        getActivity().setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+//
+//        getActivity().setRequestedOrientation(
+//                ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+
         view = inflater.inflate(R.layout.fragment_indices_ci, container, false);
 
         result_icv = view.findViewById(R.id.result_icv);

@@ -32,7 +32,7 @@ import me.anwarshahriar.calligrapher.Calligrapher;
 public class Login extends AppCompatActivity {
     private TextInputEditText mUserView;
     private TextInputEditText mPasswordView;
-    TextView txt_recuperar;
+    TextView txt_recuperar, txt_nuevo;
     ConexionHelper con;
     ArrayList<Usuario> listaUsuario;
     @Override
@@ -48,11 +48,12 @@ public class Login extends AppCompatActivity {
         con = new ConexionHelper(this,"bd_wisc", null, 1);
 
         txt_recuperar = findViewById(R.id.txt_recuperar);
+        txt_nuevo = findViewById(R.id.txt_nuevo);
         // Set up the login form.
-        mUserView = (TextInputEditText) findViewById(R.id.user);
+        mUserView =  findViewById(R.id.user);
 //        populateAutoComplete();
 
-        mPasswordView = (TextInputEditText) findViewById(R.id.password);
+        mPasswordView = findViewById(R.id.password);
 
         mPasswordView.setOnEditorActionListener(new TextView.OnEditorActionListener() {
             @Override
@@ -65,15 +66,22 @@ public class Login extends AppCompatActivity {
             }
         });
 
+        txt_nuevo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),Register.class));
+//                Snackbar.make(view, "Pronto", Snackbar.LENGTH_LONG).show();
+            }
+        });
         txt_recuperar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                startActivity(new Intent(getApplicationContext(),Recuperar.class));
-                Snackbar.make(view, "Pronto", Snackbar.LENGTH_LONG).show();
+                startActivity(new Intent(getApplicationContext(),Recuperar.class));
+//                Snackbar.make(view, "Pronto", Snackbar.LENGTH_LONG).show();
             }
         });
 
-        Button mEmailSignInButton = (Button) findViewById(R.id.ingresar);
+        Button mEmailSignInButton = findViewById(R.id.ingresar);
         mEmailSignInButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
