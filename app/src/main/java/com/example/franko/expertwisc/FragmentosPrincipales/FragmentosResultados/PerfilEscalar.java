@@ -8,6 +8,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
@@ -41,6 +42,7 @@ public class PerfilEscalar extends Fragment {
     private String mParam2;
     private LineChart lineChart;
     View view;
+    TextView result_s_final, result_v_final,result_c_final , result_i_final, result_ad_final, result_cc_final, result_co_final, result_m_final, result_cf_final, result_rd_final, result_ln_final, result_ar_final, result_cl_final, result_bs_final, result_a_final;
 
     private OnFragmentInteractionListener mListener;
 
@@ -83,6 +85,22 @@ public class PerfilEscalar extends Fragment {
 
         lineChart = view.findViewById(R.id.lineChartEscalar);
 
+        result_s_final = view.findViewById(R.id.result_s_final);
+        result_v_final = view.findViewById(R.id.result_v_final);
+        result_c_final = view.findViewById(R.id.result_c_final);
+        result_i_final = view.findViewById(R.id.result_i_final);
+        result_ad_final = view.findViewById(R.id.result_ad_final);
+        result_cc_final = view.findViewById(R.id.result_cc_final);
+        result_co_final = view.findViewById(R.id.result_co_final);
+        result_m_final = view.findViewById(R.id.result_m_final);
+        result_cf_final = view.findViewById(R.id.result_cf_final);
+        result_rd_final = view.findViewById(R.id.result_rd_final);
+        result_ln_final = view.findViewById(R.id.result_ln_final);
+        result_ar_final = view.findViewById(R.id.result_ar_final);
+        result_cl_final = view.findViewById(R.id.result_cl_final);
+        result_bs_final = view.findViewById(R.id.result_bs_final);
+        result_a_final = view.findViewById(R.id.result_a_final);
+
         lineChart.setDragEnabled(true);
         lineChart.setScaleEnabled(true);
 
@@ -97,9 +115,27 @@ public class PerfilEscalar extends Fragment {
                     entries.add(new Entry(i,Integer.parseInt(datos[0])));
                 }else{
                     entries.add(new Entry(i,Integer.parseInt(Utilidades.listResultEscalar.get(value[i]))));
+
                 }
             }
         }
+
+        result_s_final.setText(Utilidades.listResultEscalar.get(value[0]));
+        result_v_final.setText(Utilidades.listResultEscalar.get(value[1]));
+        result_c_final.setText(Utilidades.listResultEscalar.get(value[2]));
+        result_i_final.setText(Utilidades.listResultEscalar.get(value[3]));
+        result_ad_final.setText(Utilidades.listResultEscalar.get(value[4]));
+        result_cc_final.setText(Utilidades.listResultEscalar.get(value[5]));
+        result_co_final.setText(Utilidades.listResultEscalar.get(value[6]));
+        result_m_final.setText(Utilidades.listResultEscalar.get(value[7]));
+        result_cf_final.setText(Utilidades.listResultEscalar.get(value[8]));
+        result_rd_final.setText(Utilidades.listResultEscalar.get(value[9]));
+        result_ln_final.setText(Utilidades.listResultEscalar.get(value[10]));
+        result_ar_final.setText(Utilidades.listResultEscalar.get(value[11]));
+        result_cl_final.setText(Utilidades.listResultEscalar.get(value[12]));
+        result_bs_final.setText(Utilidades.listResultEscalar.get(value[13]));
+        result_a_final.setText(Utilidades.listResultEscalar.get(value[14]));
+
 
         int promedio = 0;
         for (int i = 0; i < entries.size(); i++){

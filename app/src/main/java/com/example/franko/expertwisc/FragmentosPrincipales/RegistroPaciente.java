@@ -196,7 +196,7 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
         SimpleDateFormat mdformat = new SimpleDateFormat("dd-MM-yyyy");
         fechaActual = mdformat.format(calendar.getTime());
 
-        fechaEva.setText("Fecha de evaluación: HOY - "+fechaActual);
+        fechaEva.setText("Fecha de evaluación, HOY: "+fechaActual);
 
         apellidos.addTextChangedListener(new TextWatcher() {
             @Override

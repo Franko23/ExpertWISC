@@ -81,7 +81,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="S. P. E."
+                android:text="Sum. Punt. Esc."
                 android:textAlignment="center"
                 android:gravity="center"
                 android:textStyle="bold"
@@ -147,7 +147,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="P. C."
+                android:text="Punt. Compuesta"
                 android:textAlignment="center"
                 android:gravity="center"
                 android:textStyle="bold"
@@ -213,7 +213,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="P."
+                android:text="Percentil"
                 android:textAlignment="center"
                 android:gravity="center"
                 android:textStyle="bold"
@@ -279,7 +279,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="I. C."
+                android:text="Intervalo de confianza"
                 android:textAlignment="center"
                 android:gravity="center"
                 android:textStyle="bold"

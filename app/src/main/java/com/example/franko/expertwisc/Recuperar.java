@@ -16,8 +16,11 @@ import com.example.franko.expertwisc.Entidades.Paciente;
 import com.example.franko.expertwisc.Entidades.Usuario;
 import com.example.franko.expertwisc.FragmentosSubTest.I;
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -53,34 +56,52 @@ public class Recuperar extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                dbFire.collection("usuarios")
-                        .whereEqualTo("usuario",email.getText().toString())
-                        .whereEqualTo("contraseña",password.getText().toString())
-                        .get()
-                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>(){
-                            @Override
-                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                                if (task.isSuccessful()){
-                                    for (QueryDocumentSnapshot document : task.getResult()){
-                                        Log.d(TAG, document.getId() + " => " + document.getData() +  "=>");
-                                        existe = true;
-                                        e = document.getString("usuario");
-                                        p = document.getString("contraseña");
-                                    }
-                                    if (existe){
-                                        checked.setVisibility(View.VISIBLE);
-                                        verificar.setVisibility(View.INVISIBLE);
-                                    }else {
-                                        verificar.setText("Error");
-                                        verificar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
-                                    }
+//                dbFire.collection("usuarios")
+//                        .whereEqualTo("usuario",email.getText().toString())
+//                        .whereEqualTo("contraseña",password.getText().toString())
+//                        .get()
+//                        .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>(){
+//                            @Override
+//                            public void onComplete(@NonNull Task<QuerySnapshot> task) {
+//                                if (task.isSuccessful()){
+//                                    for (QueryDocumentSnapshot document : task.getResult()){
+//                                        Log.d(TAG, document.getId() + " => " + document.getData() +  "=>" + document.getData().values());
+//                                        existe = true;
+//                                        e = document.getString("usuario");
+//                                        p = document.getString("contraseña");
+//                                    }
+//                                    if (existe){
+//                                        checked.setVisibility(View.VISIBLE);
+//                                        verificar.setVisibility(View.INVISIBLE);
+//                                    }else {
+//                                        verificar.setText("Error");
+//                                        verificar.setBackgroundColor(getResources().getColor(R.color.colorAccent));
+//                                    }
+//
+//                                } else {
+//                                    Log.d(TAG, "Error getting documents: ", task.getException());
+//
+//                                }
+//                            }
+//                        });
 
-                                } else {
-                                    Log.d(TAG, "Error getting documents: ", task.getException());
 
-                                }
+                DocumentReference docRef = dbFire.collection("usuarios").document("fran").collection("pacientes").document();
+                docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<DocumentSnapshot> task) {
+                        if (task.isSuccessful()) {
+                            DocumentSnapshot document = task.getResult();
+                            if (document.exists()) {
+                                Log.d(TAG, "DocumentSnapshot data: " + document.getMetadata());
+                            } else {
+                                Log.d(TAG, "No such document");
                             }
-                        });
+                        } else {
+                            Log.d(TAG, "get failed with ", task.getException());
+                        }
+                    }
+                });
 
             }
         });

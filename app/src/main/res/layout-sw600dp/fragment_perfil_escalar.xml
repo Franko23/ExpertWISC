@@ -195,7 +195,7 @@
                     android:textAlignment="center"
                     android:gravity="center"
                     android:layout_weight="1"
-                    android:id="@+id/result_vf_final"/>
+                    android:id="@+id/result_cf_final"/>
             </LinearLayout>
         </LinearLayout>
         <LinearLayout
