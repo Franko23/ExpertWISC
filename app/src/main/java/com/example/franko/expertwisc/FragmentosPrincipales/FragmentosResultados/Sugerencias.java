@@ -100,6 +100,7 @@ public class Sugerencias extends Fragment {
             }
         }
 
+        //Ordenamos los srting de resultados de áreas a ser mostradas
         if (result.size()>1){
             if (result.size()==2){
                 area = result.get(0)+" y "+result.get(1);

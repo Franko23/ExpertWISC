@@ -37,15 +37,105 @@ public class SistemaExperto {
         Condition mayor = new Condition(">");
         Condition menor = new Condition("<");
 
-        Rule reglaUno = new Rule(baseDeReglas, "reglaUno",
+        //ICV
+        Rule reglaICV6 = new Rule(baseDeReglas, "reglaICV6",
+                new Clause[]{
+                    new Clause(Area,igual,"ICV"),
+                        new Clause(Edad,menor,"8")
+                },
+                    new Clause(Resultado,igual,"PLE, PROLEC, VADS")
+        );
+
+        Rule reglaICV8 = new Rule(baseDeReglas, "reglaICV8",
                 new Clause[]{
                     new Clause(Area,igual,"ICV"),
                         new Clause(Edad,menor,"10")
                 },
-                    new Clause(Resultado,igual,"LEE")
+                    new Clause(Resultado,igual,"PROLEC, LEE")
+        );
+        Rule reglaICV10 = new Rule(baseDeReglas, "reglaICV10",
+                new Clause[]{
+                    new Clause(Area,igual,"ICV"),
+                        new Clause(Edad,menor,"12")
+                },
+                    new Clause(Resultado,igual,"LEE, VADS")
+        );
+        Rule reglaICV12 = new Rule(baseDeReglas, "reglaICV12",
+                new Clause[]{
+                    new Clause(Area,igual,"ICV"),
+                        new Clause(Edad,menor,"14")
+                },
+                    new Clause(Resultado,igual,"PROLEC-SE, VADS")
+        );
+        Rule reglaICV14 = new Rule(baseDeReglas, "reglaICV14",
+                new Clause[]{
+                    new Clause(Area,igual,"ICV"),
+                        new Clause(Edad,menor,"15")
+                },
+                    new Clause(Resultado,igual,"PROLEC-SE")
+        );
+        Rule reglaICV15 = new Rule(baseDeReglas, "reglaICV15",
+                new Clause[]{
+                    new Clause(Area,igual,"ICV"),
+                        new Clause(Edad,mayor,"14")
+                },
+                    new Clause(Resultado,igual,"PROLEC-SE")
         );
 
-        Rule reglaDos = new Rule(baseDeReglas, "reglaDos",
+
+        //IRP
+        Rule reglaIRP6 = new Rule(baseDeReglas, "reglaICV6",
+                new Clause[]{
+                        new Clause(Area,igual,"ICV"),
+                        new Clause(Edad,menor,"8")
+                },
+                new Clause(Resultado,igual,"PLE, PROLEC, VADS")
+        );
+
+        Rule reglaIRP8 = new Rule(baseDeReglas, "reglaICV8",
+                new Clause[]{
+                        new Clause(Area,igual,"ICV"),
+                        new Clause(Edad,menor,"10")
+                },
+                new Clause(Resultado,igual,"PROLEC, LEE")
+        );
+        Rule reglaIRP10 = new Rule(baseDeReglas, "reglaICV10",
+                new Clause[]{
+                        new Clause(Area,igual,"ICV"),
+                        new Clause(Edad,menor,"12")
+                },
+                new Clause(Resultado,igual,"LEE, VADS")
+        );
+        Rule reglaIRP12 = new Rule(baseDeReglas, "reglaICV12",
+                new Clause[]{
+                        new Clause(Area,igual,"ICV"),
+                        new Clause(Edad,menor,"14")
+                },
+                new Clause(Resultado,igual,"PROLEC-SE, VADS")
+        );
+        Rule reglaIRP14 = new Rule(baseDeReglas, "reglaICV14",
+                new Clause[]{
+                        new Clause(Area,igual,"ICV"),
+                        new Clause(Edad,menor,"15")
+                },
+                new Clause(Resultado,igual,"PROLEC-SE")
+        );
+        Rule reglaIRP15 = new Rule(baseDeReglas, "reglaICV15",
+                new Clause[]{
+                        new Clause(Area,igual,"ICV"),
+                        new Clause(Edad,mayor,"14")
+                },
+                new Clause(Resultado,igual,"PROLEC-SE")
+        );
+
+
+
+
+
+
+
+
+        Rule reglaICV1 = new Rule(baseDeReglas, "reglaDos",
                 new Clause[]{
                     new Clause(Area,igual,"ICV"),
                         new Clause(Edad,mayor,"9")
