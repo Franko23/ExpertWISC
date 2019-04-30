@@ -82,6 +82,7 @@ public class Utilidades {
     public static String TEPSI;
     public static String PRECALCULO;
     public static String PROCALCULO;
+    public static String RAVEN_G;
 
     //Constantes Campo Persona
     public static String TABLA_PERSONA = "persona";

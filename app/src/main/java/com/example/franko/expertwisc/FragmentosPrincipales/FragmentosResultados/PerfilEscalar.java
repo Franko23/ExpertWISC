@@ -155,6 +155,10 @@ public class PerfilEscalar extends Fragment {
         LimitLine max = new LimitLine(promedio,"Promedio");
         YAxis leftAxis = lineChart.getAxisLeft();
         leftAxis.addLimitLine(max);
+        leftAxis.setAxisMaxValue(19f);
+        leftAxis.setAxisMinValue(0f);
+        lineChart.getAxisRight().setEnabled(false);
+
 
         ArrayList<ILineDataSet> iLineDataSets = new ArrayList<>();
         iLineDataSets.add(lineDataSet);

@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.example.franko.expertwisc.ExpertSystem.SistemaExperto;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Tools.PuntuacionEscalar;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
@@ -142,7 +143,7 @@ public class DirectaEscalar extends Fragment {
         result_ivp = view.findViewById(R.id.result_ivp);
         result_cit = view.findViewById(R.id.result_cit);
 
-        //Setteamos los puntos desde Utilidades.
+        //Setteamos los puntos desde Utilidades
         puntos_cc.setText(Utilidades.R_cc);
         puntos_s.setText(Utilidades.R_s);
         puntos_rd.setText(Utilidades.R_rd);
@@ -179,6 +180,7 @@ public class DirectaEscalar extends Fragment {
 
         PuntuacionEscalar puntuacionEscalar = new PuntuacionEscalar();
         values = puntuacionEscalar.Punto(getContext(), values0);
+
         Utilidades.listResultEscalar = values;
 
             icv = new ArrayList<>();

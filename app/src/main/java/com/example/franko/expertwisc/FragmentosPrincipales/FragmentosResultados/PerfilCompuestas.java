@@ -101,6 +101,10 @@ public class PerfilCompuestas extends Fragment {
         LimitLine max = new LimitLine(100,"Media");
         YAxis leftAxis = lineChart.getAxisLeft();
         leftAxis.addLimitLine(max);
+        leftAxis.setAxisMaxValue(160f);
+        leftAxis.setAxisMinValue(40f);
+
+        lineChart.getAxisRight().setEnabled(false);
 
         ArrayList<ILineDataSet> iLineDataSets = new ArrayList<>();
         iLineDataSets.add(lineDataSet);

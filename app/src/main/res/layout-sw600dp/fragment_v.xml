@@ -71,7 +71,7 @@
                 android:layout_weight="4"
                 android:textStyle="bold"
                 android:gravity="end"
-                android:text="Puntuación Directa Total \n(Máximo = 30)"/>
+                android:text="Puntuación Directa Total \n(Máximo = 68)"/>
             <EditText
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"

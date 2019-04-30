@@ -70,7 +70,7 @@ public class PuntuacionEscalar {
                 String [] uno = Utilidades.edadActual.split("\\.");
                 String [] dos = valor.split("\\.");
 
-                //Comparamos las edad del paciente con la edad de la tabla interna
+                //Comparamos las edad del paciente con el grupo de edades
                 if (Integer.parseInt(uno[0])<=Integer.parseInt(dos[0])){
                     if (Integer.parseInt(uno[1])<=Integer.parseInt(dos[1])){
                         edad = edades[i];

@@ -40,7 +40,7 @@
                         android:layout_gravity="center_horizontal"
                         android:src="@drawable/person"
                         app:civ_border_color="#FFFFFFFF"
-                        app:civ_border_width="5dp" />
+                        app:civ_border_width="2dp"/>
                     <TextView
                         android:id="@+id/nombrePrincipal"
                         android:layout_gravity="center_horizontal"

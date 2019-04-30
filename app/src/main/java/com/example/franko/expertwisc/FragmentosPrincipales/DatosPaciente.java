@@ -123,7 +123,7 @@ public class DatosPaciente extends Fragment {
 
     Paciente paciente = null;
     Persona persona = null;
-    Test test = null;
+    Boolean sw = false;
 
     private static final int SELECT_PHOTO = 1;
     private static final int CAPTURE_PHOTO = 2;
@@ -191,17 +191,18 @@ public class DatosPaciente extends Fragment {
         txt_mensaje_test = view.findViewById(R.id.txt_mensaje_test);
         cantidadTest = view.findViewById(R.id.cantidad_test);
 
+//        imgDatospaciente.setEnabled(false);
 
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 if (switchCompat.isChecked()){
                     layout_datos_edit.setVisibility(View.VISIBLE);
-                    imgDatospaciente.setEnabled(true);
+                    sw = true;
 
                 }else{
                     layout_datos_edit.setVisibility(View.GONE);
-                    imgDatospaciente.setEnabled(false);
+                    sw = false;
                 }
             }
         });
@@ -773,36 +774,42 @@ public class DatosPaciente extends Fragment {
         imgDatospaciente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
-                builder.setCancelable(false);
-                builder.setTitle("Selecciona una opción:");
-                builder.setItems(R.array.uploadImages, new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which){
-                            case 0:
-                                Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
-                                photoPickerIntent.setType("image/*");
-                                startActivityForResult(photoPickerIntent, SELECT_PHOTO);
-                                break;
-                            case 1:
-                                Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-                                startActivityForResult(intent, CAPTURE_PHOTO);
-                                break;
-                            case 2:
-                                imgDatospaciente.setImageResource(R.drawable.n_paciente);
-                                break;
-                        }
 
-                    }
-                });
-                builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        //the user clicked on Cancel
-                    }
-                });
-                builder.show();
+                if (sw.equals(true)){
+                    AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                    builder.setCancelable(false);
+                    builder.setTitle("Selecciona una opción:");
+                    builder.setItems(R.array.uploadImages, new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            switch (which){
+                                case 0:
+                                    Intent photoPickerIntent = new Intent(Intent.ACTION_PICK);
+                                    photoPickerIntent.setType("image/*");
+                                    startActivityForResult(photoPickerIntent, SELECT_PHOTO);
+                                    break;
+                                case 1:
+                                    Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                    startActivityForResult(intent, CAPTURE_PHOTO);
+                                    break;
+                                case 2:
+                                    imgDatospaciente.setImageResource(R.drawable.n_paciente);
+                                    break;
+                            }
+
+                        }
+                    });
+                    builder.setNegativeButton("Cancelar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            //the user clicked on Cancel
+                        }
+                    });
+                    builder.show();
+                }else {
+                    Toast.makeText(getContext(),"Para cambiar de imagen, primero active el modo 'Editar'", Toast.LENGTH_SHORT).show();
+                }
+
             }
         });
 
@@ -982,7 +989,6 @@ public class DatosPaciente extends Fragment {
             int okPaciente=db.update(Utilidades.TABLA_PACIENTE,pacienteUpdate,Utilidades.CAMPO_ID_PACIENTE+"="+paciente.getId_paciente(),null);
 
             if (okPaciente == 1 && okPersona == 1){
-//                Toast.makeText(getContext(),"Datos actualizados satisfactoriamente", Toast.LENGTH_SHORT).show();
                 Snackbar.make(view, "Datos actualizados satisfactoriamente", Snackbar.LENGTH_LONG).show();
                 nombrePrincipal.setText(editNombres.getText().toString()+" "+editApellidos.getText().toString());
                 layout_datos_edit.setVisibility(View.GONE);

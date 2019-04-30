@@ -125,6 +125,7 @@ public class Sugerencias extends Fragment {
         Utilidades.TEPSI = getString(R.string.TEPSI);
         Utilidades.PRECALCULO = getString(R.string.PreCalculo);
         Utilidades.PROCALCULO = getString(R.string.ProCalculo);
+        Utilidades.RAVEN_G = getString(R.string.Raven_G);
 
 
         if (count>0){
@@ -138,7 +139,8 @@ public class Sugerencias extends Fragment {
         }else
         {
             txt_sugerencia.setText("Estimado "+Utilidades.currentUserName+", hemos notado que "+
-                    Utilidades.currentPacienteName+" NO tiene dificultades significativas en el test realizado. Pero aún así puedes fortalecer todas las áreas en las que sobresale.");
+                    Utilidades.currentPacienteName+" NO tiene dificultades significativas en el " +
+                    "test realizado. Pero aún así puedes fortalecer todas las áreas en las que sobresale.");
         }
 
 

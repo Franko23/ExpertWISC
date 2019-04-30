@@ -183,6 +183,7 @@
     <string name="TEPSI">El test de TEPSI evalúa al niño en tres áreas fundamentales: coordinación lenguaje y motrocidad.</string>
     <string name="ProCalculo">El test Pro Cálculo evalúa la capacidad del niño respecto a su conocimiento del número en las áreas del cálculo y determinar su habilidad de procesamiento.</string>
     <string name="PreCalculo">El test Pre Cálculo permite la realización de un análisis cualitativo y cuantitativo de las funciones relacionadas con el aprendizaje de las matemáticas.</string>
+    <string name="Raven_G">El objetivo de este Test es calcular el factor "G" de la inteligencia, es decir, la inteligencia general que condiciona cualquier ejecución o resolución de problemas. Este factor evidencia la habilidad de una persona a la hora de realizar un trabajo intelectual.</string>
 
 
     <string name="title_activity_settings">Settings</string>

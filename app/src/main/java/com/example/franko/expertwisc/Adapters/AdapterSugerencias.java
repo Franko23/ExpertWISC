@@ -65,6 +65,9 @@ public class AdapterSugerencias extends RecyclerView.Adapter<AdapterSugerencias.
             if (resultado.get(position).equals("Pro-Cálculo")){
                 info_test = Utilidades.PROCALCULO;
             }
+            if (resultado.get(position).equals("RAVEN-G, PMA")){
+                info_test = Utilidades.RAVEN_G;
+            }
 
             holder.info_test.setText(info_test);
             holder.info_test_paciente.setText(info_test_paciente);
