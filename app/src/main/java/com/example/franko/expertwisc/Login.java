@@ -40,6 +40,8 @@ public class Login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
 
+
+
         Calligrapher calligrapher = new Calligrapher(this);
         calligrapher.setFont(this,"Karla-Regular.ttf", true );
 
