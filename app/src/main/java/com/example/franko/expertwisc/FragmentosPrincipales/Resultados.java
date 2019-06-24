@@ -25,6 +25,7 @@ import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.PerfilCompuestas;
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.PerfilEscalar;
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.Sugerencias;
+import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.Sugerencias_free;
 import com.example.franko.expertwisc.FragmentosSubTest.A;
 import com.example.franko.expertwisc.FragmentosSubTest.Ad;
 import com.example.franko.expertwisc.FragmentosSubTest.Ar;
@@ -151,7 +152,12 @@ public class Resultados extends Fragment {
         seccionesAdapter.addFragment(new IndicesCI(),"Índices y CI");
         seccionesAdapter.addFragment(new PerfilEscalar(),"Perfil Escalar");
         seccionesAdapter.addFragment(new PerfilCompuestas(),"Perfil Compuesta");
-        seccionesAdapter.addFragment(new Sugerencias(),"Sugerencias");
+        if (Utilidades.CAMPO_FREE_USUARIO.equals("1")) {
+            seccionesAdapter.addFragment(new Sugerencias_free(),"Sugerencias");
+        }else{
+            seccionesAdapter.addFragment(new Sugerencias(),"Sugerencias");
+        }
+
 
         viewPager.setAdapter(seccionesAdapter);
     }

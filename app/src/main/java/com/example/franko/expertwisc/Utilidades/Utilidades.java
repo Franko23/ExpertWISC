@@ -106,6 +106,7 @@ public class Utilidades {
     public static String CAMPO_NOMBRE_USUARIO = "nombre_usuario";
     public static String CAMPO_EMAIL_USUARIO = "email_usuario";
     public static String CAMPO_CONTRASENA_USUARIO = "contrasena_usuario";
+    public static String CAMPO_FREE_USUARIO = "free_usuario";
 
     //Constantes Campo Puntuaciones
     public static String TABLA_PUNTUACIONES_CC = "puntuacion_cc";
@@ -318,7 +319,8 @@ public class Utilidades {
             CAMPO_NOMBRE_USUARIO + " TEXT, " +
             CAMPO_EMAIL_USUARIO + " TEXT, " +
             CAMPO_CONTRASENA_USUARIO + " TEXT," +
-            CAMPO_ID_PERSONA+" INTEGER"+
+            CAMPO_ID_PERSONA+" INTEGER,"+
+            CAMPO_FREE_USUARIO+" TEXT"+
             ")";
 
 }

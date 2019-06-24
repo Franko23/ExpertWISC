@@ -20,6 +20,8 @@ import com.example.franko.expertwisc.Utilidades.Utilidades;
 
 import java.util.ArrayList;
 
+import io.grpc.okhttp.internal.Util;
+
 /**
  * A simple {@link Fragment} subclass.
  * Activities that contain this fragment must implement the
@@ -83,6 +85,7 @@ public class Sugerencias extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_sugerencias, container, false);
+
         txt_sugerencia = view.findViewById(R.id.txt_sugerencia);
         iq = view.findViewById(R.id.result_iq);
 

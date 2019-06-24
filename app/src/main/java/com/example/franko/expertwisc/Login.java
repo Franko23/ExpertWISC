@@ -19,6 +19,7 @@ import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.franko.expertwisc.Entidades.Paciente;
 import com.example.franko.expertwisc.Entidades.Persona;
@@ -27,6 +28,7 @@ import com.example.franko.expertwisc.Utilidades.Utilidades;
 
 import java.util.ArrayList;
 
+import io.grpc.okhttp.internal.Util;
 import me.anwarshahriar.calligrapher.Calligrapher;
 
 public class Login extends AppCompatActivity {
@@ -130,18 +132,23 @@ public class Login extends AppCompatActivity {
             if(us != null && us.getCount()>0) {
 //                Toast toast = Toast.makeText(getApplicationContext(),"Existe: "+user, Toast.LENGTH_LONG);
 //                toast.show();
-                Cursor pw = db.rawQuery("SELECT id_persona, id_usuario FROM usuario WHERE nombre_usuario = ? AND contrasena_usuario= ?", new String[] {user, password});
+                Cursor pw = db.rawQuery("SELECT id_persona, id_usuario, free_usuario FROM usuario WHERE nombre_usuario = ? AND contrasena_usuario= ?", new String[] {user, password});
                 if (pw.getCount()>0) {
                     int id_persona = 0;
                     int id_usuario = 0;
+                    String free_usuario = "";
                     while (pw.moveToNext()){
                         id_persona = pw.getInt(0);
                         id_usuario = pw.getInt(1);
+                        free_usuario = pw.getString(2);
                     }
 
                     Utilidades.currentUser = user;
                     Utilidades.currentUserIdPersona = id_persona;
                     Utilidades.currentUserIdUsuario = id_usuario;
+                    Utilidades.CAMPO_FREE_USUARIO = free_usuario;
+
+                    Toast.makeText(getApplicationContext(), Utilidades.CAMPO_FREE_USUARIO,Toast.LENGTH_LONG).show();
 //                    ContentValues usuario = new ContentValues();
 //                    usuario.put(Utilidades.CAMPO_ACTIVO_USUARIO,1);
 //

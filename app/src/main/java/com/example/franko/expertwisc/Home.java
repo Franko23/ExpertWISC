@@ -2,6 +2,8 @@ package com.example.franko.expertwisc;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
@@ -9,6 +11,7 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
@@ -25,7 +28,10 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.franko.expertwisc.Entidades.Paciente;
 import com.example.franko.expertwisc.Entidades.Persona;
+import com.example.franko.expertwisc.Entidades.Test;
+import com.example.franko.expertwisc.Entidades.Usuario;
 import com.example.franko.expertwisc.FragmentosPrincipales.AboutMe;
 import com.example.franko.expertwisc.FragmentosPrincipales.DatosPaciente;
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.DirectaEscalar;
@@ -33,6 +39,7 @@ import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.PerfilCompuestas;
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.PerfilEscalar;
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.Sugerencias;
+import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.Sugerencias_free;
 import com.example.franko.expertwisc.FragmentosPrincipales.GeneralSubPruebas;
 import com.example.franko.expertwisc.FragmentosPrincipales.ListaPacientes;
 import com.example.franko.expertwisc.FragmentosPrincipales.RegistroPaciente;
@@ -84,6 +91,7 @@ public class Home extends AppCompatActivity
         PerfilCompuestas.OnFragmentInteractionListener,
         PerfilEscalar.OnFragmentInteractionListener,
         Sugerencias.OnFragmentInteractionListener,
+        Sugerencias_free.OnFragmentInteractionListener,
         AboutMe.OnFragmentInteractionListener
 {
     FloatingActionButton fab;
@@ -91,7 +99,7 @@ public class Home extends AppCompatActivity
     TextView textViewNameProfile;
     CircleImageView circleImageView;
     LinearLayout linear_back;
-
+    Integer contador = 0;
     ConexionHelper con;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -120,15 +128,37 @@ public class Home extends AppCompatActivity
             fab.hide();
         }
 
+        Contador();
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                fab.hide();
-                Utilidades.rotacionFab=1;
-                Fragment fragment = new RegistroPaciente();
-                getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
 
-                CambioTitulo("Registro de paciente");
+//                Snackbar.make(view, "Contador = " + contador, Snackbar.LENGTH_LONG).show();
+
+                //Si es free
+                if (Utilidades.CAMPO_FREE_USUARIO.equals("1")){
+                    if (contador < 2){
+                        fab.hide();
+                        Utilidades.rotacionFab=1;
+                        Fragment fragment = new RegistroPaciente();
+                        getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
+
+                        CambioTitulo("Registro de paciente");
+                    }else{
+
+                        Snackbar.make(view, "Ha superado la cantidad máxima de registro de pacientes en esta versión", Snackbar.LENGTH_LONG).show();
+                    }
+
+                }else{
+                    fab.hide();
+                    Utilidades.rotacionFab=1;
+                    Fragment fragment = new RegistroPaciente();
+                    getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
+
+                    CambioTitulo("Registro de paciente");
+                }
+
             }
         });
 
@@ -164,6 +194,14 @@ public class Home extends AppCompatActivity
             Toast.makeText(getApplicationContext(),"Null",Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    private void Contador() {
+        SQLiteDatabase db = con.getWritableDatabase();
+        Cursor pw = db.rawQuery("SELECT id_persona FROM paciente " +
+                "WHERE id_usuario = "+Utilidades.currentUserIdUsuario,null);
+
+        contador = pw.getCount();
     }
 
     private Drawable ConvertBitmapToDrawable(Bitmap bitmap) {
@@ -249,11 +287,27 @@ public class Home extends AppCompatActivity
             Utilidades.rotacionFab =0;
             CambioTitulo("Inicio");
         } else if (id == R.id.nav_nuevo_paciente) {
-            fragment = new RegistroPaciente();
-            aBoolean = true;
-            fab.hide();
-            Utilidades.rotacionFab=1;
-            CambioTitulo("Registro de pacientes");
+
+            if (Utilidades.CAMPO_FREE_USUARIO.equals("1")) {
+                if (contador < 2) {
+                    fragment = new RegistroPaciente();
+                    aBoolean = true;
+                    fab.hide();
+                    Utilidades.rotacionFab=1;
+                    CambioTitulo("Registro de pacientes");
+                }else {
+                    Toast.makeText(getApplicationContext(),"Ha superado la cantidad máxima de registro de pacientes en esta versión",Toast.LENGTH_SHORT).show();
+                }
+
+            }else{
+                fragment = new RegistroPaciente();
+                aBoolean = true;
+                fab.hide();
+                Utilidades.rotacionFab=1;
+                CambioTitulo("Registro de pacientes");
+            }
+
+
         } else if (id == R.id.nav_datos) {
 //            fragment = new CC();
 //            aBoolean = true;

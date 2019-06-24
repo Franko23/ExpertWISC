@@ -557,11 +557,22 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
                 String b = Long.toString(idPaciente);
                 id_paciente = Integer.parseInt(b);
 
-
             }catch (Exception e){
 
                 Toast.makeText(getContext(),"Error al registrar paciente", Toast.LENGTH_SHORT).show();
             }
+
+//        try {
+//            ContentValues user = new ContentValues();
+//            user.put(Utilidades.CAMPO_CANTIDAD_PACIENTE, id_paciente);
+//            int idCantidad=db.update(Utilidades.TABLA_USUARIO, user, Utilidades.CAMPO_ID_USUARIO+"="+Utilidades.currentUserIdUsuario,null);
+//            Toast.makeText(getContext(),"Paciente nro "+idCantidad, Toast.LENGTH_SHORT).show();
+//            if (idCantidad==1){
+//                Snackbar.make(view, "Cantidad = "+id_paciente, Snackbar.LENGTH_LONG).show();
+//            }
+//        }catch (Exception e){
+//            Toast.makeText(getContext(),"Error al registrar cantidad", Toast.LENGTH_SHORT).show();
+//        }
 
             db.close();
 

@@ -7,13 +7,15 @@ public class Usuario implements Serializable{
     private String Contrasena_usuario;
     private boolean Activo_usuario;
     private Integer Id_persona;
+    private Boolean Free_usuario;
 
-    public Usuario(Integer id_usuario, String nombre_usuario, String contraseña_usuario, boolean activo_usuario, Integer id_persona) {
+    public Usuario(Integer id_usuario, String nombre_usuario, String contraseña_usuario, boolean activo_usuario, Integer id_persona, boolean free_usuario) {
         this.Id_usuario = id_usuario;
         this.Nombre_usuario = nombre_usuario;
         this.Contrasena_usuario = contraseña_usuario;
         Activo_usuario = activo_usuario;
         this.Id_persona = id_persona;
+        this.Free_usuario = free_usuario;
     }
 
     public Usuario(){
@@ -58,4 +60,18 @@ public class Usuario implements Serializable{
     public void setId_persona(Integer id_Persona) {
         Id_persona = id_Persona;
     }
+
+    public boolean isActivo_usuario() {
+        return Activo_usuario;
+    }
+
+    public Boolean getFree_usuario() {
+        return Free_usuario;
+    }
+
+    public void setFree_usuario(Boolean free_usuario) {
+        Free_usuario = free_usuario;
+    }
+
+
 }

@@ -63,6 +63,7 @@ public class Register extends AppCompatActivity {
     FirebaseFirestore dbFire = FirebaseFirestore.getInstance();
     Boolean existe = false;
     String nUsuario, idUsuario, cUsuario;
+    Boolean fUsuario;
     TextView mensaje;
 
     final Context context = this;
@@ -151,6 +152,7 @@ public class Register extends AppCompatActivity {
                                         existe = true;
                                         nUsuario = document.getString("usuario");
                                         cUsuario = document.getString("contraseña");
+                                        fUsuario = document.getBoolean("free");
                                         idUsuario = document.getId();
 //                                        Log.d("Usuario",nUsuario);
                                     }
@@ -298,6 +300,7 @@ public class Register extends AppCompatActivity {
                 user.put(Utilidades.CAMPO_EMAIL_USUARIO, email);
                 user.put(Utilidades.CAMPO_CONTRASENA_USUARIO, cUsuario);
                 user.put(Utilidades.CAMPO_ID_PERSONA, number);
+                user.put(Utilidades.CAMPO_FREE_USUARIO, fUsuario);
 
                 Long resUser = db.insert(Utilidades.TABLA_USUARIO, Utilidades.CAMPO_ID_USUARIO, user);
                 b = Long.toString(resUser);

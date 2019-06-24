@@ -271,14 +271,15 @@ public class DatosPaciente extends Fragment {
                 ImageView up = v.findViewById(R.id.up_test);
                 TextView estado = v.findViewById(R.id.estado);
 
+                //Subida de los test
                 up.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
 //
                         if (up_paciente.getVisibility()==View.VISIBLE){
                             Toast.makeText(getContext(),"PRIMERO DEBE DE SUBIR LOS DATOS DEL PACIENTE" ,Toast.LENGTH_SHORT).show();
-                        }else {
 
+                        }else {
 
                             Map<String, Object> newTest = new HashMap<>();
 
@@ -718,23 +719,49 @@ public class DatosPaciente extends Fragment {
             @Override
             public void onClick(View view) {
 
-                Fragment fragment = new GeneralSubPruebas();
-                FragmentTransaction transaction = getFragmentManager().beginTransaction();
-                Test test = new Test();
-                test.Valores();
-                //Registro de nuevo test
-                RegistroTest();
+                if (Utilidades.CAMPO_FREE_USUARIO.equals("1") ){
+                    if (listaTest.size() < 2){
+                        Fragment fragment = new GeneralSubPruebas();
+                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                        Test test = new Test();
+                        test.Valores();
+                        //Registro de nuevo test
+                        RegistroTest();
 
-                //Registramos los SubTest de el Test Actual
-                RegistrarSubTest();
+                        //Registramos los SubTest de el Test Actual
+                        RegistrarSubTest();
 
-                Persona persona =  new Persona();
-                persona.setNombre_persona(editNombres.getText().toString());
-                persona.setFecha_nacimiento_persona(editFechaNac.getText().toString());
+                        Persona persona =  new Persona();
+                        persona.setNombre_persona(editNombres.getText().toString());
+                        persona.setFecha_nacimiento_persona(editFechaNac.getText().toString());
 
-                transaction.replace(R.id.content_main, fragment);
-                transaction.addToBackStack(null);
-                transaction.commit();
+                        transaction.replace(R.id.content_main, fragment);
+                        transaction.addToBackStack(null);
+                        transaction.commit();
+                    }else{
+                        Snackbar.make(view, "Ha superado la cantidad máxima de registro de Test en esta versión", Snackbar.LENGTH_LONG).show();
+                    }
+
+                }else {
+
+                    Fragment fragment = new GeneralSubPruebas();
+                    FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                    Test test = new Test();
+                    test.Valores();
+                    //Registro de nuevo test
+                    RegistroTest();
+
+                    //Registramos los SubTest de el Test Actual
+                    RegistrarSubTest();
+
+                    Persona persona =  new Persona();
+                    persona.setNombre_persona(editNombres.getText().toString());
+                    persona.setFecha_nacimiento_persona(editFechaNac.getText().toString());
+
+                    transaction.replace(R.id.content_main, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
 
             }
         });
@@ -869,51 +896,56 @@ public class DatosPaciente extends Fragment {
     private void subirPaciente() {
         Map<String, Object> newPersona = new HashMap<>();
 
-        newPersona.put("nombres",editNombres.getText().toString());
-        newPersona.put("apellidos",editApellidos.getText().toString());
-        newPersona.put("fechaNacimiento",editFechaNac.getText().toString());
+        if (Utilidades.CAMPO_FREE_USUARIO.equals("1")){
+            Snackbar.make(view, "El respaldo de datos no está disponible en esta versión", Snackbar.LENGTH_LONG).show();
+        }else{
+            newPersona.put("nombres",editNombres.getText().toString());
+            newPersona.put("apellidos",editApellidos.getText().toString());
+            newPersona.put("fechaNacimiento",editFechaNac.getText().toString());
 
-        imgDatospaciente.setDrawingCacheEnabled(true);
-        imgDatospaciente.buildDrawingCache();
+            imgDatospaciente.setDrawingCacheEnabled(true);
+            imgDatospaciente.buildDrawingCache();
 
-        Bitmap bitmap =  imgDatospaciente.getDrawingCache();
-        ByteArrayOutputStream baos  = new ByteArrayOutputStream();
-        bitmap.compress(Bitmap.CompressFormat.JPEG,100, baos);
-        byte[] data = baos.toByteArray();
+            Bitmap bitmap =  imgDatospaciente.getDrawingCache();
+            ByteArrayOutputStream baos  = new ByteArrayOutputStream();
+            bitmap.compress(Bitmap.CompressFormat.JPEG,100, baos);
+            byte[] data = baos.toByteArray();
 
-        newPersona.put("imagen",String.valueOf(data));
-        newPersona.put("motivo", editMotivo.getText().toString());
-        newPersona.put("antecedentes",editAntecedentes.getText().toString());
+            newPersona.put("imagen",String.valueOf(data));
+            newPersona.put("motivo", editMotivo.getText().toString());
+            newPersona.put("antecedentes",editAntecedentes.getText().toString());
 
-        dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(paciente.getId_paciente().toString())
-                .set(newPersona)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        Log.d(TAG, "Paciente subido corectamente");
-                        up_paciente.setVisibility(View.INVISIBLE);
+            dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").document(paciente.getId_paciente().toString())
+                    .set(newPersona)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            Log.d(TAG, "Paciente subido corectamente");
+                            up_paciente.setVisibility(View.INVISIBLE);
 
-                        SQLiteDatabase db = con.getWritableDatabase();
-                        ContentValues personaUpdate = new ContentValues();
-                        personaUpdate.put(Utilidades.CAMPO_UP_PERSONA,"SI");
-                        try {
-                            int okPersona=db.update(Utilidades.TABLA_PERSONA,personaUpdate,Utilidades.CAMPO_ID_PERSONA+"="+persona.getId_persona(),null);
-                            if (okPersona==1){
-                                Snackbar.make(view, "Datos subidos correctamente", Snackbar.LENGTH_LONG).show();
-                                up_paciente.setVisibility(View.INVISIBLE);
+                            SQLiteDatabase db = con.getWritableDatabase();
+                            ContentValues personaUpdate = new ContentValues();
+                            personaUpdate.put(Utilidades.CAMPO_UP_PERSONA,"SI");
+                            try {
+                                int okPersona=db.update(Utilidades.TABLA_PERSONA,personaUpdate,Utilidades.CAMPO_ID_PERSONA+"="+persona.getId_persona(),null);
+                                if (okPersona==1){
+                                    Snackbar.make(view, "Datos subidos correctamente", Snackbar.LENGTH_LONG).show();
+                                    up_paciente.setVisibility(View.INVISIBLE);
+                                }
+                            }catch (Exception e){
+                                Toast.makeText(getContext(),"Error al actualizar Datos del paciente", Toast.LENGTH_SHORT).show();
                             }
-                        }catch (Exception e){
-                            Toast.makeText(getContext(),"Error al actualizar Datos del paciente", Toast.LENGTH_SHORT).show();
-                        }
 
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error subiendo paciente", e);
-                    }
-                });
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            Log.w(TAG, "Error subiendo paciente", e);
+                        }
+                    });
+        }
+
     }
 
     private void ConsultaView(int id_test, Test test) {
