@@ -17,6 +17,10 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Datos" />
         <item
+            android:id="@+id/nav_upgrade"
+            android:icon="@drawable/cards_heart"
+            android:title="Actualizar" />
+        <item
             android:id="@+id/nav_config"
             android:icon="@drawable/ic_menu_manage"
             android:title="Configuraciones" />

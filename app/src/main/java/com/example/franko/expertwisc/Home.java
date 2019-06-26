@@ -44,6 +44,7 @@ import com.example.franko.expertwisc.FragmentosPrincipales.GeneralSubPruebas;
 import com.example.franko.expertwisc.FragmentosPrincipales.ListaPacientes;
 import com.example.franko.expertwisc.FragmentosPrincipales.RegistroPaciente;
 import com.example.franko.expertwisc.FragmentosPrincipales.Resultados;
+import com.example.franko.expertwisc.FragmentosPrincipales.Upgrade;
 import com.example.franko.expertwisc.FragmentosSubTest.A;
 import com.example.franko.expertwisc.FragmentosSubTest.Ad;
 import com.example.franko.expertwisc.FragmentosSubTest.Ar;
@@ -92,7 +93,8 @@ public class Home extends AppCompatActivity
         PerfilEscalar.OnFragmentInteractionListener,
         Sugerencias.OnFragmentInteractionListener,
         Sugerencias_free.OnFragmentInteractionListener,
-        AboutMe.OnFragmentInteractionListener
+        AboutMe.OnFragmentInteractionListener,
+        Upgrade.OnFragmentInteractionListener
 {
     FloatingActionButton fab;
     ImageView imageViewProfile;
@@ -129,7 +131,7 @@ public class Home extends AppCompatActivity
         }
 
         Contador();
-
+//        Toast.makeText(getApplicationContext(),String.valueOf(contador),Toast.LENGTH_LONG).show();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -137,17 +139,16 @@ public class Home extends AppCompatActivity
 //                Snackbar.make(view, "Contador = " + contador, Snackbar.LENGTH_LONG).show();
 
                 //Si es free
-                if (Utilidades.CAMPO_FREE_USUARIO.equals("1")){
-                    if (contador < 2){
+                if (Utilidades.currentUserFreeUsuario.equals("1")){
+                    if (contador == 2){
+                        Snackbar.make(view, "Ha superado la cantidad máxima de registro de pacientes en esta versión", Snackbar.LENGTH_LONG).show();
+                    }else{
                         fab.hide();
                         Utilidades.rotacionFab=1;
                         Fragment fragment = new RegistroPaciente();
                         getSupportFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
 
                         CambioTitulo("Registro de paciente");
-                    }else{
-
-                        Snackbar.make(view, "Ha superado la cantidad máxima de registro de pacientes en esta versión", Snackbar.LENGTH_LONG).show();
                     }
 
                 }else{
@@ -202,6 +203,7 @@ public class Home extends AppCompatActivity
                 "WHERE id_usuario = "+Utilidades.currentUserIdUsuario,null);
 
         contador = pw.getCount();
+
     }
 
     private Drawable ConvertBitmapToDrawable(Bitmap bitmap) {
@@ -288,15 +290,15 @@ public class Home extends AppCompatActivity
             CambioTitulo("Inicio");
         } else if (id == R.id.nav_nuevo_paciente) {
 
-            if (Utilidades.CAMPO_FREE_USUARIO.equals("1")) {
-                if (contador < 2) {
+            if (Utilidades.currentUserFreeUsuario.equals("1")) {
+                if (contador == 2) {
+                    Toast.makeText(getApplicationContext(),"Ha superado la cantidad máxima de registro de pacientes en esta versión",Toast.LENGTH_SHORT).show();
+                }else {
                     fragment = new RegistroPaciente();
                     aBoolean = true;
                     fab.hide();
                     Utilidades.rotacionFab=1;
                     CambioTitulo("Registro de pacientes");
-                }else {
-                    Toast.makeText(getApplicationContext(),"Ha superado la cantidad máxima de registro de pacientes en esta versión",Toast.LENGTH_SHORT).show();
                 }
 
             }else{
@@ -321,10 +323,12 @@ public class Home extends AppCompatActivity
 //            fab.hide();
 //            CambioTitulo("Sobre mi");
             Toast.makeText(getApplicationContext(),"Pronto...",Toast.LENGTH_SHORT).show();
+        } else if (id == R.id.nav_upgrade) {
+            fragment = new Upgrade();
+            aBoolean = true;
+            fab.hide();
+            CambioTitulo("Actualizar aplicación");
         }
-//        else if (id == R.id.nav_share) {
-//
-//        }
         else if (id == R.id.nav_sobre) {
             fragment = new AboutMe();
             aBoolean = true;

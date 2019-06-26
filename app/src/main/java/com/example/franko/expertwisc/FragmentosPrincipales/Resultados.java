@@ -152,11 +152,14 @@ public class Resultados extends Fragment {
         seccionesAdapter.addFragment(new IndicesCI(),"Índices y CI");
         seccionesAdapter.addFragment(new PerfilEscalar(),"Perfil Escalar");
         seccionesAdapter.addFragment(new PerfilCompuestas(),"Perfil Compuesta");
-        if (Utilidades.CAMPO_FREE_USUARIO.equals("1")) {
+
+        if(Utilidades.currentUserFreeUsuario.equals("1")){
             seccionesAdapter.addFragment(new Sugerencias_free(),"Sugerencias");
         }else{
             seccionesAdapter.addFragment(new Sugerencias(),"Sugerencias");
         }
+
+
 
 
         viewPager.setAdapter(seccionesAdapter);

@@ -191,8 +191,6 @@ public class DatosPaciente extends Fragment {
         txt_mensaje_test = view.findViewById(R.id.txt_mensaje_test);
         cantidadTest = view.findViewById(R.id.cantidad_test);
 
-//        imgDatospaciente.setEnabled(false);
-
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -719,7 +717,7 @@ public class DatosPaciente extends Fragment {
             @Override
             public void onClick(View view) {
 
-                if (Utilidades.CAMPO_FREE_USUARIO.equals("1") ){
+                if (Utilidades.currentUserFreeUsuario.equals("1") ){
                     if (listaTest.size() < 2){
                         Fragment fragment = new GeneralSubPruebas();
                         FragmentTransaction transaction = getFragmentManager().beginTransaction();
@@ -896,7 +894,7 @@ public class DatosPaciente extends Fragment {
     private void subirPaciente() {
         Map<String, Object> newPersona = new HashMap<>();
 
-        if (Utilidades.CAMPO_FREE_USUARIO.equals("1")){
+        if (Utilidades.currentUserFreeUsuario.equals("1")){
             Snackbar.make(view, "El respaldo de datos no está disponible en esta versión", Snackbar.LENGTH_LONG).show();
         }else{
             newPersona.put("nombres",editNombres.getText().toString());

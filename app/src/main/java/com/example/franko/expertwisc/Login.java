@@ -117,8 +117,8 @@ public class Login extends AppCompatActivity {
             mPasswordView.setError(getString(R.string.error_field_required));
             focusView = mPasswordView;
             focusView.requestFocus();
-        }else if(user.equals("admin")) {
-            if (password.equals("admin")) {
+        }else if(user.equals("franko")) {
+            if (password.equals("franko.2365")) {
                 intent = new Intent(getApplicationContext(), Register.class);
                 startActivity(intent);
             } else {
@@ -146,13 +146,7 @@ public class Login extends AppCompatActivity {
                     Utilidades.currentUser = user;
                     Utilidades.currentUserIdPersona = id_persona;
                     Utilidades.currentUserIdUsuario = id_usuario;
-                    Utilidades.CAMPO_FREE_USUARIO = free_usuario;
-
-                    Toast.makeText(getApplicationContext(), Utilidades.CAMPO_FREE_USUARIO,Toast.LENGTH_LONG).show();
-//                    ContentValues usuario = new ContentValues();
-//                    usuario.put(Utilidades.CAMPO_ACTIVO_USUARIO,1);
-//
-//                    db.update(Utilidades.TABLA_USUARIO,usuario,Utilidades.CAMPO_ID_USUARIO+"="+id,null);
+                    Utilidades.currentUserFreeUsuario = free_usuario;
 
                     intent = new Intent(getApplicationContext(), Home.class);
 
