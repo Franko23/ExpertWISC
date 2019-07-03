@@ -2,25 +2,23 @@ package com.example.franko.expertwisc;
 
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.database.Cursor;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AlertDialog;
 import android.view.View;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.navigation.NavigationView;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
@@ -28,10 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.franko.expertwisc.Entidades.Paciente;
 import com.example.franko.expertwisc.Entidades.Persona;
-import com.example.franko.expertwisc.Entidades.Test;
-import com.example.franko.expertwisc.Entidades.Usuario;
 import com.example.franko.expertwisc.FragmentosPrincipales.AboutMe;
 import com.example.franko.expertwisc.FragmentosPrincipales.DatosPaciente;
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.DirectaEscalar;
@@ -61,6 +56,7 @@ import com.example.franko.expertwisc.FragmentosSubTest.RD;
 import com.example.franko.expertwisc.FragmentosSubTest.S;
 import com.example.franko.expertwisc.FragmentosSubTest.V;
 import com.example.franko.expertwisc.Tools.BlurBuilder;
+import com.example.franko.expertwisc.Tools.Consultas;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -130,17 +126,15 @@ public class Home extends AppCompatActivity
             fab.hide();
         }
 
-        Contador();
-//        Toast.makeText(getApplicationContext(),String.valueOf(contador),Toast.LENGTH_LONG).show();
+        Consultas consultas = new Consultas();
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
-//                Snackbar.make(view, "Contador = " + contador, Snackbar.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(),"Contador: "+Utilidades.currentCounterPatients,Toast.LENGTH_LONG).show();
 
                 //Si es free
                 if (Utilidades.currentUserFreeUsuario.equals("1")){
-                    if (contador == 2){
+                    if (consultas.Contador(getApplicationContext()) > 1){
                         Snackbar.make(view, "Ha superado la cantidad máxima de registro de pacientes en esta versión", Snackbar.LENGTH_LONG).show();
                     }else{
                         fab.hide();
@@ -194,15 +188,6 @@ public class Home extends AppCompatActivity
         }else{
             Toast.makeText(getApplicationContext(),"Null",Toast.LENGTH_LONG).show();
         }
-
-    }
-
-    private void Contador() {
-        SQLiteDatabase db = con.getWritableDatabase();
-        Cursor pw = db.rawQuery("SELECT id_persona FROM paciente " +
-                "WHERE id_usuario = "+Utilidades.currentUserIdUsuario,null);
-
-        contador = pw.getCount();
 
     }
 
@@ -282,6 +267,8 @@ public class Home extends AppCompatActivity
         Fragment fragment = null;
         Boolean aBoolean = false;
 
+        Consultas consultas = new Consultas();
+
         if (id == R.id.nav_inicio) {
             fragment = new ListaPacientes();
             aBoolean = true;
@@ -291,7 +278,7 @@ public class Home extends AppCompatActivity
         } else if (id == R.id.nav_nuevo_paciente) {
 
             if (Utilidades.currentUserFreeUsuario.equals("1")) {
-                if (contador == 2) {
+                if (consultas.Contador(getApplicationContext()) > 1) {
                     Toast.makeText(getApplicationContext(),"Ha superado la cantidad máxima de registro de pacientes en esta versión",Toast.LENGTH_SHORT).show();
                 }else {
                     fragment = new RegistroPaciente();
@@ -308,7 +295,7 @@ public class Home extends AppCompatActivity
                 Utilidades.rotacionFab=1;
                 CambioTitulo("Registro de pacientes");
             }
-
+            Toast.makeText(getApplicationContext(),"Contador: "+Utilidades.currentCounterPatients,Toast.LENGTH_LONG).show();
 
         } else if (id == R.id.nav_datos) {
 //            fragment = new CC();

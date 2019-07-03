@@ -1,13 +1,10 @@
 package com.example.franko.expertwisc.FragmentosPrincipales;
 
-import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
-import android.content.ContentResolver;
 import android.content.ContentValues;
 import android.content.Context;
-import android.content.ContextWrapper;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
@@ -15,30 +12,24 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
-import android.inputmethodservice.Keyboard;
 import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import android.support.annotation.NonNull;
-import android.support.design.widget.Snackbar;
-import android.support.design.widget.TextInputEditText;
-import android.support.v4.app.ActivityCompat;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v4.content.ContextCompat;
+import androidx.annotation.NonNull;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+
 import android.text.Editable;
-import android.text.Layout;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.DatePicker;
-import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -63,16 +54,10 @@ import com.example.franko.expertwisc.Entidades.SubTest.SubTestRD;
 import com.example.franko.expertwisc.Entidades.SubTest.SubTestS;
 import com.example.franko.expertwisc.Entidades.SubTest.SubTestV;
 import com.example.franko.expertwisc.Entidades.Test;
-import com.example.franko.expertwisc.Entidades.Usuario;
-import com.example.franko.expertwisc.Home;
 import com.example.franko.expertwisc.R;
-import com.example.franko.expertwisc.FragmentosPrincipales.GeneralSubPruebas;
 import com.example.franko.expertwisc.Tools.CalcularEdad;
 import com.example.franko.expertwisc.Tools.PBDialog;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
@@ -81,10 +66,6 @@ import java.io.InputStream;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.HashMap;
-import java.util.Map;
-
-import br.com.simplepass.loading_button_lib.customViews.CircularProgressButton;
 
 import static android.app.Activity.RESULT_OK;
 

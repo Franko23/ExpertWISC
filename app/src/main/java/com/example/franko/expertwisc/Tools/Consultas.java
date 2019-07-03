@@ -2,6 +2,7 @@ package com.example.franko.expertwisc.Tools;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.widget.Toast;
 
@@ -13,24 +14,18 @@ public class Consultas {
     Context context;
 
     public Consultas() {
-        con = new ConexionHelper(context, "bd_wisc", null, 1);
 
     }
 
-    public void RegistrarCC (Context context){
+    public int Contador (Context context){
         this.context = context;
+        con = new ConexionHelper(context, "bd_wisc", null, 1);
 
         SQLiteDatabase db = con.getWritableDatabase();
+        Cursor pw = db.rawQuery("SELECT id_persona FROM paciente " +
+                "WHERE id_usuario = "+Utilidades.currentUserIdUsuario,null);
 
-        ContentValues cc = new ContentValues();
-        cc.put(Utilidades.CAMPO_CC,Utilidades.R_cc);
-        cc.put(Utilidades.CAMPO_ID_TEST, Utilidades.currentTest);
+        return Utilidades.currentCounterPatients = pw.getCount();
 
-        try {
-            Long id_CC = db.insert(Utilidades.TABLA_PUNTUACIONES_CC, Utilidades.CAMPO_ID_PUNTUACION_CC, cc);
-            Toast.makeText(context,"Inserción de puntuacion CC correcta",Toast.LENGTH_SHORT).show();
-        }catch (Exception e){
-            Toast.makeText(context,"Error al insertar puntuacion CC",Toast.LENGTH_SHORT).show();
-        }
     }
 }

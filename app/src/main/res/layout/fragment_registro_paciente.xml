@@ -78,7 +78,7 @@
                                 android:text="Nombres:"
                                 android:gravity="center_vertical"
                                 android:textStyle="bold"/>
-                            <android.support.design.widget.TextInputEditText
+                            <com.google.android.material.textfield.TextInputEditText
                                 android:layout_gravity="center_vertical"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
@@ -99,7 +99,7 @@
                                 android:text="Apellidos:"
                                 android:gravity="center_vertical"
                                 android:textStyle="bold"/>
-                            <android.support.design.widget.TextInputEditText
+                            <com.google.android.material.textfield.TextInputEditText
                                 android:textColor="#767474"
                                 android:layout_gravity="center_vertical"
                                 android:layout_width="match_parent"
@@ -120,7 +120,7 @@
                                 android:text="Motivo de consulta:"
                                 android:gravity="center_vertical"
                                 android:textStyle="bold"/>
-                            <android.support.design.widget.TextInputEditText
+                            <com.google.android.material.textfield.TextInputEditText
                                 android:textColor="#767474"
                                 android:layout_gravity="center_vertical"
                                 android:layout_width="match_parent"
@@ -141,7 +141,7 @@
                                 android:text="Antecedentes:"
                                 android:gravity="center_vertical"
                                 android:textStyle="bold"/>
-                            <android.support.design.widget.TextInputEditText
+                            <com.google.android.material.textfield.TextInputEditText
                                 android:textColor="#767474"
                                 android:layout_gravity="center_vertical"
                                 android:layout_width="match_parent"

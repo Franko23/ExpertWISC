@@ -8,11 +8,10 @@ import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.Snackbar;
-import android.support.v4.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AlertDialog;
+import com.google.android.material.snackbar.Snackbar;
+
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AlertDialog;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -24,15 +23,12 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RadioButton;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.franko.expertwisc.Entidades.SubTest.SubTestAr;
-import com.example.franko.expertwisc.Entidades.SubTest.SubTestC;
 import com.example.franko.expertwisc.Entidades.SubTest.SubTestLN;
 import com.example.franko.expertwisc.Entidades.SubTest.SubTestRD;
 import com.example.franko.expertwisc.Entidades.Test;
 import com.example.franko.expertwisc.R;
-import com.example.franko.expertwisc.Tools.DialogPreResultados;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
 /**

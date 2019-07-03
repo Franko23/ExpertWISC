@@ -16,6 +16,9 @@ public class Utilidades {
 
     public static String edadActual; //Edad del paciente actual
     public static String fechaEvaluacion; //Fecha de evaluación
+    public static String antecedentes; //Fecha de evaluación
+    public static String motivo; //Fecha de evaluación
+
 
     public static String R_cc;
     public static String R_s;
@@ -51,6 +54,7 @@ public class Utilidades {
     public static int currentUserIdPersona = 0;//Id_persona del usuario actual
     public static int currentUserIdUsuario = 0;//Id_usuario del usuario actual
     public static String currentUserFreeUsuario = "";
+    public static int currentCounterPatients = 0;
 
     public static String currentUser;
     public static String currentUserName;

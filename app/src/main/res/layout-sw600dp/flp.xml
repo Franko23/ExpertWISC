@@ -16,12 +16,12 @@
         android:id="@+id/txt_mensaje_lista_paciente"
         android:text="Aún no hay pacientes registrados"
         android:visibility="invisible"/>
-    <android.support.v7.widget.RecyclerView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/listaPacientes"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-    </android.support.v7.widget.RecyclerView>
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 </RelativeLayout>

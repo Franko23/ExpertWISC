@@ -19,7 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class PuntuacionEscalar {
-    private String punto, edad;
+    private String edad;
     Boolean r = false;
     List<String> values;
     String [] edades = {
@@ -44,9 +44,8 @@ public class PuntuacionEscalar {
 
 
     public List<String> Punto(Context  context, List<String> values){
-        this.punto = punto;
         this.context = context;
-        String res="";
+        String res;
         this.values = values;
         String [] sTest = {"CC","S","RD","Co","Cl","V","LN","M","C","BS","CF","A","I","Ar","Ad"};
         List<String> newValues = new ArrayList<>();
@@ -105,7 +104,7 @@ public class PuntuacionEscalar {
                                 values.set(i,sep[0]);
                             }
                             if (Integer.parseInt(values.get(i))<=Integer.parseInt(temp)){
-                                if (r==true){
+                                if (r){
                                     res = ""+(index+1)+"r";
                                     r=false;
                                 }else {

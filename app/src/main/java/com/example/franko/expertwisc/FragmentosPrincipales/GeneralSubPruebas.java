@@ -1,17 +1,15 @@
 package com.example.franko.expertwisc.FragmentosPrincipales;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.TabLayout;
-import android.support.design.widget.TextInputEditText;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
-import android.text.TextUtils;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.tabs.TabLayout;
+import com.google.android.material.textfield.TextInputEditText;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
+
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,9 +22,7 @@ import android.widget.Toast;
 
 import com.example.franko.expertwisc.Adapters.SeccionesAdapter;
 import com.example.franko.expertwisc.ConexionHelper;
-import com.example.franko.expertwisc.Entidades.Paciente;
 import com.example.franko.expertwisc.Entidades.Persona;
-import com.example.franko.expertwisc.Entidades.Test;
 import com.example.franko.expertwisc.FragmentosSubTest.A;
 import com.example.franko.expertwisc.FragmentosSubTest.Ad;
 import com.example.franko.expertwisc.FragmentosSubTest.Ar;
@@ -46,8 +42,6 @@ import com.example.franko.expertwisc.R;
 
 import com.example.franko.expertwisc.Tools.CalcularEdad;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
-
-import java.util.ArrayList;
 
 
 /**

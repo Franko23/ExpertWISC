@@ -1,20 +1,17 @@
 package com.example.franko.expertwisc.FragmentosPrincipales;
 
-import android.content.ContentValues;
 import android.content.Context;
-import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.AppBarLayout;
-import android.support.design.widget.TabLayout;
-import android.support.v4.app.Fragment;
-import android.support.v4.view.ViewPager;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.tabs.TabLayout;
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.Window;
 import android.widget.Toast;
 
 import com.example.franko.expertwisc.Adapters.SeccionesAdapter;
@@ -26,21 +23,6 @@ import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.PerfilEscalar;
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.Sugerencias;
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.Sugerencias_free;
-import com.example.franko.expertwisc.FragmentosSubTest.A;
-import com.example.franko.expertwisc.FragmentosSubTest.Ad;
-import com.example.franko.expertwisc.FragmentosSubTest.Ar;
-import com.example.franko.expertwisc.FragmentosSubTest.BS;
-import com.example.franko.expertwisc.FragmentosSubTest.C;
-import com.example.franko.expertwisc.FragmentosSubTest.CC;
-import com.example.franko.expertwisc.FragmentosSubTest.CF;
-import com.example.franko.expertwisc.FragmentosSubTest.Cl;
-import com.example.franko.expertwisc.FragmentosSubTest.Co;
-import com.example.franko.expertwisc.FragmentosSubTest.I;
-import com.example.franko.expertwisc.FragmentosSubTest.LN;
-import com.example.franko.expertwisc.FragmentosSubTest.M;
-import com.example.franko.expertwisc.FragmentosSubTest.RD;
-import com.example.franko.expertwisc.FragmentosSubTest.S;
-import com.example.franko.expertwisc.FragmentosSubTest.V;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 

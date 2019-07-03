@@ -3,24 +3,19 @@ package com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.franko.expertwisc.Adapters.AdapterSugerencias;
-import com.example.franko.expertwisc.ExpertSystem.SistemaExperto;
-import com.example.franko.expertwisc.FragmentosSubTest.S;
-import com.example.franko.expertwisc.FragmentosSubTest.V;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.franko.expertwisc.ExpertSystem.MotorInferencia;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 
 import java.util.ArrayList;
-
-import io.grpc.okhttp.internal.Util;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -36,7 +31,7 @@ public class Sugerencias extends Fragment {
     RecyclerView recyclerViewSugerenciaTest;
     View view;
     TextView txt_sugerencia, iq;
-    String area;
+    String respuesta;
     int count=0;
     String[] grupo = {"ICV", "IRP", "IMO", "IVP"};
     ArrayList<String> resultado, result;
@@ -92,59 +87,83 @@ public class Sugerencias extends Fragment {
         iq.setText(""+Utilidades.listResultCompuesta.get(4));
 
         //Invocación al Sistema Experto
-        SistemaExperto sistemaExperto = new SistemaExperto();
-        resultado = new ArrayList<>();
-        result = new ArrayList<>();
-        for (int i=0; i < 4; i++){
-            if (Integer.parseInt(Utilidades.listResultCompuesta.get(i))<100){
-                resultado.add(sistemaExperto.getResultado(Utilidades.edadActual,grupo[i]));
-                result.add(grupo[i]);
-                count++;
-            }
-        }
+        MotorInferencia motor = new MotorInferencia();
 
-        //Ordenamos los srting de resultados de áreas a ser mostradas
-        if (result.size()>1){
-            if (result.size()==2){
-                area = result.get(0)+" y "+result.get(1);
-            }
-            if (result.size()==3){
-                area = result.get(0)+","+result.get(1)+" y "+result.get(2);
-            }
-            if (result.size()==4){
-                area = result.get(0)+", "+result.get(1)+", "+result.get(2)+" y "+result.get(3);
-            }
-        }else if(result.size()==1){
-            area = result.get(0);
-        }
+        respuesta = motor.getResultado(Utilidades.edadActual,grupo);
 
 
-        recyclerViewSugerenciaTest = view.findViewById(R.id.rec_test);
-        recyclerViewSugerenciaTest.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        Utilidades.LEE = getString(R.string.LEE);
-        Utilidades.PROLEC = getString(R.string.PROLEC);
-        Utilidades.BENDER = getString(R.string.BENDER);
-        Utilidades.TEPSI = getString(R.string.TEPSI);
-        Utilidades.PRECALCULO = getString(R.string.PreCalculo);
-        Utilidades.PROCALCULO = getString(R.string.ProCalculo);
-        Utilidades.RAVEN_G = getString(R.string.Raven_G);
+        //Registro de nuevos datos BC
 
 
-        if (count>0){
-           AdapterSugerencias adapterSugerencias = new AdapterSugerencias(resultado);
-            recyclerViewSugerenciaTest.setAdapter(adapterSugerencias);
-            txt_sugerencia.setText("Estimado "+Utilidades.currentUserName+", hemos notado que "+
-                    Utilidades.currentPacienteName+
-                    " tiene algunas dificultades en "+
-                    area+
-                    ", por lo tanto te recomendamos aplicar las siguientes pruebas:");
-        }else
-        {
-            txt_sugerencia.setText("Estimado "+Utilidades.currentUserName+", hemos notado que "+
-                    Utilidades.currentPacienteName+" NO tiene dificultades significativas en el " +
-                    "test realizado. Pero aún así puedes fortalecer todas las áreas en las que sobresale.");
-        }
+
+        //Registro de nuevos datos MA
+
+
+//        for (int i=0; i < 4; i++){
+//            if (Integer.parseInt(Utilidades.listResultCompuesta.get(i))<100){
+////                resultado.add(motor.getResultado(Utilidades.edadActual,grupo[i]));
+//                respuesta = motor.getResultado(Utilidades.edadActual,grupo[i]);
+////                result.add(grupo[i]);
+//                count++;
+//            }
+//        }
+
+
+
+//        SistemaExperto sistemaExperto = new SistemaExperto();
+//        resultado = new ArrayList<>();
+//        result = new ArrayList<>();
+//        for (int i=0; i < 4; i++){
+//            if (Integer.parseInt(Utilidades.listResultCompuesta.get(i))<100){
+//                resultado.add(sistemaExperto.getResultado(Utilidades.edadActual,grupo[i]));
+//                result.add(grupo[i]);
+//                count++;
+//            }
+//        }
+//
+//        //Ordenamos los srting de resultados de áreas a ser mostradas
+//        if (result.size()>1){
+//            if (result.size()==2){
+//                area = result.get(0)+" y "+result.get(1);
+//            }
+//            if (result.size()==3){
+//                area = result.get(0)+","+result.get(1)+" y "+result.get(2);
+//            }
+//            if (result.size()==4){
+//                area = result.get(0)+", "+result.get(1)+", "+result.get(2)+" y "+result.get(3);
+//            }
+//        }else if(result.size()==1){
+//            area = result.get(0);
+//        }
+//
+//
+//        recyclerViewSugerenciaTest = view.findViewById(R.id.rec_test);
+//        recyclerViewSugerenciaTest.setLayoutManager(new LinearLayoutManager(getContext()));
+//
+//        Utilidades.LEE = getString(R.string.LEE);
+//        Utilidades.PROLEC = getString(R.string.PROLEC);
+//        Utilidades.BENDER = getString(R.string.BENDER);
+//        Utilidades.TEPSI = getString(R.string.TEPSI);
+//        Utilidades.PRECALCULO = getString(R.string.PreCalculo);
+//        Utilidades.PROCALCULO = getString(R.string.ProCalculo);
+//        Utilidades.RAVEN_G = getString(R.string.Raven_G);
+//
+//
+//        if (count>0){
+//           AdapterSugerencias adapterSugerencias = new AdapterSugerencias(resultado);
+//            recyclerViewSugerenciaTest.setAdapter(adapterSugerencias);
+//            txt_sugerencia.setText("Estimado "+Utilidades.currentUserName+", hemos notado que "+
+//                    Utilidades.currentPacienteName+
+//                    " tiene algunas dificultades en "+
+//                    area+
+//                    ", por lo tanto te recomendamos aplicar las siguientes pruebas:");
+//        }else
+//        {
+//            txt_sugerencia.setText("Estimado "+Utilidades.currentUserName+", hemos notado que "+
+//                    Utilidades.currentPacienteName+" NO tiene dificultades significativas en el " +
+//                    "test realizado. Pero aún así puedes fortalecer todas las áreas en las que sobresale.");
+//        }
 
 
 

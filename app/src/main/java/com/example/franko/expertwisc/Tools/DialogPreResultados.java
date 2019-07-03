@@ -1,18 +1,14 @@
 package com.example.franko.expertwisc.Tools;
 
 import android.app.Dialog;
-import android.app.Fragment;
 import android.content.ContentValues;
-import android.content.Context;
-import android.content.DialogInterface;
-import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.DialogFragment;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.widget.SwitchCompat;
+import androidx.annotation.NonNull;
+import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.Fragment;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.widget.SwitchCompat;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,11 +17,9 @@ import android.widget.Button;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.franko.expertwisc.ConexionHelper;
 import com.example.franko.expertwisc.FragmentosPrincipales.GeneralSubPruebas;
-import com.example.franko.expertwisc.FragmentosPrincipales.RegistroPaciente;
 import com.example.franko.expertwisc.FragmentosPrincipales.Resultados;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
@@ -179,7 +173,7 @@ public class DialogPreResultados extends DialogFragment{
 
                 getDialog().dismiss();
 
-                android.support.v4.app.Fragment fragment = new Resultados();
+                Fragment fragment = new Resultados();
                 getFragmentManager().beginTransaction().replace(R.id.content_main, fragment).commit();
 
             }
@@ -191,7 +185,7 @@ public class DialogPreResultados extends DialogFragment{
                 dismiss();
                 Utilidades.pages=5;
                 Utilidades.disable=false;
-                android.support.v4.app.Fragment fragment = new GeneralSubPruebas();
+                Fragment fragment = new GeneralSubPruebas();
                 getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
 
             }

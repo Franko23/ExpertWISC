@@ -1,17 +1,14 @@
 package com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados;
 
-import android.app.Activity;
 import android.content.Context;
-import android.content.pm.ActivityInfo;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
+import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.example.franko.expertwisc.FragmentosSubTest.S;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Tools.PuntuacionCI;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
