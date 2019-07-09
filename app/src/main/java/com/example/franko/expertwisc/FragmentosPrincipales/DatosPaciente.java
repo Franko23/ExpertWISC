@@ -16,15 +16,6 @@ import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import androidx.annotation.NonNull;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.appcompat.widget.SwitchCompat;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
@@ -39,6 +30,13 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.widget.SwitchCompat;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.franko.expertwisc.Adapters.AdapterTest;
 import com.example.franko.expertwisc.ConexionHelper;
@@ -67,6 +65,8 @@ import com.example.franko.expertwisc.Tools.PBDialog;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
@@ -223,7 +223,9 @@ public class DatosPaciente extends Fragment {
             Bitmap bitmap = BitmapFactory.decodeByteArray(image,0,image.length);
             imgDatospaciente.setImageBitmap(bitmap);
             editMotivo.setText(paciente.getMotivoConsulta_paciente());
+            Utilidades.motivo = paciente.getMotivoConsulta_paciente();
             editAntecedentes.setText(paciente.getAntecedentes_paciente());
+            Utilidades.antecedentes = paciente.getAntecedentes_paciente();
             //Enviamos el bitmap para recibir un BlurImage
             Bitmap imageBlur = BlurBuilder.blur(getContext(), bitmap);
             try{
@@ -660,7 +662,7 @@ public class DatosPaciente extends Fragment {
                         }
                     }
                 });
-
+                //Estado del Test
                 estado.setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
@@ -668,6 +670,11 @@ public class DatosPaciente extends Fragment {
                         String estado = listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getEstado_test();
                         int id_test = listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test();
                         Utilidades.currentTest=id_test;
+                        Persona persona =  new Persona();
+                        persona.setNombre_persona(editNombres.getText().toString());
+                        persona.setFecha_nacimiento_persona(editFechaNac.getText().toString());
+                        Utilidades.fechaNacimiento = persona.getFecha_nacimiento_persona();
+
                         if (estado.equals("EN CURSO")){
                             PBDialog PBDialog = new PBDialog(getContext());
                             PBDialog.setProgressBar();
@@ -675,13 +682,8 @@ public class DatosPaciente extends Fragment {
                             test.Valores();
                             ConsultaView(id_test, test);
 
-                            Persona persona =  new Persona();
-                            persona.setNombre_persona(editNombres.getText().toString());
-                            persona.setFecha_nacimiento_persona(editFechaNac.getText().toString());
-
                             Bundle bundle = new Bundle();
                             bundle.putSerializable("Persona", persona);
-
 
                             Fragment fragment =  new GeneralSubPruebas();
                             fragment.setArguments(bundle);
@@ -694,9 +696,9 @@ public class DatosPaciente extends Fragment {
                             test.Valores();
                             ConsultaView(id_test, test);
 
-                            //Setteamos la nuevamente la edad del paciente con la fecha del test seleccionado
-                            CalcularEdad calcularEdad = new CalcularEdad(persona.getFecha_nacimiento_persona(), test.getFecha_test());
-                            calcularEdad.CalcularEdad();
+                            //Setteamos nuevamente la edad del paciente con la fecha del test seleccionado
+//                            CalcularEdad calcularEdad = new CalcularEdad(persona.getFecha_nacimiento_persona(), test.getFecha_test());
+//                            Utilidades.fechaNacimiento = calcularEdad.CalcularEdad();
 
                             Fragment fragment =  new Resultados();
                             getFragmentManager().beginTransaction().replace(R.id.content_main,fragment).commit();
@@ -1019,6 +1021,11 @@ public class DatosPaciente extends Fragment {
                 layout_datos_edit.setVisibility(View.GONE);
                 switchCompat.setChecked(false);
                 up_paciente.setVisibility(View.VISIBLE);
+                Utilidades.currentPacienteName = editNombres.getText().toString();
+                Utilidades.motivo = editMotivo.getText().toString();
+                Utilidades.antecedentes = Utilidades.antecedentes;
+                Utilidades.antecedentes = editAntecedentes.getText().toString();
+
             }
 
 
@@ -1038,9 +1045,11 @@ public class DatosPaciente extends Fragment {
 
         Calendar calendar = Calendar.getInstance();
         SimpleDateFormat mdformat = new SimpleDateFormat("dd-MM-yyyy");
-        String fechaActual = mdformat.format(calendar.getTime());
+        Utilidades.fechaEvaluacion = mdformat.format(calendar.getTime());
 
-        test.put(Utilidades.CAMPO_FECHA_TEST,fechaActual);
+        //Setteamos la fecha de evaluación
+        test.put(Utilidades.CAMPO_FECHA_TEST,Utilidades.fechaEvaluacion);
+
 
         Persona persona;
 

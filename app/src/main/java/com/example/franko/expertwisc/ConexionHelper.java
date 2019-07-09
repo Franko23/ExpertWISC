@@ -1,16 +1,10 @@
 package com.example.franko.expertwisc;
 
-import android.content.ContentValues;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.os.Build;
-import android.util.Log;
-import android.widget.Toast;
 
 import com.example.franko.expertwisc.Utilidades.Utilidades;
-
-import java.io.File;
 
 /**
  * Created by FRANKO on 14/11/2017.
@@ -44,6 +38,10 @@ public class ConexionHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL(Utilidades.CREAR_TABLA_PUNTUACIONES_I);
         sqLiteDatabase.execSQL(Utilidades.CREAR_TABLA_PUNTUACIONES_AR);
         sqLiteDatabase.execSQL(Utilidades.CREAR_TABLA_PUNTUACIONES_AD);
+        sqLiteDatabase.execSQL(Utilidades.CREAR_TABLA_ICV);
+        sqLiteDatabase.execSQL(Utilidades.CREAR_TABLA_IRP);
+        sqLiteDatabase.execSQL(Utilidades.CREAR_TABLA_IMO);
+        sqLiteDatabase.execSQL(Utilidades.CREAR_TABLA_IVP);
     }
 
     @Override
@@ -67,6 +65,10 @@ public class ConexionHelper extends SQLiteOpenHelper {
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS puntuacion_is");
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS puntuacion_ars");
         sqLiteDatabase.execSQL("DROP TABLE IF EXISTS puntuacion_ads");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS icv");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS irp");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS imo");
+        sqLiteDatabase.execSQL("DROP TABLE IF EXISTS ivp");
         onCreate(sqLiteDatabase);
     }
 

@@ -6,44 +6,154 @@
     android:orientation="vertical"
     tools:context=".FragmentosPrincipales.FragmentosResultados.Sugerencias">
 
+    <TextView
+        android:id="@+id/nombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="10dp"
+        android:padding="5dp"
+        android:text="Roberto, 7 años"
+        android:textAlignment="center"
+        android:textSize="20dp"
+        android:textStyle="bold" />
+
     <!-- TODO: Update blank fragment layout -->
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:orientation="horizontal"
-        android:paddingTop="10dp">
-        <ImageView
-            android:layout_width="100dp"
-            android:layout_height="150dp"
-            android:paddingLeft="15dp"
-            android:src="@drawable/teach1"/>
-        <TextView
-            android:layout_width="130dp"
-            android:layout_height="match_parent"
-            android:text="Estimado FranKo, hemos notado que Miguel tiene algunas deficiencias en las siguientes pruebas"
-            android:id="@+id/txt_sugerencia"
-            android:padding="5dp"/>
-        <TextView
-            android:layout_margin="10dp"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:id="@+id/result_iq"
-            android:text="98"
-            android:gravity="center"
-            android:textAlignment="center"
-            android:textSize="25dp"
-            android:textColor="#fff"
-            android:background="@drawable/iq"/>
+        android:layout_height="wrap_content"
+        android:layout_weight="2"
+        android:orientation="vertical"
+        android:padding="10dp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:text="Motivo: "/>
+            <TextView
+                android:id="@+id/motivo"
+                android:paddingRight="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="Bajas calificaciones."/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:text="Antecedentes: "/>
+            <TextView
+                android:id="@+id/antecedentes"
+                android:paddingRight="5dp"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="El niño ya tuvo una evaluación de WISC hace 1 año atrás."/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:text="Puntuaciones: "/>
+            <TextView
+                android:id="@+id/puntuaciones"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingRight="5dp"
+                android:text="ICV 74, IRP 87, IMO 90, IVP 83 "/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:text="CIT: "/>
+            <TextView
+                android:id="@+id/cit"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingRight="5dp"
+                android:text="89 "/>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginBottom="5dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:text="Conclusiones: "/>
+            <TextView
+                android:id="@+id/conclusiones"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingRight="5dp"
+                android:text="Los niños con puntuaciones bajas en ICV están muy asociados a trastornos neurológicos debido a dificultades en el procesamiento de la información en el hemisfério izquierdo "/>
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:textStyle="bold"
+                android:text="Sugerencias: "/>
+            <TextView
+                android:id="@+id/sugerencias"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:paddingRight="5dp"
+                android:text="Para fortalecer los puntajes bajos en ICV, podría utilizar: \n-	Psicogénesis de la lectoescritura \n -Prolec \n -VADS"/>
+        </LinearLayout>
+
+
     </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-        <androidx.recyclerview.widget.RecyclerView
+        android:layout_height="wrap_content"
+        android:layout_gravity="end"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:textAlignment="center">
+
+        <Button
+            android:id="@+id/aceptar"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/rec_test"
-            android:layout_margin="10dp">
-        </androidx.recyclerview.widget.RecyclerView>
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:background="@drawable/gradientbackground"
+            android:padding="5dp"
+            android:text="ACEPTAR Y GUARDAR"
+            android:textColor="@color/white" />
     </LinearLayout>
 
 

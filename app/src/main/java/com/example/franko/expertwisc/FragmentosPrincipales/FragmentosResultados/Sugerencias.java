@@ -6,16 +6,16 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.franko.expertwisc.ExpertSystem.ModuloAprendizaje;
 import com.example.franko.expertwisc.ExpertSystem.MotorInferencia;
 import com.example.franko.expertwisc.R;
+import com.example.franko.expertwisc.Tools.CalcularEdad;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
-
-import java.util.ArrayList;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -28,13 +28,12 @@ import java.util.ArrayList;
 public class Sugerencias extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    RecyclerView recyclerViewSugerenciaTest;
+
     View view;
-    TextView txt_sugerencia, iq;
-    String respuesta;
-    int count=0;
+    TextView nombre, motivo, antecedentes, puntuaciones, cit, sugerencias, conclusiones;
+    String resPuntuaciones="", signal=", ";
     String[] grupo = {"ICV", "IRP", "IMO", "IVP"};
-    ArrayList<String> resultado, result;
+    Button guardar;
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
@@ -81,105 +80,54 @@ public class Sugerencias extends Fragment {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_sugerencias, container, false);
 
-        txt_sugerencia = view.findViewById(R.id.txt_sugerencia);
-        iq = view.findViewById(R.id.result_iq);
+        nombre = view.findViewById(R.id.nombre);
+        motivo = view.findViewById(R.id.motivo);
+        antecedentes = view.findViewById(R.id.antecedentes);
+        puntuaciones = view.findViewById(R.id.puntuaciones);
+        cit = view.findViewById(R.id.cit);
+        conclusiones = view.findViewById(R.id.conclusiones);
+        sugerencias = view.findViewById(R.id.sugerencias);
 
-        iq.setText(""+Utilidades.listResultCompuesta.get(4));
+        guardar = view.findViewById(R.id.aceptar);
 
-        //Invocación al Sistema Experto
+
+        //Ejecución del Sistema Experto mediante el motor de inferencia
         MotorInferencia motor = new MotorInferencia();
+//        motor.getResultado(Utilidades.edadActual,grupo, getContext());
 
-        respuesta = motor.getResultado(Utilidades.edadActual,grupo);
+        //Setteamos la vista con las respuestas
+        CalcularEdad calcularEdad = new CalcularEdad(Utilidades.fechaNacimiento,Utilidades.fechaEvaluacion);
+        String edadFinal = calcularEdad.CalcularEdad();
 
+        nombre.setText(Utilidades.currentPacienteName +", "+ edadFinal);
+        if (Utilidades.motivo.equals("")){
+            motivo.setText("Sin motivo para esta evaluación.");
+        }else {
+            motivo.setText(Utilidades.motivo);
+        }
+        if (Utilidades.antecedentes.equals("")){
+            antecedentes.setText("Sin antecedentes para esta evaluación.");
+        }else {
+            antecedentes.setText(Utilidades.antecedentes);
+        }
 
+        for (int i = 0; i<Utilidades.listResultCompuesta.size()-1; i++){
+            if (i==Utilidades.listResultCompuesta.size()-2){
+                signal = ".";
+            }
+            resPuntuaciones += grupo[i]+": "+Utilidades.listResultCompuesta.get(i)+signal;
+        }
+        puntuaciones.setText(resPuntuaciones);
+        cit.setText(Utilidades.cit);
+//        conclusiones.setText(Utilidades.Conclusiones);
+//        sugerencias.setText(Utilidades.Sugerencias);
 
-        //Registro de nuevos datos BC
-
-
-
-        //Registro de nuevos datos MA
-
-
-//        for (int i=0; i < 4; i++){
-//            if (Integer.parseInt(Utilidades.listResultCompuesta.get(i))<100){
-////                resultado.add(motor.getResultado(Utilidades.edadActual,grupo[i]));
-//                respuesta = motor.getResultado(Utilidades.edadActual,grupo[i]);
-////                result.add(grupo[i]);
-//                count++;
-//            }
-//        }
-
-
-
-//        SistemaExperto sistemaExperto = new SistemaExperto();
-//        resultado = new ArrayList<>();
-//        result = new ArrayList<>();
-//        for (int i=0; i < 4; i++){
-//            if (Integer.parseInt(Utilidades.listResultCompuesta.get(i))<100){
-//                resultado.add(sistemaExperto.getResultado(Utilidades.edadActual,grupo[i]));
-//                result.add(grupo[i]);
-//                count++;
-//            }
-//        }
-//
-//        //Ordenamos los srting de resultados de áreas a ser mostradas
-//        if (result.size()>1){
-//            if (result.size()==2){
-//                area = result.get(0)+" y "+result.get(1);
-//            }
-//            if (result.size()==3){
-//                area = result.get(0)+","+result.get(1)+" y "+result.get(2);
-//            }
-//            if (result.size()==4){
-//                area = result.get(0)+", "+result.get(1)+", "+result.get(2)+" y "+result.get(3);
-//            }
-//        }else if(result.size()==1){
-//            area = result.get(0);
-//        }
-//
-//
-//        recyclerViewSugerenciaTest = view.findViewById(R.id.rec_test);
-//        recyclerViewSugerenciaTest.setLayoutManager(new LinearLayoutManager(getContext()));
-//
-//        Utilidades.LEE = getString(R.string.LEE);
-//        Utilidades.PROLEC = getString(R.string.PROLEC);
-//        Utilidades.BENDER = getString(R.string.BENDER);
-//        Utilidades.TEPSI = getString(R.string.TEPSI);
-//        Utilidades.PRECALCULO = getString(R.string.PreCalculo);
-//        Utilidades.PROCALCULO = getString(R.string.ProCalculo);
-//        Utilidades.RAVEN_G = getString(R.string.Raven_G);
-//
-//
-//        if (count>0){
-//           AdapterSugerencias adapterSugerencias = new AdapterSugerencias(resultado);
-//            recyclerViewSugerenciaTest.setAdapter(adapterSugerencias);
-//            txt_sugerencia.setText("Estimado "+Utilidades.currentUserName+", hemos notado que "+
-//                    Utilidades.currentPacienteName+
-//                    " tiene algunas dificultades en "+
-//                    area+
-//                    ", por lo tanto te recomendamos aplicar las siguientes pruebas:");
-//        }else
-//        {
-//            txt_sugerencia.setText("Estimado "+Utilidades.currentUserName+", hemos notado que "+
-//                    Utilidades.currentPacienteName+" NO tiene dificultades significativas en el " +
-//                    "test realizado. Pero aún así puedes fortalecer todas las áreas en las que sobresale.");
-//        }
-
-
-
-//
-//        adapterSugerencias.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                int position = recyclerViewSugerenciaTest.getChildAdapterPosition(view);
-//            }
-//        });
-
-
-
-
-
-
+        guardar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ModuloAprendizaje moduloAprendizaje = new ModuloAprendizaje();
+            }
+        });
 
         return view;
     }

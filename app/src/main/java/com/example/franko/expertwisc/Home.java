@@ -8,23 +8,21 @@ import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
-import androidx.fragment.app.Fragment;
-import androidx.appcompat.app.AlertDialog;
-import android.view.View;
-import com.google.android.material.navigation.NavigationView;
-import androidx.core.view.GravityCompat;
-import androidx.drawerlayout.widget.DrawerLayout;
-import androidx.appcompat.app.ActionBarDrawerToggle;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
+import androidx.fragment.app.Fragment;
 
 import com.example.franko.expertwisc.Entidades.Persona;
 import com.example.franko.expertwisc.FragmentosPrincipales.AboutMe;
@@ -58,6 +56,9 @@ import com.example.franko.expertwisc.FragmentosSubTest.V;
 import com.example.franko.expertwisc.Tools.BlurBuilder;
 import com.example.franko.expertwisc.Tools.Consultas;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.navigation.NavigationView;
+import com.google.android.material.snackbar.Snackbar;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
@@ -130,7 +131,7 @@ public class Home extends AppCompatActivity
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getApplicationContext(),"Contador: "+Utilidades.currentCounterPatients,Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(),"Contador: "+Utilidades.currentCounterPatients,Toast.LENGTH_LONG).show();
 
                 //Si es free
                 if (Utilidades.currentUserFreeUsuario.equals("1")){
@@ -295,7 +296,7 @@ public class Home extends AppCompatActivity
                 Utilidades.rotacionFab=1;
                 CambioTitulo("Registro de pacientes");
             }
-            Toast.makeText(getApplicationContext(),"Contador: "+Utilidades.currentCounterPatients,Toast.LENGTH_LONG).show();
+//            Toast.makeText(getApplicationContext(),"Contador: "+Utilidades.currentCounterPatients,Toast.LENGTH_LONG).show();
 
         } else if (id == R.id.nav_datos) {
 //            fragment = new CC();

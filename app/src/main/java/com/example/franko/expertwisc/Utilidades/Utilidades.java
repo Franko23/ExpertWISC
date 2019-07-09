@@ -1,7 +1,5 @@
 package com.example.franko.expertwisc.Utilidades;
 
-import com.example.franko.expertwisc.FragmentosSubTest.S;
-
 import java.util.List;
 
 /**
@@ -14,10 +12,13 @@ public class Utilidades {
     public static int rotacionR = 0;
     public static int rotacionFab = 0;
 
-    public static String edadActual; //Edad del paciente actual
+    public static String edadActual = "Sin Edad"; //Edad del paciente actual
+    public static String fechaNacimiento= "Sin Fecha"; //Edad del paciente actual
     public static String fechaEvaluacion; //Fecha de evaluación
-    public static String antecedentes; //Fecha de evaluación
-    public static String motivo; //Fecha de evaluación
+    public static String antecedentes = ""; //Fecha de evaluación
+    public static String motivo = ""; //Fecha de evaluación
+    public static String Sugerencias = "No hay sugerencias para este caso"; //Fecha de evaluación
+    public static String Conclusiones  = "No hay conclusiones para este caso"; //Fecha de evaluación
 
 
     public static String R_cc;
@@ -179,18 +180,59 @@ public class Utilidades {
 
 
     //Constantes Tabla Test
-    public static final String TABLA_TEST = "test";
-    public static final String CAMPO_ID_TEST = "id_test";
-    public static final String CAMPO_FECHA_TEST = "fecha_test";
-    public static final String CAMPO_EVALUADOR_TEST = "evaluador_test";
-    public static final String CAMPO_ESTADO_TEST = "estado_test";
-    public static final String CAMPO_EDAD_TEST = "edad_test";
-    public static final String CAMPO_INTERVALO = "campo_intervalo";
-    public static final String CAMPO_UP_TEST = "campo_up_test";
+    public static String TABLA_TEST = "test";
+    public static String CAMPO_ID_TEST = "id_test";
+    public static String CAMPO_FECHA_TEST = "fecha_test";
+    public static String CAMPO_EVALUADOR_TEST = "evaluador_test";
+    public static String CAMPO_ESTADO_TEST = "estado_test";
+    public static String CAMPO_EDAD_TEST = "edad_test";
+    public static String CAMPO_INTERVALO = "campo_intervalo";
+    public static String CAMPO_UP_TEST = "campo_up_test";
+
+
+    //Constantes de la Base de Conocimiento - TABLA ICV
+    public static String TABLA_ICV = "icv";
+    public static String CAMPO_ID_ICV = "id_icv";
+    public static String CAMPO_EDAD_ICV = "edad_icv";
+    public static String CAMPO_TEST_ICV = "test_icv";
+    public static String CAMPO_MOTIVO_ICV = "motivo_icv";
+    public static String CAMPO_ANTECEDENTES_ICV = "antecedentes_icv";
+    public static String CAMPO_SUGERENCIA_ICV = "sugerencia_icv";
+    public static String CAMPO_CONCLUSIONES_ICV = "conclusiones_icv";
+
+    //Constantes de la Base de Conocimiento - TABLA IRP
+    public static String TABLA_IRP = "irp";
+    public static String CAMPO_ID_IRP = "id_irp";
+    public static String CAMPO_EDAD_IRP = "edad_irp";
+    public static String CAMPO_TEST_IRP = "test_irp";
+    public static String CAMPO_MOTIVO_IRP = "motivo_irp";
+    public static String CAMPO_ANTECEDENTES_IRP = "antecedentes_irp";
+    public static String CAMPO_SUGERENCIA_IRP = "sugerencia_irp";
+    public static String CAMPO_CONCLUSIONES_IRP = "conclusiones_irv";
+
+    //Constantes de la Base de Conocimiento - TABLA IMO
+    public static String TABLA_IMO = "imo";
+    public static String CAMPO_ID_IMO = "id_imo";
+    public static String CAMPO_EDAD_IMO = "edad_imo";
+    public static String CAMPO_TEST_IMO = "test_imo";
+    public static String CAMPO_MOTIVO_IMO = "motivo_imo";
+    public static String CAMPO_ANTECEDENTES_IMO = "antecedentes_imo";
+    public static String CAMPO_SUGERENCIA_IMO = "sugerencia_imo";
+    public static String CAMPO_CONCLUSIONES_IMO = "conclusiones_imo";
+
+    //Constantes de la Base de Conocimiento - TABLA IVP
+    public static String TABLA_IVP = "ivp";
+    public static String CAMPO_ID_IVP = "id_ivp";
+    public static String CAMPO_EDAD_IVP = "edad_ivp";
+    public static String CAMPO_TEST_IVP = "test_ivp";
+    public static String CAMPO_MOTIVO_IVP = "motivo_ivp";
+    public static String CAMPO_ANTECEDENTES_IVP = "antecedentes_ivp";
+    public static String CAMPO_SUGERENCIA_IVP = "sugerencia_ivp";
+    public static String CAMPO_CONCLUSIONES_IVP = "conclusiones_ivp";
 
 
     ///////////////////////////////////////////
-    //********CREACIÓN DE TABLAS***************
+    //********CREACIÓN DE TABLAS*************//
     ///////////////////////////////////////////
 
 
@@ -326,5 +368,46 @@ public class Utilidades {
             CAMPO_CONTRASENA_USUARIO + " TEXT," +
             CAMPO_ID_PERSONA+" INTEGER,"+
             CAMPO_FREE_USUARIO +" TEXT )";
+
+    //TABLAS BASE DE CONOCIMIENTO
+    public static final String CREAR_TABLA_ICV = "CREATE TABLE " + TABLA_ICV +
+            " (" +
+            CAMPO_ID_ICV + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            CAMPO_EDAD_ICV + " TEXT, " +
+            CAMPO_TEST_ICV + " TEXT, " +
+            CAMPO_MOTIVO_ICV + " TEXT," +
+            CAMPO_ANTECEDENTES_ICV +" TEXT, "+
+            CAMPO_SUGERENCIA_ICV +" TEXT, "+
+            CAMPO_CONCLUSIONES_ICV +" TEXT )";
+
+    public static final String CREAR_TABLA_IRP = "CREATE TABLE " + TABLA_IRP +
+            " (" +
+            CAMPO_ID_IRP + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            CAMPO_EDAD_IRP + " TEXT, " +
+            CAMPO_TEST_IRP + " TEXT, " +
+            CAMPO_MOTIVO_IRP + " TEXT," +
+            CAMPO_ANTECEDENTES_IRP +" TEXT, "+
+            CAMPO_SUGERENCIA_IRP +" TEXT, "+
+            CAMPO_CONCLUSIONES_IRP +" TEXT )";
+
+    public static final String CREAR_TABLA_IMO = "CREATE TABLE " + TABLA_IMO +
+            " (" +
+            CAMPO_ID_IMO + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            CAMPO_EDAD_IMO + " TEXT, " +
+            CAMPO_TEST_IMO + " TEXT, " +
+            CAMPO_MOTIVO_IMO + " TEXT," +
+            CAMPO_ANTECEDENTES_IMO +" TEXT, "+
+            CAMPO_SUGERENCIA_IMO +" TEXT, "+
+            CAMPO_CONCLUSIONES_IMO +" TEXT )";
+
+    public static final String CREAR_TABLA_IVP = "CREATE TABLE " + TABLA_IVP +
+            " (" +
+            CAMPO_ID_IVP + " INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, " +
+            CAMPO_EDAD_IVP + " TEXT, " +
+            CAMPO_TEST_IVP + " TEXT, " +
+            CAMPO_MOTIVO_IVP + " TEXT," +
+            CAMPO_ANTECEDENTES_IVP +" TEXT, "+
+            CAMPO_SUGERENCIA_IVP +" TEXT, "+
+            CAMPO_CONCLUSIONES_IVP +" TEXT )";
 
 }
