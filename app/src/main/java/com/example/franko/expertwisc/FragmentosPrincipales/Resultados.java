@@ -4,15 +4,14 @@ import android.content.Context;
 import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.tabs.TabLayout;
-import androidx.fragment.app.Fragment;
-import androidx.viewpager.widget.ViewPager;
 import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.ViewPager;
 
 import com.example.franko.expertwisc.Adapters.SeccionesAdapter;
 import com.example.franko.expertwisc.ConexionHelper;
@@ -25,6 +24,8 @@ import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.
 import com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados.Sugerencias_free;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
+import com.google.android.material.appbar.AppBarLayout;
+import com.google.android.material.tabs.TabLayout;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -121,7 +122,8 @@ public class Resultados extends Fragment {
 
         Test test = new Test();
         test.UpdateTestState(getContext());
-//        UpdateTestState();
+
+        this.getActivity().setTitle("Resultados");
 
 
         return view;

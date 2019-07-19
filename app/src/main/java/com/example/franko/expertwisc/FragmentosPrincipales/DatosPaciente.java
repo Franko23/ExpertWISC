@@ -186,6 +186,8 @@ public class DatosPaciente extends Fragment {
         txt_mensaje_test = view.findViewById(R.id.txt_mensaje_test);
         cantidadTest = view.findViewById(R.id.cantidad_test);
 
+        this.getActivity().setTitle("Detalle de paciente");
+
         switchCompat.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
@@ -285,7 +287,6 @@ public class DatosPaciente extends Fragment {
                             newTest.put("fechaTest", fechaActual);
                             newTest.put("edadPaciente", Utilidades.edadActual);
 
-
                             dbFire.collection("usuarios").document(Utilidades.currentUser).collection("pacientes").
                                     document(paciente.getId_paciente().toString()).collection("test").
                                     document(listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test().toString())
@@ -300,9 +301,12 @@ public class DatosPaciente extends Fragment {
                                             ContentValues personaUpdate = new ContentValues();
                                             personaUpdate.put(Utilidades.CAMPO_UP_TEST, "SI");
                                             try {
-                                                int okTest = db.update(Utilidades.TABLA_TEST, personaUpdate, Utilidades.CAMPO_ID_TEST + "=" + listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test(), null);
+                                                int okTest = db.update(Utilidades.TABLA_TEST, personaUpdate,
+                                                        Utilidades.CAMPO_ID_TEST + "=" +
+                                                                listaTest.get(recyclerViewTest.getChildAdapterPosition(v)).getId_test(), null);
                                                 if (okTest == 1) {
-                                                    Snackbar.make(view, "Test actualizado corectamente, ya puede subir los SubTest", Snackbar.LENGTH_LONG).show();
+                                                    Snackbar.make(view, "Test actualizado corectamente, ya puede subir los SubTest",
+                                                            Snackbar.LENGTH_LONG).show();
                                                 }
                                             } catch (Exception e) {
                                                 Toast.makeText(getContext(), "Error al actualizar Test", Toast.LENGTH_SHORT).show();
@@ -658,7 +662,6 @@ public class DatosPaciente extends Fragment {
                                             Log.w(TAG, "Error subiendo SubTestA ", e);
                                         }
                                     });
-
                         }
                     }
                 });

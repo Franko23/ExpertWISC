@@ -321,7 +321,7 @@ public class Home extends AppCompatActivity
             fragment = new AboutMe();
             aBoolean = true;
             fab.hide();
-            CambioTitulo("Sobre mi");
+            CambioTitulo("Sobre mí");
         }
 
         if (aBoolean){

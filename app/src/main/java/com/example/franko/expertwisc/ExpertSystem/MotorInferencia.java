@@ -21,7 +21,8 @@ public class MotorInferencia {
         BaseConocimiento base = new BaseConocimiento();
         ResultadoBase = new ArrayList<>();
         for (int i=0; i < 4; i++){
-            if (Integer.parseInt(Utilidades.listResultCompuesta.get(i))<100){
+            //Si el valor del 1er índice es menor a 90
+            if (Integer.parseInt(Utilidades.listResultCompuesta.get(i))<90){
                 ResultadoBase.add(base.getResultado(Edad, Area[i], context)); //Recuperamos los resultados
                 count++;
             }
@@ -34,16 +35,6 @@ public class MotorInferencia {
             Utilidades.Sugerencias = resp[0];
             Utilidades.Conclusiones = resp[1];
         }
-
-
-
-
-
-        //Los niños con puntuaciones bajas en ICV están muy asociados
-        // a trastornos neurológicos debido a dificultades en el proesamiento de la información en el
-        //hemisferio izquierdo
-
-        //Para fortalecer los puntajes bajos en ICV, podría utilizar: 
 
         return ResultadoFinal;
     }

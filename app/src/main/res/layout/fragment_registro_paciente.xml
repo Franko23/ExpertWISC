@@ -82,7 +82,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="Nombres de paciente"
+                                android:hint="Ingresa los nombres"
                                 android:textColor="#767474"
                                 android:textSize="15dp"
                                 android:layout_marginLeft="10dp"
@@ -104,7 +104,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:hint="Apellidos de paciente"
+                                android:hint="Ingresa los apellidos"
                                 android:textSize="15dp"
                                 android:layout_marginLeft="10dp"
                                 android:id="@+id/txtApellidos"/>
@@ -125,7 +125,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
-                                android:text=""
+                                android:hint="Ingresa un motivo"
                                 android:id="@+id/txtMotivoConsulta"
                                 android:textSize="15dp"
                                 android:singleLine="false"/>
@@ -147,7 +147,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="match_parent"
                                 android:textSize="15dp"
-                                android:text=""
+                                android:hint="Ingresa algunos antecedentes"
                                 android:id="@+id/txtAntecedentes"/>
                         </LinearLayout>
                         <LinearLayout

@@ -13,28 +13,29 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.net.Uri;
 import android.os.Build;
-import android.provider.MediaStore;
-import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.android.material.textfield.TextInputLayout;
-
-import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.appcompat.widget.AppCompatImageView;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.appcompat.widget.AppCompatImageView;
+
+import com.example.franko.expertwisc.ExpertSystem.Aprendizaje;
 import com.example.franko.expertwisc.Tools.PBDialog;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
@@ -117,6 +118,9 @@ public class Register extends AppCompatActivity {
             public void onClick(View v) {
                 if (isOnline()){
                     registrarUsuario(v);
+                    //Insertamos los primeros datos a la base de datos de la base de conocimiento
+                    Aprendizaje aprendizaje = new Aprendizaje();
+                    aprendizaje.insertInitData(getApplicationContext());
                 }else {
                     Snackbar.make(v, "No hay conexión a internet", Snackbar.LENGTH_LONG).show();
                 }
@@ -335,6 +339,8 @@ public class Register extends AppCompatActivity {
         if (cancel){
             focusView.requestFocus();
         }
+
+
     }
 
     @Override

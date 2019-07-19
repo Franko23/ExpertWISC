@@ -1,17 +1,20 @@
 package com.example.franko.expertwisc.FragmentosPrincipales.FragmentosResultados;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.example.franko.expertwisc.ExpertSystem.ModuloAprendizaje;
+import com.example.franko.expertwisc.ExpertSystem.Aprendizaje;
 import com.example.franko.expertwisc.ExpertSystem.MotorInferencia;
 import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Tools.CalcularEdad;
@@ -30,7 +33,7 @@ public class Sugerencias extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 
     View view;
-    TextView nombre, motivo, antecedentes, puntuaciones, cit, sugerencias, conclusiones;
+    TextView nombre, motivo, antecedentes, puntuaciones, cit, intervalo, sugerencias, conclusiones;
     String resPuntuaciones="", signal=", ";
     String[] grupo = {"ICV", "IRP", "IMO", "IVP"};
     Button guardar;
@@ -85,19 +88,22 @@ public class Sugerencias extends Fragment {
         antecedentes = view.findViewById(R.id.antecedentes);
         puntuaciones = view.findViewById(R.id.puntuaciones);
         cit = view.findViewById(R.id.cit);
+        intervalo = view.findViewById(R.id.intervalo);
         conclusiones = view.findViewById(R.id.conclusiones);
         sugerencias = view.findViewById(R.id.sugerencias);
 
         guardar = view.findViewById(R.id.aceptar);
 
-
-        //Ejecución del Sistema Experto mediante el motor de inferencia
-        MotorInferencia motor = new MotorInferencia();
-//        motor.getResultado(Utilidades.edadActual,grupo, getContext());
-
         //Setteamos la vista con las respuestas
         CalcularEdad calcularEdad = new CalcularEdad(Utilidades.fechaNacimiento,Utilidades.fechaEvaluacion);
         String edadFinal = calcularEdad.CalcularEdad();
+
+        String [] nAge = edadFinal.split(" ");
+        String edad= nAge[0];
+
+        //Ejecución del Sistema Experto mediante el motor de inferencia
+        MotorInferencia motor = new MotorInferencia();
+        motor.getResultado(edad,grupo, getContext());
 
         nombre.setText(Utilidades.currentPacienteName +", "+ edadFinal);
         if (Utilidades.motivo.equals("")){
@@ -119,13 +125,95 @@ public class Sugerencias extends Fragment {
         }
         puntuaciones.setText(resPuntuaciones);
         cit.setText(Utilidades.cit);
-//        conclusiones.setText(Utilidades.Conclusiones);
-//        sugerencias.setText(Utilidades.Sugerencias);
+        intervalo.setText(Utilidades.intervalo_confianza + "%");
+        conclusiones.setText(Utilidades.Conclusiones);
+        sugerencias.setText(Utilidades.Sugerencias);
 
+
+        sugerencias.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LayoutInflater layoutInflaterAndroid = LayoutInflater.from(getContext());
+                View mView = layoutInflaterAndroid.inflate(R.layout.input, null);
+                AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(getContext());
+                alertDialogBuilderUserInput.setView(mView);
+
+                final EditText input = mView.findViewById(R.id.key);
+                input.setText(Utilidades.Sugerencias_key);
+                alertDialogBuilderUserInput
+                        .setCancelable(false)
+                        .setPositiveButton("Listo", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialogBox, int id) {
+                                Utilidades.Sugerencias_key = input.getText().toString();
+                            }
+                        })
+
+                        .setNegativeButton("Cancelar",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialogBox, int id) {
+                                        dialogBox.cancel();
+                                    }
+                                });
+
+                AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
+                alertDialogAndroid.show();
+            }
+        });
+        conclusiones.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LayoutInflater layoutInflaterAndroid = LayoutInflater.from(getContext());
+                View mView = layoutInflaterAndroid.inflate(R.layout.input, null);
+                AlertDialog.Builder alertDialogBuilderUserInput = new AlertDialog.Builder(getContext());
+                alertDialogBuilderUserInput.setView(mView);
+
+                final EditText input = mView.findViewById(R.id.key);
+                input.setText(Utilidades.Conclusiones_key);
+                alertDialogBuilderUserInput
+                        .setCancelable(false)
+                        .setPositiveButton("Listo", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialogBox, int id) {
+                                Utilidades.Conclusiones_key = input.getText().toString();
+                            }
+                        })
+
+                        .setNegativeButton("Cancelar",
+                                new DialogInterface.OnClickListener() {
+                                    public void onClick(DialogInterface dialogBox, int id) {
+                                        dialogBox.cancel();
+                                    }
+                                });
+
+                AlertDialog alertDialogAndroid = alertDialogBuilderUserInput.create();
+                alertDialogAndroid.show();
+            }
+        });
+
+
+        //Almacenamos nueva información
         guardar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ModuloAprendizaje moduloAprendizaje = new ModuloAprendizaje();
+
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                Aprendizaje aprendizaje = new Aprendizaje();
+                                aprendizaje.insertDataBase(edad, motivo.getText().toString(), antecedentes.getText().toString(), grupo, getContext());
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //No button clicked
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+                builder.setMessage("Se almacenará un nuevo registro").setPositiveButton("Si", dialogClickListener)
+                        .setNegativeButton("No", dialogClickListener).show();
             }
         });
 

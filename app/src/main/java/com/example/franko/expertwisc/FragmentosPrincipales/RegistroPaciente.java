@@ -15,13 +15,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
-import androidx.annotation.NonNull;
-import com.google.android.material.snackbar.Snackbar;
-import com.google.android.material.textfield.TextInputEditText;
-
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentTransaction;
-
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
@@ -34,6 +27,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import com.example.franko.expertwisc.ConexionHelper;
 import com.example.franko.expertwisc.Entidades.Paciente;
@@ -58,6 +54,8 @@ import com.example.franko.expertwisc.R;
 import com.example.franko.expertwisc.Tools.CalcularEdad;
 import com.example.franko.expertwisc.Tools.PBDialog;
 import com.example.franko.expertwisc.Utilidades.Utilidades;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.io.ByteArrayOutputStream;
@@ -505,7 +503,6 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
         bitmap.compress(Bitmap.CompressFormat.JPEG,100, baos);
         byte[] data = baos.toByteArray();
 
-
             SQLiteDatabase db = con.getWritableDatabase();
 
             ContentValues persona = new ContentValues();
@@ -542,18 +539,6 @@ public class RegistroPaciente extends Fragment implements DatePickerDialog.OnSho
 
                 Toast.makeText(getContext(),"Error al registrar paciente", Toast.LENGTH_SHORT).show();
             }
-
-//        try {
-//            ContentValues user = new ContentValues();
-//            user.put(Utilidades.CAMPO_CANTIDAD_PACIENTE, id_paciente);
-//            int idCantidad=db.update(Utilidades.TABLA_USUARIO, user, Utilidades.CAMPO_ID_USUARIO+"="+Utilidades.currentUserIdUsuario,null);
-//            Toast.makeText(getContext(),"Paciente nro "+idCantidad, Toast.LENGTH_SHORT).show();
-//            if (idCantidad==1){
-//                Snackbar.make(view, "Cantidad = "+id_paciente, Snackbar.LENGTH_LONG).show();
-//            }
-//        }catch (Exception e){
-//            Toast.makeText(getContext(),"Error al registrar cantidad", Toast.LENGTH_SHORT).show();
-//        }
 
             db.close();
 
